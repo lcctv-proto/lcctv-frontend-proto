@@ -1,0 +1,34 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mate+SC&display=swap");
+
+.ff-logo {
+    font-family: "Mate SC" !important;
+}
+
+.ff-nunito {
+    font-family: "Nunito Sans" !important;
+}
+
+.border-gold-7 {
+    border-bottom: 7px #f0b917 solid !important;
+}
+
+.border-gold-3 {
+    border-bottom: 3px #f0b917 solid !important;
+}
+
+.bg-navy {
+    background-color: #14274e !important;
+}
+
+.bg-gold {
+    background-color: #f0b917 !important;
+}
+
+.text-gold {
+    color: #f0b917 !important;
+}
+
+.text-navy {
+    color: #14274e !important;
+}

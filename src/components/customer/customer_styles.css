@@ -1,0 +1,18 @@
+nav {
+    border-bottom: 3px #f0b917 solid !important;
+}
+
+.active {
+    color: white !important;
+}
+
+#background {
+    background-image: url(../../assets/Images/Customer/cube.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.tint {
+    background-color: rgba(0, 0, 0, 0.55);
+}
