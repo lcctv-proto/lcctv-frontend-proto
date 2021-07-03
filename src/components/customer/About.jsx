@@ -4,7 +4,7 @@ import fam from "../../assets/Images/Customer/fam.png";
 
 function About() {
     return (
-        <>
+        <div className="container py-5">
             <div className="row">
                 <div className="col-6">
                     <p className="h1 py-3 text-navy border-gold-3">ABOUT US</p>
@@ -59,7 +59,7 @@ function About() {
                     <img src={fam} alt="..." height="350" width="500" />
                 </div>
             </div>
-        </>
+        </div>
     );
 }
 

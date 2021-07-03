@@ -8,28 +8,25 @@ import Contact from "./components/customer/Contact.jsx";
 import Applications from "./components/customer/Applications.jsx";
 import Plans from "./components/customer/Plans.jsx";
 import Services from "./components/customer/Services.jsx";
+import Portal from "./components/Portal.jsx";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Fragment } from "react";
 
 function App() {
     return (
         <Router>
+            <Navbar />
             <Switch>
                 <Route path="/" exact component={LandingPage} />
-                <Fragment>
-                    <Navbar />
-                    <div className="container py-5">
-                        <Route path="/plans" component={Plans} />
-                        <Route path="/channels" component={Channels} />
-                        <Route path="/applications" component={Applications} />
-                        <Route path="/about" component={About} />
-                        <Route path="/contact" component={Contact} />
-                        <Route path="/services" component={Services} />
-                    </div>
-                    <Footer />
-                </Fragment>
+                <Route path="/plans" component={Plans} />
+                <Route path="/channels" component={Channels} />
+                <Route path="/applications" component={Applications} />
+                <Route path="/about" component={About} />
+                <Route path="/contact" component={Contact} />
+                <Route path="/services" component={Services} />
+                <Route path="/portal" component={Portal} />
             </Switch>
+            <Footer />
         </Router>
     );
 }

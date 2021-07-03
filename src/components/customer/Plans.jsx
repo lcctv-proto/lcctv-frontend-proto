@@ -2,7 +2,7 @@ import Card from "./Card.jsx";
 
 function Plans() {
     return (
-        <>
+        <div className="container py-5">
             <div className="row justify-content-center">
                 <div className="col-lg-4 mb-3">
                     <Card
@@ -32,7 +32,7 @@ function Plans() {
                 </div>
             </div>
             <p>* Channels are subject to change without prior notice</p>
-        </>
+        </div>
     );
 }
 

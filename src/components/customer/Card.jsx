@@ -22,13 +22,11 @@ function Card({ title, price, SDchannels, HDchannels }) {
                     {title === "INTERNATIONAL" ? <StarFill /> : <Star />}
                 </h2>
                 <hr />
-                <p className="card-text">
-                    <small>Comes With:</small>
-                </p>
+                <p className="card-text">Comes With:</p>
                 <ul className="list-group list-group-flush">
                     <li className="list-group-item">
                         <div className="d-inline-flex">
-                            <p className="h4 text-navy">
+                            <p className="h5 text-navy">
                                 <Tv className="me-3 h1" />
                                 <Link to="/channels" className="text-navy">
                                     {SDchannels} SD PLUS {HDchannels} HD

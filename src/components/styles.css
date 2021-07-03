@@ -17,6 +17,10 @@
     border-bottom: 3px #f0b917 solid !important;
 }
 
+.border-gold-2 {
+    border-bottom: 2px #f0b917 solid !important;
+}
+
 .bg-navy {
     background-color: #14274e !important;
 }
