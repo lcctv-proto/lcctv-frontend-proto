@@ -21,6 +21,14 @@
     border-bottom: 2px #f0b917 solid !important;
 }
 
+.border-navy-2 {
+    border-bottom: 2px #14274e solid !important;
+}
+
+.border-end-3 {
+    border-right: 3px #14274e solid !important;
+}
+
 .bg-navy {
     background-color: #14274e !important;
 }

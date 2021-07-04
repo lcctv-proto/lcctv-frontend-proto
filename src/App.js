@@ -8,6 +8,9 @@ import Contact from "./components/customer/Contact.jsx";
 import Applications from "./components/customer/Applications.jsx";
 import Plans from "./components/customer/Plans.jsx";
 import Services from "./components/customer/Services.jsx";
+import Inquiry from "./components/customer/Inquiry.jsx";
+import Technical from "./components/customer/Technical.jsx";
+
 import Portal from "./components/Portal.jsx";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -24,6 +27,10 @@ function App() {
                 <Route path="/about" component={About} />
                 <Route path="/contact" component={Contact} />
                 <Route path="/services" component={Services} />
+                <Route path="/general" component={Inquiry} />
+                <Route path="/technical" component={Technical} />
+
+                {/* ONLINE MANAGEMENT SYSTEM ROUTES */}
                 <Route path="/portal" component={Portal} />
             </Switch>
             <Footer />

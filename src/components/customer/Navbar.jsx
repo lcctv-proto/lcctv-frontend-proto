@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../assets/Images/logo.png";
 import { CircleFill } from "react-bootstrap-icons";
@@ -6,8 +5,8 @@ import "../styles.css";
 import "./customer_styles.css";
 
 function Navbar() {
-    const [activeTab, setActiveTab] = useState(false);
     const location = useLocation().pathname;
+    console.log(location);
     if (!location.includes("portal")) {
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-navy">
@@ -21,24 +20,21 @@ function Navbar() {
                         alt=""
                         height="75"
                     />
-                    <p className="ms-3 pe-4 h6 text-center  ff-logo">
+                    <p className="ms-3 pe-4 h6 text-center ff-logo">
                         Lake Community Cable TV
                     </p>
                 </Link>
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li
-                        className="nav-item px-3"
-                        onClick={() => setActiveTab("plans")}
-                    >
+                    <li className="nav-item px-3">
                         <Link
                             className={`nav-link ${
-                                activeTab === "plans" ? "active" : ""
+                                location === "/plans" ? "active" : ""
                             }`}
                             to="/plans"
                         >
                             <CircleFill
                                 className={`text-gold me-2 ${
-                                    activeTab === "plans"
+                                    location === "/plans"
                                         ? "d-inline"
                                         : "d-none"
                                 }`}
@@ -47,19 +43,16 @@ function Navbar() {
                             PLANS
                         </Link>
                     </li>
-                    <li
-                        className="nav-item px-2"
-                        onClick={() => setActiveTab("channels")}
-                    >
+                    <li className="nav-item px-2">
                         <Link
                             className={`nav-link ${
-                                activeTab === "channels" ? "active" : ""
+                                location === "/channels" ? "active" : ""
                             }`}
                             to="/channels"
                         >
                             <CircleFill
                                 className={`text-gold me-2 ${
-                                    activeTab === "channels"
+                                    location === "/channels"
                                         ? "d-inline"
                                         : "d-none"
                                 }`}
@@ -68,19 +61,16 @@ function Navbar() {
                             CHANNELS
                         </Link>
                     </li>
-                    <li
-                        className="nav-item px-2"
-                        onClick={() => setActiveTab("applications")}
-                    >
+                    <li className="nav-item px-2">
                         <Link
                             className={`nav-link ${
-                                activeTab === "applications" ? "active" : ""
+                                location === "/applications" ? "active" : ""
                             }`}
                             to="/applications"
                         >
                             <CircleFill
                                 className={`text-gold me-2 ${
-                                    activeTab === "applications"
+                                    location === "/applications"
                                         ? "d-inline"
                                         : "d-none"
                                 }`}
@@ -89,19 +79,16 @@ function Navbar() {
                             APPLICATIONS
                         </Link>
                     </li>
-                    <li
-                        className="nav-item px-2"
-                        onClick={() => setActiveTab("about")}
-                    >
+                    <li className="nav-item px-2">
                         <Link
                             className={`nav-link ${
-                                activeTab === "about" ? "active" : ""
+                                location === "/about" ? "active" : ""
                             }`}
                             to="/about"
                         >
                             <CircleFill
                                 className={`text-gold me-2 ${
-                                    activeTab === "about"
+                                    location === "/about"
                                         ? "d-inline"
                                         : "d-none"
                                 }`}
@@ -110,19 +97,22 @@ function Navbar() {
                             ABOUT US
                         </Link>
                     </li>
-                    <li
-                        className="nav-item px-2"
-                        onClick={() => setActiveTab("contact")}
-                    >
+                    <li className="nav-item px-2">
                         <Link
                             className={`nav-link ${
-                                activeTab === "contact" ? "active" : ""
+                                location === "/contact" ||
+                                location === "/general" ||
+                                location === "/technical"
+                                    ? "active"
+                                    : ""
                             }`}
                             to="/contact"
                         >
                             <CircleFill
                                 className={`text-gold me-2 ${
-                                    activeTab === "contact"
+                                    location === "/contact" ||
+                                    location === "/general" ||
+                                    location === "/technical"
                                         ? "d-inline"
                                         : "d-none"
                                 }`}
@@ -131,19 +121,16 @@ function Navbar() {
                             CONTACT US
                         </Link>
                     </li>
-                    <li
-                        className="nav-item px-2"
-                        onClick={() => setActiveTab("services")}
-                    >
+                    <li className="nav-item px-2">
                         <Link
                             className={`nav-link ${
-                                activeTab === "services" ? "active" : ""
+                                location === "/services" ? "active" : ""
                             }`}
                             to="/services"
                         >
                             <CircleFill
                                 className={`text-gold me-2 ${
-                                    activeTab === "services"
+                                    location === "/services"
                                         ? "d-inline"
                                         : "d-none"
                                 }`}
