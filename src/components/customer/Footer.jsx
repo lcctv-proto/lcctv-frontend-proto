@@ -12,7 +12,7 @@ function Footer() {
                 <footer className="bg-light p-5 ff-nunito">
                     <div className="container">
                         <div className="row">
-                            <div className="col-auto">
+                            <div className="col-auto mx-auto">
                                 <Link to="/" className="d-block">
                                     <img
                                         height="150"
@@ -27,7 +27,7 @@ function Footer() {
                                 </p>
                             </div>
 
-                            <div className="col-2 mt-4 ms-5">
+                            <div className="col-2 mt-4 ms-5 d-sm-none d-md-block">
                                 <h5>SERVICES</h5>
                                 <ul className="list-unstyled text-small">
                                     <li>
@@ -57,7 +57,7 @@ function Footer() {
                                 </ul>
                             </div>
 
-                            <div className="col-2 mt-4 ms-5">
+                            <div className="col-2 mt-4 ms-5 d-sm-none d-md-block">
                                 <h5>ABOUT US</h5>
                                 <ul className="list-unstyled text-small">
                                     <li>
@@ -80,7 +80,7 @@ function Footer() {
                                     </li>
                                 </ul>
                             </div>
-                            <div className="col-2 mt-4 ms-5">
+                            <div className="col-2 mt-4 ms-5 d-sm-none d-md-block">
                                 <h5>HELPFUL LINKS</h5>
                                 <ul className="list-unstyled text-small">
                                     <li>
@@ -106,7 +106,7 @@ function Footer() {
                                     </li>
                                 </ul>
                             </div>
-                            <div className="col-2">
+                            <div className="col-2 d-sm-none d-md-block">
                                 <iframe
                                     className="shadow"
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2368.594677387614!2d121.32316158513572!3d14.072248015335425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb2d20f46e6a2a7fd!2sLAKE%20COMMUNITY%20CABLE%20TV%20MULTI-SUPPOSE%20COOPERATIVE!5e0!3m2!1sen!2sph!4v1618666168055!5m2!1sen!2sph"
