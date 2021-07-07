@@ -4,7 +4,7 @@ function Inquiry() {
     return (
         <div className="container py-5">
             <div className="row justify-content-center">
-                <div className="col-6">
+                <div className="col-12 col-lg-6">
                     <div className="card border-0 shadow">
                         <div className="card-header py-3 border-gold-7 bg-navy text-light">
                             <span className="h3 fw-bolder">Contact Us!</span>
@@ -25,9 +25,9 @@ function Inquiry() {
                             </div>
                             <form>
                                 <div className="row mt-3">
-                                    <div className="col">
+                                    <div className="col-xxl-6 mt-3">
                                         <label
-                                            for="subscriber_name"
+                                            htmlFor="subscriber_name"
                                             className="form-label"
                                         >
                                             Subscriber Name:
@@ -38,9 +38,9 @@ function Inquiry() {
                                             id="subscriber_name"
                                         />
                                     </div>
-                                    <div className="col">
+                                    <div className="col-xxl-6 mt-3">
                                         <label
-                                            for="account_number"
+                                            htmlFor="account_number"
                                             className="form-label"
                                         >
                                             Account Number:
@@ -56,7 +56,7 @@ function Inquiry() {
                                 <div className="row mt-3">
                                     <div className="col">
                                         <label
-                                            for="email_address"
+                                            htmlFor="email_address"
                                             className="form-label"
                                         >
                                             Email Address:
@@ -64,14 +64,14 @@ function Inquiry() {
                                         <input
                                             type="email"
                                             className="form-control"
-                                            name="email_address"
+                                            id="email_address"
                                         />
                                     </div>
                                 </div>
                                 <div className="row mt-3">
                                     <div className="col">
                                         <label
-                                            for="contact_number"
+                                            htmlFor="contact_number"
                                             className="form-label"
                                         >
                                             Contact Number:
@@ -79,21 +79,21 @@ function Inquiry() {
                                         <input
                                             type="text"
                                             className="form-control"
-                                            name="contact_number"
+                                            id="contact_number"
                                         />
                                     </div>
                                 </div>
                                 <div className="row mt-3">
                                     <div className="col">
                                         <label
-                                            for="subscription_plan"
+                                            htmlFor="subscription_plan"
                                             className="form-label"
                                         >
                                             Subscription Plan:
                                         </label>
 
                                         <select className="form-select">
-                                            <option selected hidden>
+                                            <option defaultValue hidden>
                                                 SELECT SUBSCRIPTION PLAN
                                             </option>
                                             <option value="b640">
@@ -114,13 +114,13 @@ function Inquiry() {
                                 <div className="row mt-3">
                                     <div className="col">
                                         <label
-                                            for="concern_type"
+                                            htmlFor="concern_type"
                                             className="form-label"
                                         >
                                             Concern Type:
                                         </label>
                                         <select className="form-select">
-                                            <option selected hidden>
+                                            <option defaultValue hidden>
                                                 SELECT CONCERN TYPE
                                             </option>
                                             <option>Billing Related</option>
@@ -144,7 +144,7 @@ function Inquiry() {
                                 </div>
                                 <div className="row mt-3">
                                     <div className="col">
-                                        <label for="add-info">
+                                        <label htmlFor="add-info">
                                             How can we help?
                                         </label>
                                         <textarea
@@ -168,7 +168,7 @@ function Inquiry() {
                         </div>
                     </div>
                 </div>
-                <div className="col-6 py-5">
+                <div className="col-6 d-none d-lg-block py-5">
                     <img
                         className="d-block mx-auto"
                         width="400px"

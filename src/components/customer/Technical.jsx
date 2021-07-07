@@ -4,7 +4,7 @@ function Inquiry() {
     return (
         <div className="container py-5">
             <div className="row justify-content-center">
-                <div className="col-6">
+                <div className="col-12 col-lg-6">
                     <div className="card border-0 shadow">
                         <div className="card-header py-3 border-gold-7 bg-navy text-light">
                             <span className="h3 fw-bolder">
@@ -26,7 +26,7 @@ function Inquiry() {
                             </div>
                             <form>
                                 <div className="row mt-3">
-                                    <div className="col">
+                                    <div className="col-xxl-6 mt-3">
                                         <label
                                             for="subscriber_name"
                                             className="form-label"
@@ -39,7 +39,7 @@ function Inquiry() {
                                             id="subscriber_name"
                                         />
                                     </div>
-                                    <div className="col">
+                                    <div className="col-xxl-6 mt-3">
                                         <label
                                             for="account_number"
                                             className="form-label"
@@ -161,7 +161,7 @@ function Inquiry() {
                         </div>
                     </div>
                 </div>
-                <div className="col-6 py-5">
+                <div className="col-6 d-none d-lg-block py-5">
                     <img
                         className="d-block mx-auto"
                         width="400px"

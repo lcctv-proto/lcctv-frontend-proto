@@ -61,21 +61,26 @@
     border-bottom: 2px #14274e solid !important;
 }
 
-.border-end-3 {
-    border-right: 3px #14274e solid !important;
+@media (min-width: 992px) {
+    .border-end-3 {
+        border-right: 3px #14274e solid !important;
+    }
 }
 
 .btn-custom {
     background-color: #14274e !important;
 }
+
 .btn-custom:hover {
     background-color: white !important;
     color: #14274e !important;
     border-color: #14274e !important;
 }
+
 .btn-custom p {
     color: #fff;
 }
+
 .btn-custom:hover p {
     color: #14274e;
 }
@@ -367,4 +372,32 @@
 
 .text-navy {
     color: #14274e !important;
+}
+
+nav {
+    border-bottom: 3px #f0b917 solid !important;
+}
+
+.active {
+    color: white !important;
+}
+
+#background {
+    background-image: url(../assets/Images/Customer/cube.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.tint {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.zoom:hover {
+    transform: scale(1.5);
+}
+
+.zoom {
+    display: block;
+    transition: transform 0.75s;
 }

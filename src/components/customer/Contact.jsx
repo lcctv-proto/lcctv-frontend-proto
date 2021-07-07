@@ -42,7 +42,7 @@ function Contact() {
                 </div>
             </div>
             <div className="row mt-4 mb-3">
-                <div className="col-6 mx-auto">
+                <div className="col-lg-6 mx-auto">
                     <table className="table table-borderless shadow">
                         <thead className="bg-navy border-gold-3 text-light">
                             <tr>

@@ -6,7 +6,7 @@ function About() {
     return (
         <div className="container py-5">
             <div className="row">
-                <div className="col-6">
+                <div className="col-xxl-6">
                     <p className="h1 py-3 text-navy border-gold-3">ABOUT US</p>
                     <p className="fs-4" style={{ textAlign: "justify" }}>
                         <span className="ms-5">Lake Community Cable TV </span>
@@ -20,16 +20,16 @@ function About() {
                         recently built Victoria Office August, 2020.
                     </p>
                 </div>
-                <div className="col-5 ms-3 d-flex align-items-end">
+                <div className="col-xxl-5 d-none d-xxl-block ms-3 d-flex align-items-end">
                     <img src={building} alt="..." height="350" width="500" />
                 </div>
             </div>
 
             <div className="row mt-4">
-                <div className="col-5 ms-3">
+                <div className="col-xxl-5 d-none d-xxl-block ms-3">
                     <img src={about} alt="..." height="350" width="500" />
                 </div>
-                <div className="col-6">
+                <div className="col-xxl-6">
                     <p className="h1 py-3 border-gold-3"></p>
                     <p className="fs-4" style={{ textAlign: "justify" }}>
                         <span className="ms-5">The</span> company has
@@ -44,7 +44,7 @@ function About() {
             </div>
 
             <div className="row mt-4">
-                <div className="col-6">
+                <div className="col-xxl-6">
                     <p className="h1 py-3 border-gold-3"></p>
                     <p className="fs-4" style={{ textAlign: "justify" }}>
                         <span className="ms-5">For</span> the past 23 years,
@@ -54,8 +54,7 @@ function About() {
                         become the companion of every family within their homes.
                     </p>
                 </div>
-
-                <div className="col-5 ms-3">
+                <div className="col-xxl-5 d-none d-xxl-block ms-3">
                     <img src={fam} alt="..." height="350" width="500" />
                 </div>
             </div>

@@ -1,7 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import altLogo from "../../assets/Images/logo_alt.png";
 import "../styles.css";
-import "./customer_styles.css";
 
 function Footer() {
     const location = useLocation();
@@ -27,7 +26,7 @@ function Footer() {
                                 </p>
                             </div>
 
-                            <div className="col-2 mt-4 ms-5 d-sm-none d-md-block">
+                            <div className="col-2 mt-4 ms-5  d-none d-xxl-block">
                                 <h5>SERVICES</h5>
                                 <ul className="list-unstyled text-small">
                                     <li>
@@ -57,7 +56,7 @@ function Footer() {
                                 </ul>
                             </div>
 
-                            <div className="col-2 mt-4 ms-5 d-sm-none d-md-block">
+                            <div className="col-2 mt-4 ms-5 d-none d-xxl-block">
                                 <h5>ABOUT US</h5>
                                 <ul className="list-unstyled text-small">
                                     <li>
@@ -80,7 +79,7 @@ function Footer() {
                                     </li>
                                 </ul>
                             </div>
-                            <div className="col-2 mt-4 ms-5 d-sm-none d-md-block">
+                            <div className="col-2 mt-4 ms-5 d-none d-xxl-block">
                                 <h5>HELPFUL LINKS</h5>
                                 <ul className="list-unstyled text-small">
                                     <li>
@@ -106,7 +105,7 @@ function Footer() {
                                     </li>
                                 </ul>
                             </div>
-                            <div className="col-2 d-sm-none d-md-block">
+                            <div className="col-2  d-none d-xxl-block">
                                 <iframe
                                     className="shadow"
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2368.594677387614!2d121.32316158513572!3d14.072248015335425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb2d20f46e6a2a7fd!2sLAKE%20COMMUNITY%20CABLE%20TV%20MULTI-SUPPOSE%20COOPERATIVE!5e0!3m2!1sen!2sph!4v1618666168055!5m2!1sen!2sph"

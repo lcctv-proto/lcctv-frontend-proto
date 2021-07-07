@@ -11,7 +11,7 @@ function Services() {
                     </div>
                 </div>
                 <div className="row pb-5 justify-content-center">
-                    <div className="col-4 text-light">
+                    <div className="col-lg-4 col-sm-12 px-5  text-light">
                         <h2 className="pb-2 border-gold-3">
                             ABOUT OUR ONLINE SERVICES
                         </h2>
@@ -61,7 +61,7 @@ function Services() {
                             <li>Inquiries</li>
                         </ul>
                     </div>
-                    <div className="col-4 ms-5 ps-5 text-center">
+                    <div className="col-lg-4 d-none d-lg-block ms-lg-5 ps-lg-5 text-center">
                         <div className="row">
                             <div className="col">
                                 <img src={logo} className="w-100" alt="" />

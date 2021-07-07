@@ -6,9 +6,12 @@ import {
 } from "react-bootstrap-icons";
 
 function ContactCard({ title, desc, path, icon, isLast }) {
-    console.log(isLast);
     return (
-        <div className={`col-3 px-5 ${isLast ? "" : "border-end-3"}`}>
+        <div
+            className={`col-lg-3 col-sm-9 mb-5 px-5 ${
+                isLast ? "" : "border-end-3"
+            }`}
+        >
             <Link to={`/${path}`} className="text-decoration-none text-navy">
                 {icon === "Tools" ? (
                     <Tools

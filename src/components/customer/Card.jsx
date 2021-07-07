@@ -30,7 +30,7 @@ function Card({ title, price, SDchannels, HDchannels }) {
                                 <Tv className="me-3 h1" />
                                 <Link to="/channels" className="text-navy">
                                     {SDchannels} SD PLUS {HDchannels} HD
-                                    Channels *
+                                    Channels*
                                 </Link>
                             </p>
                         </div>
