@@ -1,4 +1,9 @@
-import { Wallet2 } from "react-bootstrap-icons";
+import {
+    People,
+    CalendarWeek,
+    BrightnessAltHigh,
+    Geo,
+} from "react-bootstrap-icons";
 import Button from "../Button";
 
 function Home() {
@@ -9,14 +14,51 @@ function Home() {
                     <div className="row my-4 pt-4 px-4">
                         <Button
                             icon={
-                                <Wallet2
+                                <People
                                     color="white"
                                     size="8rem"
                                     className="mb-2"
                                 />
                             }
-                            name="ACCOUNT PAYMENT"
-                            path="payment"
+                            title="DISPATCH"
+                            name="tech"
+                            path="dispatch"
+                        />
+                        <Button
+                            icon={
+                                <CalendarWeek
+                                    color="white"
+                                    size="8rem"
+                                    className="mb-2"
+                                />
+                            }
+                            title="CALENDAR"
+                            name="tech"
+                            path="calendar"
+                        />
+                        <Button
+                            icon={
+                                <BrightnessAltHigh
+                                    color="white"
+                                    size="8rem"
+                                    className="mb-2"
+                                />
+                            }
+                            title="DAILY VIEW"
+                            name="tech"
+                            path="daily"
+                        />
+                        <Button
+                            icon={
+                                <Geo
+                                    color="white"
+                                    size="8rem"
+                                    className="mb-2"
+                                />
+                            }
+                            title="AREA ASSIGNED"
+                            name="tech"
+                            path="area"
                         />
                     </div>
                 </div>

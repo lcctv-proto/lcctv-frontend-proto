@@ -1,7 +1,8 @@
-import { Wallet2 } from "react-bootstrap-icons";
+import { Archive, Tools, Pen } from "react-bootstrap-icons";
 import Button from "../Button";
 
 function Home() {
+    document.body.classList.remove("bg-navy");
     return (
         <div className="container-fluid p-5 mt-5">
             <div className="row mt-3">
@@ -9,14 +10,39 @@ function Home() {
                     <div className="row my-4 pt-4 px-4">
                         <Button
                             icon={
-                                <Wallet2
+                                <Archive
                                     color="white"
                                     size="8rem"
                                     className="mb-2"
                                 />
                             }
-                            name="ACCOUNT PAYMENT"
-                            path="payment"
+                            title="APPLICATIONS"
+                            name="front"
+                            path="applications"
+                        />
+                        <Button
+                            icon={
+                                <Tools
+                                    color="white"
+                                    size="8rem"
+                                    className="mb-2"
+                                />
+                            }
+                            title="SUPPORT"
+                            name="front"
+                            path="inquiries"
+                        />
+                        <Button
+                            icon={
+                                <Pen
+                                    color="white"
+                                    size="8rem"
+                                    className="mb-2"
+                                />
+                            }
+                            title="ACCOUNTS"
+                            name="front"
+                            path="accounts"
                         />
                     </div>
                 </div>

@@ -9,7 +9,9 @@ function Button({ icon, title, name, path }) {
             >
                 {icon}
 
-                <p className={`fs-5 fw-light pt-2 border-top-${name} ff-jumbo`}>
+                <p
+                    className={`fs-5 fw-light mt-2 pt-2 border-top-${name} ff-jumbo`}
+                >
                     {title}
                 </p>
             </Link>

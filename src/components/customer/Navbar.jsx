@@ -9,8 +9,9 @@ function Navbar() {
 
     useEffect(() => {
         let collapse = document.getElementById("nav-items");
-        if (collapse.classList.contains("show"))
-            collapse.classList.remove("show");
+        if (!location.includes("portal"))
+            if (collapse.classList.contains("show"))
+                collapse.classList.remove("show");
     });
 
     if (!location.includes("portal")) {

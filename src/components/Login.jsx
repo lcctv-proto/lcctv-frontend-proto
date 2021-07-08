@@ -1,8 +1,15 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/Images/logo.png";
 
 function Login({ title, path, name }) {
-    document.body.classList.add("bg-navy");
+    useEffect(() => {
+        document.body.classList.add("bg-navy");
+
+        return function cleanup() {
+            document.body.classList.remove("bg-navy");
+        };
+    });
 
     return (
         <div className="container mt-5 pt-5">

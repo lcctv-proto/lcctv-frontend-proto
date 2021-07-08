@@ -1,4 +1,4 @@
-import { Wallet2 } from "react-bootstrap-icons";
+import { People, Clipboard } from "react-bootstrap-icons";
 import Button from "../Button";
 
 function Home() {
@@ -9,14 +9,27 @@ function Home() {
                     <div className="row my-4 pt-4 px-4">
                         <Button
                             icon={
-                                <Wallet2
+                                <People
                                     color="white"
                                     size="8rem"
                                     className="mb-2"
                                 />
                             }
-                            name="ACCOUNT PAYMENT"
-                            path="payment"
+                            title="EMPLOYEES"
+                            name="ceo"
+                            path="employees"
+                        />
+                        <Button
+                            icon={
+                                <Clipboard
+                                    color="white"
+                                    size="8rem"
+                                    className="mb-2"
+                                />
+                            }
+                            title="REPORTS"
+                            name="ceo"
+                            path="reports"
                         />
                     </div>
                 </div>

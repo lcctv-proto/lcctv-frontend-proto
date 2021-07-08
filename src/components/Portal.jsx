@@ -1,8 +1,15 @@
+import { useEffect } from "react";
 import Card from "./Card.jsx";
 import logo from "../assets/Images/logo.png";
 
 function Portal() {
-    document.body.classList.add("bg-navy");
+    useEffect(() => {
+        document.body.classList.add("bg-navy");
+
+        return function cleanup() {
+            document.body.classList.remove("bg-navy");
+        };
+    });
 
     return (
         <div className="container-fluid text-white p-5 mt-5">
