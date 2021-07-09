@@ -2,9 +2,9 @@ import Card from "./Card.jsx";
 
 function Plans() {
     return (
-        <div className="container py-5">
-            <div className="row justify-content-center">
-                <div className="col-lg-4 mb-3">
+        <div className="container p-5">
+            <div className="row align-items-center justify-content-center">
+                <div className="col-xl-4 col-lg-7 col-md-9 my-3">
                     <Card
                         title="BASIC"
                         price="640"
@@ -12,22 +12,23 @@ function Plans() {
                         HDchannels="23"
                     />
                 </div>
-
-                <div className="col-lg-4 mb-3">
-                    <Card
-                        title="PREMIUM"
-                        price="790"
-                        SDchannels="93"
-                        HDchannels="35"
-                    />
-                </div>
-
-                <div className="col-lg-4 mb-3">
+                <div
+                    className="col-xl-4 col-lg-7 col-md-9 my-3"
+                    style={{ zoom: 1.08 }}
+                >
                     <Card
                         title="INTERNATIONAL"
                         price="1099"
                         SDchannels="120"
                         HDchannels="54"
+                    />
+                </div>
+                <div className="col-xl-4 col-lg-7 col-md-9 my-3">
+                    <Card
+                        title="PREMIUM"
+                        price="790"
+                        SDchannels="93"
+                        HDchannels="35"
                     />
                 </div>
             </div>

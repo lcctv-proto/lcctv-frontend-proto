@@ -8,6 +8,7 @@ import About from "./components/customer/About.jsx";
 import Channels from "./components/customer/Channels.jsx";
 import Contact from "./components/customer/Contact.jsx";
 import Applications from "./components/customer/Applications.jsx";
+import Apply from "./components/customer/Apply.jsx";
 import Plans from "./components/customer/Plans.jsx";
 import Services from "./components/customer/Services.jsx";
 import Inquiry from "./components/customer/Inquiry.jsx";
@@ -32,6 +33,7 @@ function App() {
                 <Route path="/plans" component={Plans} />
                 <Route path="/channels" component={Channels} />
                 <Route path="/applications" component={Applications} />
+                <Route path="/apply" component={Apply} />
                 <Route path="/about" component={About} />
                 <Route path="/contact" component={Contact} />
                 <Route path="/services" component={Services} />

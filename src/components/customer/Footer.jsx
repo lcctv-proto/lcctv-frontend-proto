@@ -8,7 +8,7 @@ function Footer() {
     if (!location.pathname.includes("portal")) {
         return (
             <>
-                <footer className="bg-light p-5 ff-nunito">
+                <footer className="mt-5 bg-light p-5 ff-nunito">
                     <div className="container">
                         <div className="row">
                             <div className="col-auto mx-auto">

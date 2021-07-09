@@ -1,10 +1,7 @@
-import { Link } from "react-router-dom";
-
-function Channels() {
-    const channels = {
+const channels = {
         sd_channels: [
-            { assigned_number: "001", description: "PREVIEW / PPV CHANNEL" },
-            { assigned_number: "002", description: "ABS-CBN" },
+            { assigned_number: "001", description: "PREVIEW/PPV CHANNEL" },
+            { assigned_number: "002", description: "ABSCBN" },
             { assigned_number: "003", description: "COMMUNITY TV3" },
             { assigned_number: "004", description: "PTV4" },
             { assigned_number: "005", description: "TV5" },
@@ -44,7 +41,7 @@ function Channels() {
             { assigned_number: "039", description: "VIVA" },
             { assigned_number: "040", description: "TRAVEL AND LIVING" },
             { assigned_number: "041", description: "ANC" },
-            { assigned_number: "042", description: "ABS-CBN 2" },
+            { assigned_number: "042", description: "ABSCN" },
             { assigned_number: "043", description: "DIVA UNIVERSAL" },
             { assigned_number: "044", description: "ABS-CBN PAM" },
             { assigned_number: "045", description: "HERO" },
@@ -68,7 +65,7 @@ function Channels() {
             { assigned_number: "063", description: "GNN" },
             { assigned_number: "064", description: "FASHION TV" },
             { assigned_number: "065", description: "NICKELODEON" },
-            { assigned_number: "066", description: "DISNEY CHANNEL" },
+            { assigned_number: "066", description: "DISNEY CHANNEL"},
             { assigned_number: "067", description: "AXN" },
             { assigned_number: "068", description: "STAR CHANNEL JAPAN" },
             { assigned_number: "069", description: "FOX NEWS" },
@@ -125,26 +122,23 @@ function Channels() {
             { assigned_number: "120", description: "FUJI AN" },
         ],
         hd_channels: [
-            { assigned_number: "001", description: "FOX SPORTS 3 HD" },
+            { assigned_number: "001", description: "FOX SPORTS 3 HD" }, 
             { assigned_number: "002", description: "FOX FAMILY MOVIES HD" },
             { assigned_number: "003", description: "NATIONAL GEOGRAPHIC HD" },
-            { assigned_number: "004", description: "NAT GEO WILD" },
+            { assigned_number: "004", description: "NAT GEO WILD" }, 
             { assigned_number: "005", description: "NAT GEO PEOPLE HD" },
             { assigned_number: "006", description: "OUTDOOR CHANNEL HD" },
-            { assigned_number: "007", description: "FOX CRIME" },
+            { assigned_number: "007", description: "FOX CRIME" }, 
             { assigned_number: "008", description: "FX HD" },
             { assigned_number: "009", description: "BABY TV" },
             { assigned_number: "010", description: "CI HD" },
-            { assigned_number: "011", description: "RTL CBS ENTERTAINMENT" },
+            { assigned_number: "011", description: "RTL CBS ENTERTAINMENT" }, 
             { assigned_number: "012", description: "CNN HD" },
             { assigned_number: "013", description: "COMEDY CENTRAL" },
-            { assigned_number: "014", description: "COLOURS HD" },
+            { assigned_number: "014", description: "COLOURS HD" }, 
             { assigned_number: "015", description: "NHK WORLD HD" },
-            {
-                assigned_number: "016",
-                description: "PHOENIX CHINESE CHANNEL HD",
-            },
-            { assigned_number: "017", description: "NHK WORLD 2 HD" },
+            { assigned_number: "016", description: "PHOENIX CHINESE CHANNEL HD" },
+            { assigned_number: "017", description: "NHK WORLD 2 HD" }, 
             { assigned_number: "018", description: "FOX MOVIES" },
             { assigned_number: "019", description: "FOX SPORTS HD" },
             { assigned_number: "020", description: "CTV3 HD" },
@@ -166,7 +160,7 @@ function Channels() {
             { assigned_number: "036", description: "MOTORVISION" },
             { assigned_number: "037", description: "HBO HITS" },
             { assigned_number: "038", description: "HBO SIGNATURE" },
-            { assigned_number: "039", description: "HBO FAMILY" },
+            { assigned_number: "039", description: "HBO FAMILY" }, 
             { assigned_number: "040", description: "RTL CBS EXTREME HD" },
             { assigned_number: "041", description: "FIGHT SPORTS" },
             { assigned_number: "042", description: "FOX ACTION MOVIES HD" },
@@ -181,66 +175,6 @@ function Channels() {
             { assigned_number: "051", description: "EURO SPORTS HD" },
             { assigned_number: "052", description: "STAR CHINESE MOVIES HD" },
             { assigned_number: "053", description: "BS FUJI HD" },
-            { assigned_number: "054", description: "BS 1 HD" },
+            { assigned_number: "054", description: "BS 1 HD" },  
         ],
     };
-
-    return (
-        <div className="container py-5">
-            <div className="row my-3">
-                <div className="col">
-                    <h1 className="pb-4 text-navy border-gold-3">
-                        CHANNEL OFFERINGS
-                    </h1>
-                </div>
-            </div>
-            <div className="row my-3">
-                <div className="col">
-                    <p className="fs-4 text-navy">
-                        STANDARD DEFINITION CHANNELS
-                    </p>
-                    <ul className="grid-list">
-                        {channels.sd_channels.map((value, index) => {
-                            return (
-                                <Link
-                                    to="#"
-                                    key={index}
-                                    className="border p-3 ps-4 mb-1 d-flex align-items-center"
-                                >
-                                    <div className="d-flex flex-shrink-1">
-                                        {value.assigned_number}
-                                    </div>
-                                    <div className="border-start ps-3 ms-3 d-flex w-100">
-                                        {value.description}
-                                    </div>
-                                </Link>
-                            );
-                        })}
-                    </ul>
-
-                    <p className="fs-4 text-navy">HIGH DEFINITION CHANNELS</p>
-                    <ul className="grid-list mt-3">
-                        {channels.hd_channels.map((value, index) => {
-                            return (
-                                <Link
-                                    to="#"
-                                    key={index}
-                                    className="border p-3 ps-4 mb-1 d-flex align-items-center"
-                                >
-                                    <div className="d-flex flex-shrink-1">
-                                        {value.assigned_number}
-                                    </div>
-                                    <div className="border-start ps-3 ms-3 d-flex w-100">
-                                        {value.description}
-                                    </div>
-                                </Link>
-                            );
-                        })}
-                    </ul>
-                </div>
-            </div>
-        </div>
-    );
-}
-
-export default Channels;

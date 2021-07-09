@@ -1,6 +1,33 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Mate+SC&display=swap");
 
+body {
+    font-family: "Nunito Sans" !important;
+}
+
+.grid-list {
+    display: grid !important;
+    column-gap: 20px;
+    padding: 0 !important;
+    grid-auto-flow: row;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 768px) {
+    .grid-list {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+.grid-list a {
+    text-decoration: none;
+    color: #14274e;
+}
+
+.grid-list a:hover {
+    color: #f0b917;
+}
+
 .ff-logo {
     font-family: "Mate SC" !important;
 }
