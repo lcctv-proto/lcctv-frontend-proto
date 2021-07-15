@@ -1,7 +1,11 @@
 import { useState } from "react";
+import PersonalInfo from "./ApplicationForm/PersonalInfo.jsx";
+import ServiceAddress from "./ApplicationForm/ServiceAddress.jsx";
+import ContactInformation from "./ApplicationForm/ContactInformation.jsx";
+import IDandProof from "./ApplicationForm/IDandProof.jsx";
 
 function Apply() {
-    const [name, setName] = useState("");
+    const [page, setPage] = useState(1);
 
     const [accountFirstName, setAccountFirstName] = useState("");
     const [accountMiddleName, setAccountMiddleName] = useState("");
@@ -18,7 +22,7 @@ function Apply() {
     const [municipality, setMunicipality] = useState("");
     const [province, setProvince] = useState("");
     const [zipCode, setZipCode] = useState("");
-    const [homeOwnership, setHomeOwnershipUnit] = useState("");
+    const [homeOwnership, setHomeOwnership] = useState("");
     const [residencyYear, setResidencyYear] = useState("");
     const [nearestLandmark, setNearestLandmark] = useState("");
 
@@ -32,7 +36,6 @@ function Apply() {
     const [spouseMiddleName, setSpouseMiddleName] = useState("");
     const [spouseLastName, setSpouseLastName] = useState("");
 
-    const [startDate, setStartDate] = useState("");
     const [packageID, setPackageID] = useState("");
     const [governmentIdImageURL, setGovernmentIdImageURL] = useState("");
     const [billingImageURL, setBillingImageURL] = useState("");
@@ -80,18 +83,17 @@ function Apply() {
         };
 
         const account = {
-            name,
             accountName,
             additionalInfo,
             serviceAddress,
             contactInfo,
-            startDate,
             packageID,
             governmentIdImageURL,
             billingImageURL,
         };
+
         e.preventDefault();
-        console.log(accountName, additionalInfo);
+        console.log(account);
         // fetch("localhost:3000/api/accounts", {
         //     method: "POST",
         //     headers: { "Content-Type": "application/json" },
@@ -99,124 +101,129 @@ function Apply() {
         // }).then(console.log("Account added!"));
     }
 
+    function PrevPage() {
+        if (page === 1) return;
+        setPage((page) => page - 1);
+    }
+
+    function NextPage() {
+        if (page === 4) return;
+        setPage((page) => page + 1);
+    }
+
     return (
         <div className="container p-5">
             <div className="row justify-content-center">
-                <div className="col-6">
+                <div className="col-xl-6 col-lg-12 col-md-12">
                     <div className="card mb-5 border-0 shadow-lg">
                         <div className="card-header text-light py-3 bg-navy border-gold-3">
                             <span className="fs-5">
-                                APPLICATION FORM - PERSONAL INFORMATION
+                                APPLICATION FORM -
+                                {page === 1 && " PERSONAL INFORMATION"}
+                                {page === 2 && " SERVICE ADDRESS"}
+                                {page === 3 && " CONTACT INFORMATION"}
+                                {page === 4 && " ID & PROOF OF BILLING"}
                             </span>
                         </div>
                         <div className="card-body">
-                            <label htmlFor="surname" className="form-label">
-                                Family Name:
-                            </label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="surname"
-                                value={accountLastName}
-                                onChange={(e) => {
-                                    setAccountLastName(e.target.value);
-                                }}
-                            />
-                            <label
-                                htmlFor="firstname"
-                                className="form-label mt-2"
-                            >
-                                First Name:
-                            </label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="firstname"
-                                value={accountFirstName}
-                                onChange={(e) => {
-                                    setAccountFirstName(e.target.value);
-                                }}
-                            />
-                            <label
-                                htmlFor="middlename"
-                                className="form-label mt-2"
-                            >
-                                Middle Name:
-                            </label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="middlename"
-                                value={accountMiddleName}
-                                onChange={(e) => {
-                                    setAccountMiddleName(e.target.value);
-                                }}
-                            />
+                            {page === 1 && (
+                                <PersonalInfo
+                                    accountFirstName={accountFirstName}
+                                    setAccountFirstName={setAccountFirstName}
+                                    accountMiddleName={accountMiddleName}
+                                    setAccountMiddleName={setAccountMiddleName}
+                                    accountLastName={accountLastName}
+                                    setAccountLastName={setAccountLastName}
+                                    birthdate={birthdate}
+                                    setBirthdate={setBirthdate}
+                                    nationality={nationality}
+                                    setNationality={setNationality}
+                                    gender={gender}
+                                    setGender={setGender}
+                                    civilStatus={civilStatus}
+                                    setCivilStatus={setCivilStatus}
+                                />
+                            )}
+                            {page === 2 && (
+                                <ServiceAddress
+                                    unit={unit}
+                                    setUnit={setUnit}
+                                    street={street}
+                                    setStreet={setStreet}
+                                    barangay={barangay}
+                                    setBarangay={setBarangay}
+                                    municipality={municipality}
+                                    setMunicipality={setMunicipality}
+                                    province={province}
+                                    setProvince={setProvince}
+                                    zipCode={zipCode}
+                                    setZipCode={setZipCode}
+                                    homeOwnership={homeOwnership}
+                                    setHomeOwnership={setHomeOwnership}
+                                    residencyYear={residencyYear}
+                                    setResidencyYear={setResidencyYear}
+                                    nearestLandmark={nearestLandmark}
+                                    setNearestLandmark={setNearestLandmark}
+                                />
+                            )}
+                            {page === 3 && (
+                                <ContactInformation
+                                    cellphoneNumber={cellphoneNumber}
+                                    setCellphoneNumber={setCellphoneNumber}
+                                    telephoneNumber={telephoneNumber}
+                                    setTelephoneNumber={setTelephoneNumber}
+                                    email={email}
+                                    setEmail={setEmail}
+                                    motherFirstName={motherFirstName}
+                                    setMotherFirstName={setMotherFirstName}
+                                    motherMiddleName={motherMiddleName}
+                                    setMotherMiddleName={setMotherMiddleName}
+                                    motherLastName={motherLastName}
+                                    setMotherLastName={setMotherLastName}
+                                    spouseFirstName={spouseFirstName}
+                                    setSpouseFirstName={setSpouseFirstName}
+                                    spouseMiddleName={spouseMiddleName}
+                                    setSpouseMiddleName={setSpouseMiddleName}
+                                    spouseLastName={spouseLastName}
+                                    setSpouseLastName={setSpouseLastName}
+                                    civilStatus={civilStatus}
+                                />
+                            )}
 
-                            <label
-                                htmlFor="nationality"
-                                className="form-label mt-2"
-                            >
-                                Nationality:
-                            </label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="nationality"
-                                value={nationality}
-                                onChange={(e) => {
-                                    setNationality(e.target.value);
-                                }}
-                            />
-                            <label
-                                htmlFor="birthdate"
-                                className="form-label mt-2"
-                            >
-                                Birth Date:
-                            </label>
-                            <input
-                                type="date"
-                                className="form-control"
-                                id="birthdate"
-                                value={birthdate}
-                                onChange={(e) => {
-                                    setBirthdate(e.target.value);
-                                }}
-                            />
-
-                            <label htmlFor="gender" className="form-label mt-2">
-                                Gender:
-                            </label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="gender"
-                                value={gender}
-                                onChange={(e) => {
-                                    setGender(e.target.value);
-                                }}
-                            />
-
-                            <label htmlFor="civil" className="form-label mt-2">
-                                Civil Status:
-                            </label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="civil"
-                                value={civilStatus}
-                                onChange={(e) => {
-                                    setCivilStatus(e.target.value);
-                                }}
-                            />
+                            {page === 4 && (
+                                <IDandProof
+                                    billingImageURL={billingImageURL}
+                                    setBillingImageURL={setBillingImageURL}
+                                    governmentIdImageURL={governmentIdImageURL}
+                                    setGovernmentIdImageURL={
+                                        setGovernmentIdImageURL
+                                    }
+                                />
+                            )}
                         </div>
-                        <div className="card-footer">
+                        <div className="card-footer mt-3 d-flex">
                             <button
-                                className="btn btn-warning btn-lg bg-gold text-navy mt-2"
-                                onClick={HandleSubmit}
+                                className="btn btn-warning btn-lg bg-gold text-navy"
+                                onClick={PrevPage}
                             >
-                                SUBMIT
+                                Back
                             </button>
+                            {page !== 4 && (
+                                <button
+                                    className="btn btn-warning btn-lg bg-gold text-navy ms-auto"
+                                    onClick={NextPage}
+                                >
+                                    Next
+                                </button>
+                            )}
+                            {page === 4 && (
+                                <button
+                                    className="btn btn-warning btn-lg bg-gold text-navy ms-auto"
+                                    onClick={HandleSubmit}
+                                >
+                                    Submit
+                                </button>
+                            )}
                         </div>
                     </div>
                 </div>
