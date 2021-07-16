@@ -36,7 +36,7 @@ function NavbarPortal({ title, name, user }) {
                     className="ms-3 border-start ps-3 fs-5 text-secondary text-decoration-none"
                     to="/portal"
                 >
-                    Log out
+                    Logout
                 </Link>
             </div>
         </nav>

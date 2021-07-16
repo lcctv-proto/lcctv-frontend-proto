@@ -6,14 +6,13 @@ import {
     CalendarWeek,
     JournalAlbum,
 } from "react-bootstrap-icons";
-
 import Button from "../Button";
 import NavbarPortal from "../NavbarPortal";
 
 function Home() {
     return (
         <>
-            <NavbarPortal title="JOB ORDER" name="jo" user="JO123" />
+            <NavbarPortal title="JOB ORDER PERSONNEL" name="jo" user="JO123" />
             <div className="container-fluid">
                 <div className="row mt-3">
                     <div className="col">
@@ -29,6 +28,7 @@ function Home() {
                                 title="NEW ACCOUNTS"
                                 name="jo"
                                 path="accounts"
+                                count={9}
                             />
                             <Button
                                 icon={
@@ -41,6 +41,7 @@ function Home() {
                                 title="ACTIVATION"
                                 name="jo"
                                 path="activation"
+                                count={15}
                             />
                             <Button
                                 icon={
@@ -53,9 +54,10 @@ function Home() {
                                 title="MAINTENANCE"
                                 name="jo"
                                 path="maintenance"
+                                count={23}
                             />
                         </div>
-                        <div className="row my-4 pt-4 px-4  justify-content-center">
+                        <div className="row my-4 px-4 justify-content-center">
                             <Button
                                 icon={
                                     <Check2Circle
@@ -67,6 +69,7 @@ function Home() {
                                 title="CLOSING"
                                 name="jo"
                                 path="closing"
+                                count={5}
                             />
                             <Button
                                 icon={

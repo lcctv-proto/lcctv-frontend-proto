@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function Button({ icon, title, name, path }) {
+function Button({ icon, title, name, path, count }) {
     return (
         <div className="col-lg-3 col-sm-12 mt-2">
             <Link
@@ -13,6 +13,9 @@ function Button({ icon, title, name, path }) {
                     className={`fs-5 fw-light mt-2 pt-2 border-top-${name} ff-jumbo`}
                 >
                     {title}
+                    {count && (
+                        <span className="mx-3 badge bg-danger">{count}</span>
+                    )}
                 </p>
             </Link>
         </div>

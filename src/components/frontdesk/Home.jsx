@@ -21,6 +21,7 @@ function Home() {
                                 title="APPLICATIONS"
                                 name="front"
                                 path="applications"
+                                count={3}
                             />
                             <Button
                                 icon={
@@ -33,6 +34,7 @@ function Home() {
                                 title="SUPPORT"
                                 name="front"
                                 path="inquiries"
+                                count={3}
                             />
                             <Button
                                 icon={
@@ -45,6 +47,7 @@ function Home() {
                                 title="ACCOUNTS"
                                 name="front"
                                 path="accounts"
+                                count={1}
                             />
                         </div>
                     </div>
