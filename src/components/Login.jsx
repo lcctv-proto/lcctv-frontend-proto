@@ -23,10 +23,10 @@ function Login({ title, path, name }) {
                     </p>
                 </div>
             </div>
-            <div
-                className={`row mx-auto text-white w-25 p-3 mt-3 rounded shadow border-all-${name}`}
-            >
-                <div className="col">
+            <div className={`row mx-auto justify-content-center text-white`}>
+                <div
+                    className={`col-xl-3 col-lg-6 col-md-9 p-3 mt-3  rounded shadow border-all-${name}`}
+                >
                     <p className={`fw-bold fs-4 text-${name}`}>
                         {title} Portal
                     </p>

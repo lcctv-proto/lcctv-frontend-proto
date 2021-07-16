@@ -400,10 +400,10 @@ body {
 .text-navy {
     color: #14274e !important;
 }
-
+/* 
 nav {
     border-bottom: 3px #f0b917 solid !important;
-}
+} */
 
 .active {
     color: white !important;

@@ -3,11 +3,15 @@ function IDandProof({
     setGovernmentIdImageURL,
     billingImageURL,
     setBillingImageURL,
+    IDpreview,
+    setIDPreview,
+    POBpreview,
+    setPOBPreview,
 }) {
     return (
         <div>
             <p className="fw-bold fs-5 mt-2">Government Issued ID:</p>
-            <p>Select one from below:</p>
+            <p>Choose one ID from below:</p>
             <ul>
                 <li>Passport</li>
                 <li>SSS ID</li>
@@ -17,36 +21,44 @@ function IDandProof({
                 <li>PRC ID</li>
                 <li>Comelec ID</li>
             </ul>
-            <div class="mb-3">
-                {/* <label for="formID" class="form-label">
+            {IDpreview && (
+                <img src={IDpreview} className="img-fluid mb-2" alt="id" />
+            )}
+            <div className="mb-3">
+                <label htmlFor="formID" className="form-label">
                     Please select your government issued ID:
-                </label> */}
+                </label>
                 <input
-                    class="form-control"
+                    className="form-control"
                     type="file"
                     id="formID"
                     accept="image/*"
+                    onChange={(e) => {
+                        setIDPreview(URL.createObjectURL(e.target.files[0]));
+                    }}
                 />
             </div>
             <hr />
             <p className="fw-bold fs-5 mt-2">Proof of Billing:</p>
-            <p>Select one from below:</p>
+            <p>Choose one proof of billing from below:</p>
             <ul>
                 <li>Electricity Bill</li>
                 <li>Water Bill</li>
             </ul>
-            <div class="mb-3">
-                {/* <label for="formBilling" class="form-label">
+            {POBpreview && (
+                <img src={POBpreview} className="img-fluid mb-2" alt="pob" />
+            )}
+            <div className="mb-3">
+                <label htmlFor="formBilling" className="form-label">
                     Please select your proof of billing:
-                </label> */}
+                </label>
                 <input
-                    class="form-control"
+                    className="form-control"
                     type="file"
                     id="formBilling"
                     accept="image/*"
-                    value={billingImageURL}
                     onChange={(e) => {
-                        console.log(e.target.files[0]);
+                        setPOBPreview(URL.createObjectURL(e.target.files[0]));
                     }}
                 />
             </div>

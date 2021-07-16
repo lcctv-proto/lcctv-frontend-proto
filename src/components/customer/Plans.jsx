@@ -12,10 +12,7 @@ function Plans() {
                         HDchannels="23"
                     />
                 </div>
-                <div
-                    className="col-xl-4 col-lg-7 col-md-9 my-3"
-                    style={{ zoom: 1.08 }}
-                >
+                <div className="col-xl-4 col-lg-7 col-md-9 my-3">
                     <Card
                         title="INTERNATIONAL"
                         price="1099"

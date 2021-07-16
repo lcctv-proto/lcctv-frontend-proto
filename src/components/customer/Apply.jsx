@@ -37,8 +37,11 @@ function Apply() {
     const [spouseLastName, setSpouseLastName] = useState("");
 
     const [packageID, setPackageID] = useState("");
+
     const [governmentIdImageURL, setGovernmentIdImageURL] = useState("");
     const [billingImageURL, setBillingImageURL] = useState("");
+    const [IDpreview, setIDPreview] = useState("");
+    const [POBpreview, setPOBPreview] = useState("");
 
     function HandleSubmit(e) {
         const accountName = {
@@ -198,6 +201,10 @@ function Apply() {
                                     setGovernmentIdImageURL={
                                         setGovernmentIdImageURL
                                     }
+                                    IDpreview={IDpreview}
+                                    setIDPreview={setIDPreview}
+                                    POBpreview={POBpreview}
+                                    setPOBPreview={setPOBPreview}
                                 />
                             )}
                         </div>
