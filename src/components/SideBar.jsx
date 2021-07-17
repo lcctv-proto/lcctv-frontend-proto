@@ -2,7 +2,7 @@ import { Speedometer2, BoxArrowLeft } from "react-bootstrap-icons";
 import logo from "../assets/Images/logo.png";
 import { NavLink } from "react-router-dom";
 
-function SideBar({ title, name, path, navItems }) {
+function SideBar({ title, name, navItems }) {
     return (
         <div className="d-flex flex-column py-3 bg-navy text-light sidebar">
             <div className={`text-center pb-3 m-3 border-${name}`}>
