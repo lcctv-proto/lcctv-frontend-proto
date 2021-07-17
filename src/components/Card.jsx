@@ -36,7 +36,8 @@ function Card({ title, path, name, changeBackground }) {
     return (
         <div className="col-lg-2 mt-2">
             <Link
-                to={`/portal/${path}/login`}
+                // to={`/portal/${path}/login`}
+                to={`/portal/${path}`}
                 className={`btn btn-lg btn-card w-100 d-flex flex-column text-start btn-${name}`}
                 onClick={changeBackground}
             >

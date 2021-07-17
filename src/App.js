@@ -24,6 +24,9 @@ import FrontHome from "./components/frontdesk/Home.jsx";
 import JOHome from "./components/jopersonnel/Home.jsx";
 import TechHome from "./components/technician/Home.jsx";
 
+import Technician from "./components/technician/Technician.jsx";
+import Dispatch from "./components/technician/Dispatch.jsx";
+
 function App() {
     return (
         <Router>
@@ -39,7 +42,10 @@ function App() {
                 <Route path="/services" component={Services} />
                 <Route path="/general" component={Inquiry} />
                 <Route path="/technical" component={Technical} />
+            </Switch>
+            <Footer />
 
+            <Switch>
                 {/* ONLINE MANAGEMENT SYSTEM ROUTES */}
                 <Route path="/portal" exact component={Portal} />
                 <Route path="/portal/admin" exact component={AdminHome} />
@@ -47,8 +53,8 @@ function App() {
                 <Route path="/portal/ceo" exact component={CeoHome} />
                 <Route path="/portal/frontdesk" exact component={FrontHome} />
                 <Route path="/portal/joborder" exact component={JOHome} />
-                <Route path="/portal/tech" exact component={TechHome} />
-
+                <Route path="/portal/tech" component={Technician} />
+                {/* 
                 <Route
                     path="/portal/admin/login"
                     render={(props) => (
@@ -114,9 +120,8 @@ function App() {
                             name="tech"
                         />
                     )}
-                />
+                /> */}
             </Switch>
-            <Footer />
         </Router>
     );
 }
