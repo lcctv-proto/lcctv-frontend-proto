@@ -9,7 +9,7 @@ function About() {
                 <div className="col-xxl-6">
                     <p className="h1 py-3 text-navy border-gold-3">ABOUT US</p>
                     <p className="fs-5" style={{ textAlign: "justify" }}>
-                        <span className="ms-5">Lake Community Cable TV </span>
+                        <span className="ms-5"> Lake Community Cable TV</span>
                         Multi-purpose Cooperative started operating as a small
                         business in February, 1998. It was founded by Mr. Raul
                         C. De Vera, current Chief-Executive Officer. It has
