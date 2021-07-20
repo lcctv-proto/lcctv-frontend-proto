@@ -1,5 +1,11 @@
 function Dispatch() {
-    return <h1>Hi Dispatch</h1>;
+    return (
+        <div className="row mt-5">
+            <div className="col">
+                <p>Hi Dispatch</p>
+            </div>
+        </div>
+    );
 }
 
 export default Dispatch;

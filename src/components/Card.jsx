@@ -7,7 +7,7 @@ import tech from "../assets/Icons/bat.svg";
 
 import { Link } from "react-router-dom";
 
-function Card({ title, path, name, changeBackground }) {
+function Card({ title, path, name }) {
     let file;
 
     switch (name) {
@@ -39,7 +39,6 @@ function Card({ title, path, name, changeBackground }) {
                 // to={`/portal/${path}/login`}
                 to={`/portal/${path}`}
                 className={`btn btn-lg btn-card w-100 d-flex flex-column text-start btn-${name}`}
-                onClick={changeBackground}
             >
                 <span className="fs-6"> LCCTV </span>
                 <img

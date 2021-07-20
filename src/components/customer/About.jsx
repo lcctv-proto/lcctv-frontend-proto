@@ -32,7 +32,7 @@ function About() {
             </div>
 
             <div className="row mt-4">
-                <div className="col-xxl-5 d-none d-xxl-block ms-3">
+                <div className="col-xxl-5 d-none d-xxl-block">
                     <img
                         src={about}
                         className="rounded rounded-5 shadow"
@@ -41,7 +41,7 @@ function About() {
                         width="500"
                     />
                 </div>
-                <div className="col-xxl-6">
+                <div className="col-xxl-6 ms-3">
                     <p className="h1 py-3 border-gold-3"></p>
                     <p className="fs-5" style={{ textAlign: "justify" }}>
                         <span className="ms-5">The</span> company has

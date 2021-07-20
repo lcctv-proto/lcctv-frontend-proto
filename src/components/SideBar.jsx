@@ -1,8 +1,8 @@
 import { Speedometer2, BoxArrowLeft } from "react-bootstrap-icons";
 import logo from "../assets/Images/logo.png";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
-function SideBar({ title, name, navItems }) {
+function SideBar({ title, name, path, navItems }) {
     return (
         <div className="d-flex flex-column py-3 bg-navy text-light sidebar">
             <div className={`text-center pb-3 m-3 border-${name}`}>
@@ -18,20 +18,20 @@ function SideBar({ title, name, navItems }) {
 
             <ul className="nav flex-column mt-3 mb-auto fs-5">
                 <li className="nav-item">
-                    <NavLink
+                    <Link
                         className={`nav-link hover-${name} px-3 text-light`}
-                        to="#"
+                        to={`/portal/${path}/`}
                     >
                         <Speedometer2 />
                         <span className="align-middle mx-3">DASHBOARD</span>
-                    </NavLink>
+                    </Link>
                 </li>
                 {navItems.map((navItem, i) => (
                     <li className="nav-item" key={i}>
                         <NavLink
                             className={`nav-link hover-${name} px-3`}
                             activeClassName="nav-active"
-                            to={`/portal/tech/${navItem.path}`}
+                            to={`/portal${navItem.path}`}
                         >
                             {navItem.icon}
                             <span className="align-middle mx-3">
@@ -42,16 +42,15 @@ function SideBar({ title, name, navItems }) {
                 ))}
             </ul>
 
-            <ul className="nav nav-pills flex-column fs-5">
-                <li className="nav-item">
-                    <NavLink
+            <ul className="nav flex-column fs-5">
+                <li className="nav-item bg-dark-navy">
+                    <Link
                         className={`nav-link hover-${name} px-3 text-light`}
-                        activeClassName="nav-active"
                         to="#"
                     >
                         <BoxArrowLeft />
                         <span className="align-middle mx-3">LOGOUT</span>
-                    </NavLink>
+                    </Link>
                 </li>
             </ul>
         </div>

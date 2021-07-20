@@ -25,7 +25,7 @@ function Home() {
                                 }
                                 title="DISPATCH"
                                 name="tech"
-                                path="dispatch"
+                                path="/tech/dispatch"
                             />
                             <Button
                                 icon={
@@ -37,7 +37,7 @@ function Home() {
                                 }
                                 title="CALENDAR"
                                 name="tech"
-                                path="calendar"
+                                path="/tech/calendar"
                             />
                             <Button
                                 icon={
@@ -49,7 +49,7 @@ function Home() {
                                 }
                                 title="DAILY VIEW"
                                 name="tech"
-                                path="daily"
+                                path="/tech/daily"
                             />
                             <Button
                                 icon={
@@ -61,7 +61,7 @@ function Home() {
                                 }
                                 title="AREA ASSIGNED"
                                 name="tech"
-                                path="area"
+                                path="/tech/area"
                             />
                         </div>
                     </div>

@@ -29,7 +29,7 @@ function Home() {
                                 }
                                 title="TEAMS"
                                 name="admin"
-                                path="teams"
+                                path="/admin/teams"
                             />
                             <Button
                                 icon={
@@ -41,7 +41,7 @@ function Home() {
                                 }
                                 title="EMPLOYEES"
                                 name="admin"
-                                path="employees"
+                                path="/admin/employees"
                             />
                             <Button
                                 icon={
@@ -53,7 +53,7 @@ function Home() {
                                 }
                                 title="APPLICATION"
                                 name="admin"
-                                path="applications"
+                                path="/admin/applications"
                             />
                             <Button
                                 icon={
@@ -65,7 +65,7 @@ function Home() {
                                 }
                                 title="CHANNELS"
                                 name="admin"
-                                path="channels"
+                                path="/admin/channels"
                             />
                             <Button
                                 icon={
@@ -77,7 +77,7 @@ function Home() {
                                 }
                                 title="REPORTS"
                                 name="admin"
-                                path="reports"
+                                path="/admin/reports"
                             />
                             <Button
                                 icon={
@@ -89,7 +89,7 @@ function Home() {
                                 }
                                 title="EQUIPMENTS"
                                 name="admin"
-                                path="equipments"
+                                path="/admin/equipments"
                             />
                             <Button
                                 icon={
@@ -101,7 +101,7 @@ function Home() {
                                 }
                                 title="PLANS"
                                 name="admin"
-                                path="plans"
+                                path="/admin/plans"
                             />
                             <Button
                                 icon={
@@ -113,7 +113,7 @@ function Home() {
                                 }
                                 title="MY NOTES"
                                 name="admin"
-                                path="notes"
+                                path="/admin/notes"
                             />
                         </div>
                     </div>

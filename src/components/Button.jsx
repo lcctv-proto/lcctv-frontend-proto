@@ -4,7 +4,7 @@ function Button({ icon, title, name, path, count }) {
     return (
         <div className="col-lg-3 col-sm-12 mt-2">
             <Link
-                to={`${path}`}
+                to={`/portal${path}`}
                 className="d-block btn btn-lg btn-custom w-100 p-4"
             >
                 {icon}

@@ -7,7 +7,7 @@ function Services() {
                 <div className="row text-center pt-5 mb-5">
                     <div className="col py-5">
                         <h1>GET CONNECTED</h1>
-                        <h4>INTERNET SERVICES FOR YOUR HOME AND BUSINESS</h4>
+                        <h4>CABLE SERVICES FOR YOUR HOME AND BUSINESS</h4>
                     </div>
                 </div>
                 <div className="row pb-5 justify-content-center">
