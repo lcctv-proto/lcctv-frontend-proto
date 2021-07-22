@@ -1,16 +1,13 @@
-import { useEffect } from "react";
 import Card from "./Card.jsx";
 import logo from "../assets/Images/logo.png";
 import { Switch, Route } from "react-router-dom";
 
-import AdminHome from "./administrator/Home.jsx";
-import CashierHome from "./cashier/Home.jsx";
-import CeoHome from "./ceo/Home.jsx";
-import FrontHome from "./frontdesk/Home.jsx";
-import JOHome from "./jopersonnel/Home.jsx";
-
-import Technician from "./technician/Technician.jsx";
 import Administrator from "./administrator/Administrator.jsx";
+import Cashier from "./cashier/Cashier.jsx";
+import CEO from "./ceo/CEO.jsx";
+import FrontDesk from "./frontdesk/FrontDesk.jsx";
+import JobOrder from "./joborder/JobOrder.jsx";
+import Technician from "./technician/Technician.jsx";
 
 function Portal() {
     return (
@@ -50,10 +47,10 @@ function Portal() {
             <Route path="/portal/*">
                 <Switch>
                     <Route path="/portal/admin" component={Administrator} />
-                    <Route path="/portal/cashier" component={CashierHome} />
-                    <Route path="/portal/ceo" component={CeoHome} />
-                    <Route path="/portal/frontdesk" component={FrontHome} />
-                    <Route path="/portal/joborder" component={JOHome} />
+                    <Route path="/portal/cashier" component={Cashier} />
+                    <Route path="/portal/ceo" component={CEO} />
+                    <Route path="/portal/frontdesk" component={FrontDesk} />
+                    <Route path="/portal/joborder" component={JobOrder} />
                     <Route path="/portal/tech" component={Technician} />
                 </Switch>
             </Route>

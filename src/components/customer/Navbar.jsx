@@ -16,7 +16,7 @@ function Navbar() {
 
     if (!location.includes("portal")) {
         return (
-            <nav className="navbar navbar-expand-lg navbar-dark bg-navy">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-navy border-gold-2">
                 <Link
                     className="navbar-brand py-1 ps-3 me-0 text-light text-decoration-none"
                     to="/"

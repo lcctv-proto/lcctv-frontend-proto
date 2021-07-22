@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function Button({ icon, title, name, path, count }) {
     return (
-        <div className="col-lg-3 col-sm-12 mt-2">
+        <div className="col-lg-3 col-sm-12 my-2">
             <Link
                 to={`/portal${path}`}
                 className="d-block btn btn-lg btn-custom w-100 p-4"

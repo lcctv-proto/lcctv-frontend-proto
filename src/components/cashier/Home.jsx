@@ -9,7 +9,7 @@ function Home() {
             <div className="container-fluid">
                 <div className="row mt-3">
                     <div className="col">
-                        <div className="row my-4 pt-4 px-4 justify-content-center">
+                        <div className="row my-4 p-4 justify-content-center">
                             <Button
                                 icon={
                                     <Wallet2
@@ -20,7 +20,7 @@ function Home() {
                                 }
                                 title="ACCOUNT PAYMENT"
                                 name="cashier"
-                                path="payment"
+                                path="/cashier/accounts"
                             />
                             <Button
                                 icon={
@@ -32,7 +32,7 @@ function Home() {
                                 }
                                 title="PAYMENT LIST"
                                 name="cashier"
-                                path="list"
+                                path="/cashier/payments"
                             />
                         </div>
                     </div>

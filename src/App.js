@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import Portal from "./components/Portal.jsx";
 import Customer from "./components/customer/Customer.jsx";

@@ -27,7 +27,7 @@ function Home() {
                                 }
                                 title="NEW ACCOUNTS"
                                 name="jo"
-                                path="accounts"
+                                path="/joborder/accounts"
                                 count={9}
                             />
                             <Button
@@ -40,7 +40,7 @@ function Home() {
                                 }
                                 title="ACTIVATION"
                                 name="jo"
-                                path="activation"
+                                path="/joborder/activation"
                                 count={15}
                             />
                             <Button
@@ -53,7 +53,7 @@ function Home() {
                                 }
                                 title="MAINTENANCE"
                                 name="jo"
-                                path="maintenance"
+                                path="/joborder/maintenance"
                                 count={23}
                             />
                         </div>
@@ -68,7 +68,7 @@ function Home() {
                                 }
                                 title="CLOSING"
                                 name="jo"
-                                path="closing"
+                                path="/joborder/closing"
                                 count={5}
                             />
                             <Button
@@ -81,7 +81,7 @@ function Home() {
                                 }
                                 title="CALENDAR"
                                 name="jo"
-                                path="calendar"
+                                path="/joborder/calendar"
                             />
                             <Button
                                 icon={
@@ -93,7 +93,7 @@ function Home() {
                                 }
                                 title="VIEW JOs"
                                 name="jo"
-                                path="view"
+                                path="/joborder/view"
                             />
                         </div>
                     </div>

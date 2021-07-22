@@ -20,7 +20,7 @@ function Home() {
                                 }
                                 title="EMPLOYEES"
                                 name="ceo"
-                                path="employees"
+                                path="/ceo/employees"
                             />
                             <Button
                                 icon={
@@ -32,7 +32,7 @@ function Home() {
                                 }
                                 title="REPORTS"
                                 name="ceo"
-                                path="reports"
+                                path="/ceo/reports"
                             />
                         </div>
                     </div>

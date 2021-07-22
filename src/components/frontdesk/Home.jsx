@@ -20,7 +20,7 @@ function Home() {
                                 }
                                 title="APPLICATIONS"
                                 name="front"
-                                path="applications"
+                                path="/frontdesk/applications"
                                 count={3}
                             />
                             <Button
@@ -33,7 +33,7 @@ function Home() {
                                 }
                                 title="SUPPORT"
                                 name="front"
-                                path="inquiries"
+                                path="/frontdesk/inquiries"
                                 count={3}
                             />
                             <Button
@@ -46,7 +46,7 @@ function Home() {
                                 }
                                 title="ACCOUNTS"
                                 name="front"
-                                path="accounts"
+                                path="/frontdesk/accounts"
                                 count={1}
                             />
                         </div>
