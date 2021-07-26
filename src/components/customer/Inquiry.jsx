@@ -12,6 +12,7 @@ function Inquiry() {
 
     function handleSubmit(e) {
         e.preventDefault();
+
         console.log({
             subscriberName,
             accountNumber,

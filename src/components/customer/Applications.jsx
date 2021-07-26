@@ -22,31 +22,26 @@ function Applications() {
                         your existing application, please enter the reference
                         number we sent through your email.
                     </p>
-                    <div className="card mb-5 border-0 shadow-lg">
+                    <div className="card my-5 border-0 shadow-lg">
                         <div className="card-header text-light py-3 bg-navy border-gold-3">
                             <span className="h5">CHECK APPLICATION STATUS</span>
                         </div>
                         <div className="card-body">
                             <form>
-                                <div>
-                                    <label
-                                        htmlFor="email"
-                                        className="form-label"
-                                    >
-                                        REFERENCE NUMBER
-                                    </label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        id="email"
-                                        value={referenceNumber}
-                                        onChange={(e) => {
-                                            setReferenceNumber(e.target.value);
-                                        }}
-                                    />
-                                    <div className="form-text ms-2">
-                                        Ex: REF-xxxxxxxxxxx
-                                    </div>
+                                <label htmlFor="email" className="form-label">
+                                    REFERENCE NUMBER
+                                </label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="email"
+                                    value={referenceNumber}
+                                    onChange={(e) => {
+                                        setReferenceNumber(e.target.value);
+                                    }}
+                                />
+                                <div className="form-text ms-2">
+                                    Ex: REF-xxxxxxxxxxx
                                 </div>
                             </form>
 
