@@ -16,7 +16,7 @@ function Services() {
                             ABOUT OUR ONLINE SERVICES
                         </h2>
 
-                        <p className="fs-5" style={{ textAlign: "justify" }}>
+                        <p className="text-justify fs-5">
                             <span className="ms-5">Welcome</span> to LAKE
                             COMMUNITY CABLE TV MULTI-PURPOSE COOPERATIVE, your
                             number one source for cable TV entertainment
@@ -24,10 +24,7 @@ function Services() {
                             cable services, with a focus on dependability and
                             customer service.
                         </p>
-                        <p
-                            className=" fs-5 mb-5"
-                            style={{ textAlign: "justify" }}
-                        >
+                        <p className="text-justify fs-5 mb-5">
                             <span className="ms-5">We are</span> working to turn
                             our passion for LCCTVMPC into a booming company
                             improved with our new online web-based platform. We

@@ -7,9 +7,11 @@ function About() {
         <div className="container p-5">
             <div className="row">
                 <div className="col-xxl-6">
-                    <p className="h1 py-3 text-navy border-gold-3">ABOUT US</p>
-                    <p className="fs-5" style={{ textAlign: "justify" }}>
-                        <span className="ms-5"> Lake Community Cable TV</span>
+                    <p className="h1 py-3 mb-3 text-navy border-gold-3">
+                        ABOUT US
+                    </p>
+                    <p className="fs-5 text-justify">
+                        <span className="ms-5"> Lake Community Cable TV </span>
                         Multi-purpose Cooperative started operating as a small
                         business in February, 1998. It was founded by Mr. Raul
                         C. De Vera, current Chief-Executive Officer. It has
@@ -42,8 +44,8 @@ function About() {
                     />
                 </div>
                 <div className="col-xxl-6 ms-3">
-                    <p className="h1 py-3 border-gold-3"></p>
-                    <p className="fs-5" style={{ textAlign: "justify" }}>
+                    <p className="h1 py-3 mb-3 border-gold-3"></p>
+                    <p className="fs-5 text-justify">
                         <span className="ms-5">The</span> company has
                         subscribers on these four adjacent municipalities of
                         Laguna, namely, Alaminos with thirteen (13) barangays,
@@ -57,8 +59,8 @@ function About() {
 
             <div className="row mt-4">
                 <div className="col-xxl-6">
-                    <p className="h1 py-3 border-gold-3"></p>
-                    <p className="fs-5" style={{ textAlign: "justify" }}>
+                    <p className="h1 py-3 mb-3 border-gold-3"></p>
+                    <p className="fs-5 text-justify">
                         <span className="ms-5">For</span> the past 23 years,
                         Lake Community Cable TV has been the number one cable
                         service provider for those who want quality, and

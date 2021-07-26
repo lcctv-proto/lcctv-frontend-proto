@@ -11,22 +11,17 @@ function Applications() {
     }
 
     return (
-        <div className="container p-5">
-            <div className="row justify-content-center my-4">
+        <div className="container py-5">
+            <div className="row justify-content-center my-3">
                 <div className=" col-sm-12 col-md-10 col-lg-6 text-navy">
-                    <p className="h1 pb-3 border-gold-3">APPLICATION STATUS</p>
-                    <p
-                        className="fs-5 fw-normal"
-                        style={{ textAlign: "justify" }}
-                    >
+                    <p className="h1 pb-4 mb-4 border-gold-3">
+                        APPLICATION STATUS
+                    </p>
+                    <p className="fs-5 fw-normal text-justify">
                         <span className="ms-5"> To </span> check the status of
                         your existing application, please enter the reference
                         number we sent through your email.
                     </p>
-                </div>
-            </div>
-            <div className="row justify-content-center">
-                <div className="col-sm-12 col-md-10 col-lg-6">
                     <div className="card mb-5 border-0 shadow-lg">
                         <div className="card-header text-light py-3 bg-navy border-gold-3">
                             <span className="h5">CHECK APPLICATION STATUS</span>

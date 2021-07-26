@@ -199,43 +199,47 @@ function Channels() {
                     <p className="fs-4 text-navy">
                         STANDARD DEFINITION CHANNELS
                     </p>
-                    <ul className="grid-list">
-                        {channels.sd_channels.map((value, index) => {
-                            return (
-                                <Link
-                                    to="#"
-                                    key={index}
-                                    className="border p-3 ps-4 mb-1 d-flex align-items-center"
-                                >
-                                    <div className="d-flex flex-shrink-1">
-                                        {value.assigned_number}
-                                    </div>
-                                    <div className="border-start ps-3 ms-3 d-flex w-100">
-                                        {value.description}
-                                    </div>
-                                </Link>
-                            );
-                        })}
+                    <ul className="grid-list px-4">
+                        {channels.sd_channels.map(
+                            ({ assigned_number, description }, index) => {
+                                return (
+                                    <Link
+                                        to="#"
+                                        key={index}
+                                        className="border p-3 ps-4 mb-1 d-flex align-items-center"
+                                    >
+                                        <div className="d-flex flex-shrink-1">
+                                            {assigned_number}
+                                        </div>
+                                        <div className="border-start ps-3 ms-3 d-flex w-100">
+                                            {description}
+                                        </div>
+                                    </Link>
+                                );
+                            }
+                        )}
                     </ul>
 
                     <p className="fs-4 text-navy">HIGH DEFINITION CHANNELS</p>
-                    <ul className="grid-list mt-3">
-                        {channels.hd_channels.map((value, index) => {
-                            return (
-                                <Link
-                                    to="#"
-                                    key={index}
-                                    className="border p-3 ps-4 mb-1 d-flex align-items-center"
-                                >
-                                    <div className="d-flex flex-shrink-1">
-                                        {value.assigned_number}
-                                    </div>
-                                    <div className="border-start ps-3 ms-3 d-flex w-100">
-                                        {value.description}
-                                    </div>
-                                </Link>
-                            );
-                        })}
+                    <ul className="grid-list px-4">
+                        {channels.hd_channels.map(
+                            ({ assigned_number, description }, index) => {
+                                return (
+                                    <Link
+                                        to="#"
+                                        key={index}
+                                        className="border p-3 ps-4 mb-1 d-flex align-items-center"
+                                    >
+                                        <div className="d-flex flex-shrink-1">
+                                            {assigned_number}
+                                        </div>
+                                        <div className="border-start ps-3 ms-3 d-flex w-100">
+                                            {description}
+                                        </div>
+                                    </Link>
+                                );
+                            }
+                        )}
                     </ul>
                 </div>
             </div>

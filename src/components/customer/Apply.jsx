@@ -44,6 +44,7 @@ function Apply() {
     const [POBpreview, setPOBPreview] = useState("");
 
     function HandleSubmit(e) {
+        setPackageID("i1099");
         const accountName = {
             accountFirstName,
             accountMiddleName,

@@ -21,7 +21,7 @@ function Card({ title, price, SDchannels, HDchannels }) {
                     {title !== "BASIC" ? <StarFill /> : <Star />}
                     {title === "INTERNATIONAL" ? (
                         <>
-                            <StarFill />{" "}
+                            <StarFill />
                             <p className="mt-2 fs-6">Recommended!</p>
                         </>
                     ) : (

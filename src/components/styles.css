@@ -22,6 +22,10 @@ body {
     font-size: x-small;
 }
 
+.text-justify {
+    text-align: justify;
+}
+
 .grid-list {
     display: grid !important;
     column-gap: 20px;
@@ -512,4 +516,5 @@ body {
 .zoom {
     display: block;
     transition: transform 0.75s;
+    font-size: 5rem;
 }

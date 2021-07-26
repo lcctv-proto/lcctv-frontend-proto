@@ -1,6 +1,28 @@
+import { useState } from "react";
 import technician from "../../assets/Images/telemarketer.svg";
 
 function Inquiry() {
+    const [subscriberName, setSubscriberName] = useState("");
+    const [accountNumber, setAccountNumber] = useState("");
+    const [email, setEmail] = useState("");
+    const [contactNumber, setContactNumber] = useState("");
+    const [plan, setPlan] = useState("");
+    const [concern, setConcern] = useState("");
+    const [addInfo, setAddInfo] = useState("");
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        console.log({
+            subscriberName,
+            accountNumber,
+            email,
+            contactNumber,
+            plan,
+            concern,
+            addInfo,
+        });
+    }
+
     return (
         <div className="container py-5">
             <div className="row justify-content-center">
@@ -36,6 +58,12 @@ function Inquiry() {
                                             type="text"
                                             className="form-control"
                                             id="subscriber_name"
+                                            value={subscriberName}
+                                            onChange={(e) => {
+                                                setSubscriberName(
+                                                    e.target.value
+                                                );
+                                            }}
                                         />
                                     </div>
                                     <div className="col-xxl-6 mt-3">
@@ -49,6 +77,12 @@ function Inquiry() {
                                             type="text"
                                             className="form-control"
                                             id="account_number"
+                                            value={accountNumber}
+                                            onChange={(e) => {
+                                                setAccountNumber(
+                                                    e.target.value
+                                                );
+                                            }}
                                         />
                                     </div>
                                 </div>
@@ -65,6 +99,10 @@ function Inquiry() {
                                             type="email"
                                             className="form-control"
                                             id="email_address"
+                                            value={email}
+                                            onChange={(e) => {
+                                                setEmail(e.target.value);
+                                            }}
                                         />
                                     </div>
                                 </div>
@@ -80,6 +118,12 @@ function Inquiry() {
                                             type="text"
                                             className="form-control"
                                             id="contact_number"
+                                            value={contactNumber}
+                                            onChange={(e) => {
+                                                setContactNumber(
+                                                    e.target.value
+                                                );
+                                            }}
                                         />
                                     </div>
                                 </div>
@@ -92,20 +136,26 @@ function Inquiry() {
                                             Subscription Plan:
                                         </label>
 
-                                        <select className="form-select">
+                                        <select
+                                            className="form-select"
+                                            value={plan}
+                                            onChange={(e) => {
+                                                setPlan(e.target.value);
+                                            }}
+                                        >
                                             <option defaultValue hidden>
                                                 SELECT SUBSCRIPTION PLAN
                                             </option>
                                             <option value="b640">
-                                                Basic 640 (59 SD PLUS 23 HD
+                                                BASIC 640 (59 SD PLUS 23 HD
                                                 Channels)
                                             </option>
-                                            <option value="b790">
-                                                Premium 790 (91 SD PLUS 35 HD
+                                            <option value="p790">
+                                                PREMIUM 790 (91 SD PLUS 35 HD
                                                 Channels)
                                             </option>
-                                            <option value="b1099">
-                                                International 1099 (118 SD PLUS
+                                            <option value="i1099">
+                                                INTERNATIONAL 1099 (118 SD PLUS
                                                 54 HD Channel)
                                             </option>
                                         </select>
@@ -119,25 +169,30 @@ function Inquiry() {
                                         >
                                             Concern Type:
                                         </label>
-                                        <select className="form-select">
+                                        <select
+                                            className="form-select"
+                                            value={concern}
+                                            onChange={(e) => {
+                                                setConcern(e.target.value);
+                                            }}
+                                        >
                                             <option defaultValue hidden>
                                                 SELECT CONCERN TYPE
                                             </option>
-                                            <option>Billing Related</option>
+                                            <option>BILLING RELATED</option>
                                             <option>
-                                                Follow Up New Installation
+                                                FOLLOW UP APPLICATION
                                             </option>
-                                            <option>New Application</option>
-                                            <option>Payment Related</option>
+                                            <option>NEW APPLICATION</option>
+                                            <option>PAYMENT RELATED</option>
                                             <option>
-                                                Upgrade Subscription
+                                                UPGRADE SUBSCRIPTION
                                             </option>
-                                            <option>Site Transfer</option>
-                                            <option>Reconnection</option>
-                                            <option>Extension</option>
+                                            <option>SITE TRANSFER</option>
+                                            <option>RECONNECTION</option>
+                                            <option>EXTENSION</option>
                                             <option>
-                                                Others (Please specify in the
-                                                Text Field Below.)
+                                                OTHERS (PLEASE SPECIFY BELOW)
                                             </option>
                                         </select>
                                     </div>
@@ -151,6 +206,10 @@ function Inquiry() {
                                             className="form-control"
                                             id="add-info"
                                             rows="5"
+                                            value={addInfo}
+                                            onChange={(e) => {
+                                                setAddInfo(e.target.value);
+                                            }}
                                         ></textarea>
                                     </div>
                                 </div>
@@ -159,6 +218,7 @@ function Inquiry() {
                                         <button
                                             type="button"
                                             className="btn btn-warning fw-bolder btn-lg float-end text-navy bg-gold"
+                                            onClick={handleSubmit}
                                         >
                                             SUBMIT
                                         </button>
