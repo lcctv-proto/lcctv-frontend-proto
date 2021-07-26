@@ -1,35 +1,63 @@
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../assets/Images/logo.png";
-import { CircleFill } from "react-bootstrap-icons";
-import "../styles.css";
 import { useEffect } from "react";
+import NavItem from "./NavItem.jsx";
 
 function Navbar() {
     const location = useLocation().pathname;
+    const isCustomer = !location.includes("portal");
+
+    const navItems = [
+        {
+            name: "PLANS",
+            paths: ["/plans", "/apply"],
+        },
+        {
+            name: "CHANNELS",
+            paths: ["/channels", "/channel/*"],
+        },
+        {
+            name: "APPLICATIONS",
+            paths: ["/applications", "/applications/*"],
+        },
+        {
+            name: "ABOUT US",
+            paths: ["/about"],
+        },
+        {
+            name: "CONTACT US",
+            paths: ["/contact", "/general", "/technical"],
+        },
+        {
+            name: "SERVICE CATALOG",
+            paths: ["/services"],
+        },
+    ];
 
     useEffect(() => {
         let collapse = document.getElementById("nav-items");
-        if (!location.includes("portal"))
+
+        if (isCustomer)
             if (collapse.classList.contains("show"))
                 collapse.classList.remove("show");
     });
 
-    if (!location.includes("portal")) {
+    if (isCustomer) {
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-navy border-gold-2">
                 <Link
-                    className="navbar-brand py-1 ps-3 me-0 text-light text-decoration-none"
+                    className="navbar-brand px-2 mx-2 text-light text-decoration-none"
                     to="/"
                 >
                     <img
                         src={logo}
-                        className="d-md-block mx-auto mb-2"
+                        className="d-md-block mx-auto mb-md-2"
                         alt=""
                         height="75"
                     />
-                    <span className="ms-3 pe-4 h6 text-center ff-logo">
+                    <p className="m-0 d-inline ms-2 ms-lg-0 d-md-block h6 text-center ff-logo">
                         Lake Community Cable TV
-                    </span>
+                    </p>
                 </Link>
                 <button
                     className="navbar-toggler me-3"
@@ -41,120 +69,14 @@ function Navbar() {
                 </button>
                 <div className="collapse navbar-collapse" id="nav-items">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0 text-center">
-                        <li className="nav-item px-2">
-                            <Link
-                                className={`nav-link ${
-                                    location === "/plans" ? "active" : ""
-                                }`}
-                                to="/plans"
-                            >
-                                <CircleFill
-                                    className={`text-gold me-2 ${
-                                        location === "/plans"
-                                            ? "d-inline"
-                                            : "d-none"
-                                    }`}
-                                    style={{ fontSize: "x-small" }}
-                                />
-                                PLANS
-                            </Link>
-                        </li>
-                        <li className="nav-item px-2">
-                            <Link
-                                className={`nav-link ${
-                                    location === "/channels" ? "active" : ""
-                                }`}
-                                to="/channels"
-                            >
-                                <CircleFill
-                                    className={`text-gold me-2 ${
-                                        location === "/channels"
-                                            ? "d-inline"
-                                            : "d-none"
-                                    }`}
-                                    style={{ fontSize: "x-small" }}
-                                />
-                                CHANNELS
-                            </Link>
-                        </li>
-                        <li className="nav-item px-2">
-                            <Link
-                                className={`nav-link ${
-                                    location === "/applications" ? "active" : ""
-                                }`}
-                                to="/applications"
-                            >
-                                <CircleFill
-                                    className={`text-gold me-2 ${
-                                        location === "/applications"
-                                            ? "d-inline"
-                                            : "d-none"
-                                    }`}
-                                    style={{ fontSize: "x-small" }}
-                                />
-                                APPLICATIONS
-                            </Link>
-                        </li>
-                        <li className="nav-item px-2">
-                            <Link
-                                className={`nav-link ${
-                                    location === "/about" ? "active" : ""
-                                }`}
-                                to="/about"
-                            >
-                                <CircleFill
-                                    className={`text-gold me-2 ${
-                                        location === "/about"
-                                            ? "d-inline"
-                                            : "d-none"
-                                    }`}
-                                    style={{ fontSize: "x-small" }}
-                                />
-                                ABOUT US
-                            </Link>
-                        </li>
-                        <li className="nav-item px-2">
-                            <Link
-                                className={`nav-link ${
-                                    location === "/contact" ||
-                                    location === "/general" ||
-                                    location === "/technical"
-                                        ? "active"
-                                        : ""
-                                }`}
-                                to="/contact"
-                            >
-                                <CircleFill
-                                    className={`text-gold me-2 ${
-                                        location === "/contact" ||
-                                        location === "/general" ||
-                                        location === "/technical"
-                                            ? "d-inline"
-                                            : "d-none"
-                                    }`}
-                                    style={{ fontSize: "x-small" }}
-                                />
-                                CONTACT US
-                            </Link>
-                        </li>
-                        <li className="nav-item px-2">
-                            <Link
-                                className={`nav-link ${
-                                    location === "/services" ? "active" : ""
-                                }`}
-                                to="/services"
-                            >
-                                <CircleFill
-                                    className={`text-gold me-2 ${
-                                        location === "/services"
-                                            ? "d-inline"
-                                            : "d-none"
-                                    }`}
-                                    style={{ fontSize: "x-small" }}
-                                />
-                                SERVICE CATALOG
-                            </Link>
-                        </li>
+                        {navItems.map((navItem, i) => (
+                            <NavItem
+                                name={navItem.name}
+                                location={location}
+                                paths={navItem.paths}
+                                key={i}
+                            />
+                        ))}
                     </ul>
                 </div>
             </nav>

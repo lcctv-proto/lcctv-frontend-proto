@@ -1,6 +1,8 @@
 import { Speedometer2, BoxArrowLeft } from "react-bootstrap-icons";
 import logo from "../assets/Images/logo.png";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+
+import NavItem from "./NavItem";
 
 function SideBar({ title, name, path, navItems }) {
     return (
@@ -27,18 +29,7 @@ function SideBar({ title, name, path, navItems }) {
                     </Link>
                 </li>
                 {navItems.map((navItem, i) => (
-                    <li className="nav-item" key={i}>
-                        <NavLink
-                            className={`nav-link hover-${name} px-3`}
-                            activeClassName="nav-active"
-                            to={`/portal${navItem.path}`}
-                        >
-                            {navItem.icon}
-                            <span className="align-middle mx-3">
-                                {navItem.title}
-                            </span>
-                        </NavLink>
-                    </li>
+                    <NavItem name={name} navItem={navItem} key={i} />
                 ))}
             </ul>
 

@@ -1,17 +1,16 @@
 import { Link, useLocation } from "react-router-dom";
 import altLogo from "../../assets/Images/logo_alt.png";
-import "../styles.css";
 
 function Footer() {
-    const location = useLocation();
+    const isCustomer = !useLocation().pathname.includes("portal");
 
-    if (!location.pathname.includes("portal")) {
+    if (isCustomer) {
         return (
             <>
-                <footer className="bg-light p-5 ff-nunito">
+                <footer className="bg-light p-2 p-xl-5 ff-nunito">
                     <div className="container">
-                        <div className="row">
-                            <div className="col-auto mx-auto">
+                        <div className="row justify-content-center align-items-center gx-5">
+                            <div className="col-12 col-lg-auto text-navy text-center">
                                 <Link to="/" className="d-block">
                                     <img
                                         height="150"
@@ -20,14 +19,18 @@ function Footer() {
                                         alt=""
                                     />
                                 </Link>
-                                <p className="text-center fs-5 ff-logo text-navy">
-                                    Lake Community Cable TV <br />
+                                <span className="fs-5 ff-logo ">
+                                    Lake Community Cable TV
+                                </span>
+                                <span className="fs-5 ff-logo text-center d-xl-block ms-1 ms-xl-0">
                                     Multipurpose Cooperative
-                                </p>
+                                </span>
                             </div>
 
-                            <div className="col-2 mt-4 ms-5  d-none d-xxl-block">
-                                <h5>SERVICES</h5>
+                            <div className="col-12 col-xl-2 p-3">
+                                <h5 className="border-bottom border-dark">
+                                    SERVICES
+                                </h5>
                                 <ul className="list-unstyled text-small">
                                     <li>
                                         <Link
@@ -56,8 +59,10 @@ function Footer() {
                                 </ul>
                             </div>
 
-                            <div className="col-2 mt-4 ms-5 d-none d-xxl-block">
-                                <h5>ABOUT US</h5>
+                            <div className="col-12 col-xl-2 p-3">
+                                <h5 className="border-bottom border-dark">
+                                    OUR COMPANY
+                                </h5>
                                 <ul className="list-unstyled text-small">
                                     <li>
                                         <Link
@@ -79,8 +84,11 @@ function Footer() {
                                     </li>
                                 </ul>
                             </div>
-                            <div className="col-2 mt-4 ms-5 d-none d-xxl-block">
-                                <h5>HELPFUL LINKS</h5>
+
+                            <div className="col-12 col-xl-2 p-3">
+                                <h5 className="border-bottom border-dark">
+                                    HELPFUL LINKS
+                                </h5>
                                 <ul className="list-unstyled text-small">
                                     <li>
                                         <Link
@@ -105,9 +113,9 @@ function Footer() {
                                     </li>
                                 </ul>
                             </div>
-                            <div className="col-2  d-none d-xxl-block">
+                            <div className="col-12 col-xl-3 p-3">
                                 <iframe
-                                    className="shadow border-0"
+                                    className="d-block mx-auto shadow border-0"
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2368.594677387614!2d121.32316158513572!3d14.072248015335425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb2d20f46e6a2a7fd!2sLAKE%20COMMUNITY%20CABLE%20TV%20MULTI-SUPPOSE%20COOPERATIVE!5e0!3m2!1sen!2sph!4v1618666168055!5m2!1sen!2sph"
                                     width="300"
                                     height="200"

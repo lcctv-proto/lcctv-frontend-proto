@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Portal from "./components/Portal.jsx";
 import Customer from "./components/customer/Customer.jsx";
 
+import "../src/components/styles.css";
+
 function App() {
     return (
         <Router>

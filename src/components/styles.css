@@ -18,6 +18,10 @@ body {
     text-transform: uppercase;
 }
 
+.xsmall {
+    font-size: x-small;
+}
+
 .grid-list {
     display: grid !important;
     column-gap: 20px;
@@ -397,6 +401,16 @@ body {
 
 .text-tech {
     color: #adb36e;
+}
+
+.btn-gold {
+    color: #14274e !important;
+    background-color: #f0b917 !important;
+}
+
+.btn-gold:hover {
+    color: #f0b917 !important;
+    background-color: transparent !important;
 }
 
 .btn-tech-alt {
