@@ -59,19 +59,6 @@ function ContactInformation({
                 }}
             />
             <p className="fw-bold fs-5 mt-4">Mother's Maiden Name</p>
-
-            <label htmlFor="surname" className="form-label mt-2">
-                Family Name:
-            </label>
-            <input
-                type="text"
-                className="form-control"
-                id="surname"
-                value={motherLastName}
-                onChange={(e) => {
-                    setMotherLastName(e.target.value);
-                }}
-            />
             <label htmlFor="firstname" className="form-label mt-2">
                 First Name:
             </label>
@@ -96,21 +83,22 @@ function ContactInformation({
                     setMotherMiddleName(e.target.value);
                 }}
             />
+            <label htmlFor="surname" className="form-label mt-2">
+                Family Name:
+            </label>
+            <input
+                type="text"
+                className="form-control"
+                id="surname"
+                value={motherLastName}
+                onChange={(e) => {
+                    setMotherLastName(e.target.value);
+                }}
+            />
+
             {(civilStatus === "MARRIED" || civilStatus === "WIDOWED") && (
                 <>
                     <p className="fw-bold fs-5 mt-4">Spouse's Name</p>
-                    <label htmlFor="spouse_surname" className="form-label mt-2">
-                        Family Name:
-                    </label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="spouse_surname"
-                        value={spouseLastName}
-                        onChange={(e) => {
-                            setSpouseLastName(e.target.value);
-                        }}
-                    />
                     <label
                         htmlFor="spouse_firstname"
                         className="form-label mt-2"
@@ -139,6 +127,18 @@ function ContactInformation({
                         value={spouseMiddleName}
                         onChange={(e) => {
                             setSpouseMiddleName(e.target.value);
+                        }}
+                    />
+                    <label htmlFor="spouse_surname" className="form-label mt-2">
+                        Family Name:
+                    </label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="spouse_surname"
+                        value={spouseLastName}
+                        onChange={(e) => {
+                            setSpouseLastName(e.target.value);
                         }}
                     />
                 </>

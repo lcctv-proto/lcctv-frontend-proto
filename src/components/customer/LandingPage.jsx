@@ -75,7 +75,7 @@ function LandingPage() {
                     </p>
                     <Link
                         to="/about"
-                        className="btn btn-warning btn-lg btn-gold mt-auto"
+                        className="btn btn-warning btn-lg btn-gold-2 mt-auto"
                     >
                         Our Story
                     </Link>
@@ -91,7 +91,7 @@ function LandingPage() {
                     </p>
                     <Link
                         to="/services"
-                        className="btn btn-warning btn-lg btn-gold mt-auto"
+                        className="btn btn-warning btn-lg btn-gold-2 mt-auto"
                     >
                         Our Services
                     </Link>
@@ -108,7 +108,7 @@ function LandingPage() {
                     </p>
                     <Link
                         to="/plans"
-                        className="btn btn-warning btn-lg btn-gold mt-auto"
+                        className="btn btn-warning btn-lg btn-gold-2 mt-auto"
                     >
                         Apply Now!
                     </Link>

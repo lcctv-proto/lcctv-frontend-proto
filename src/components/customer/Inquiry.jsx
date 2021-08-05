@@ -218,7 +218,7 @@ function Inquiry() {
                                     <div className="col">
                                         <button
                                             type="button"
-                                            className="btn btn-warning fw-bolder btn-lg float-end text-navy bg-gold"
+                                            className="btn btn-warning fw-bolder btn-lg float-end btn-gold"
                                             onClick={handleSubmit}
                                         >
                                             SUBMIT

@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import { CircleFill } from "react-bootstrap-icons";
 
-function NavItem({ name, path, location, paths }) {
+function NavItem({ name, location, paths }) {
     const isActive = paths.includes(location);
 
     return (
-        <li className="nav-item me-2">
+        <li className="nav-item">
             <Link
-                className={`d-flex align-items-center nav-link ${
+                className={`d-flex justify-content-center align-items-center nav-link ${
                     isActive && "active"
                 }`}
                 to={`${paths[0]}`}

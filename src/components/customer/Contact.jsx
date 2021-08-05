@@ -43,6 +43,7 @@ function Contact() {
                             path={path}
                             icon={icon}
                             isLast={index === cardContent.length - 1}
+                            key={index}
                         />
                     );
                 })}

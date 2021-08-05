@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function Header({ title, user, name }) {
     return (
-        <div className={`row py-3 align-items-center border-${name}`}>
+        <div className={`row py-3 align-items-center mb-3 border-${name}`}>
             <div className="col">
                 <h3 className="my-2">{title}</h3>
             </div>

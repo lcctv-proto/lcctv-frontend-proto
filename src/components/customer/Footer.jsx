@@ -9,7 +9,7 @@ function Footer() {
             <>
                 <footer className="bg-light p-2 p-xl-5 ff-nunito">
                     <div className="container">
-                        <div className="row justify-content-center align-items-center gx-5">
+                        <div className="row justify-content-center align-items-center">
                             <div className="col-12 col-lg-auto text-navy text-center">
                                 <Link to="/" className="d-block">
                                     <img

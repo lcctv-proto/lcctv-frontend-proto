@@ -47,7 +47,7 @@ function Applications() {
 
                             <button
                                 type="button"
-                                className="btn btn-warning mt-3 fw-bolder float-end bg-gold text-navy"
+                                className="btn btn-warning mt-3 fw-bolder float-end btn-gold"
                                 onClick={HandleSubmit}
                             >
                                 CHECK STATUS

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Mate+SC&display=swap");
 /* 
 * {
@@ -410,9 +410,21 @@ body {
 .btn-gold {
     color: #14274e !important;
     background-color: #f0b917 !important;
+    border-color: #f0b917 !important;
 }
 
 .btn-gold:hover {
+    color: #f0b917 !important;
+    background-color: #14274e !important;
+    border-color: #14274e !important;
+}
+
+.btn-gold-2 {
+    color: #14274e !important;
+    background-color: #f0b917 !important;
+}
+
+.btn-gold-2:hover {
     color: #f0b917 !important;
     background-color: transparent !important;
 }

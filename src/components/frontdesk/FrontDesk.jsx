@@ -8,6 +8,9 @@ import Home from "./Home.jsx";
 import Sidebar from "../SideBar.jsx";
 import Header from "../Header.jsx";
 
+// frontdesk specific imports
+import Applications from "./Applications.jsx";
+
 function FrontDesk() {
     const [header, setHeader] = useState("");
 
@@ -61,7 +64,7 @@ function FrontDesk() {
                         />
                         <Switch>
                             <Route path="/portal/frontdesk/applications">
-                                <h1>Hi application</h1>
+                                <Applications />
                             </Route>
                             <Route path="/portal/frontdesk/inquiries">
                                 <h1>Hi inquiries</h1>
