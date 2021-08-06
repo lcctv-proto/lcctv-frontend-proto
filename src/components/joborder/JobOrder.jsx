@@ -79,7 +79,7 @@ function JobOrder() {
                         path="joborder"
                         navItems={navItems}
                     />
-                    <div className="container-fluid p-3 pt-0">
+                    <div className="container-fluid px-3">
                         <Header title={header} user="JO123" name="jo" />
                         <Switch>
                             <Route path="/portal/joborder/accounts">

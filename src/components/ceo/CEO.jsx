@@ -44,7 +44,7 @@ function CEO() {
                         path="ceo"
                         navItems={navItems}
                     />
-                    <div className="container-fluid p-3 pt-0">
+                    <div className="container-fluid px-3">
                         <Header title={header} user="CEO123" name="ceo" />
                         <Switch>
                             <Route path="/portal/ceo/employees">

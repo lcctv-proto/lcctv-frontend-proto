@@ -7,7 +7,13 @@ function Applications() {
 
     function HandleSubmit(e) {
         e.preventDefault();
-        if (referenceNumber) history.push(`/application/${referenceNumber}`);
+        if (
+            !referenceNumber.includes(" ") &&
+            (referenceNumber.includes("REF-") ||
+                referenceNumber.includes("ref-")) &&
+            referenceNumber.length === 15
+        )
+            history.push(`/application/${referenceNumber}`);
     }
 
     return (
@@ -39,6 +45,7 @@ function Applications() {
                                     onChange={(e) => {
                                         setReferenceNumber(e.target.value);
                                     }}
+                                    required
                                 />
                                 <div className="form-text ms-2">
                                     Ex: REF-xxxxxxxxxxx

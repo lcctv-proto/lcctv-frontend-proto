@@ -31,7 +31,7 @@ function Applications() {
         })
         .slice(indexOfFirstApplication, indexOfLastApplication);
 
-    const cols = ["REFERENCE NUMBER", "ACCOUNT NAME", "PLAN", "DATE"];
+    const cols = ["REFERENCE NUMBER", "ACCOUNT NAME", "PLAN", "AREA", "DATE"];
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -56,7 +56,7 @@ function Applications() {
                 {isLoading && (
                     <div className="text-center mt-5 pt-5">
                         <div
-                            className="spinner-border text-front"
+                            className="spinner-border text-admin"
                             style={{ width: "5rem", height: "5rem" }}
                             role="status"
                         >

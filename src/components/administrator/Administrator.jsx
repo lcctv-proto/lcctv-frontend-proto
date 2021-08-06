@@ -13,9 +13,12 @@ import { Switch, Route, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 // component imports
-import Home from "./Home.jsx";
-import Sidebar from "../SideBar.jsx";
-import Header from "../Header.jsx";
+import Home from "./Home";
+import Sidebar from "../SideBar";
+import Header from "../Header";
+
+// admin specific imports
+import Applications from "./Applications";
 
 function Administrator() {
     const [header, setHeader] = useState("");
@@ -89,7 +92,7 @@ function Administrator() {
                         path="admin"
                         navItems={navItems}
                     />
-                    <div className="container-fluid p-3">
+                    <div className="container-fluid px-3">
                         <Header title={header} user="Admin123" name="admin" />
                         <Switch>
                             <Route path="/portal/admin/teams">
@@ -99,7 +102,7 @@ function Administrator() {
                                 <h1>Hi employees</h1>
                             </Route>
                             <Route path="/portal/admin/applications">
-                                <h1>Hi applications</h1>
+                                <Applications />
                             </Route>
                             <Route path="/portal/admin/channels">
                                 <h1>Hi channels</h1>

@@ -1,5 +1,5 @@
 //module imports
-import { Tools, Archive, Pen } from "react-bootstrap-icons";
+import { Tools, Receipt, Pen } from "react-bootstrap-icons";
 import { Switch, Route, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
@@ -10,6 +10,7 @@ import Header from "../Header.jsx";
 
 // frontdesk specific imports
 import Applications from "./Applications.jsx";
+import Inquiries from "./Inquiries.jsx";
 
 function FrontDesk() {
     const [header, setHeader] = useState("");
@@ -24,13 +25,13 @@ function FrontDesk() {
 
     const navItems = [
         {
-            icon: <Tools />,
+            icon: <Receipt />,
             title: "APPLICATIONS",
             path: "/frontdesk/applications",
             count: 3,
         },
         {
-            icon: <Archive />,
+            icon: <Tools />,
             title: "INQUIRIES",
             path: "/frontdesk/inquiries",
             count: 3,
@@ -56,7 +57,7 @@ function FrontDesk() {
                         path="frontdesk"
                         navItems={navItems}
                     />
-                    <div className="container-fluid p-3 pt-0">
+                    <div className="container-fluid px-3">
                         <Header
                             title={header}
                             user="Frontdesk123"
@@ -67,7 +68,7 @@ function FrontDesk() {
                                 <Applications />
                             </Route>
                             <Route path="/portal/frontdesk/inquiries">
-                                <h1>Hi inquiries</h1>
+                                <Inquiries />
                             </Route>
                             <Route path="/portal/frontdesk/accounts">
                                 <h1>Hi accounts</h1>

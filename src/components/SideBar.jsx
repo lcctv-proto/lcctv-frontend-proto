@@ -28,8 +28,8 @@ function SideBar({ title, name, path, navItems }) {
                         <span className="align-middle mx-3">DASHBOARD</span>
                     </Link>
                 </li>
-                {navItems.map((navItem, i) => (
-                    <NavItem name={name} navItem={navItem} key={i} />
+                {navItems.map((navItem, index) => (
+                    <NavItem name={name} navItem={navItem} key={index} />
                 ))}
             </ul>
 
@@ -37,7 +37,7 @@ function SideBar({ title, name, path, navItems }) {
                 <li className="nav-item bg-dark-navy">
                     <Link
                         className={`nav-link hover-${name} px-3 text-light`}
-                        to="#"
+                        to="/portal"
                     >
                         <BoxArrowLeft />
                         <span className="align-middle mx-3">LOGOUT</span>

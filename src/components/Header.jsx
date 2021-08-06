@@ -8,7 +8,10 @@ function Header({ title, user, name }) {
             </div>
             <div className="col text-end">
                 <span className="border-end px-2 mx-2">{user}</span>
-                <Link className="text-decoration-none text-secondary" to="#">
+                <Link
+                    className="text-decoration-none text-secondary"
+                    to="/portal"
+                >
                     Logout
                 </Link>
             </div>

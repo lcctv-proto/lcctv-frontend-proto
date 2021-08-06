@@ -65,7 +65,7 @@ function Technician() {
                         path="tech"
                         navItems={navItems}
                     />
-                    <div className="container-fluid p-3">
+                    <div className="container-fluid px-3">
                         <Header
                             title={header}
                             user="Technician123"

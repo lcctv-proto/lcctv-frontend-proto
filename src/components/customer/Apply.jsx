@@ -210,12 +210,15 @@ function Apply() {
                             )}
                         </div>
                         <div className="card-footer mt-3 d-flex">
-                            <button
-                                className="btn btn-warning btn-lg btn-gold"
-                                onClick={PrevPage}
-                            >
-                                Back
-                            </button>
+                            {page !== 1 && (
+                                <button
+                                    className="btn btn-warning btn-lg btn-gold"
+                                    onClick={PrevPage}
+                                >
+                                    Back
+                                </button>
+                            )}
+
                             {page !== 4 && (
                                 <button
                                     className="btn btn-warning btn-lg btn-gold ms-auto"
