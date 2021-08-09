@@ -4,13 +4,13 @@ import { Switch, Route, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 // component imports
-import Home from "./Home.jsx";
-import Sidebar from "../SideBar.jsx";
-import Header from "../Header.jsx";
+import Home from "./Home";
+import Sidebar from "../SideBar";
+import Header from "../Header";
 
 // frontdesk specific imports
-import Applications from "./Applications.jsx";
-import Inquiries from "./Inquiries.jsx";
+import Applications from "./Applications";
+import Inquiries from "./Inquiries";
 
 function FrontDesk() {
     const [header, setHeader] = useState("");
@@ -18,9 +18,9 @@ function FrontDesk() {
     const location = useLocation().pathname;
 
     useEffect(() => {
-        if (location.includes("applications")) setHeader("Applications List");
-        if (location.includes("inquiries")) setHeader("Inquiries List");
-        if (location.includes("accounts")) setHeader("Accounts");
+        if (location.includes("applications")) setHeader("APPLICATIONS");
+        if (location.includes("inquiries")) setHeader("INQUIRIES");
+        if (location.includes("accounts")) setHeader("ACCOUNTS");
     }, [location]);
 
     const navItems = [

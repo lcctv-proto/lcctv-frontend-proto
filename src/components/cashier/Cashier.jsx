@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import Home from "./Home.jsx";
 import Sidebar from "../SideBar.jsx";
 import Header from "../Header.jsx";
+import Payments from "./Payments.jsx";
 
 function Cashier() {
     const [header, setHeader] = useState("");
@@ -14,8 +15,8 @@ function Cashier() {
     const location = useLocation().pathname;
 
     useEffect(() => {
-        if (location.includes("accounts")) setHeader("Accounts");
-        if (location.includes("payments")) setHeader("Payments List");
+        if (location.includes("accounts")) setHeader("ACCOUNTS");
+        if (location.includes("payments")) setHeader("PAYMENTS");
     }, [location]);
 
     const navItems = [
@@ -55,7 +56,7 @@ function Cashier() {
                                 <h1>Hi accounts</h1>
                             </Route>
                             <Route path="/portal/cashier/payments">
-                                <h1>Hi payments</h1>
+                                <Payments />
                             </Route>
                         </Switch>
                     </div>

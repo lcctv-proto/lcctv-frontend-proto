@@ -1,4 +1,4 @@
-function ApplicationTable({ currentApplications, cols }) {
+function EmployeeTable({ currentEmployees, cols }) {
     return (
         <table className="table table-borderless table-striped shadow fs-5">
             <thead className="text-light bg-navy border-admin">
@@ -9,22 +9,20 @@ function ApplicationTable({ currentApplications, cols }) {
                 </tr>
             </thead>
             <tbody>
-                {currentApplications.map(
+                {currentEmployees.map(
                     ({
                         prefix,
-                        ref_ctr,
-                        accountID: {
-                            accountName: { firstName, middleName, lastName },
-                            serviceAddress: { municipality, province },
-                            packageID: { description },
-                        },
-                        date,
+                        emp_ctr,
+                        personnelName: { firstName, middleName, lastName },
+                        contactNumber,
+                        dateEmployed,
+                        roleID: { description },
                         _id,
                     }) => {
-                        const suffix = ref_ctr.toString().padStart(3, "0");
-                        const refNumber = `${prefix}${suffix}`;
+                        const suffix = emp_ctr.toString().padStart(3, "0");
+                        const empNumber = `${prefix}${suffix}`;
                         const name = `${firstName} ${middleName[0]}. ${lastName}`;
-                        const localDate = new Date(date);
+                        const localDate = new Date(dateEmployed);
                         const localDateString = localDate
                             .toLocaleDateString(undefined, {
                                 weekday: "long",
@@ -33,14 +31,13 @@ function ApplicationTable({ currentApplications, cols }) {
                                 day: "numeric",
                             })
                             .toUpperCase();
-                        const area = `${municipality}, ${province}`;
 
                         return (
                             <tr key={_id}>
-                                <td>{refNumber}</td>
+                                <td>{empNumber}</td>
                                 <td>{name}</td>
                                 <td>{description}</td>
-                                <td>{area}</td>
+                                <td>{contactNumber}</td>
                                 <td>{localDateString}</td>
                             </tr>
                         );
@@ -51,4 +48,4 @@ function ApplicationTable({ currentApplications, cols }) {
     );
 }
 
-export default ApplicationTable;
+export default EmployeeTable;

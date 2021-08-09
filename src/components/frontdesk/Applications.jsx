@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import axios from "axios";
 
@@ -7,13 +7,16 @@ import Pagination from "../Pagination";
 import Page from "../Page";
 import ItemCountSelector from "../ItemCountSelector";
 import SearchBar from "../SearchBar";
+import SearchError from "../SearchError";
+import Spinner from "../Spinner";
 
 function Applications() {
     const [applications, setApplications] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [applicationsPerPage, setApplicationsPerPage] = useState(10);
     const [searchTerm, setSearchTerm] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+    const _isMounted = useRef(true);
 
     const indexOfLastApplication = currentPage * applicationsPerPage;
     const indexOfFirstApplication =
@@ -37,34 +40,29 @@ function Applications() {
 
     useEffect(() => {
         const fetchApplications = async () => {
-            setIsLoading(true);
-
-            const res = await axios.get(
-                "https://lcctv-backend.herokuapp.com/api/applications"
-            );
-
-            setApplications([...res.data]);
-
-            setIsLoading(false);
+            if (_isMounted.current) {
+                setIsLoading(true);
+                const res = await axios.get(
+                    "https://lcctv-backend.herokuapp.com/api/applications"
+                );
+                setApplications([...res.data]);
+                setIsLoading(false);
+            }
         };
+
         fetchApplications();
+
+        return () => {
+            _isMounted.current = false;
+        };
     }, []);
 
     return (
         <div className="row">
             <div className="col">
-                {isLoading && (
-                    <div className="text-center mt-5 pt-5">
-                        <div
-                            className="spinner-border text-front"
-                            style={{ width: "5rem", height: "5rem" }}
-                            role="status"
-                        >
-                            <span className="visually-hidden">Loading...</span>
-                        </div>
-                    </div>
-                )}
-                {!isLoading && (
+                {isLoading ? (
+                    <Spinner name="front" />
+                ) : (
                     <>
                         <div className="row">
                             <ItemCountSelector
@@ -83,16 +81,7 @@ function Applications() {
                         <div className="row mt-3">
                             <div className="col">
                                 {currentApplications.length === 0 ? (
-                                    <div className="text-center mt-5 pt-5">
-                                        <h1>
-                                            -{searchTerm.toUpperCase()}- not
-                                            found!
-                                        </h1>
-                                        <h3>
-                                            Please check your search terms and
-                                            try again.
-                                        </h3>
-                                    </div>
+                                    <SearchError searchTerm={searchTerm} />
                                 ) : (
                                     <ApplicationTable
                                         currentApplications={

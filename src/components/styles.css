@@ -9,9 +9,14 @@ body {
     font-family: "Nunito Sans" !important;
 }
 
+.spinner {
+    width: 5rem !important;
+    height: 5rem !important;
+}
+
 .sidebar {
     min-height: 100vh;
-    width: 325px;
+    width: 350px;
 }
 
 .form-control {

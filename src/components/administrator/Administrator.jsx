@@ -19,6 +19,7 @@ import Header from "../Header";
 
 // admin specific imports
 import Applications from "./Applications";
+import Employees from "./Employees";
 
 function Administrator() {
     const [header, setHeader] = useState("");
@@ -26,14 +27,14 @@ function Administrator() {
     const location = useLocation().pathname;
 
     useEffect(() => {
-        if (location.includes("teams")) setHeader("Teams");
-        if (location.includes("employees")) setHeader("Employees");
-        if (location.includes("applications")) setHeader("Applications");
-        if (location.includes("channels")) setHeader("Channels");
-        if (location.includes("reports")) setHeader("Reports");
-        if (location.includes("equipments")) setHeader("Equipments");
-        if (location.includes("plans")) setHeader("Plans");
-        if (location.includes("notes")) setHeader("My Notes");
+        if (location.includes("teams")) setHeader("TEAMS");
+        if (location.includes("employees")) setHeader("EMPLOYEES");
+        if (location.includes("applications")) setHeader("APPLICATIONS");
+        if (location.includes("channels")) setHeader("CHANNELS");
+        if (location.includes("reports")) setHeader("REPORTS");
+        if (location.includes("equipments")) setHeader("EQUIPMENTS");
+        if (location.includes("plans")) setHeader("PLANS");
+        if (location.includes("notes")) setHeader("MY NOTES");
     }, [location]);
 
     const navItems = [
@@ -99,7 +100,7 @@ function Administrator() {
                                 <h1>Hi teams</h1>
                             </Route>
                             <Route path="/portal/admin/employees">
-                                <h1>Hi employees</h1>
+                                <Employees />
                             </Route>
                             <Route path="/portal/admin/applications">
                                 <Applications />

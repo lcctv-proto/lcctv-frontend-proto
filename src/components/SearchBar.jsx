@@ -14,6 +14,7 @@ function SearchBar({ placeholder, searchTerm, setSearchTerm }) {
                     onChange={(e) => {
                         setSearchTerm(e.target.value);
                     }}
+                    maxLength="20"
                 />
                 <span className="input-group-text bg-white ">
                     <div className="border-start-0">

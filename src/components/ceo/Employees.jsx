@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 import axios from "axios";
 
-import InquiryTable from "./InquiryTable";
+import EmployeeTable from "./EmployeeTable";
 import Pagination from "../Pagination";
 import Page from "../Page";
 import ItemCountSelector from "../ItemCountSelector";
@@ -10,51 +10,51 @@ import SearchBar from "../SearchBar";
 import SearchError from "../SearchError";
 import Spinner from "../Spinner";
 
-function Inquiries() {
-    const [inquiries, setInquiries] = useState([]);
+function Employees() {
+    const [employees, setEmployees] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [inquiriesPerPage, setInquiriesPerPage] = useState(10);
+    const [employeesPerPage, setEmployeesPerPage] = useState(10);
     const [searchTerm, setSearchTerm] = useState("");
     const [isLoading, setIsLoading] = useState(true);
     const _isMounted = useRef(true);
 
-    const indexOfLastInquiry = currentPage * inquiriesPerPage;
-    const indexOfFirstInquiry = indexOfLastInquiry - inquiriesPerPage;
-    const currentInquiries = inquiries
-        .filter((inquiry) => {
+    const indexOfLastEmployee = currentPage * employeesPerPage;
+    const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage;
+    const currentEmployees = employees
+        .filter((employee) => {
             const {
-                accountName: { firstName, middleName, lastName },
-            } = inquiry.accountID;
+                personnelName: { firstName, middleName, lastName },
+            } = employee;
             const name = `${firstName} ${middleName} ${lastName}`;
-            if (searchTerm === "") return inquiry;
-            else if (name.includes(searchTerm.toUpperCase())) return inquiry;
+            if (searchTerm === "") return employee;
+            else if (name.includes(searchTerm.toUpperCase())) return employee;
             return null;
         })
-        .slice(indexOfFirstInquiry, indexOfLastInquiry);
+        .slice(indexOfFirstEmployee, indexOfLastEmployee);
 
     const cols = [
-        "INQUIRY NUMBER",
-        "ACCOUNT NAME",
-        "PLAN",
-        "CONCERN TYPE",
-        "DATE",
+        "EMPLOYEE NUMBER",
+        "EMPLOYEE NAME",
+        "ROLE",
+        "CONTACT NUMBER",
+        "DATE REGISTERED",
     ];
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     useEffect(() => {
-        const fetchInquiries = async () => {
+        const fetchEmployees = async () => {
             if (_isMounted.current) {
                 setIsLoading(true);
                 const res = await axios.get(
-                    "https://lcctv-backend.herokuapp.com/api/inquiries"
+                    "https://lcctv-backend.herokuapp.com/api/personnel"
                 );
-                setInquiries([...res.data]);
+                setEmployees([...res.data]);
                 setIsLoading(false);
             }
         };
 
-        fetchInquiries();
+        fetchEmployees();
 
         return () => {
             _isMounted.current = false;
@@ -65,14 +65,14 @@ function Inquiries() {
         <div className="row">
             <div className="col">
                 {isLoading ? (
-                    <Spinner name="front" />
+                    <Spinner name="ceo" />
                 ) : (
                     <>
                         <div className="row">
                             <ItemCountSelector
-                                itemsPerPage={inquiriesPerPage}
-                                setItemsPerPage={setInquiriesPerPage}
-                                name="inquiries"
+                                itemsPerPage={employeesPerPage}
+                                setItemsPerPage={setEmployeesPerPage}
+                                name="employees"
                                 setCurrentPage={setCurrentPage}
                             />
                             <SearchBar
@@ -81,31 +81,33 @@ function Inquiries() {
                                 placeholder="Search name ..."
                             />
                         </div>
+
                         <div className="row mt-3">
-                            {currentInquiries.length === 0 ? (
-                                <SearchError searchTerm={searchTerm} />
-                            ) : (
-                                <div className="col">
-                                    <InquiryTable
-                                        currentInquiries={currentInquiries}
+                            <div className="col">
+                                {currentEmployees.length === 0 ? (
+                                    <SearchError searchTerm={searchTerm} />
+                                ) : (
+                                    <EmployeeTable
+                                        currentEmployees={currentEmployees}
                                         cols={cols}
                                     />
-                                </div>
-                            )}
+                                )}
+                            </div>
                         </div>
+
                         {!searchTerm && (
                             <div className="row mt-3">
-                                <div className="col-auto pt-3">
+                                <div className="col-auto">
                                     <Page
-                                        indexOfFirstItem={indexOfFirstInquiry}
-                                        indexOfLastItem={indexOfLastInquiry}
-                                        totalItems={inquiries.length}
+                                        indexOfFirstItem={indexOfFirstEmployee}
+                                        indexOfLastItem={indexOfLastEmployee}
+                                        totalItems={employees.length}
                                     />
                                 </div>
                                 <div className="col-auto ms-auto">
                                     <Pagination
-                                        itemsPerPage={inquiriesPerPage}
-                                        totalItems={inquiries.length}
+                                        itemsPerPage={employeesPerPage}
+                                        totalItems={employees.length}
                                         paginate={paginate}
                                     />
                                 </div>
@@ -118,4 +120,4 @@ function Inquiries() {
     );
 }
 
-export default Inquiries;
+export default Employees;

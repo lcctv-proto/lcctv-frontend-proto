@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import Home from "./Home.jsx";
 import Sidebar from "../SideBar.jsx";
 import Header from "../Header.jsx";
+import Employees from "./Employees.jsx";
 
 function CEO() {
     const [header, setHeader] = useState("");
@@ -14,8 +15,8 @@ function CEO() {
     const location = useLocation().pathname;
 
     useEffect(() => {
-        if (location.includes("employees")) setHeader("Employee List");
-        if (location.includes("reports")) setHeader("Reports");
+        if (location.includes("employees")) setHeader("EMPLOYEES");
+        if (location.includes("reports")) setHeader("REPORTS");
     }, [location]);
 
     const navItems = [
@@ -48,7 +49,7 @@ function CEO() {
                         <Header title={header} user="CEO123" name="ceo" />
                         <Switch>
                             <Route path="/portal/ceo/employees">
-                                <h1>Hi employees</h1>
+                                <Employees />
                             </Route>
                             <Route path="/portal/ceo/reports">
                                 <h1>Hi reports</h1>
