@@ -109,6 +109,7 @@ function Employees() {
                                         itemsPerPage={employeesPerPage}
                                         totalItems={employees.length}
                                         paginate={paginate}
+                                        currentPage={currentPage}
                                     />
                                 </div>
                             </div>

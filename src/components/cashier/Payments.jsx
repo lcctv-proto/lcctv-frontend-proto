@@ -110,6 +110,7 @@ function Payments() {
                                         itemsPerPage={paymentsPerPage}
                                         totalItems={payments.length}
                                         paginate={paginate}
+                                        currentPage={currentPage}
                                     />
                                 </div>
                             </div>

@@ -108,6 +108,7 @@ function Applications() {
                                         itemsPerPage={applicationsPerPage}
                                         totalItems={applications.length}
                                         paginate={paginate}
+                                        currentPage={currentPage}
                                     />
                                 </div>
                             </div>

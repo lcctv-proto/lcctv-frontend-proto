@@ -1,6 +1,6 @@
 import { Pencil, Trash } from "react-bootstrap-icons";
 
-function EmployeeTable({ currentEmployees, cols }) {
+function ChannelTable({ currentChannels, cols }) {
     return (
         <table className="table table-borderless table-striped shadow fs-5">
             <thead className="text-light bg-navy border-admin">
@@ -20,39 +20,19 @@ function EmployeeTable({ currentEmployees, cols }) {
                 </tr>
             </thead>
             <tbody>
-                {currentEmployees.map(
-                    ({
-                        prefix,
-                        emp_ctr,
-                        personnelName: { firstName, middleName, lastName },
-                        contactNumber,
-                        dateEmployed,
-                        roleID: { description },
-                        _id,
-                    }) => {
-                        const suffix = emp_ctr.toString().padStart(3, "0");
-                        const empNumber = `${prefix}${suffix}`;
-                        const name = `${firstName} ${middleName[0]}. ${lastName}`;
-                        const localDate = new Date(dateEmployed);
-                        const localDateString = localDate
-                            .toLocaleDateString(undefined, {
-                                weekday: "long",
-                                year: "numeric",
-                                month: "long",
-                                day: "numeric",
-                            })
-                            .toUpperCase();
+                {currentChannels.map(
+                    ({ prefix, cha_ctr, description, assignedNumber, _id }) => {
+                        const suffix = cha_ctr.toString().padStart(3, "0");
+                        const ChannelNumber = `${prefix}${suffix}`;
 
                         return (
                             <tr key={_id}>
-                                <td className="align-middle">{empNumber}</td>
-                                <td className="align-middle">{name}</td>
+                                <td className="align-middle">
+                                    {ChannelNumber}
+                                </td>
                                 <td className="align-middle">{description}</td>
                                 <td className="align-middle">
-                                    {contactNumber}
-                                </td>
-                                <td className="align-middle">
-                                    {localDateString}
+                                    {assignedNumber}
                                 </td>
                                 <td>
                                     <button
@@ -77,4 +57,4 @@ function EmployeeTable({ currentEmployees, cols }) {
     );
 }
 
-export default EmployeeTable;
+export default ChannelTable;

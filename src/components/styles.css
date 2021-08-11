@@ -9,6 +9,32 @@ body {
     font-family: "Nunito Sans" !important;
 }
 
+.pagination > li > button {
+    background-color: transparent;
+    color: #14274e !important;
+    border-color: #14274e !important;
+}
+
+.pagination > li > button:focus,
+.pagination > li > button:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover {
+    color: white !important;
+    background-color: #14274e !important;
+    border-color: white !important;
+}
+
+.pagination > .active > button {
+    color: white !important;
+    background-color: #14274e !important;
+    border: solid 1px #14274e !important;
+}
+
+.pagination > .active > button:hover {
+    background-color: #14274e !important;
+    border: solid 1px #14274e !important;
+}
+
 .spinner {
     width: 5rem !important;
     height: 5rem !important;
@@ -126,6 +152,32 @@ body {
     .border-end-3 {
         border-right: 3px #14274e solid !important;
     }
+}
+
+.w-15 {
+    width: 15% !important;
+}
+
+.btn-delete {
+    background-color: #fb1e1e !important;
+    color: #fff !important;
+}
+
+.btn-delete:hover {
+    background-color: #fff !important;
+    color: #fb1e1e !important;
+    border-color: #fb1e1e !important;
+}
+
+.btn-navy {
+    background-color: #14274e !important;
+    color: #fff !important;
+}
+
+.btn-navy:hover {
+    background-color: #fff !important;
+    color: #14274e !important;
+    border-color: #14274e !important;
 }
 
 .btn-custom {

@@ -5,7 +5,7 @@ function ItemCountSelector({
     setCurrentPage,
 }) {
     return (
-        <div className="col-2 align-items-center d-flex">
+        <div className="col-2 align-items-center d-flex border-end pe-3 me-3">
             <span className="me-2">Show</span>
             <select
                 name="entries"

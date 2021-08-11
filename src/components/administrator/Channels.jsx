@@ -2,110 +2,115 @@ import { useEffect, useRef, useState } from "react";
 
 import axios from "axios";
 
-import InquiryTable from "./InquiryTable";
+import ChannelTable from "./ChannelTable";
 import Pagination from "../Pagination";
 import Page from "../Page";
 import ItemCountSelector from "../ItemCountSelector";
 import SearchBar from "../SearchBar";
 import SearchError from "../SearchError";
 import Spinner from "../Spinner";
+import AddButton from "../AddButton";
 
-function Inquiries() {
-    const [inquiries, setInquiries] = useState([]);
+function Plans() {
+    const [channels, setChannels] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [inquiriesPerPage, setInquiriesPerPage] = useState(10);
+    const [channelsPerPage, setChannelsPerPage] = useState(10);
     const [searchTerm, setSearchTerm] = useState("");
     const [isLoading, setIsLoading] = useState(true);
     const _isMounted = useRef(true);
 
-    const indexOfLastInquiry = currentPage * inquiriesPerPage;
-    const indexOfFirstInquiry = indexOfLastInquiry - inquiriesPerPage;
-    const currentInquiries = inquiries
-        .filter((inquiry) => {
-            const {
-                accountName: { firstName, middleName, lastName },
-            } = inquiry.accountID;
-            const name = `${firstName} ${middleName} ${lastName}`;
-            if (searchTerm === "") return inquiry;
-            else if (name.includes(searchTerm.toUpperCase())) return inquiry;
+    const indexOfLastChannel = currentPage * channelsPerPage;
+    const indexOfFirstChannel = indexOfLastChannel - channelsPerPage;
+    const currentChannels = channels
+        .filter((channel) => {
+            const { description } = channel;
+            if (searchTerm === "") return channel;
+            else if (description.includes(searchTerm.toUpperCase()))
+                return channel;
             return null;
         })
-        .slice(indexOfFirstInquiry, indexOfLastInquiry);
+        .slice(indexOfFirstChannel, indexOfLastChannel);
 
     const cols = [
-        "INQUIRY NUMBER",
-        "ACCOUNT NAME",
-        "PLAN",
-        "CONCERN TYPE",
-        "DATE",
+        "CHANNEL ID",
+        "CHANNEL NAME",
+        "CHANNEL ASSIGNED NUMBER",
+        "ACTIONS",
     ];
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     useEffect(() => {
-        const fetchInquiries = async () => {
+        const fetchChannels = async () => {
             if (_isMounted.current) {
                 setIsLoading(true);
                 const res = await axios.get(
-                    "https://lcctv-backend.herokuapp.com/api/inquiries"
+                    "https://lcctv-backend.herokuapp.com/api/channels"
                 );
-                setInquiries([...res.data]);
+                setChannels([...res.data]);
                 setIsLoading(false);
             }
         };
 
-        fetchInquiries();
+        fetchChannels();
 
         return () => {
             _isMounted.current = false;
         };
     }, []);
 
+    function addChannel(e) {
+        e.preventDefault();
+        console.log("ADD CHANNELS");
+    }
+
     return (
         <div className="row">
             <div className="col">
                 {isLoading ? (
-                    <Spinner name="front" />
+                    <Spinner name="admin" />
                 ) : (
                     <>
                         <div className="row">
                             <ItemCountSelector
-                                itemsPerPage={inquiriesPerPage}
-                                setItemsPerPage={setInquiriesPerPage}
-                                name="inquiries"
+                                itemsPerPage={channelsPerPage}
+                                setItemsPerPage={setChannelsPerPage}
+                                name="channels"
                                 setCurrentPage={setCurrentPage}
                             />
+                            <AddButton name="CHANNEL" click={addChannel} />
                             <SearchBar
                                 searchTerm={searchTerm}
                                 setSearchTerm={setSearchTerm}
                                 placeholder="Search name ..."
                             />
                         </div>
+
                         <div className="row mt-3">
-                            {currentInquiries.length === 0 ? (
-                                <SearchError searchTerm={searchTerm} />
-                            ) : (
-                                <div className="col">
-                                    <InquiryTable
-                                        currentInquiries={currentInquiries}
+                            <div className="col">
+                                {currentChannels.length === 0 ? (
+                                    <SearchError searchTerm={searchTerm} />
+                                ) : (
+                                    <ChannelTable
+                                        currentChannels={currentChannels}
                                         cols={cols}
                                     />
-                                </div>
-                            )}
+                                )}
+                            </div>
                         </div>
                         {!searchTerm && (
                             <div className="row mt-3">
-                                <div className="col-auto pt-3">
+                                <div className="col-auto">
                                     <Page
-                                        indexOfFirstItem={indexOfFirstInquiry}
-                                        indexOfLastItem={indexOfLastInquiry}
-                                        totalItems={inquiries.length}
+                                        indexOfFirstItem={indexOfFirstChannel}
+                                        indexOfLastItem={indexOfLastChannel}
+                                        totalItems={channels.length}
                                     />
                                 </div>
                                 <div className="col-auto ms-auto">
                                     <Pagination
-                                        itemsPerPage={inquiriesPerPage}
-                                        totalItems={inquiries.length}
+                                        itemsPerPage={channelsPerPage}
+                                        totalItems={channels.length}
                                         paginate={paginate}
                                         currentPage={currentPage}
                                     />
@@ -119,4 +124,4 @@ function Inquiries() {
     );
 }
 
-export default Inquiries;
+export default Plans;

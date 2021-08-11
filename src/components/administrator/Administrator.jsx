@@ -20,6 +20,9 @@ import Header from "../Header";
 // admin specific imports
 import Applications from "./Applications";
 import Employees from "./Employees";
+import Plans from "./Plans";
+import Channels from "./Channels";
+import Equipments from "./Equipments";
 
 function Administrator() {
     const [header, setHeader] = useState("");
@@ -106,16 +109,16 @@ function Administrator() {
                                 <Applications />
                             </Route>
                             <Route path="/portal/admin/channels">
-                                <h1>Hi channels</h1>
+                                <Channels />
                             </Route>
                             <Route path="/portal/admin/reports">
                                 <h1>Hi reports</h1>
                             </Route>
                             <Route path="/portal/admin/equipments">
-                                <h1>Hi equipments</h1>
+                                <Equipments />
                             </Route>
                             <Route path="/portal/admin/plans">
-                                <h1>Hi plans</h1>
+                                <Plans />
                             </Route>
                             <Route path="/portal/admin/notes">
                                 <h1>Hi notes</h1>

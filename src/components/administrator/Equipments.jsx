@@ -2,110 +2,115 @@ import { useEffect, useRef, useState } from "react";
 
 import axios from "axios";
 
-import InquiryTable from "./InquiryTable";
+import EquipmentTable from "./EquipmentTable";
 import Pagination from "../Pagination";
 import Page from "../Page";
 import ItemCountSelector from "../ItemCountSelector";
 import SearchBar from "../SearchBar";
 import SearchError from "../SearchError";
 import Spinner from "../Spinner";
+import AddButton from "../AddButton";
 
-function Inquiries() {
-    const [inquiries, setInquiries] = useState([]);
+function Plans() {
+    const [equipments, setEquipments] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [inquiriesPerPage, setInquiriesPerPage] = useState(10);
+    const [equipmentsPerPage, setEquipmentsPerPage] = useState(10);
     const [searchTerm, setSearchTerm] = useState("");
     const [isLoading, setIsLoading] = useState(true);
     const _isMounted = useRef(true);
 
-    const indexOfLastInquiry = currentPage * inquiriesPerPage;
-    const indexOfFirstInquiry = indexOfLastInquiry - inquiriesPerPage;
-    const currentInquiries = inquiries
-        .filter((inquiry) => {
-            const {
-                accountName: { firstName, middleName, lastName },
-            } = inquiry.accountID;
-            const name = `${firstName} ${middleName} ${lastName}`;
-            if (searchTerm === "") return inquiry;
-            else if (name.includes(searchTerm.toUpperCase())) return inquiry;
+    const indexOfLastEquipment = currentPage * equipmentsPerPage;
+    const indexOfFirstEquipment = indexOfLastEquipment - equipmentsPerPage;
+    const currentEquipments = equipments
+        .filter((equipment) => {
+            const { label } = equipment;
+            if (searchTerm === "") return equipment;
+            else if (label.includes(searchTerm.toUpperCase())) return equipment;
             return null;
         })
-        .slice(indexOfFirstInquiry, indexOfLastInquiry);
+        .slice(indexOfFirstEquipment, indexOfLastEquipment);
 
     const cols = [
-        "INQUIRY NUMBER",
-        "ACCOUNT NAME",
-        "PLAN",
-        "CONCERN TYPE",
-        "DATE",
+        "EQUIPMENT NUMBER",
+        "EQUIPMENT NAME",
+        "EQUIPMENT DESCRIPTION",
+        "EQUIPMENT PRICE",
+        "ACTIONS",
     ];
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     useEffect(() => {
-        const fetchInquiries = async () => {
+        const fetchEquipments = async () => {
             if (_isMounted.current) {
                 setIsLoading(true);
                 const res = await axios.get(
-                    "https://lcctv-backend.herokuapp.com/api/inquiries"
+                    "https://lcctv-backend.herokuapp.com/api/equipments"
                 );
-                setInquiries([...res.data]);
+                setEquipments([...res.data]);
                 setIsLoading(false);
             }
         };
 
-        fetchInquiries();
+        fetchEquipments();
 
         return () => {
             _isMounted.current = false;
         };
     }, []);
 
+    function addEquipment(e) {
+        e.preventDefault();
+        console.log("ADD EQUIPMENT");
+    }
+
     return (
         <div className="row">
             <div className="col">
                 {isLoading ? (
-                    <Spinner name="front" />
+                    <Spinner name="admin" />
                 ) : (
                     <>
                         <div className="row">
                             <ItemCountSelector
-                                itemsPerPage={inquiriesPerPage}
-                                setItemsPerPage={setInquiriesPerPage}
-                                name="inquiries"
+                                itemsPerPage={equipmentsPerPage}
+                                setItemsPerPage={setEquipmentsPerPage}
+                                name="equipments"
                                 setCurrentPage={setCurrentPage}
                             />
+                            <AddButton name="EQUIPMENT" click={addEquipment} />
                             <SearchBar
                                 searchTerm={searchTerm}
                                 setSearchTerm={setSearchTerm}
                                 placeholder="Search name ..."
                             />
                         </div>
+
                         <div className="row mt-3">
-                            {currentInquiries.length === 0 ? (
-                                <SearchError searchTerm={searchTerm} />
-                            ) : (
-                                <div className="col">
-                                    <InquiryTable
-                                        currentInquiries={currentInquiries}
+                            <div className="col">
+                                {currentEquipments.length === 0 ? (
+                                    <SearchError searchTerm={searchTerm} />
+                                ) : (
+                                    <EquipmentTable
+                                        currentEquipments={currentEquipments}
                                         cols={cols}
                                     />
-                                </div>
-                            )}
+                                )}
+                            </div>
                         </div>
                         {!searchTerm && (
                             <div className="row mt-3">
-                                <div className="col-auto pt-3">
+                                <div className="col-auto">
                                     <Page
-                                        indexOfFirstItem={indexOfFirstInquiry}
-                                        indexOfLastItem={indexOfLastInquiry}
-                                        totalItems={inquiries.length}
+                                        indexOfFirstItem={indexOfFirstEquipment}
+                                        indexOfLastItem={indexOfLastEquipment}
+                                        totalItems={equipments.length}
                                     />
                                 </div>
                                 <div className="col-auto ms-auto">
                                     <Pagination
-                                        itemsPerPage={inquiriesPerPage}
-                                        totalItems={inquiries.length}
+                                        itemsPerPage={equipmentsPerPage}
+                                        totalItems={equipments.length}
                                         paginate={paginate}
                                         currentPage={currentPage}
                                     />
@@ -119,4 +124,4 @@ function Inquiries() {
     );
 }
 
-export default Inquiries;
+export default Plans;

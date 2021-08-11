@@ -9,6 +9,7 @@ import ItemCountSelector from "../ItemCountSelector";
 import SearchBar from "../SearchBar";
 import SearchError from "../SearchError";
 import Spinner from "../Spinner";
+import AddButton from "../AddButton";
 
 function Employees() {
     const [employees, setEmployees] = useState([]);
@@ -38,6 +39,7 @@ function Employees() {
         "ROLE",
         "CONTACT NUMBER",
         "DATE REGISTERED",
+        "ACTIONS",
     ];
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -61,6 +63,11 @@ function Employees() {
         };
     }, []);
 
+    function addEmployee(e) {
+        e.preventDefault();
+        console.log("ADD EMPLOYEE");
+    }
+
     return (
         <div className="row">
             <div className="col">
@@ -75,6 +82,7 @@ function Employees() {
                                 name="employees"
                                 setCurrentPage={setCurrentPage}
                             />
+                            <AddButton name="EMPLOYEES" click={addEmployee} />
                             <SearchBar
                                 searchTerm={searchTerm}
                                 setSearchTerm={setSearchTerm}
@@ -109,6 +117,7 @@ function Employees() {
                                         itemsPerPage={employeesPerPage}
                                         totalItems={employees.length}
                                         paginate={paginate}
+                                        currentPage={currentPage}
                                     />
                                 </div>
                             </div>

@@ -2,7 +2,7 @@ import { Search } from "react-bootstrap-icons";
 
 function SearchBar({ placeholder, searchTerm, setSearchTerm }) {
     return (
-        <div className="col-3 ms-auto">
+        <div className="col-3 ms-auto border-start ps-3">
             <div className="input-group">
                 <input
                     type="text"
