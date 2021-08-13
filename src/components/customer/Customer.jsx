@@ -1,18 +1,18 @@
 import { Switch, Route } from "react-router-dom";
 
-import LandingPage from "./LandingPage.jsx";
-import About from "./About.jsx";
-import Channels from "./Channels.jsx";
-import Contact from "./Contact.jsx";
-import Applications from "./Applications.jsx";
-import Apply from "./Apply.jsx";
-import Plans from "./Plans.jsx";
-import Services from "./Services.jsx";
-import Inquiry from "./Inquiry.jsx";
-import Technical from "./Technical.jsx";
+import LandingPage from "./LandingPage";
+import About from "./About";
+import Channels from "./Channels";
+import Contact from "./Contact";
+import Applications from "./Applications";
+import Apply from "./Apply";
+import Plans from "./Plans";
+import Services from "./Services";
+import Inquiry from "./Inquiry";
+import Technical from "./Technical";
 
-import Navbar from "./Navbar.jsx";
-import Footer from "./Footer.jsx";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 function Customer() {
     return (

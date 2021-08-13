@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../assets/Images/logo.png";
 import { useEffect } from "react";
-import NavItem from "./NavItem.jsx";
+import NavItem from "./NavItem";
 
 function Navbar() {
     const location = useLocation().pathname;

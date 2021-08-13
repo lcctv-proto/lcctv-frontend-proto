@@ -11,6 +11,7 @@ import Header from "../Header";
 // frontdesk specific imports
 import Applications from "./Applications";
 import Inquiries from "./Inquiries";
+import Accounts from "./Accounts";
 
 function FrontDesk() {
     const [header, setHeader] = useState("");
@@ -71,7 +72,7 @@ function FrontDesk() {
                                 <Inquiries />
                             </Route>
                             <Route path="/portal/frontdesk/accounts">
-                                <h1>Hi accounts</h1>
+                                <Accounts />
                             </Route>
                         </Switch>
                     </div>

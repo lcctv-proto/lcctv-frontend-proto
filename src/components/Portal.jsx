@@ -1,13 +1,13 @@
-import Card from "./Card.jsx";
+import Card from "./Card";
 import logo from "../assets/Images/logo.png";
 import { Switch, Route } from "react-router-dom";
 
-import Administrator from "./administrator/Administrator.jsx";
-import Cashier from "./cashier/Cashier.jsx";
-import CEO from "./ceo/CEO.jsx";
-import FrontDesk from "./frontdesk/FrontDesk.jsx";
-import JobOrder from "./joborder/JobOrder.jsx";
-import Technician from "./technician/Technician.jsx";
+import Administrator from "./administrator/Administrator";
+import Cashier from "./cashier/Cashier";
+import CEO from "./ceo/CEO";
+import FrontDesk from "./frontdesk/FrontDesk";
+import JobOrder from "./joborder/JobOrder";
+import Technician from "./technician/Technician";
 
 function Portal() {
     return (

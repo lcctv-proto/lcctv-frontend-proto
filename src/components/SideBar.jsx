@@ -11,7 +11,7 @@ function SideBar({ title, name, path, navItems }) {
                 <img
                     src={logo}
                     className="d-md-block mx-auto my-3"
-                    alt=""
+                    alt="logo"
                     height="100"
                 />
                 <span className="h3 ff-logo">Lake Community Cable TV</span>

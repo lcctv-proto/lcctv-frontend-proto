@@ -11,9 +11,17 @@ import { Switch, Route, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 // component imports
-import Home from "./Home.jsx";
-import Sidebar from "../SideBar.jsx";
-import Header from "../Header.jsx";
+import Home from "./Home";
+import Sidebar from "../SideBar";
+import Header from "../Header";
+
+// job order imports
+import Accounts from "./Accounts";
+import Activation from "./Activation";
+import Maintenance from "./Maintenance";
+import Closing from "./Closing";
+import Calendar from "./Calendar";
+import View from "./View";
 
 function JobOrder() {
     const [header, setHeader] = useState("");
@@ -83,22 +91,22 @@ function JobOrder() {
                         <Header title={header} user="JO123" name="jo" />
                         <Switch>
                             <Route path="/portal/joborder/accounts">
-                                <h1>Hi accounts</h1>
+                                <Accounts />
                             </Route>
                             <Route path="/portal/joborder/activation">
-                                <h1>Hi activation</h1>
+                                <Activation />
                             </Route>
                             <Route path="/portal/joborder/maintenance">
-                                <h1>Hi maintenance</h1>
+                                <Maintenance />
                             </Route>
                             <Route path="/portal/joborder/closing">
-                                <h1>Hi closing</h1>
+                                <Closing />
                             </Route>
                             <Route path="/portal/joborder/calendar">
-                                <h1>Hi calendar</h1>
+                                <Calendar />
                             </Route>
                             <Route path="/portal/joborder/view">
-                                <h1>Hi view</h1>
+                                <View />
                             </Route>
                         </Switch>
                     </div>

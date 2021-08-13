@@ -4,10 +4,13 @@ import { Switch, Route, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 // component imports
-import Home from "./Home.jsx";
-import Sidebar from "../SideBar.jsx";
-import Header from "../Header.jsx";
-import Payments from "./Payments.jsx";
+import Home from "./Home";
+import Sidebar from "../SideBar";
+import Header from "../Header";
+
+// cashier specific imports
+import Accounts from "./Accounts";
+import Payments from "./Payments";
 
 function Cashier() {
     const [header, setHeader] = useState("");
@@ -53,7 +56,7 @@ function Cashier() {
                         />
                         <Switch>
                             <Route path="/portal/cashier/accounts">
-                                <h1>Hi accounts</h1>
+                                <Accounts />
                             </Route>
                             <Route path="/portal/cashier/payments">
                                 <Payments />

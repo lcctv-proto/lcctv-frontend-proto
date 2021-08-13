@@ -4,10 +4,13 @@ import { Switch, Route, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 // component imports
-import Home from "./Home.jsx";
-import Sidebar from "../SideBar.jsx";
-import Header from "../Header.jsx";
-import Employees from "./Employees.jsx";
+import Home from "./Home";
+import Sidebar from "../SideBar";
+import Header from "../Header";
+
+// ceo specific imports
+import Employees from "./Employees";
+import Reports from "./Reports";
 
 function CEO() {
     const [header, setHeader] = useState("");
@@ -52,7 +55,7 @@ function CEO() {
                                 <Employees />
                             </Route>
                             <Route path="/portal/ceo/reports">
-                                <h1>Hi reports</h1>
+                                <Reports />
                             </Route>
                         </Switch>
                     </div>

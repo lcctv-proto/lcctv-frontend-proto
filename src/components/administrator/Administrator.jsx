@@ -18,11 +18,14 @@ import Sidebar from "../SideBar";
 import Header from "../Header";
 
 // admin specific imports
-import Applications from "./Applications";
+import Teams from "./Teams";
 import Employees from "./Employees";
-import Plans from "./Plans";
+import Applications from "./Applications";
 import Channels from "./Channels";
+import Reports from "./Reports";
+import Plans from "./Plans";
 import Equipments from "./Equipments";
+import Notes from "./Notes";
 
 function Administrator() {
     const [header, setHeader] = useState("");
@@ -100,7 +103,7 @@ function Administrator() {
                         <Header title={header} user="Admin123" name="admin" />
                         <Switch>
                             <Route path="/portal/admin/teams">
-                                <h1>Hi teams</h1>
+                                <Teams />
                             </Route>
                             <Route path="/portal/admin/employees">
                                 <Employees />
@@ -112,7 +115,7 @@ function Administrator() {
                                 <Channels />
                             </Route>
                             <Route path="/portal/admin/reports">
-                                <h1>Hi reports</h1>
+                                <Reports />
                             </Route>
                             <Route path="/portal/admin/equipments">
                                 <Equipments />
@@ -121,7 +124,7 @@ function Administrator() {
                                 <Plans />
                             </Route>
                             <Route path="/portal/admin/notes">
-                                <h1>Hi notes</h1>
+                                <Notes />
                             </Route>
                         </Switch>
                     </div>

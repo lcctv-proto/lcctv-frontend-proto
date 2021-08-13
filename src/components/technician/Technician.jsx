@@ -9,12 +9,15 @@ import { Switch, Route, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 // component imports
-import Home from "./Home.jsx";
-import Sidebar from "../SideBar.jsx";
-import Header from "../Header.jsx";
+import Home from "./Home";
+import Sidebar from "../SideBar";
+import Header from "../Header";
 
-// component-specific imports
-import Dispatch from "./Dispatch.jsx";
+// technician specific imports
+import Dispatch from "./Dispatch";
+import Calendar from "./Calendar";
+import Daily from "./Daily";
+import Area from "./Area";
 
 function Technician() {
     const [header, setHeader] = useState("");
@@ -76,13 +79,13 @@ function Technician() {
                                 <Dispatch />
                             </Route>
                             <Route path="/portal/tech/calendar">
-                                <h1>Hi calendar</h1>
+                                <Calendar />
                             </Route>
                             <Route path="/portal/tech/daily">
-                                <h1>Hi daily</h1>
+                                <Daily />
                             </Route>
                             <Route path="/portal/tech/area">
-                                <h1>Hi area</h1>
+                                <Area />
                             </Route>
                         </Switch>
                     </div>
