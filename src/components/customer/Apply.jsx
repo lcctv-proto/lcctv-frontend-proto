@@ -1,8 +1,10 @@
 import { useState } from "react";
-import PersonalInfo from "./ApplicationForm/PersonalInfo.jsx";
-import ServiceAddress from "./ApplicationForm/ServiceAddress.jsx";
-import ContactInformation from "./ApplicationForm/ContactInformation.jsx";
-import IDandProof from "./ApplicationForm/IDandProof.jsx";
+
+import PersonalInfo from "./ApplicationForm/PersonalInfo";
+import ServiceAddress from "./ApplicationForm/ServiceAddress";
+import ContactInformation from "./ApplicationForm/ContactInformation";
+import IDandProof from "./ApplicationForm/IDandProof";
+import Plan from "./ApplicationForm/Plan";
 
 function Apply() {
     const [page, setPage] = useState(1);
@@ -36,15 +38,20 @@ function Apply() {
     const [spouseMiddleName, setSpouseMiddleName] = useState("");
     const [spouseLastName, setSpouseLastName] = useState("");
 
-    const [packageID, setPackageID] = useState("");
+    const [packageID, setPackageID] = useState("61026eaaad018f4b4000004d");
 
     const [governmentIdImageURL, setGovernmentIdImageURL] = useState("");
     const [billingImageURL, setBillingImageURL] = useState("");
     const [IDpreview, setIDPreview] = useState("");
     const [POBpreview, setPOBPreview] = useState("");
 
+    const packages = [
+        { id: "61026eaaad018f4b4000004d", desc: "BASIC 640" },
+        { id: "61026ebfad018f4b40000051", desc: "PREMIUM 790" },
+        { id: "61026ee2ad018f4b40000056", desc: "INTERNATIONAL 1099" },
+    ];
+
     function HandleSubmit(e) {
-        setPackageID("i1099");
         const accountName = {
             accountFirstName,
             accountMiddleName,
@@ -130,6 +137,27 @@ function Apply() {
                             </span>
                         </div>
                         <div className="card-body">
+                            <p className="mb-2">Select Plan: </p>
+                            <fieldset
+                                className="d-flex flex-column flex-md-row justify-content-between"
+                                name="set-package"
+                                value={packageID}
+                                onChange={(e) => {
+                                    setPackageID(e.target.id);
+                                }}
+                            >
+                                {packages.map(({ id, desc }, index) => {
+                                    return (
+                                        <Plan
+                                            _id={id}
+                                            placeholder={desc}
+                                            key={index}
+                                            packageID={packageID}
+                                        />
+                                    );
+                                })}
+                            </fieldset>
+                            <hr />
                             {page === 1 && (
                                 <PersonalInfo
                                     accountFirstName={accountFirstName}

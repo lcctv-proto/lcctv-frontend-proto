@@ -92,19 +92,21 @@ function PersonalInfo({
                     setGender(e.target.value);
                 }}
             />
-
-            <label htmlFor="civil" className="form-label mt-2">
-                Civil Status:
-            </label>
-            <input
-                type="text"
-                className="form-control"
-                id="civil"
+            <select
+                className="form-select"
                 value={civilStatus}
+                id="civil"
                 onChange={(e) => {
                     setCivilStatus(e.target.value);
                 }}
-            />
+            >
+                <option defaultValue hidden>
+                    SELECT CIVIL STATUS
+                </option>
+                <option value="SINGLE">SINGLE</option>
+                <option value="MARRIED">MARRIED </option>
+                <option value="DIVORCED">DIVORCED </option>
+            </select>
         </div>
     );
 }

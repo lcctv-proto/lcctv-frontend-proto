@@ -180,6 +180,18 @@ body {
     border-color: #14274e !important;
 }
 
+.btn-check:checked + .btn-navy {
+    background-color: #f0b917 !important;
+    color: #14274e !important;
+    border-color: #f0b917 !important;
+}
+
+.btn-check:checked + .btn-navy:hover {
+    background-color: transparent !important;
+    color: #f0b917 !important;
+    border-color: #f0b917 !important;
+}
+
 .btn-custom {
     background-color: #14274e !important;
 }
