@@ -101,10 +101,7 @@ function LandingPage() {
                         BE A PART OF LAKE COMMUNITY CABLE TV
                     </h1>
                     <p className="fs-5">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Eligendi quam blanditiis iure deleniti tempora et autem
-                        ipsum porro officia nam eum est explicabo sequi
-                        similique possimus, repellat iste. Assumenda, inventore?
+                        gagawin ni jester pogi -cho
                     </p>
                     <Link
                         to="/plans"
