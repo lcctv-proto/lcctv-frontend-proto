@@ -81,17 +81,28 @@ function PersonalInfo({
             />
 
             <label htmlFor="gender" className="form-label mt-2">
-                Gender:
+                SEX:
             </label>
-            <input
-                type="text"
-                className="form-control"
+
+            <select
+                className="form-select"
                 id="gender"
                 value={gender}
                 onChange={(e) => {
                     setGender(e.target.value);
                 }}
-            />
+            >
+                <option defaultValue hidden>
+                    SELECT SEX
+                </option>
+                <option value="MALE"> MALE </option>
+                <option value="FEMALE"> FEMALE </option>
+                <option value="OTHER"> PREFER NOT TO SAY </option>
+            </select>
+
+            <label htmlFor="civil" className="form-label mt-2">
+                Civil Status:
+            </label>
             <select
                 className="form-select"
                 value={civilStatus}
@@ -103,9 +114,11 @@ function PersonalInfo({
                 <option defaultValue hidden>
                     SELECT CIVIL STATUS
                 </option>
-                <option value="SINGLE">SINGLE</option>
-                <option value="MARRIED">MARRIED </option>
-                <option value="DIVORCED">DIVORCED </option>
+                <option value="SINGLE"> SINGLE </option>
+                <option value="MARRIED"> MARRIED </option>
+                <option value="WIDOWED"> WIDOWED </option>
+                <option value="SEPARATED"> SEPARATED </option>
+                <option value="DIVORCED"> DIVORCED </option>
             </select>
         </div>
     );
