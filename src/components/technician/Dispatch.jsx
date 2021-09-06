@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-import axios from "axios";
+// import axios from "axios";
 
 import DispatchTable from "./DispatchTable";
 import Pagination from "../Pagination";
@@ -50,7 +50,7 @@ function Dispatch() {
             if (_isMounted.current) {
                 setIsLoading(true);
                 // const res = await axios.get(
-                //     "https://lcctv-backend.herokuapp.com/api/dispatches"
+                //     "https://lcctv-backend.herokuapp.com/api/dispatches/teamID"
                 // );
                 setDispatches([
                     {
@@ -99,7 +99,7 @@ function Dispatch() {
                                 barangay: "449",
                                 municipality: "SAMPALOC",
                                 province: "NCR",
-                                zipCode: "1005",
+                                zipCode: "1008",
                                 homeOwnership: "RENT",
                                 residencyYear: 3,
                             },

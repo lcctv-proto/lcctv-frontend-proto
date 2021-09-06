@@ -1,6 +1,6 @@
-function Spinner({ name }) {
+function Spinner({ name, small }) {
     return (
-        <div className="text-center mt-5 pt-5">
+        <div className={`text-center ${small ? "" : "mt-5 pt-5"}`}>
             <div
                 className={`spinner spinner-border text-${name} mx-2`}
                 role="status"

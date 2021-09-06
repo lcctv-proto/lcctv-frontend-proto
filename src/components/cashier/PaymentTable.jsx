@@ -10,27 +10,20 @@ function PaymentTable({ currentPayments, cols }) {
             </thead>
             <tbody>
                 {currentPayments.map(
-                    (
-                        {
-                            prefix,
-                            pay_ctr,
-                            accountID: {
-                                prefix: acc_prefix,
-                                acc_ctr,
-                                accountName: {
-                                    firstName,
-                                    middleName,
-                                    lastName,
-                                },
-                            },
-                            amountPaid,
-                            checkAmount,
-                            modeOfPayment,
-                            date,
-                            _id,
+                    ({
+                        prefix,
+                        pay_ctr,
+                        accountID: {
+                            prefix: acc_prefix,
+                            acc_ctr,
+                            accountName: { firstName, middleName, lastName },
                         },
-                        index
-                    ) => {
+                        amountPaid,
+                        checkAmount,
+                        modeOfPayment,
+                        date,
+                        _id,
+                    }) => {
                         const suffix = pay_ctr.toString().padStart(3, "0");
                         const payNumber = `${prefix}${suffix}`;
                         const accSuffix = acc_ctr.toString().padStart(3, "0");
@@ -47,7 +40,7 @@ function PaymentTable({ currentPayments, cols }) {
                             .toUpperCase();
 
                         return (
-                            <tr key={index}>
+                            <tr key={_id}>
                                 <td>{payNumber}</td>
                                 <td>{accNumber}</td>
                                 <td>{name}</td>
