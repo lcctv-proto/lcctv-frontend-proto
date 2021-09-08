@@ -107,7 +107,7 @@ function AccountSearchModal({ show, handleClose, searchTerm, setSearchTerm }) {
                 </Modal.Body>
                 <Modal.Footer className="justify-content-start">
                     <LightbulbFill className="text-warning h3" />
-                    You can search by Account Number or Account Name.
+                    You can search using account's number or name.
                 </Modal.Footer>
             </Modal>
         </>

@@ -5,6 +5,16 @@
     outline: 1px solid red;
 } */
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
 body {
     font-family: "Nunito Sans" !important;
 }
@@ -43,6 +53,30 @@ body {
 .sidebar {
     min-height: 100vh;
     width: 350px;
+}
+
+@media (max-width: 992px) {
+    .sidebar {
+        width: 100px;
+        align-items: center;
+        font-size: x-small;
+    }
+
+    .sidebar img {
+        height: 75px;
+    }
+
+    .sidebar span {
+        font-size: x-small !important;
+    }
+
+    .sidebar .nav-link > span {
+        display: none;
+    }
+
+    .nav-active {
+        border: 0px !important;
+    }
 }
 
 .form-control {
@@ -156,6 +190,24 @@ body {
 
 .w-15 {
     width: 15% !important;
+}
+
+.btn-jumbo {
+    background-color: #14274e !important;
+}
+
+.btn-jumbo:hover {
+    background-color: white !important;
+    color: #14274e !important;
+    border-color: #14274e !important;
+}
+
+.btn-jumbo:hover p {
+    border-color: #14274e !important;
+}
+
+.btn-jumbo svg {
+    font-size: 8rem;
 }
 
 .btn-delete {
