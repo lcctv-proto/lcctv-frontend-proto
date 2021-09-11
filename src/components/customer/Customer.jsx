@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import LandingPage from "./LandingPage";
 import About from "./About";
 import Channels from "./Channels";
+import Channel from "./Channel";
 import Contact from "./Contact";
 import Applications from "./Applications";
 import Apply from "./Apply";
@@ -24,6 +25,7 @@ function Customer() {
                     <Switch>
                         <Route path="/plans" component={Plans} />
                         <Route path="/channels" component={Channels} />
+                        <Route path="/channel" component={Channel} />
                         <Route path="/applications" component={Applications} />
                         <Route path="/apply" component={Apply} />
                         <Route path="/about" component={About} />

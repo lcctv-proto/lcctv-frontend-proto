@@ -82,6 +82,20 @@ function LandingPage() {
                 </div>
                 <div className="col-lg-4 d-flex flex-column p-3 mt-5 mt-lg-0">
                     <h1 className="pb-3 border-gold-3">
+                        BE A PART OF LAKE COMMUNITY CABLE TV
+                    </h1>
+                    <p className="fs-5">
+                        gagawin ni jester pangit -cho
+                    </p>
+                    <Link
+                        to="/plans"
+                        className="btn btn-warning btn-lg btn-gold-2 mt-auto"
+                    >
+                        Apply Now!
+                    </Link>
+                </div>
+                <div className="col-lg-4 d-flex flex-column p-3 mt-5 mt-lg-0">
+                    <h1 className="pb-3 border-gold-3">
                         WHY CHOOSE LAKE COMMUNITY CABLE TV?
                     </h1>
                     <p className="fs-5">
@@ -95,21 +109,7 @@ function LandingPage() {
                     >
                         Our Services
                     </Link>
-                </div>
-                <div className="col-lg-4 d-flex flex-column p-3 mt-5 mt-lg-0">
-                    <h1 className="pb-3 border-gold-3">
-                        BE A PART OF LAKE COMMUNITY CABLE TV
-                    </h1>
-                    <p className="fs-5">
-                        gagawin ni jester pogi -cho
-                    </p>
-                    <Link
-                        to="/plans"
-                        className="btn btn-warning btn-lg btn-gold-2 mt-auto"
-                    >
-                        Apply Now!
-                    </Link>
-                </div>
+                </div>                
             </div>
         </div>
     );

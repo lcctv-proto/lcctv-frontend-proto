@@ -204,7 +204,7 @@ function Channels() {
                             ({ assigned_number, description }, index) => {
                                 return (
                                     <Link
-                                        to="#"
+                                        to="/channel"
                                         key={index}
                                         className="border p-3 ps-4 mb-1 d-flex align-items-center"
                                     >
@@ -226,7 +226,7 @@ function Channels() {
                             ({ assigned_number, description }, index) => {
                                 return (
                                     <Link
-                                        to="#"
+                                        to="/channel"
                                         key={index}
                                         className="border p-3 ps-4 mb-1 d-flex align-items-center"
                                     >
