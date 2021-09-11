@@ -72,7 +72,7 @@ function Card({ title, price, SDchannels, HDchannels }) {
             <div className="card-footer border-top-0 bg-white">
                 <Link
                     className="btn btn-lg d-block btn-warning w-50 mb-2 p-2 mx-auto fw-bolder btn-gold"
-                    to="/apply"
+                    to={`/apply?name=${title}`}
                     role="button"
                 >
                     APPLY NOW!

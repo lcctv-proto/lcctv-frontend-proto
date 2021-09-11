@@ -82,7 +82,7 @@ function Employees() {
                                 name="employees"
                                 setCurrentPage={setCurrentPage}
                             />
-                            <AddButton name="EMPLOYEES" click={addEmployee} />
+                            <AddButton name="EMPLOYEE" click={addEmployee} />
                             <SearchBar
                                 searchTerm={searchTerm}
                                 setSearchTerm={setSearchTerm}

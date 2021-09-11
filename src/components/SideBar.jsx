@@ -21,7 +21,7 @@ function SideBar({ title, name, path, navItems }) {
             <ul className="nav flex-column mt-3 mb-auto fs-5">
                 <li className="nav-item">
                     <Link
-                        className={`nav-link hover-${name} px-3 text-light`}
+                        className={`nav-link hover-${name} text-light`}
                         to={`/portal/${path}/`}
                     >
                         <Speedometer2 />
@@ -36,7 +36,7 @@ function SideBar({ title, name, path, navItems }) {
             <ul className="nav flex-column fs-5">
                 <li className="nav-item bg-dark-navy">
                     <Link
-                        className={`nav-link hover-${name} px-3 text-light`}
+                        className={`nav-link hover-${name} text-light`}
                         to="/portal"
                     >
                         <BoxArrowLeft />

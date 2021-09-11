@@ -5,6 +5,7 @@ import ServiceAddress from "./ApplicationForm/ServiceAddress";
 import ContactInformation from "./ApplicationForm/ContactInformation";
 import IDandProof from "./ApplicationForm/IDandProof";
 import Plan from "./ApplicationForm/Plan";
+import { useLocation } from "react-router";
 
 function Apply() {
     const [page, setPage] = useState(1);
@@ -38,7 +39,7 @@ function Apply() {
     const [spouseMiddleName, setSpouseMiddleName] = useState("");
     const [spouseLastName, setSpouseLastName] = useState("");
 
-    const [packageID, setPackageID] = useState("61026eaaad018f4b4000004d");
+    const [packageID, setPackageID] = useState("");
 
     const [governmentIdImageURL, setGovernmentIdImageURL] = useState("");
     const [billingImageURL, setBillingImageURL] = useState("");
@@ -46,9 +47,17 @@ function Apply() {
     const [POBpreview, setPOBPreview] = useState("");
 
     const packages = [
-        { id: "61026eaaad018f4b4000004d", desc: "BASIC 640" },
-        { id: "61026ebfad018f4b40000051", desc: "PREMIUM 790" },
-        { id: "61026ee2ad018f4b40000056", desc: "INTERNATIONAL 1099" },
+        { id: "61026eaaad018f4b4000004d", desc: "BASIC 640", name: "BASIC" },
+        {
+            id: "61026ebfad018f4b40000051",
+            desc: "PREMIUM 790",
+            name: "PREMIUM",
+        },
+        {
+            id: "61026ee2ad018f4b40000056",
+            desc: "INTERNATIONAL 1099",
+            name: "INTERNATIONAL",
+        },
     ];
 
     function HandleSubmit(e) {
@@ -122,6 +131,8 @@ function Apply() {
         setPage((page) => page + 1);
     }
 
+    const query = new URLSearchParams(useLocation().search);
+
     return (
         <div className="container p-5">
             <div className="row justify-content-center">
@@ -146,13 +157,18 @@ function Apply() {
                                     setPackageID(e.target.id);
                                 }}
                             >
-                                {packages.map(({ id, desc }, index) => {
+                                {packages.map(({ id, desc, name }, index) => {
                                     return (
                                         <Plan
                                             _id={id}
                                             placeholder={desc}
                                             key={index}
-                                            packageID={packageID}
+                                            packageID={
+                                                !packageID
+                                                    ? query.get("name")
+                                                    : packageID
+                                            }
+                                            name={name}
                                         />
                                     );
                                 })}

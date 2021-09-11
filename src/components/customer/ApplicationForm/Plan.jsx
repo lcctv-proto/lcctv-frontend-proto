@@ -1,4 +1,4 @@
-function Plan({ _id, placeholder, packageID }) {
+function Plan({ _id, placeholder, packageID, name }) {
     return (
         <>
             <input
@@ -6,7 +6,7 @@ function Plan({ _id, placeholder, packageID }) {
                 className="btn-check"
                 name="set-package-option"
                 id={_id}
-                checked={_id === packageID}
+                checked={_id === packageID || name === packageID}
                 autoComplete="off"
             />
             <label

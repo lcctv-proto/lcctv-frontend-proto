@@ -1,7 +1,9 @@
-function PaymentTable({ currentPayments, cols }) {
+import { Eye } from "react-bootstrap-icons";
+
+function DispatchTable({ currentDispatches, cols }) {
     return (
         <table className="table table-borderless table-striped shadow fs-5">
-            <thead className="text-light bg-navy border-cashier">
+            <thead className="text-light bg-navy border-tech">
                 <tr>
                     {cols.map((col, index) => {
                         return <th key={index}>{col}</th>;
@@ -9,27 +11,23 @@ function PaymentTable({ currentPayments, cols }) {
                 </tr>
             </thead>
             <tbody>
-                {currentPayments.map(
+                {currentDispatches.map(
                     ({
                         prefix,
-                        pay_ctr,
+                        jo_ctr,
+                        type,
                         accountID: {
-                            prefix: acc_prefix,
-                            acc_ctr,
                             accountName: { firstName, middleName, lastName },
+                            serviceAddress: { municipality, province },
+                            packageID: { description },
                         },
-                        amountPaid,
-                        checkAmount,
-                        modeOfPayment,
-                        date,
+                        jobDate,
                         _id,
                     }) => {
-                        const suffix = pay_ctr.toString().padStart(3, "0");
-                        const payNumber = `${prefix}${suffix}`;
-                        const accSuffix = acc_ctr.toString().padStart(3, "0");
-                        const accNumber = `${acc_prefix}${accSuffix}`;
+                        const suffix = jo_ctr.toString().padStart(3, "0");
+                        const joNumber = `${prefix}${suffix}`;
                         const name = `${firstName} ${middleName[0]}. ${lastName}`;
-                        const localDate = new Date(date);
+                        const localDate = new Date(jobDate);
                         const localDateString = localDate
                             .toLocaleDateString(undefined, {
                                 weekday: "long",
@@ -38,15 +36,24 @@ function PaymentTable({ currentPayments, cols }) {
                                 day: "numeric",
                             })
                             .toUpperCase();
+                        const area = `${municipality}, ${province}`;
 
                         return (
                             <tr key={_id}>
-                                <td>{payNumber}</td>
-                                <td>{accNumber}</td>
+                                <td>{joNumber}</td>
+                                <td>{type}</td>
                                 <td>{name}</td>
-                                <td>{amountPaid || checkAmount}</td>
-                                <td>{modeOfPayment}</td>
+                                <td>{description}</td>
+                                <td>{area}</td>
                                 <td>{localDateString}</td>
+                                <td>
+                                    <button
+                                        type="button"
+                                        className="btn btn-primary btn-view"
+                                    >
+                                        <Eye className="me-2" /> VIEW
+                                    </button>
+                                </td>
                             </tr>
                         );
                     }
@@ -56,4 +63,4 @@ function PaymentTable({ currentPayments, cols }) {
     );
 }
 
-export default PaymentTable;
+export default DispatchTable;
