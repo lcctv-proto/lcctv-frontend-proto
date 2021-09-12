@@ -1,93 +1,88 @@
 import gcash from "../../assets/Images/Customer/Portals/gcash.png";
 import paymaya from "../../assets/Images/Customer/Portals/paymaya.png";
+import shopee from "../../assets/Images/Customer/Portals/paymaya.png";
+
+import PaymentPortal from "./PaymentPortal";
+
 function Payment() {
+    const portals = [
+        {
+            logo: gcash,
+            title: "GCash",
+            steps: [
+                "Log-in to your Gcash Account.",
+                "Select PAY BILLS. Under the CABLE/INTERNET category, select SOUTH LUZON CABLE TV.",
+                "Input your Name and 13-digit Account Number/Reference Number.",
+                "Input the amount you have to pay.",
+                "Click Next to PROCEED to CONFIRM transaction.",
+                "Take a SCREENSHOT of the successful payment transaction for proof of payment.",
+            ],
+        },
+        {
+            logo: paymaya,
+            title: "PayMaya",
+            steps: [
+                "Log-in to your PayMaya Account.",
+                "Select PAY BILLS. Under the CABLE/INTERNET category, select SOUTH LUZON CABLE TV.",
+                "Input your Name and 13-digit Account Number/Reference Number.",
+                "Input the amount you have to pay.",
+                "Click Next to PROCEED to CONFIRM transaction.",
+                "Take a SCREENSHOT of the successful payment transaction for proof of payment.",
+            ],
+        },
+        {
+            logo: shopee,
+            title: "ShopeePay",
+            steps: [
+                "Log-in to your PayMaya Account.",
+                "Select PAY BILLS. Under the CABLE/INTERNET category, select SOUTH LUZON CABLE TV.",
+                "Input your Name and 13-digit Account Number/Reference Number.",
+                "Input the amount you have to pay.",
+                "Click Next to PROCEED to CONFIRM transaction.",
+                "Take a SCREENSHOT of the successful payment transaction for proof of payment.",
+                "Take a SCREENSHOT of the successful payment transaction for proof of payment.",
+                "Take a SCREENSHOT of the successful payment transaction for proof of payment.",
+            ],
+        },
+        {
+            logo: paymaya,
+            title: "PayMaya",
+            steps: [
+                "Log-in to your PayMaya Account.",
+                "Select PAY BILLS. Under the CABLE/INTERNET category, select SOUTH LUZON CABLE TV.",
+                "Input your Name and 13-digit Account Number/Reference Number.",
+                "Input the amount you have to pay.",
+                "Click Next to PROCEED to CONFIRM transaction.",
+                "Take a SCREENSHOT of the successful payment transaction for proof of payment.",
+            ],
+        },
+        {
+            logo: paymaya,
+            title: "PayMaya",
+            steps: [
+                "Log-in to your PayMaya Account.",
+                "Select PAY BILLS. Under the CABLE/INTERNET category, select SOUTH LUZON CABLE TV.",
+                "Input your Name and 13-digit Account Number/Reference Number.",
+                "Input the amount you have to pay.",
+                "Click Next to PROCEED to CONFIRM transaction.",
+                "Take a SCREENSHOT of the successful payment transaction for proof of payment.",
+            ],
+        },
+    ];
+
     return (
         <div className="container p-5">
-            <div className="row">
-                <div className="col-xs-12  col-lg-3 mb-3 mb-lg-0 d-flex align-items-center">
-                    <img
-                        className="portal-logo d-block mx-auto shadow"
-                        src={gcash}
-                        alt="Gcash Logo"
+            {portals.map((value, index) => {
+                return (
+                    <PaymentPortal
+                        logo={value.logo}
+                        title={value.title}
+                        steps={value.steps}
+                        isRight={index % 2 == 1}
+                        key={index}
                     />
-                </div>
-                <div className="col-xs-12 col-lg-9">
-                    <div className="card shadow">
-                        <div className="card-header border-gold-3 bg-navy text-white">
-                            <h4 className="m-0">G-CASH STEPS</h4>
-                        </div>
-                        <div className="card-body">
-                            <ol className="list-group list-group-numbered list-group-flush">
-                                <li className="list-group-item">
-                                    Log-in to your Gcash Account.
-                                </li>
-                                <li className="list-group-item">
-                                    Select PAY BILLS. Under the CABLE/INTERNET
-                                    category, select SOUTH LUZON CABLE TV.
-                                </li>
-                                <li className="list-group-item">
-                                    Input your Name and 13-digit Account
-                                    Number/Reference Number.
-                                </li>
-                                <li className="list-group-item">
-                                    Input the amount you have to pay.
-                                </li>
-                                <li className="list-group-item">
-                                    Click Next to PROCEED to CONFIRM
-                                    transaction.
-                                </li>
-                                <li className="list-group-item">
-                                    Take a SCREENSHOT of the successful payment
-                                    transaction for proof of payment.
-                                </li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div className="row mt-3">
-                <div className="col-xs-12 col-lg-9">
-                    <div className="card shadow">
-                        <div className="card-header border-gold-3 bg-navy text-white">
-                            <h4 className="m-0">PAYMAYA STEPS</h4>
-                        </div>
-                        <div className="card-body">
-                            <ol className="list-group list-group-numbered list-group-flush">
-                                <li className="list-group-item">
-                                    Log-in to your Gcash Account.
-                                </li>
-                                <li className="list-group-item">
-                                    Select PAY BILLS. Under the CABLE/INTERNET
-                                    category, select SOUTH LUZON CABLE TV.
-                                </li>
-                                <li className="list-group-item">
-                                    Input your Name and 13-digit Account
-                                    Number/Reference Number.
-                                </li>
-                                <li className="list-group-item">
-                                    Input the amount you have to pay.
-                                </li>
-                                <li className="list-group-item">
-                                    Click Next to PROCEED to CONFIRM
-                                    transaction.
-                                </li>
-                                <li className="list-group-item">
-                                    Take a SCREENSHOT of the successful payment
-                                    transaction for proof of payment.
-                                </li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-xs-12  col-lg-3 mb-3 mb-lg-0 d-flex align-items-center">
-                    <img
-                        className="portal-logo d-block mx-auto shadow"
-                        src={paymaya}
-                        alt="Paymaya Logo"
-                    />
-                </div>
-            </div>
+                );
+            })}
         </div>
     );
 }
