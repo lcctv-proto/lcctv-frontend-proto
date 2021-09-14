@@ -14,7 +14,7 @@ function Navbar() {
         },
         {
             name: "CHANNELS",
-            paths: ["/channels", "/channel/*"],
+            paths: ["/channels", "/channel"],
         },
         {
             name: "APPLICATIONS",
