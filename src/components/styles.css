@@ -181,6 +181,9 @@ body {
 .border-navy-1 {
     border-bottom: 1px #14274e solid !important;
 }
+.border-navy-all {
+    border: 2px #14274e solid !important;
+}
 
 @media (min-width: 992px) {
     .border-end-3 {
@@ -650,4 +653,16 @@ body {
     display: block;
     transition: transform 0.75s;
     font-size: 5rem;
+}
+
+.portal-logo {
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    border: 2px #14274e solid;
+    transition: transform 1s;
+}
+
+.portal-logo:hover {
+    transform: scale(1.25);
 }

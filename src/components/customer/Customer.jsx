@@ -11,6 +11,7 @@ import Plans from "./Plans";
 import Services from "./Services";
 import Inquiry from "./Inquiry";
 import Technical from "./Technical";
+import Payment from "./Payment";
 
 import Navbar from "./Navbar";
 import Footer from "./Footer";
@@ -33,6 +34,7 @@ function Customer() {
                         <Route path="/services" component={Services} />
                         <Route path="/general" component={Inquiry} />
                         <Route path="/technical" component={Technical} />
+                        <Route path="/payment" component={Payment} />
                     </Switch>
                 </Route>
             </Switch>
