@@ -26,7 +26,7 @@ function Navbar() {
         },
         {
             name: "CONTACT US",
-            paths: ["/contact", "/general", "/technical"],
+            paths: ["/contact", "/general", "/technical", "/payment"],
         },
         {
             name: "SERVICE CATALOG",

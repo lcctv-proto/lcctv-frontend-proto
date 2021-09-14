@@ -99,7 +99,10 @@ function Footer() {
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link className="text-dark ms-2" to="/">
+                                        <Link
+                                            className="text-dark ms-2"
+                                            to="/payment"
+                                        >
                                             Payment Portals
                                         </Link>
                                     </li>

@@ -3,16 +3,15 @@ import Card from "./Card";
 function Plans() {
     return (
         <div className="container p-5">
-            <div className="row align-items-center justify-content-center">
-                <div className="col-xl-4 col-lg-7 col-md-9 my-3">
-                    <Card
-                        title="BASIC"
-                        price="640"
-                        SDchannels="61"
-                        HDchannels="23"
-                    />
+            <div className="row">
+                <div className="col">
+                    <p className="h1 py-3 mb-3 text-navy border-gold-3">
+                        PLANS
+                    </p>
                 </div>
-                <div className="col-xl-4 col-lg-7 col-md-9 my-3">
+            </div>
+            <div className="row align-items-center justify-content-center">
+                <div className="col-xl-4 col-lg-7 col-md-9 my-3 order-xs-0 order-md-1">
                     <Card
                         title="INTERNATIONAL"
                         price="1099"
@@ -20,12 +19,20 @@ function Plans() {
                         HDchannels="54"
                     />
                 </div>
-                <div className="col-xl-4 col-lg-7 col-md-9 my-3">
+                <div className="col-xl-4 col-lg-7 col-md-9 my-3 order-xs-1 order-md-2">
                     <Card
                         title="PREMIUM"
                         price="790"
                         SDchannels="93"
                         HDchannels="35"
+                    />
+                </div>
+                <div className="col-xl-4 col-lg-7 col-md-9 my-3 order-xs-2 order-md-0">
+                    <Card
+                        title="BASIC"
+                        price="640"
+                        SDchannels="61"
+                        HDchannels="23"
                     />
                 </div>
             </div>

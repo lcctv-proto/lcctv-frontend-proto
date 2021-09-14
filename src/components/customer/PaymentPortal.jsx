@@ -2,8 +2,8 @@ function PaymentPortal({ logo, title, steps, isRight }) {
     return (
         <div className="row mt-5">
             <div
-                className={`col-xs-12 col-lg-3 mb-3 mb-lg-0 d-flex align-items-center ${
-                    isRight ? "order-1" : "order-0"
+                className={`col-xs-12 col-lg-3 mb-3 mb-lg-0 d-flex align-items-center order-xs-0 ${
+                    isRight ? "order-lg-1" : "order-lg-0"
                 }`}
             >
                 <img
@@ -13,8 +13,8 @@ function PaymentPortal({ logo, title, steps, isRight }) {
                 />
             </div>
             <div
-                className={`col-xs-12 col-lg-9 ${
-                    isRight ? "order-0" : "order-1"
+                className={`col-xs-12 col-lg-9 order-xs-1 ${
+                    isRight ? "order-lg-0" : "order-lg-1"
                 }`}
             >
                 <div className="card shadow">

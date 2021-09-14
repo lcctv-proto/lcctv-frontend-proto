@@ -12,7 +12,9 @@ function Card({ title, price, SDchannels, HDchannels }) {
     return (
         <div className="card border-0 rounded-3 shadow-lg">
             <div className="card-header p-4 text-light text-center bg-navy border-gold-7">
-                <h2 className="text-gold">{title}</h2>
+                <h3 className={`${title === "INTERNATIONAL" ? "h2" : ""}`}>
+                    {title}
+                </h3>
                 <h5 className="text-gold">₱ {price}</h5>
             </div>
             <div className="card-body">

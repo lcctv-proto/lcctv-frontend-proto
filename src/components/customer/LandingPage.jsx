@@ -60,8 +60,8 @@ function LandingPage() {
                     );
                 })}
             </Marquee>
-            <div className="row bg-dark-navy justify-content-center bg-black text-white p-5">
-                <div className="col-lg-4 d-flex flex-column p-3">
+            <div className="row justify-content-center bg-black text-white p-5">
+                <div className="col-lg-4 d-flex flex-column p-3 ">
                     <h1 className="pb-3 border-gold-3">
                         YOUR PURE END-TO-END CABLE TV PROVIDER
                     </h1>
@@ -84,9 +84,7 @@ function LandingPage() {
                     <h1 className="pb-3 border-gold-3">
                         BE A PART OF LAKE COMMUNITY CABLE TV
                     </h1>
-                    <p className="fs-5">
-                        gagawin ni jester pangit -cho
-                    </p>
+                    <p className="fs-5">gagawin ni jester pangit -cho</p>
                     <Link
                         to="/plans"
                         className="btn btn-warning btn-lg btn-gold-2 mt-auto"
@@ -109,7 +107,7 @@ function LandingPage() {
                     >
                         Our Services
                     </Link>
-                </div>                
+                </div>
             </div>
         </div>
     );
