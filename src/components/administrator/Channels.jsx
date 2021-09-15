@@ -10,6 +10,7 @@ import SearchBar from "../SearchBar";
 import SearchError from "../SearchError";
 import Spinner from "../Spinner";
 import AddButton from "../AddButton";
+import AddChannelModal from "./AddChannelModal";
 
 function Plans() {
     const [channels, setChannels] = useState([]);
@@ -18,6 +19,11 @@ function Plans() {
     const [searchTerm, setSearchTerm] = useState("");
     const [isLoading, setIsLoading] = useState(true);
     const _isMounted = useRef(true);
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     const indexOfLastChannel = currentPage * channelsPerPage;
     const indexOfFirstChannel = indexOfLastChannel - channelsPerPage;
@@ -59,68 +65,70 @@ function Plans() {
         };
     }, []);
 
-    function addChannel(e) {
-        e.preventDefault();
-        console.log("ADD CHANNELS");
-    }
-
     return (
-        <div className="row">
-            <div className="col">
-                {isLoading ? (
-                    <Spinner name="admin" />
-                ) : (
-                    <>
-                        <div className="row">
-                            <ItemCountSelector
-                                itemsPerPage={channelsPerPage}
-                                setItemsPerPage={setChannelsPerPage}
-                                name="channels"
-                                setCurrentPage={setCurrentPage}
-                            />
-                            <AddButton name="CHANNEL" click={addChannel} />
-                            <SearchBar
-                                searchTerm={searchTerm}
-                                setSearchTerm={setSearchTerm}
-                                placeholder="Search name ..."
-                            />
-                        </div>
+        <>
+            <div className="row">
+                <div className="col">
+                    {isLoading ? (
+                        <Spinner name="admin" />
+                    ) : (
+                        <>
+                            <div className="row">
+                                <ItemCountSelector
+                                    itemsPerPage={channelsPerPage}
+                                    setItemsPerPage={setChannelsPerPage}
+                                    name="channels"
+                                    setCurrentPage={setCurrentPage}
+                                />
+                                <AddButton name="CHANNEL" click={handleShow} />
+                                <SearchBar
+                                    searchTerm={searchTerm}
+                                    setSearchTerm={setSearchTerm}
+                                    placeholder="Search name ..."
+                                />
+                            </div>
 
-                        <div className="row mt-3">
-                            <div className="col">
-                                {currentChannels.length === 0 ? (
-                                    <SearchError searchTerm={searchTerm} />
-                                ) : (
-                                    <ChannelTable
-                                        currentChannels={currentChannels}
-                                        cols={cols}
-                                    />
-                                )}
-                            </div>
-                        </div>
-                        {!searchTerm && (
                             <div className="row mt-3">
-                                <div className="col-auto">
-                                    <Page
-                                        indexOfFirstItem={indexOfFirstChannel}
-                                        indexOfLastItem={indexOfLastChannel}
-                                        totalItems={channels.length}
-                                    />
-                                </div>
-                                <div className="col-auto ms-auto">
-                                    <Pagination
-                                        itemsPerPage={channelsPerPage}
-                                        totalItems={channels.length}
-                                        paginate={paginate}
-                                        currentPage={currentPage}
-                                    />
+                                <div className="col">
+                                    {channels.length === 0 ? (
+                                        "No channels in DB"
+                                    ) : "" && currentChannels.length === 0 ? (
+                                        <SearchError searchTerm={searchTerm} />
+                                    ) : (
+                                        <ChannelTable
+                                            currentChannels={currentChannels}
+                                            cols={cols}
+                                        />
+                                    )}
                                 </div>
                             </div>
-                        )}
-                    </>
-                )}
+                            {!searchTerm && (
+                                <div className="row mt-3">
+                                    <div className="col-auto">
+                                        <Page
+                                            indexOfFirstItem={
+                                                indexOfFirstChannel
+                                            }
+                                            indexOfLastItem={indexOfLastChannel}
+                                            totalItems={channels.length}
+                                        />
+                                    </div>
+                                    <div className="col-auto ms-auto">
+                                        <Pagination
+                                            itemsPerPage={channelsPerPage}
+                                            totalItems={channels.length}
+                                            paginate={paginate}
+                                            currentPage={currentPage}
+                                        />
+                                    </div>
+                                </div>
+                            )}
+                        </>
+                    )}
+                </div>
             </div>
-        </div>
+            <AddChannelModal show={show} handleClose={handleClose} />
+        </>
     );
 }
 

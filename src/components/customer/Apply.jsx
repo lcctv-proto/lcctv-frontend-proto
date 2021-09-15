@@ -114,11 +114,6 @@ function Apply() {
 
         e.preventDefault();
         console.log(account);
-        // fetch("localhost:3000/api/accounts", {
-        //     method: "POST",
-        //     headers: { "Content-Type": "application/json" },
-        //     body: JSON.stringify(account),
-        // }).then(console.log("Account added!"));
     }
 
     function PrevPage() {
