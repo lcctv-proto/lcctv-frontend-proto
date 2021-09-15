@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { PlusCircle } from "react-bootstrap-icons";
+import { Pencil } from "react-bootstrap-icons";
 
 import axios from "axios";
 
@@ -9,7 +9,8 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-function AddChannelModal({ show, handleClose }) {
+function EditChannelModal({ show, handleClose, channelID }) {
+    const [channel, setChannel] = useState("");
     const [description, setDescription] = useState("");
     const [assignedNumber, setAssignedNumber] = useState("");
     const [label, setLabel] = useState("");
@@ -23,6 +24,13 @@ function AddChannelModal({ show, handleClose }) {
     const [checkedState, setCheckedState] = useState(0);
 
     useEffect(() => {
+        const fetchChannel = async () => {
+            const res = await axios.get(
+                `https://lcctv-backend.herokuapp.com/api/channels/${channelID}`
+            );
+            setChannel(res.data);
+        };
+
         const fetchPackages = async () => {
             const res = await axios.get(
                 "https://lcctv-backend.herokuapp.com/api/packages"
@@ -32,7 +40,8 @@ function AddChannelModal({ show, handleClose }) {
         };
 
         fetchPackages();
-    }, []);
+        fetchChannel();
+    }, [channelID]);
 
     const handleSubmit = () => {
         const selectedPackages = packages.map((value, index) => {
@@ -82,7 +91,9 @@ function AddChannelModal({ show, handleClose }) {
                     closeVariant="white"
                     className="bg-navy text-light border-admin"
                 >
-                    <Modal.Title>ADD CHANNELS</Modal.Title>
+                    <Modal.Title>
+                        EDIT CHANNEL {`${channel ? channel.description : ""}`}
+                    </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
@@ -241,7 +252,7 @@ function AddChannelModal({ show, handleClose }) {
                         className="d-flex mb-2 btn-navy fw-bold align-items-center"
                         onClick={handleSubmit}
                     >
-                        <PlusCircle className="me-2" /> ADD CHANNEL
+                        <Pencil className="me-2" /> EDIT CHANNEL
                     </Button>
                 </Modal.Footer>
             </Modal>
@@ -249,4 +260,4 @@ function AddChannelModal({ show, handleClose }) {
     );
 }
 
-export default AddChannelModal;
+export default EditChannelModal;

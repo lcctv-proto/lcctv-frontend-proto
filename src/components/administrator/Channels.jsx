@@ -11,6 +11,7 @@ import SearchError from "../SearchError";
 import Spinner from "../Spinner";
 import AddButton from "../AddButton";
 import AddChannelModal from "./AddChannelModal";
+import EditChannelModal from "./EditChannelModal";
 
 function Plans() {
     const [channels, setChannels] = useState([]);
@@ -19,11 +20,16 @@ function Plans() {
     const [searchTerm, setSearchTerm] = useState("");
     const [isLoading, setIsLoading] = useState(true);
     const _isMounted = useRef(true);
+    const [channel, setChannel] = useState("");
 
     const [show, setShow] = useState(false);
+    const [editShow, setEditShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const handleEditShow = () => setEditShow(true);
+    const handleEditClose = () => setEditShow(false);
 
     const indexOfLastChannel = currentPage * channelsPerPage;
     const indexOfFirstChannel = indexOfLastChannel - channelsPerPage;
@@ -98,6 +104,8 @@ function Plans() {
                                         <ChannelTable
                                             currentChannels={currentChannels}
                                             cols={cols}
+                                            setChannel={setChannel}
+                                            handleEditShow={handleEditShow}
                                         />
                                     )}
                                 </div>
@@ -128,6 +136,11 @@ function Plans() {
                 </div>
             </div>
             <AddChannelModal show={show} handleClose={handleClose} />
+            <EditChannelModal
+                show={editShow}
+                handleClose={handleEditClose}
+                channelID={channel}
+            />
         </>
     );
 }
