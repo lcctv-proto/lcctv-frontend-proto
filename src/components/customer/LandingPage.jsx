@@ -74,35 +74,41 @@ function LandingPage() {
                     </svg>
                 </div>
                 <div className="col-12 p-0">
-                    <div className="row mx-0 px-0">
-                        <div className="col-xxl-8 p-0 mx-auto">
-                            <h1 className="pb-3 border-gold-3">
-                                YOUR PURE END-TO-END CABLE TV PROVIDER
-                            </h1>
-                            <p className="fs-5">
-                                Upgrade your online experience at home, in your
-                                business, or in the corporate world.
-                            </p>
-                            <p className="fs-5">
-                                Get the plan that you deserve with Lake
-                                Community Cable TV.
-                            </p>
-                            <Link
-                                to="/about"
-                                className="btn btn-warning btn-lg btn-gold-2 mt-auto"
-                            >
-                                Our Story
-                            </Link>
+                    <div className="row m-0 px-0">
+                        <div className="col-xxl-7 p-0 p-xxl-5 mx-auto">
+                            <div className="blob4">
+                                {" "}
+                                <div className="blob3 text-navy">
+                                    <h1 className="pb-3 border-gold-3  align-self-start align-self-lg-center">
+                                        YOUR PURE END-TO-END CABLE TV PROVIDER
+                                    </h1>
+                                    <p className="fs-5 align-self-start align-self-lg-center">
+                                        Upgrade your online experience at home,
+                                        in your business, or in the corporate
+                                        world.
+                                    </p>
+                                    <p className="fs-5 align-self-start align-self-lg-center">
+                                        Get the plan that you deserve with Lake
+                                        Community Cable TV.
+                                    </p>
+                                    <Link
+                                        to="/about"
+                                        className="btn btn-warning btn-lg btn-gold-2 align-self-start align-self-lg-center"
+                                    >
+                                        Our Story
+                                    </Link>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div className="row mt-5 mx-0 px-0">
-                        <div className="col-xxl-8 p-0 mx-auto">
+                    <div className="row m-0 px-0">
+                        <div className="col-xxl-7 p-0 p-xxl-5 mx-auto">
                             <div className="blob1">
                                 <div className="blob2 text-navy">
                                     <h1 className="pb-3 border-gold-3  align-self-start align-self-lg-center">
-                                        BE A PART OF LAKE COMMUNITY CABLE TV
+                                        JOIN LAKE COMMUNITY CABLE TV NOW!
                                     </h1>
-                                    <p className="fs-5">
+                                    <p className="fs-5 align-self-start align-self-lg-center">
                                         Binge-watch up to 176 channels (High
                                         Definition and Standard Definition) for
                                         as low as P640/month!
@@ -117,23 +123,27 @@ function LandingPage() {
                             </div>
                         </div>
                     </div>
-                    <div className="row mt-5 mx-0 px-0">
-                        <div className="col-xxl-8 p-0 mx-auto">
-                            <h1 className="pb-3 border-gold-3">
-                                WHY CHOOSE LAKE COMMUNITY CABLE TV?
-                            </h1>
-                            <p className="fs-5">
-                                We deliver end-to-end Pure Fiber Optic
-                                connection to empower your home and business
-                                with seamless internet experience, so you
-                                experience better.
-                            </p>
-                            <Link
-                                to="/services"
-                                className="btn btn-warning btn-lg btn-gold-2 mt-auto"
-                            >
-                                Our Services
-                            </Link>
+                    <div className="row m-0 px-0">
+                        <div className="col-xxl-7 p-0 p-xxl-5 mx-auto">
+                            <div className="blob6">
+                                <div className="blob5 text-navy">
+                                    <h1 className="pb-3 border-gold-3  align-self-start align-self-lg-center">
+                                        WHY CHOOSE LAKE COMMUNITY CABLE TV?
+                                    </h1>
+                                    <p className="fs-5 align-self-start align-self-lg-center">
+                                        We deliver end-to-end Pure Fiber Optic
+                                        connection to empower your home and
+                                        business with seamless internet
+                                        experience, so you experience better.
+                                    </p>
+                                    <Link
+                                        to="/services"
+                                        className="btn btn-warning btn-lg btn-gold-2 align-self-start align-self-lg-center"
+                                    >
+                                        Our Services
+                                    </Link>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

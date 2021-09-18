@@ -6,13 +6,24 @@
 } */
 
 .blob1 {
-    background-image: url("blob2.svg");
+    background-image: url("../assets/Images/Blobs/blob2.svg");
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .blob2 {
-    background-image: url("blob.svg");
+    background-image: url("../assets/Images/Blobs/blob.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    height: 1000px;
+    padding: 0px 50px;
+}
+.blob3 {
+    background-image: url("../assets/Images/Blobs/blob3.svg");
     background-repeat: no-repeat;
     background-position: center;
     align-items: center;
@@ -23,6 +34,29 @@
     padding: 0px 50px;
 }
 
+.blob4 {
+    background-image: url("../assets/Images/Blobs/blob4.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.blob5 {
+    background-image: url("../assets/Images/Blobs/blob5.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    height: 1000px;
+    padding: 0px 50px;
+}
+
+.blob6 {
+    background-image: url("../assets/Images/Blobs/blob6.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+}
 .design {
     height: 600px;
     opacity: 0.75;
