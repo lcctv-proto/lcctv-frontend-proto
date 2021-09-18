@@ -95,8 +95,8 @@ function LandingPage() {
                             </Link>
                         </div>
                     </div>
-                    <div className="row mt-5">
-                        <div className="col-xxl-6 mx-auto">
+                    <div className="row mt-5 ">
+                        <div className="col-xxl-6 mx-auto blob1">
                             <h1 className="pb-3 border-gold-3">
                                 BE A PART OF LAKE COMMUNITY CABLE TV
                             </h1>
