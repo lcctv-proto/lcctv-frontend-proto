@@ -8,8 +8,13 @@
 .blob1 {
     background-image: url("blob.svg");
     background-repeat: no-repeat;
-    width: 50%;
+    background-position: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
     height: 1000px;
+    padding: 0px 100px;
 }
 
 .design {

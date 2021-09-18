@@ -73,9 +73,9 @@ function LandingPage() {
                         ></path>
                     </svg>
                 </div>
-                <div className="col-12 p-4 px-5">
-                    <div className="row">
-                        <div className="col-xxl-6 mx-auto">
+                <div className="col-12 p-0">
+                    <div className="row mx-0 px-0">
+                        <div className="col-xxl-8 p-0 mx-auto">
                             <h1 className="pb-3 border-gold-3">
                                 YOUR PURE END-TO-END CABLE TV PROVIDER
                             </h1>
@@ -95,26 +95,28 @@ function LandingPage() {
                             </Link>
                         </div>
                     </div>
-                    <div className="row mt-5 ">
-                        <div className="col-xxl-6 mx-auto blob1">
-                            <h1 className="pb-3 border-gold-3">
-                                BE A PART OF LAKE COMMUNITY CABLE TV
-                            </h1>
-                            <p className="fs-5">
-                                Binge-watch up to 176 channels (High Definition
-                                and Standard Definition) for as low as
-                                P640/month!
-                            </p>
-                            <Link
-                                to="/plans"
-                                className="btn btn-warning btn-lg btn-gold-2 mt-auto"
-                            >
-                                Apply Now!
-                            </Link>
+                    <div className="row mt-5 mx-0 px-0">
+                        <div className="col-xxl-8 p-0 mx-auto">
+                            <div className="blob1 text-navy ">
+                                <h1 className="pb-3 border-gold-3">
+                                    BE A PART OF LAKE COMMUNITY CABLE TV
+                                </h1>
+                                <p className="fs-5">
+                                    Binge-watch up to 176 channels (High
+                                    Definition and Standard Definition) for as
+                                    low as P640/month!
+                                </p>
+                                <Link
+                                    to="/plans"
+                                    className="btn btn-warning btn-lg btn-gold-2"
+                                >
+                                    Apply Now!
+                                </Link>
+                            </div>
                         </div>
                     </div>
-                    <div className="row mt-5">
-                        <div className="col-xxl-6 mx-auto">
+                    <div className="row mt-5 mx-0 px-0">
+                        <div className="col-xxl-8 p-0 mx-auto">
                             <h1 className="pb-3 border-gold-3">
                                 WHY CHOOSE LAKE COMMUNITY CABLE TV?
                             </h1>
