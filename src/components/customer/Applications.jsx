@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 function Applications() {
     const [referenceNumber, setReferenceNumber] = useState("");
     const history = useHistory();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     function HandleSubmit(e) {
         e.preventDefault();

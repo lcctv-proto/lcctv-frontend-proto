@@ -12,7 +12,7 @@ function Channel() {
             if (_isMounted.current) {
                 setIsLoading(true);
                 const res = await axios.get(
-                    "https://lcctv-backend.herokuapp.com/api/channels/6140b439db30692694cb9358"
+                    "https://lcctv-backend.herokuapp.com/api/channels/6143442fc23830001662058e"
                 );
                 setChannel(res.data);
                 setIsLoading(false);
@@ -25,6 +25,8 @@ function Channel() {
             _isMounted.current = false;
         };
     }, []);
+
+    console.log();
 
     return (
         !isLoading && (
@@ -51,12 +53,11 @@ function Channel() {
                 <div className="row py-4 justify-content-center d-flex">
                     {channel.channelImages.map((value, index) => {
                         return (
-                            <div className="col-md-12 col-lg-3">
+                            <div className="col-md-12 col-lg-3" key={index}>
                                 <img
                                     className="image-responsive"
                                     src={value}
                                     alt="Adventure Time"
-                                    key={index}
                                 />
                             </div>
                         );
@@ -71,7 +72,11 @@ function Channel() {
                         <iframe
                             width="720"
                             height="480"
-                            src={channel.videoURL}
+                            src={
+                                channel.videoURL
+                                    .replace("watch?v=", "embed/")
+                                    .split("&")[0]
+                            }
                             title="YouTube video player"
                         ></iframe>
                     </div>

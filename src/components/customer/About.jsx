@@ -1,8 +1,14 @@
+import { useEffect } from "react";
+
 import about from "../../assets/Images/Customer/about.jpg";
 import building from "../../assets/Images/Customer/building.png";
 import fam from "../../assets/Images/Customer/fam.png";
 
 function About() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
         <div className="container p-5">
             <div className="row">

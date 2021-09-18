@@ -9,7 +9,7 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-function AddChannelModal({ show, handleClose }) {
+function AddChannelModal({ show, handleClose, channels, setChannels }) {
     const [description, setDescription] = useState("");
     const [assignedNumber, setAssignedNumber] = useState("");
     const [label, setLabel] = useState("");
@@ -62,6 +62,8 @@ function AddChannelModal({ show, handleClose }) {
                 channelData
             )
             .then((res) => {
+                setChannels([...channels, res.data]);
+                handleClose();
                 alert("File Upload success");
             })
             .catch((err) => alert("File Upload Error"));

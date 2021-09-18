@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 function Channels() {
@@ -184,6 +185,10 @@ function Channels() {
             { assigned_number: "054", description: "BS 1 HD" },
         ],
     };
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     return (
         <div className="container py-5">

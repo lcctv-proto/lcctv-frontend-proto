@@ -75,11 +75,10 @@ function LandingPage() {
                 </div>
                 <div className="col-12 p-0">
                     <div className="row m-0 px-0">
-                        <div className="col-xxl-7 p-0 p-xxl-5 mx-auto">
-                            <div className="blob4">
-                                {" "}
-                                <div className="blob3 text-navy">
-                                    <h1 className="pb-3 border-gold-3  align-self-start align-self-lg-center">
+                        <div className="col-xxl-7 p-0 mx-auto text-navy">
+                            <div className="outer-blob blob4">
+                                <div className="inner-blob blob3">
+                                    <h1 className="pb-3 border-gold-3 align-self-start align-self-lg-center">
                                         YOUR PURE END-TO-END CABLE TV PROVIDER
                                     </h1>
                                     <p className="fs-5 align-self-start align-self-lg-center">
@@ -93,7 +92,7 @@ function LandingPage() {
                                     </p>
                                     <Link
                                         to="/about"
-                                        className="btn btn-warning btn-lg btn-gold-2 align-self-start align-self-lg-center"
+                                        className="btn btn-warning btn-lg btn-gold-2 align-self-start align-self-md-center"
                                     >
                                         Our Story
                                     </Link>
@@ -102,10 +101,10 @@ function LandingPage() {
                         </div>
                     </div>
                     <div className="row m-0 px-0">
-                        <div className="col-xxl-7 p-0 p-xxl-5 mx-auto">
-                            <div className="blob1">
-                                <div className="blob2 text-navy">
-                                    <h1 className="pb-3 border-gold-3  align-self-start align-self-lg-center">
+                        <div className="col-xxl-7 p-0 mx-auto text-navy">
+                            <div className="outer-blob blob2">
+                                <div className="inner-blob blob1">
+                                    <h1 className="pb-3 border-gold-3 align-self-start align-self-lg-center">
                                         JOIN LAKE COMMUNITY CABLE TV NOW!
                                     </h1>
                                     <p className="fs-5 align-self-start align-self-lg-center">
@@ -115,7 +114,7 @@ function LandingPage() {
                                     </p>
                                     <Link
                                         to="/plans"
-                                        className="btn btn-warning btn-lg btn-gold-2 align-self-start align-self-lg-center"
+                                        className="btn btn-warning btn-lg btn-gold-2 align-self-start align-self-md-center"
                                     >
                                         Apply Now!
                                     </Link>
@@ -124,21 +123,24 @@ function LandingPage() {
                         </div>
                     </div>
                     <div className="row m-0 px-0">
-                        <div className="col-xxl-7 p-0 p-xxl-5 mx-auto">
-                            <div className="blob6">
-                                <div className="blob5 text-navy">
-                                    <h1 className="pb-3 border-gold-3  align-self-start align-self-lg-center">
+                        <div className="col-xxl-7 p-0 mx-auto text-navy">
+                            <div className="outer-blob blob6">
+                                <div className="inner-blob blob5">
+                                    <h1 className="pb-3 border-gold-3 align-self-start align-self-lg-center">
                                         WHY CHOOSE LAKE COMMUNITY CABLE TV?
                                     </h1>
                                     <p className="fs-5 align-self-start align-self-lg-center">
-                                        We deliver end-to-end Pure Fiber Optic
-                                        connection to empower your home and
-                                        business with seamless internet
-                                        experience, so you experience better.
+                                        We deliver pure end-to-end cable
+                                        connection to empower your home with
+                                        seamless watching experience,
                                     </p>
+                                    <p className="fs-5 align-self-start align-self-lg-center">
+                                        so you experience better.
+                                    </p>
+
                                     <Link
                                         to="/services"
-                                        className="btn btn-warning btn-lg btn-gold-2 align-self-start align-self-lg-center"
+                                        className="btn btn-warning btn-lg btn-gold-2 align-self-start align-self-md-center"
                                     >
                                         Our Services
                                     </Link>

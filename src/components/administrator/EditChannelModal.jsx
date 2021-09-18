@@ -100,7 +100,7 @@ function EditChannelModal({ show, handleClose, channelID }) {
                     className="bg-navy text-light border-admin"
                 >
                     <Modal.Title>
-                        EDIT CHANNEL {!isLoading && `${description}`}
+                        EDIT CHANNEL {!isLoading && `- ${description}`}
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>

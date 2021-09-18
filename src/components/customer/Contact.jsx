@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import {
     CreditCard2Front,
     QuestionOctagon,
@@ -26,6 +28,10 @@ function Contact() {
             icon: <CreditCard2Front className="zoom d-block mx-auto mb-3" />,
         },
     ];
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     return (
         <div className="container py-5">

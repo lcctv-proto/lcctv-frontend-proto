@@ -1,6 +1,12 @@
+import { useEffect } from "react";
+
 import Card from "./Card";
 
 function Plans() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
         <div className="container p-5">
             <div className="row">

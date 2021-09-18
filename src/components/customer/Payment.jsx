@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import gcash from "../../assets/Images/Customer/Portals/gcash.png";
 import paymaya from "../../assets/Images/Customer/Portals/paymaya.png";
 import shopee from "../../assets/Images/Customer/Portals/shopee.png";
@@ -69,6 +71,10 @@ function Payment() {
             ],
         },
     ];
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     return (
         <div className="container p-5">

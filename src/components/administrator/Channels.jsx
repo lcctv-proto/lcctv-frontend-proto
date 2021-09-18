@@ -10,8 +10,10 @@ import SearchBar from "../SearchBar";
 import SearchError from "../SearchError";
 import Spinner from "../Spinner";
 import AddButton from "../AddButton";
+
 import AddChannelModal from "./AddChannelModal";
 import EditChannelModal from "./EditChannelModal";
+import DeleteChannelModal from "./DeleteChannelModal";
 
 function Plans() {
     const [channels, setChannels] = useState([]);
@@ -22,14 +24,18 @@ function Plans() {
     const _isMounted = useRef(true);
     const [channel, setChannel] = useState("");
 
-    const [show, setShow] = useState(false);
+    const [addShow, setAddShow] = useState(false);
     const [editShow, setEditShow] = useState(false);
+    const [deleteShow, setDeleteShow] = useState(false);
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleAddShow = () => setAddShow(true);
+    const handleAddClose = () => setAddShow(false);
 
     const handleEditShow = () => setEditShow(true);
     const handleEditClose = () => setEditShow(false);
+
+    const handleDeleteShow = () => setDeleteShow(true);
+    const handleDeleteClose = () => setDeleteShow(false);
 
     const indexOfLastChannel = currentPage * channelsPerPage;
     const indexOfFirstChannel = indexOfLastChannel - channelsPerPage;
@@ -86,7 +92,10 @@ function Plans() {
                                     name="channels"
                                     setCurrentPage={setCurrentPage}
                                 />
-                                <AddButton name="CHANNEL" click={handleShow} />
+                                <AddButton
+                                    name="CHANNEL"
+                                    click={handleAddShow}
+                                />
                                 <SearchBar
                                     searchTerm={searchTerm}
                                     setSearchTerm={setSearchTerm}
@@ -106,6 +115,7 @@ function Plans() {
                                             cols={cols}
                                             setChannel={setChannel}
                                             handleEditShow={handleEditShow}
+                                            handleDeleteShow={handleDeleteShow}
                                         />
                                     )}
                                 </div>
@@ -135,10 +145,24 @@ function Plans() {
                     )}
                 </div>
             </div>
-            <AddChannelModal show={show} handleClose={handleClose} />
+            <AddChannelModal
+                show={addShow}
+                channels={channels}
+                setChannels={setChannels}
+                handleClose={handleAddClose}
+            />
             <EditChannelModal
                 show={editShow}
+                channels={channels}
+                setChannels={setChannels}
                 handleClose={handleEditClose}
+                channelID={channel}
+            />
+            <DeleteChannelModal
+                show={deleteShow}
+                channels={channels}
+                setChannels={setChannels}
+                handleClose={handleDeleteClose}
                 channelID={channel}
             />
         </>

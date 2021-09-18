@@ -1,6 +1,12 @@
+import { useEffect } from "react";
+
 import logo from "../../assets/Images/logo.png";
 
 function Services() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
         <div id="background">
             <div className="container-fluid tint text-light">

@@ -1,6 +1,12 @@
 import { Pencil, Trash } from "react-bootstrap-icons";
 
-function ChannelTable({ currentChannels, cols, setChannel, handleEditShow }) {
+function ChannelTable({
+    currentChannels,
+    cols,
+    setChannel,
+    handleEditShow,
+    handleDeleteShow,
+}) {
     return (
         <table className="table table-borderless table-striped shadow fs-5">
             <thead className="text-light bg-navy border-admin">
@@ -50,7 +56,7 @@ function ChannelTable({ currentChannels, cols, setChannel, handleEditShow }) {
                                         className="btn btn-danger btn-delete"
                                         onClick={() => {
                                             setChannel(_id);
-                                            handleEditShow();
+                                            handleDeleteShow();
                                         }}
                                     >
                                         <Trash className="me-2" /> DELETE
