@@ -97,21 +97,23 @@ function LandingPage() {
                     </div>
                     <div className="row mt-5 mx-0 px-0">
                         <div className="col-xxl-8 p-0 mx-auto">
-                            <div className="blob1 text-navy ">
-                                <h1 className="pb-3 border-gold-3">
-                                    BE A PART OF LAKE COMMUNITY CABLE TV
-                                </h1>
-                                <p className="fs-5">
-                                    Binge-watch up to 176 channels (High
-                                    Definition and Standard Definition) for as
-                                    low as P640/month!
-                                </p>
-                                <Link
-                                    to="/plans"
-                                    className="btn btn-warning btn-lg btn-gold-2"
-                                >
-                                    Apply Now!
-                                </Link>
+                            <div className="blob1">
+                                <div className="blob2 text-navy">
+                                    <h1 className="pb-3 border-gold-3  align-self-start align-self-lg-center">
+                                        BE A PART OF LAKE COMMUNITY CABLE TV
+                                    </h1>
+                                    <p className="fs-5">
+                                        Binge-watch up to 176 channels (High
+                                        Definition and Standard Definition) for
+                                        as low as P640/month!
+                                    </p>
+                                    <Link
+                                        to="/plans"
+                                        className="btn btn-warning btn-lg btn-gold-2 align-self-start align-self-lg-center"
+                                    >
+                                        Apply Now!
+                                    </Link>
+                                </div>
                             </div>
                         </div>
                     </div>
