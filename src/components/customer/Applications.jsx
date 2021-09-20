@@ -21,9 +21,9 @@ function Applications() {
     }
 
     return (
-        <div className="container py-5">
-            <div className="row justify-content-center my-3">
-                <div className=" col-sm-12 col-md-10 col-lg-6 text-navy">
+        <div className="container-fluid bg-application">
+            <div className="row py-5 justify-content-center my-3">
+                <div className=" col-sm-12 col-md-10 col-xl-4 col-lg-6 text-navy">
                     <p className="h1 pb-4 mb-4 border-gold-3">
                         APPLICATION STATUS
                     </p>

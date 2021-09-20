@@ -61,18 +61,7 @@ function LandingPage() {
                 })}
             </Marquee>
             <div className="row bg-dark-navy text-white">
-                <div className="m-0 p-0">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 1440 320"
-                    >
-                        <path
-                            fill="#FFFFFF"
-                            fill-opacity="1"
-                            d="M0,160L40,170.7C80,181,160,203,240,186.7C320,171,400,117,480,90.7C560,64,640,64,720,69.3C800,75,880,85,960,80C1040,75,1120,53,1200,74.7C1280,96,1360,160,1400,192L1440,224L1440,0L1400,0C1360,0,1280,0,1200,0C1120,0,1040,0,960,0C880,0,800,0,720,0C640,0,560,0,480,0C400,0,320,0,240,0C160,0,80,0,40,0L0,0Z"
-                        ></path>
-                    </svg>
-                </div>
+                <div className="row wave1 m-0 p-0 bg-white"></div>
                 <div className="col-12 p-0">
                     <div className="row m-0 px-0">
                         <div className="col-xxl-7 p-0 mx-auto text-navy">
@@ -149,18 +138,7 @@ function LandingPage() {
                         </div>
                     </div>
                 </div>
-                <div className="m-0 p-0">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 1440 320"
-                    >
-                        <path
-                            fill="#f8f9fa"
-                            fill-opacity="1"
-                            d="M0,256L120,229.3C240,203,480,149,720,144C960,139,1200,181,1320,202.7L1440,224L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"
-                        ></path>
-                    </svg>
-                </div>
+                <div className="wave2 m-0 p-0 bg-light"></div>
             </div>
         </div>
     );

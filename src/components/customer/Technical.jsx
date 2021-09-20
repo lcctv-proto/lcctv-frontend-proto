@@ -25,8 +25,8 @@ function Technical() {
     }
 
     return (
-        <div className="container py-5">
-            <div className="row justify-content-center">
+        <div className="container-fluid bg-technical">
+            <div className="row py-5 justify-content-center">
                 <div className="col-12 col-lg-6">
                     <div className="card border-0 shadow">
                         <div className="card-header py-3 border-gold-7 bg-navy text-light">
@@ -223,14 +223,6 @@ function Technical() {
                             </form>
                         </div>
                     </div>
-                </div>
-                <div className="col-6 d-none d-lg-block py-5">
-                    <img
-                        className="d-block mx-auto"
-                        width="400px"
-                        src={technician}
-                        alt="Technician"
-                    />
                 </div>
             </div>
         </div>

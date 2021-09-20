@@ -4,7 +4,44 @@
 * {
     outline: 1px solid red;
 } */
-
+.bg-plans {
+    background-image: url("../assets/Images/Backgrounds/bg-plans.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.bg-application {
+    background-image: url("../assets/Images/Backgrounds/bg-application.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.bg-technical {
+    background-image: url("../assets/Images/Backgrounds/bg-technical.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.bg-general {
+    background-image: url("../assets/Images/Backgrounds/bg-general.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.wave1 {
+    background-image: url("../assets/Images/Waves/wave1.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 295px;
+}
+.wave2 {
+    background-image: url("../assets/Images/Waves/wave2.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 475px;
+}
 .outer-blob {
     background-repeat: no-repeat;
     background-position: center;
