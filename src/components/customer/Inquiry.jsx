@@ -1,5 +1,4 @@
 import { useState } from "react";
-import technician from "../../assets/Images/telemarketer.svg";
 
 function Inquiry() {
     const [subscriberName, setSubscriberName] = useState("");
