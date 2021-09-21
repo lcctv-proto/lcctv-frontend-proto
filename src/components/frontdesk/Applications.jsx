@@ -34,7 +34,13 @@ function Applications() {
         })
         .slice(indexOfFirstApplication, indexOfLastApplication);
 
-    const cols = ["REFERENCE NUMBER", "ACCOUNT NAME", "PLAN", "DATE"];
+    const cols = [
+        "REFERENCE NUMBER",
+        "ACCOUNT NAME",
+        "PLAN",
+        "DATE",
+        "ACTIONS",
+    ];
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -88,6 +94,15 @@ function Applications() {
                                             currentApplications
                                         }
                                         cols={cols}
+                                        setApplication={(_id) => {
+                                            console.log(_id);
+                                        }}
+                                        handleEditShow={() => {
+                                            alert("Edit Modal Show");
+                                        }}
+                                        handleDeleteShow={() => {
+                                            alert("Delete Modal Show");
+                                        }}
                                     />
                                 )}
                             </div>
