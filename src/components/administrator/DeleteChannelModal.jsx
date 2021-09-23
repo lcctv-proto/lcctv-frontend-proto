@@ -10,7 +10,7 @@ import Button from "react-bootstrap/Button";
 
 import Spinner from "../Spinner";
 
-function EditChannelModal({
+function DeleteChannelModal({
     show,
     handleClose,
     channelID,
@@ -93,4 +93,4 @@ function EditChannelModal({
     );
 }
 
-export default EditChannelModal;
+export default DeleteChannelModal;

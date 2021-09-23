@@ -1,14 +1,15 @@
-import Modal from "react-bootstrap/Modal";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import {
     ArrowReturnRight,
     LightbulbFill,
     Tools,
     Backspace,
 } from "react-bootstrap-icons";
+
+import Modal from "react-bootstrap/Modal";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 function SendReplyModal({ show, handleClose }) {
     return (
@@ -109,7 +110,7 @@ function SendReplyModal({ show, handleClose }) {
                         type="submit"
                         className="d-flex mb-2 btn-navy fw-bold align-items-center"
                         onClick={() => {
-                            console.log("ASDasd");
+                            handleClose();
                         }}
                     >
                         <Backspace className="me-2" /> BACK

@@ -1,4 +1,6 @@
-function InquiryTable({ currentInquiries, cols }) {
+import { Eye } from "react-bootstrap-icons";
+
+function InquiryTable({ currentInquiries, cols, setInquiry, handleViewShow }) {
     return (
         <table className="table table-borderless table-striped shadow fs-5">
             <thead className="text-light bg-navy border-front">
@@ -41,6 +43,18 @@ function InquiryTable({ currentInquiries, cols }) {
                                 <td>{type}</td>
                                 <td>{description}</td>
                                 <td>{localDateString}</td>
+                                <td>
+                                    <button
+                                        type="button"
+                                        className="btn btn-navy me-2"
+                                        onClick={() => {
+                                            setInquiry(_id);
+                                            handleViewShow();
+                                        }}
+                                    >
+                                        <Eye className="me-2" /> VIEW
+                                    </button>
+                                </td>
                             </tr>
                         );
                     }

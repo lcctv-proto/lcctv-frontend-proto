@@ -15,14 +15,15 @@ import AddChannelModal from "./AddChannelModal";
 import EditChannelModal from "./EditChannelModal";
 import DeleteChannelModal from "./DeleteChannelModal";
 
-function Plans() {
+function Channels() {
+    const [channel, setChannel] = useState("");
+
     const [channels, setChannels] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [channelsPerPage, setChannelsPerPage] = useState(10);
     const [searchTerm, setSearchTerm] = useState("");
     const [isLoading, setIsLoading] = useState(true);
     const _isMounted = useRef(true);
-    const [channel, setChannel] = useState("");
 
     const [addShow, setAddShow] = useState(false);
     const [editShow, setEditShow] = useState(false);
@@ -169,4 +170,4 @@ function Plans() {
     );
 }
 
-export default Plans;
+export default Channels;
