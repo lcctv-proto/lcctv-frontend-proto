@@ -4,6 +4,12 @@
 /* * {
     outline: 1px solid red;
 } */
+.bg-login {
+    background-image: url("../assets/Images/Backgrounds/bg-login.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
 .bg-plans {
     background-image: url("../assets/Images/Backgrounds/bg-plans.svg");
     background-repeat: no-repeat;
