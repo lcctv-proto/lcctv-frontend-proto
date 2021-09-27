@@ -139,6 +139,7 @@ function Applications() {
             <EditApplicationModal
                 show={editShow}
                 handleClose={handleEditClose}
+                application={application}
             />
         </>
     );

@@ -324,6 +324,17 @@ body {
     font-size: 8rem;
 }
 
+.btn-approve {
+    background-color: #1cac23 !important;
+    color: #fff !important;
+}
+
+.btn-approve:hover {
+    background-color: #fff !important;
+    color: #1cac23 !important;
+    border-color: #1cac23 !important;
+}
+
 .btn-delete {
     background-color: #fb1e1e !important;
     color: #fff !important;
