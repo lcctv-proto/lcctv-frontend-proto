@@ -15,6 +15,8 @@ import AddChannelModal from "./AddChannelModal";
 import EditChannelModal from "./EditChannelModal";
 import DeleteChannelModal from "./DeleteChannelModal";
 
+import { ArrowRepeat } from "react-bootstrap-icons";
+
 function Channels() {
     const [channel, setChannel] = useState("");
 
@@ -59,18 +61,18 @@ function Channels() {
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-    useEffect(() => {
-        const fetchChannels = async () => {
-            if (_isMounted.current) {
-                setIsLoading(true);
-                const res = await axios.get(
-                    "https://lcctv-backend.herokuapp.com/api/channels"
-                );
-                setChannels([...res.data]);
-                setIsLoading(false);
-            }
-        };
+    const fetchChannels = async () => {
+        if (_isMounted.current) {
+            setIsLoading(true);
+            const res = await axios.get(
+                "https://lcctv-backend.herokuapp.com/api/channels"
+            );
+            setChannels([...res.data]);
+            setIsLoading(false);
+        }
+    };
 
+    useEffect(() => {
         fetchChannels();
 
         return () => {
@@ -97,6 +99,14 @@ function Channels() {
                                     name="CHANNEL"
                                     click={handleAddShow}
                                 />
+                                <div className="col-auto">
+                                    <button
+                                        className="btn btn-navy fw-bold d-flex align-items-center"
+                                        onClick={fetchChannels}
+                                    >
+                                        <ArrowRepeat className="me-2" /> REFRESH
+                                    </button>
+                                </div>
                                 <SearchBar
                                     searchTerm={searchTerm}
                                     setSearchTerm={setSearchTerm}

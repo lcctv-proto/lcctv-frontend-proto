@@ -1,14 +1,9 @@
 import { ArrowsAngleExpand } from "react-bootstrap-icons";
 
-function ApplicationTable({
-    currentApplications,
-    cols,
-    setApplication,
-    handleEditShow,
-}) {
+function ViewTable({ currentDispatches, cols }) {
     return (
         <table className="table table-borderless table-striped shadow fs-5">
-            <thead className="text-light bg-navy border-front">
+            <thead className="text-light bg-navy border-jo">
                 <tr>
                     {cols.map((col, index) => {
                         return <th key={index}>{col}</th>;
@@ -16,21 +11,23 @@ function ApplicationTable({
                 </tr>
             </thead>
             <tbody>
-                {currentApplications.map(
+                {currentDispatches.map(
                     ({
                         prefix,
-                        ref_ctr,
+                        jo_ctr,
+                        type,
                         accountID: {
                             accountName: { firstName, middleName, lastName },
+                            serviceAddress: { municipality, province },
                             packageID: { description },
                         },
-                        date,
+                        jobDate,
                         _id,
                     }) => {
-                        const suffix = ref_ctr.toString().padStart(3, "0");
-                        const refNumber = `${prefix}${suffix}`;
+                        const suffix = jo_ctr.toString().padStart(3, "0");
+                        const joNumber = `${prefix}${suffix}`;
                         const name = `${firstName} ${middleName[0]}. ${lastName}`;
-                        const localDate = new Date(date);
+                        const localDate = new Date(jobDate);
                         const localDateString = localDate
                             .toLocaleDateString(undefined, {
                                 weekday: "long",
@@ -39,23 +36,22 @@ function ApplicationTable({
                                 day: "numeric",
                             })
                             .toUpperCase();
+                        const area = `${municipality}, ${province}`;
 
                         return (
                             <tr key={_id}>
-                                <td>{refNumber}</td>
+                                <td>{joNumber}</td>
+                                <td>{type}</td>
                                 <td>{name}</td>
                                 <td>{description}</td>
+                                <td>{area}</td>
                                 <td>{localDateString}</td>
                                 <td>
                                     <button
                                         type="button"
                                         className="btn btn-navy"
-                                        onClick={() => {
-                                            setApplication(_id);
-                                            handleEditShow();
-                                        }}
                                     >
-                                        <ArrowsAngleExpand className="me-2" />{" "}
+                                        <ArrowsAngleExpand className="me-2" />
                                         VIEW
                                     </button>
                                 </td>
@@ -68,4 +64,4 @@ function ApplicationTable({
     );
 }
 
-export default ApplicationTable;
+export default ViewTable;

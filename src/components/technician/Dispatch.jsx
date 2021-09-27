@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-// import axios from "axios";
+import axios from "axios";
 
 import DispatchTable from "./DispatchTable";
 import Pagination from "../Pagination";
@@ -49,6 +49,9 @@ function Dispatch() {
         const fetchDispatches = async () => {
             if (_isMounted.current) {
                 setIsLoading(true);
+                const res = await axios.get(
+                    "https://lcctv-backend.herokuapp.com/api/jo"
+                );
                 // const res = await axios.get(
                 //     "https://lcctv-backend.herokuapp.com/api/dispatches/teamID"
                 // );

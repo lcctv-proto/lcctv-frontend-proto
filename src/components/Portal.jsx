@@ -33,19 +33,19 @@ function Portal() {
                     <div className="row mt-5 pt-5 p-0 bg-login">
                         <div className="col pt-5 mb-5">
                             <div className="row pb-5 mb-5 justify-content-center">
-                                {/* <Card title="ADMIN" path="admin" name="admin" />
+                                <Card title="ADMIN" path="admin" name="admin" />
                                 <Card
                                     title="CASHIER"
                                     path="cashier"
                                     name="cashier"
-                                /> */}
+                                />
                                 <Card title="CEO" path="ceo" name="ceo" />
                                 <Card
                                     title="FRONT DESK"
                                     path="frontdesk"
                                     name="front"
                                 />
-                                {/* <Card
+                                <Card
                                     title="JO PERSONNEL"
                                     path="joborder"
                                     name="jo"
@@ -54,7 +54,7 @@ function Portal() {
                                     title="TECHNICIAN"
                                     path="tech"
                                     name="tech"
-                                /> */}
+                                />
                             </div>
                         </div>
                     </div>

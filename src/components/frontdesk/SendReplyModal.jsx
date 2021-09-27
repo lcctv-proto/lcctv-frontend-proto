@@ -54,6 +54,11 @@ function SendReplyModal({ show, handleClose, inquiry }) {
         if (show) fetchInquiry();
     }, [inquiry, show]);
 
+    const handleSubmit = () => {
+        const toSend = { email, subject, body };
+        console.log(toSend);
+    };
+
     return (
         <>
             <Modal show={show} onHide={handleClose} size="lg">
@@ -199,18 +204,14 @@ function SendReplyModal({ show, handleClose, inquiry }) {
                     <Button
                         type="submit"
                         className="d-flex mb-2 btn-navy fw-bold align-items-center"
-                        onClick={() => {
-                            handleClose();
-                        }}
+                        onClick={handleClose}
                     >
                         <Backspace className="me-2" /> BACK
                     </Button>
                     <Button
                         type="submit"
                         className="d-flex mb-2 btn-navy fw-bold align-items-center "
-                        onClick={() => {
-                            console.log("ASDasd");
-                        }}
+                        onClick={handleSubmit}
                     >
                         <ArrowReturnRight className="me-2" />
                         SEND REPLY
