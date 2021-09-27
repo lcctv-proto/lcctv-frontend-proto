@@ -1,5 +1,5 @@
 //module imports
-import { People, Clipboard } from "react-bootstrap-icons";
+import { People, PieChart } from "react-bootstrap-icons";
 import { Switch, Route, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
@@ -29,7 +29,7 @@ function CEO() {
             path: "/ceo/employees",
         },
         {
-            icon: <Clipboard />,
+            icon: <PieChart />,
             title: "REPORTS",
             path: "/ceo/reports",
         },

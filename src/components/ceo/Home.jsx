@@ -1,4 +1,4 @@
-import { People, Clipboard } from "react-bootstrap-icons";
+import { People, PieChart } from "react-bootstrap-icons";
 import Button from "../Button";
 import NavbarPortal from "../NavbarPortal";
 
@@ -24,7 +24,7 @@ function Home() {
                             />
                             <Button
                                 icon={
-                                    <Clipboard
+                                    <PieChart
                                         color="white"
                                         size="8rem"
                                         className="mb-2"

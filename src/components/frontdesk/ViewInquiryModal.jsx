@@ -61,8 +61,8 @@ function ViewInquiryModal({ show, handleClose, handleReplyShow, inquiry }) {
             setIsLoading(false);
         };
 
-        fetchInquiry();
-    }, [inquiry]);
+        if (show) fetchInquiry();
+    }, [inquiry, show]);
 
     return (
         <>
@@ -92,7 +92,6 @@ function ViewInquiryModal({ show, handleClose, handleReplyShow, inquiry }) {
                                         </Form.Label>
                                         <Form.Control
                                             type="text"
-                                            placeholder="e.g. JUAN"
                                             value={accountName}
                                             disabled={true}
                                         />
@@ -105,7 +104,6 @@ function ViewInquiryModal({ show, handleClose, handleReplyShow, inquiry }) {
                                         <Form.Label>ACCOUNT NUMBER:</Form.Label>
                                         <Form.Control
                                             type="text"
-                                            placeholder="095454515"
                                             value={accountNumber}
                                             disabled={true}
                                         />
@@ -122,7 +120,6 @@ function ViewInquiryModal({ show, handleClose, handleReplyShow, inquiry }) {
                                         </Form.Label>
                                         <Form.Control
                                             type="text"
-                                            placeholder="#551 Brgy.Alac San Quintin Pangasinan"
                                             value={serviceAddress}
                                             disabled={true}
                                         />
@@ -137,7 +134,6 @@ function ViewInquiryModal({ show, handleClose, handleReplyShow, inquiry }) {
                                         <Form.Label>EMAIL ADDRESS:</Form.Label>
                                         <Form.Control
                                             type="text"
-                                            placeholder="umali.charlesedward@gmail.com"
                                             value={email}
                                             disabled={true}
                                         />
@@ -152,7 +148,6 @@ function ViewInquiryModal({ show, handleClose, handleReplyShow, inquiry }) {
                                         <Form.Label>CONTACT NUMBER:</Form.Label>
                                         <Form.Control
                                             type="text"
-                                            placeholder="09"
                                             value={contactNumber}
                                             disabled={true}
                                         />
@@ -169,7 +164,6 @@ function ViewInquiryModal({ show, handleClose, handleReplyShow, inquiry }) {
                                         </Form.Label>
                                         <Form.Control
                                             type="text"
-                                            placeholder="09"
                                             value={plan}
                                             disabled={true}
                                         />
@@ -184,7 +178,6 @@ function ViewInquiryModal({ show, handleClose, handleReplyShow, inquiry }) {
                                         <Form.Label>CONCERN TYPE:</Form.Label>
                                         <Form.Control
                                             type="text"
-                                            placeholder="09"
                                             value={type}
                                             disabled={true}
                                         />

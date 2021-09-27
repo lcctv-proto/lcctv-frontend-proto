@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import {
     ArrowReturnRight,
     LightbulbFill,
@@ -5,13 +6,54 @@ import {
     Backspace,
 } from "react-bootstrap-icons";
 
+import axios from "axios";
+
 import Modal from "react-bootstrap/Modal";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-function SendReplyModal({ show, handleClose }) {
+import Spinner from "../Spinner";
+
+function SendReplyModal({ show, handleClose, inquiry }) {
+    const [accountName, setAccountName] = useState("");
+    const [accountNumber, setAccountNumber] = useState("");
+    const [email, setEmail] = useState("");
+    const [type, setType] = useState("");
+    const [description, setDescription] = useState("");
+    const [subject, setSubject] = useState("");
+    const [body, setBody] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+        const fetchInquiry = async () => {
+            setIsLoading(true);
+            const res = await axios.get(
+                `https://lcctv-backend.herokuapp.com/api/inquiries/${inquiry}`
+            );
+            const {
+                type,
+                email,
+                description,
+                accountID: {
+                    prefix,
+                    accountName: { firstName, middleName, lastName },
+                    acc_ctr,
+                },
+            } = res.data;
+
+            setAccountName(`${firstName} ${middleName[0]}. ${lastName}`);
+            setAccountNumber(`${prefix}${acc_ctr.toString().padStart(3, "0")}`);
+            setEmail(email);
+            setType(type);
+            setDescription(description);
+            setIsLoading(false);
+        };
+
+        if (show) fetchInquiry();
+    }, [inquiry, show]);
+
     return (
         <>
             <Modal show={show} onHide={handleClose} size="lg">
@@ -27,74 +69,122 @@ function SendReplyModal({ show, handleClose }) {
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
-                        <Row className="mb-3">
-                            <Form.Group
-                                as={Col}
-                                xs="6"
-                                controlId="modalSubscriberName"
-                            >
-                                <Form.Label>Subscriber Name:</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="e.g. JUAN"
-                                />
-                            </Form.Group>
-                            <Form.Group
-                                as={Col}
-                                xs="6"
-                                controlId="modalAccountNumber"
-                            >
-                                <Form.Label>Account Number:</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="095454515"
-                                />
-                            </Form.Group>
-                        </Row>
-                        <Row className="mb-3">
-                            <Form.Group
-                                as={Col}
-                                xs="12"
-                                controlId="modalConcernType"
-                            >
-                                <Form.Label>Concern Type:</Form.Label>
-                                <Form.Select defaultValue="CONCERN TYPES">
-                                    <option>Reconnection</option>
-                                    <option>Upgrade</option>
-                                    <option>Site Transfer</option>
-                                </Form.Select>
-                            </Form.Group>
-                        </Row>
-                        <Row className="mb-3">
-                            <Form.Group
-                                as={Col}
-                                xs="12"
-                                controlId="modalConcern"
-                            >
-                                <Form.Label>Subscriber Concern:</Form.Label>
-                                <Form.Control as="textarea" rows={4} />
-                            </Form.Group>
-                        </Row>
-                        <hr />
-                        <Row className="mb-3">
-                            <h4>CREATE REPLY</h4>
-                        </Row>
-                        <Row className="mb-3">
-                            <Form.Group
-                                as={Col}
-                                xs="12"
-                                controlId="modalSubject"
-                            >
-                                <Form.Label>Subject:</Form.Label>
-                                <Form.Control type="text" />
-                            </Form.Group>
-                        </Row>
-                        <Row className="mb-3">
-                            <Form.Group as={Col} xs="12" controlId="modalBody">
-                                <Form.Label>Body:</Form.Label>
-                                <Form.Control as="textarea" rows={4} />
-                            </Form.Group>
-                        </Row>
+                        {!isLoading ? (
+                            <>
+                                <Row className="mb-3">
+                                    <Form.Group
+                                        as={Col}
+                                        xs="6"
+                                        controlId="modalSubscriberName"
+                                    >
+                                        <Form.Label>
+                                            Subscriber Name:
+                                        </Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            value={accountName}
+                                            disabled={true}
+                                        />
+                                    </Form.Group>
+                                    <Form.Group
+                                        as={Col}
+                                        xs="6"
+                                        controlId="modalAccountNumber"
+                                    >
+                                        <Form.Label>Account Number:</Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            value={accountNumber}
+                                            disabled={true}
+                                        />
+                                    </Form.Group>
+                                </Row>
+                                <Row className="mb-3">
+                                    <Form.Group
+                                        as={Col}
+                                        xs="12"
+                                        controlId="modalConcernType"
+                                    >
+                                        <Form.Label>CONCERN TYPE:</Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            value={type}
+                                            disabled={true}
+                                        />
+                                    </Form.Group>
+                                </Row>
+                                <Row className="mb-3">
+                                    <Form.Group
+                                        as={Col}
+                                        xs="12"
+                                        controlId="modalConcern"
+                                    >
+                                        <Form.Label>
+                                            Subscriber Concern:
+                                        </Form.Label>
+                                        <Form.Control
+                                            as="textarea"
+                                            rows={4}
+                                            value={description}
+                                            disabled={true}
+                                        />
+                                    </Form.Group>
+                                </Row>
+                                <hr />
+                                <Row className="mb-3">
+                                    <h4>CREATE REPLY</h4>
+                                </Row>
+                                <Row className="mb-3">
+                                    <Form.Group
+                                        as={Col}
+                                        xs="12"
+                                        controlId="modalEmail"
+                                    >
+                                        <Form.Label>To:</Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            value={email}
+                                            disabled={true}
+                                        />
+                                    </Form.Group>
+                                </Row>
+                                <Row className="mb-3">
+                                    <Form.Group
+                                        as={Col}
+                                        xs="12"
+                                        controlId="modalSubject"
+                                    >
+                                        <Form.Label>Subject:</Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            value={subject}
+                                            onChange={(e) =>
+                                                setSubject(e.target.value)
+                                            }
+                                        />
+                                    </Form.Group>
+                                </Row>
+                                <Row className="mb-3">
+                                    <Form.Group
+                                        as={Col}
+                                        xs="12"
+                                        controlId="modalBody"
+                                    >
+                                        <Form.Label>Body:</Form.Label>
+                                        <Form.Control
+                                            as="textarea"
+                                            rows={4}
+                                            value={body}
+                                            onChange={(e) =>
+                                                setBody(e.target.value)
+                                            }
+                                        />
+                                    </Form.Group>
+                                </Row>
+                            </>
+                        ) : (
+                            <Spinner name="front" small={true} />
+                        )}
                     </Form>
                     <hr />
                     <Row>

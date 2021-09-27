@@ -28,8 +28,14 @@ function Inquiries() {
     const handleInquiryShow = () => setShowInquiry(true);
     const handleInquiryClose = () => setShowInquiry(false);
 
-    const handleReplyShow = () => setShowReply(true);
-    const handleReplyClose = () => setShowReply(false);
+    const handleReplyShow = () => {
+        setShowReply(true);
+        setShowInquiry(false);
+    };
+    const handleReplyClose = () => {
+        setShowInquiry(true);
+        setShowReply(false);
+    };
 
     const indexOfLastInquiry = currentPage * inquiriesPerPage;
     const indexOfFirstInquiry = indexOfLastInquiry - inquiriesPerPage;

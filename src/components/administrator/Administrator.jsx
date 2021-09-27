@@ -1,6 +1,6 @@
 //module imports
 import {
-    ClipboardCheck,
+    PieChart,
     Journals,
     Nut,
     People,
@@ -65,7 +65,7 @@ function Administrator() {
             path: "/admin/channels",
         },
         {
-            icon: <ClipboardCheck />,
+            icon: <PieChart />,
             title: "REPORTS",
             path: "/admin/reports",
         },

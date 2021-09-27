@@ -1,5 +1,5 @@
 import {
-    ClipboardCheck,
+    PieChart,
     Journals,
     Nut,
     People,
@@ -69,7 +69,7 @@ function Home() {
                             />
                             <Button
                                 icon={
-                                    <ClipboardCheck
+                                    <PieChart
                                         color="white"
                                         size="8rem"
                                         className="mb-2"

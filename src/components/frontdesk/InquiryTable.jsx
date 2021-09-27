@@ -1,4 +1,4 @@
-import { Eye } from "react-bootstrap-icons";
+import { ArrowsAngleExpand } from "react-bootstrap-icons";
 
 function InquiryTable({ currentInquiries, cols, setInquiry, handleViewShow }) {
     return (
@@ -46,13 +46,14 @@ function InquiryTable({ currentInquiries, cols, setInquiry, handleViewShow }) {
                                 <td>
                                     <button
                                         type="button"
-                                        className="btn btn-navy me-2"
+                                        className="btn btn-navy"
                                         onClick={() => {
                                             setInquiry(_id);
                                             handleViewShow();
                                         }}
                                     >
-                                        <Eye className="me-2" /> VIEW
+                                        <ArrowsAngleExpand className="me-2" />
+                                        VIEW
                                     </button>
                                 </td>
                             </tr>

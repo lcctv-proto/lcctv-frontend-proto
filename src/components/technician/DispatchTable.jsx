@@ -1,4 +1,4 @@
-import { Eye } from "react-bootstrap-icons";
+import { ArrowsAngleExpand } from "react-bootstrap-icons";
 
 function DispatchTable({ currentDispatches, cols }) {
     return (
@@ -49,9 +49,10 @@ function DispatchTable({ currentDispatches, cols }) {
                                 <td>
                                     <button
                                         type="button"
-                                        className="btn btn-primary btn-view"
+                                        className="btn btn-navy"
                                     >
-                                        <Eye className="me-2" /> VIEW
+                                        <ArrowsAngleExpand className="me-2" />
+                                        VIEW
                                     </button>
                                 </td>
                             </tr>
