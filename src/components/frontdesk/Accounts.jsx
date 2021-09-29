@@ -1,11 +1,5 @@
 import { useState } from "react";
-import {
-    Search,
-    PlusCircle,
-    DoorOpen,
-    WindowSidebar,
-    FileRuled,
-} from "react-bootstrap-icons";
+import { Search, PlusCircle } from "react-bootstrap-icons";
 
 import axios from "axios";
 
@@ -17,9 +11,8 @@ import Form from "react-bootstrap/Form";
 
 import Spinner from "react-bootstrap/Spinner";
 
-// import AccountSearchModal from "./AccountSearchModal";
-// import AccountNotFoundDismissible from "./AccountNotFoundDismissible";
-// import PaymentsButton from "./PaymentsButton";
+import AccountSearchModal from "./AccountSearchModal";
+import AccountNotFoundDismissible from "./AccountNotFoundDismissible";
 
 function Accounts() {
     const [searchTerm, setSearchTerm] = useState("");
@@ -30,14 +23,11 @@ function Accounts() {
     const [_show, set_Show] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
-    const items = [
-        { icon: <FileRuled className="m-3" />, title: "VIEW BALANCE" },
-        { icon: <WindowSidebar className="m-3" />, title: "PAYMENT PORTAL" },
-        { icon: <DoorOpen className="m-3" />, title: "WALK-IN" },
-    ];
+    console.log(show);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
     const handleClick = async () => {
         setIsLoading(true);
 
@@ -110,13 +100,13 @@ function Accounts() {
                 </Col>
             </Row>
             <Row>
-                {/* <Col>
+                <Col>
                     <AccountNotFoundDismissible
                         show={_show}
                         setShow={set_Show}
                         title={searchTerm}
                     />
-                </Col> */}
+                </Col>
             </Row>
             <hr className="my-0" />
             <Row className="border-front">
@@ -353,12 +343,12 @@ function Accounts() {
                     </Accordion>
                 </Col>
             </Row>
-            {/* <AccountSearchModal
+            <AccountSearchModal
                 show={show}
                 handleClose={handleClose}
                 searchTerm={searchTerm}
                 setSearchTerm={setSearchTerm}
-            /> */}
+            />
         </>
     );
 }

@@ -55,6 +55,7 @@ function Dispatch() {
                 // const res = await axios.get(
                 //     "https://lcctv-backend.herokuapp.com/api/dispatches/teamID"
                 // );
+                console.log(res.data);
                 setDispatches([
                     {
                         prefix: "JO-201201",

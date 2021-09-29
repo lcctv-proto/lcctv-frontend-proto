@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
     CheckCircle,
     XCircle,
@@ -20,10 +20,11 @@ function EditApplicationModal({ show, handleClose, application }) {
             const res = await axios.get(
                 `https://lcctv-backend.herokuapp.com/api/application/${application}`
             );
+            console.log(res);
         };
 
         fetchPackages();
-    }, []);
+    }, [application]);
 
     const handleSubmit = () => {};
 
