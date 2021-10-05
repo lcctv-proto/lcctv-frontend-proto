@@ -1,7 +1,7 @@
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 import { LightbulbFill } from "react-bootstrap-icons";
 
 import { useEffect, useRef, useState } from "react";

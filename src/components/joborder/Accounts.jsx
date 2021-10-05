@@ -4,8 +4,8 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
-import Table from "react-bootstrap/Table";
 import Accordion from "react-bootstrap/Accordion";
+
 function Accounts() {
     return (
         <>

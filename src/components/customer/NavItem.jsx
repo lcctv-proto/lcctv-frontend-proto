@@ -2,7 +2,9 @@ import { Link } from "react-router-dom";
 import { CircleFill } from "react-bootstrap-icons";
 
 function NavItem({ name, location, paths }) {
-    const isActive = paths.includes(location);
+    const isActive =
+        paths.indexOf(location) > -1 ||
+        paths.indexOf(`/${location.toString().split("/")[1]}`) > -1;
 
     return (
         <li className="nav-item">

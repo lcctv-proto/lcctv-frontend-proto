@@ -1,7 +1,7 @@
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 import { LightbulbFill } from "react-bootstrap-icons";
 
 import { useEffect, useRef, useState } from "react";
@@ -69,7 +69,7 @@ function AccountSearchModal({ show, handleClose, searchTerm, setSearchTerm }) {
                 <Modal.Header
                     closeButton
                     closeVariant="white"
-                    className="bg-navy text-light border-cashier"
+                    className="bg-navy text-light border-front"
                 >
                     <Modal.Title>Search Customer</Modal.Title>
                 </Modal.Header>

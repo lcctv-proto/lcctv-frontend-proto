@@ -1,18 +1,24 @@
 import { useState, useEffect, useRef } from "react";
+import { useLocation } from "react-router";
+
 import axios from "axios";
 
 function Channel() {
+    const [channel, setChannel] = useState("");
     const [isLoading, setIsLoading] = useState(true);
     const _isMounted = useRef(true);
-
-    const [channel, setChannel] = useState("");
+    const location = useLocation();
 
     useEffect(() => {
+        window.scrollTo(0, 0);
+
         const fetchChannel = async () => {
             if (_isMounted.current) {
                 setIsLoading(true);
+                const id = location.pathname.split("/")[2];
+
                 const res = await axios.get(
-                    "https://lcctv-backend.herokuapp.com/api/channels/6143442fc23830001662058e"
+                    `https://lcctv-backend.herokuapp.com/api/channels/${id}`
                 );
                 setChannel(res.data);
                 setIsLoading(false);
@@ -24,7 +30,7 @@ function Channel() {
         return () => {
             _isMounted.current = false;
         };
-    }, []);
+    }, [location]);
 
     console.log();
 

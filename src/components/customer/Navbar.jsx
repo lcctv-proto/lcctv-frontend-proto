@@ -18,7 +18,7 @@ function Navbar() {
         },
         {
             name: "APPLICATIONS",
-            paths: ["/applications", "/applications/*"],
+            paths: ["/applications", "/application"],
         },
         {
             name: "ABOUT US",

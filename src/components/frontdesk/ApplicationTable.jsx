@@ -55,7 +55,7 @@ function ApplicationTable({
                                             handleEditShow();
                                         }}
                                     >
-                                        <ArrowsAngleExpand className="me-2" />{" "}
+                                        <ArrowsAngleExpand className="me-2" />
                                         VIEW
                                     </button>
                                 </td>

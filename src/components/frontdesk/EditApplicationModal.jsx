@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
     CheckCircle,
     XCircle,
@@ -15,18 +15,87 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 function EditApplicationModal({ show, handleClose, application }) {
+    const [accountFirstName, setAccountFirstName] = useState("");
+    const [accountMiddleName, setAccountMiddleName] = useState("");
+    const [accountLastName, setAccountLastName] = useState("");
+
+    const [birthdate, setBirthdate] = useState("");
+    const [nationality, setNationality] = useState("");
+    const [gender, setGender] = useState("");
+    const [civilStatus, setCivilStatus] = useState("");
+
+    const [unit, setUnit] = useState("");
+    const [street, setStreet] = useState("");
+    const [barangay, setBarangay] = useState("");
+    const [municipality, setMunicipality] = useState("");
+    const [province, setProvince] = useState("");
+    const [zipCode, setZipCode] = useState("");
+    const [homeOwnership, setHomeOwnership] = useState("");
+    const [residencyYear, setResidencyYear] = useState("");
+    const [nearestLandmark, setNearestLandmark] = useState("");
+
+    const [cellphoneNumber, setCellphoneNumber] = useState("");
+    const [telephoneNumber, setTelephoneNumber] = useState("");
+    const [email, setEmail] = useState("");
+    const [motherFirstName, setMotherFirstName] = useState("");
+    const [motherMiddleName, setMotherMiddleName] = useState("");
+    const [motherLastName, setMotherLastName] = useState("");
+    const [spouseFirstName, setSpouseFirstName] = useState("");
+    const [spouseMiddleName, setSpouseMiddleName] = useState("");
+    const [spouseLastName, setSpouseLastName] = useState("");
+
+    // const [governmentIdImageURL, setGovernmentIdImageURL] = useState("");
+    // const [billingImageURL, setBillingImageURL] = useState("");
+    // const [IDpreview, setIDPreview] = useState("");
+    // const [POBpreview, setPOBPreview] = useState("");
+
+    const [packageID, setPackageID] = useState("");
+
     useEffect(() => {
-        const fetchPackages = async () => {
+        const fetchApplication = async () => {
             const res = await axios.get(
-                `https://lcctv-backend.herokuapp.com/api/application/${application}`
+                `https://lcctv-backend.herokuapp.com/api/applications/${application}`
             );
-            console.log(res);
+            const account = res.data?.accountID;
+
+            setAccountLastName(account.accountName?.lastName);
+            setAccountFirstName(account.accountName?.firstName);
+            setAccountMiddleName(account.accountName?.middleName);
+            setNationality(account.additionalInfo?.nationality);
+            const date = new Date(account.additionalInfo?.birthdate);
+            setBirthdate(date.toISOString().split("T")[0]);
+            setGender(account.additionalInfo?.gender);
+            setCivilStatus(account.additionalInfo?.civilStatus);
+
+            setUnit(account.serviceAddress?.unit);
+            setStreet(account.serviceAddress?.street);
+            setBarangay(account.serviceAddress?.barangay);
+            setMunicipality(account.serviceAddress?.municipality);
+            setProvince(account.serviceAddress?.province);
+            setZipCode(account.serviceAddress?.zipCode);
+            setHomeOwnership(account.serviceAddress?.homeOwnership);
+            setResidencyYear(account.serviceAddress?.residencyYear);
+            setNearestLandmark(account.serviceAddress?.nearestLandmark);
+
+            setCellphoneNumber(account?.contactInfo?.cellphoneNumber);
+            setTelephoneNumber(account?.contactInfo?.telephoneNumber);
+            setEmail(account?.contactInfo?.email);
+            setMotherFirstName(
+                account?.contactInfo?.motherMaidenName?.firstName
+            );
+            setMotherMiddleName(
+                account?.contactInfo?.motherMaidenName?.middleName
+            );
+            setMotherLastName(account?.contactInfo?.motherMaidenName?.lastName);
+            setSpouseFirstName(account?.contactInfo?.spouseName?.firstName);
+            setSpouseMiddleName(account?.contactInfo?.spouseName?.middleName);
+            setSpouseLastName(account?.contactInfo?.spouseName?.lastName);
+
+            setPackageID(account.packageID.description);
         };
 
-        fetchPackages();
-    }, [application]);
-
-    const handleSubmit = () => {};
+        if (show) fetchApplication();
+    }, [application, show]);
 
     return (
         <>
@@ -37,24 +106,33 @@ function EditApplicationModal({ show, handleClose, application }) {
                     className="bg-navy text-light border-front"
                 >
                     <Modal.Title className="d-flex align-items-center">
-                        <FileEarmarkPerson className=" me-2" />
+                        <FileEarmarkPerson className="me-2" />
                         APPLICATION FORM
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
-                        <Row className="mb-3 h5">
-                            <Form.Group
-                                as={Col}
-                                xs="12"
-                                controlId="modalFirstName"
-                            >
-                                <Form.Label>Selected Plan:</Form.Label>
-                                <Form.Control type="text" />
+                        <Row className="mb-3 fs-5 fw-bold">
+                            <Form.Group as={Col} xs="12" controlId="modalPlan">
+                                <Form.Label>SELECTED PLAN</Form.Label>
+                                <Form.Select
+                                    value={packageID}
+                                    onChange={(e) =>
+                                        setPackageID(e.target.value)
+                                    }
+                                >
+                                    <option value="BASIC 640">BASIC 640</option>
+                                    <option value="PREMIUM 790">
+                                        PREMIUM 790
+                                    </option>
+                                    <option value="INTERNATIONAL 1099">
+                                        INTERNATIONAL 1099
+                                    </option>
+                                </Form.Select>
                             </Form.Group>
                         </Row>
                         <hr />
-                        <Row className="mb-3 h5">
+                        <Row className="mb-3 fs-5 fw-bold">
                             <Col>PERSONAL INFORMATION</Col>
                         </Row>
                         <Row className="mb-3">
@@ -64,7 +142,13 @@ function EditApplicationModal({ show, handleClose, application }) {
                                 controlId="modalFirstName"
                             >
                                 <Form.Label>First Name:</Form.Label>
-                                <Form.Control type="text" />
+                                <Form.Control
+                                    type="text"
+                                    value={accountFirstName}
+                                    onChange={(e) =>
+                                        setAccountFirstName(e.target.value)
+                                    }
+                                />
                             </Form.Group>
                         </Row>
                         <Row className="mb-3">
@@ -74,7 +158,13 @@ function EditApplicationModal({ show, handleClose, application }) {
                                 controlId="modalMiddleName"
                             >
                                 <Form.Label>Middle Name:</Form.Label>
-                                <Form.Control type="text" />
+                                <Form.Control
+                                    type="text"
+                                    value={accountMiddleName}
+                                    onChange={(e) =>
+                                        setAccountMiddleName(e.target.value)
+                                    }
+                                />
                             </Form.Group>
                         </Row>
                         <Row className="mb-3">
@@ -84,7 +174,13 @@ function EditApplicationModal({ show, handleClose, application }) {
                                 controlId="modalFamilyName"
                             >
                                 <Form.Label>Family Name:</Form.Label>
-                                <Form.Control type="text" />
+                                <Form.Control
+                                    type="text"
+                                    value={accountLastName}
+                                    onChange={(e) =>
+                                        setAccountLastName(e.target.value)
+                                    }
+                                />
                             </Form.Group>
                         </Row>
                         <Row className="mb-3">
@@ -94,7 +190,13 @@ function EditApplicationModal({ show, handleClose, application }) {
                                 controlId="modalNationality"
                             >
                                 <Form.Label>Nationality:</Form.Label>
-                                <Form.Control type="text" />
+                                <Form.Control
+                                    type="text"
+                                    value={nationality}
+                                    onChange={(e) =>
+                                        setNationality(e.target.value)
+                                    }
+                                />
                             </Form.Group>
                             <Form.Group
                                 as={Col}
@@ -102,29 +204,44 @@ function EditApplicationModal({ show, handleClose, application }) {
                                 controlId="modalBirthdate"
                             >
                                 <Form.Label>Birthdate:</Form.Label>
-                                <Form.Control type="date" />
+                                <Form.Control
+                                    type="date"
+                                    value={birthdate}
+                                    onChange={(e) =>
+                                        setBirthdate(e.target.value)
+                                    }
+                                />
                             </Form.Group>
                         </Row>
                         <Row className="mb-3">
                             <Form.Group as={Col} xs="6" controlId="modalSex">
                                 <Form.Label>Sex: </Form.Label>
-                                <Form.Select defaultValue="SELECT SEX">
-                                    <option>MALE</option>
-                                    <option>FEMALE</option>
+                                <Form.Select
+                                    value={gender}
+                                    onChange={(e) => setGender(e.target.value)}
+                                >
+                                    <option value="MALE">MALE</option>
+                                    <option value="FEMALE">FEMALE</option>
                                 </Form.Select>
                             </Form.Group>
                             <Form.Group as={Col} xs="6" controlId="modalSex">
                                 <Form.Label>Civil Status: </Form.Label>
-                                <Form.Select defaultValue="SELECT CIVIL STATUS">
-                                    <option>SINGLE</option>
-                                    <option>MARRIED</option>
-                                    <option>WIDOWED</option>
-                                    <option>SEPARATED</option>
+                                <Form.Select
+                                    value={civilStatus}
+                                    onChange={(e) =>
+                                        setCivilStatus(e.target.value)
+                                    }
+                                >
+                                    <option value="SINGLE">SINGLE</option>
+                                    <option value="MARRIED">MARRIED</option>
+                                    <option value="WIDOWED">WIDOWED</option>
+                                    <option value="SEPARATED">SEPARATED</option>
+                                    <option value="DIVORCED">DIVORCED</option>
                                 </Form.Select>
                             </Form.Group>
                         </Row>
                         <hr />
-                        <Row className="mb-3 h5">
+                        <Row className="mb-3 fs-5 fw-bold">
                             <Col> HOME/INSTALLATION ADDRESS</Col>
                         </Row>
                         <Row className="mb-3">
@@ -134,11 +251,19 @@ function EditApplicationModal({ show, handleClose, application }) {
                                 controlId="modalUnitNumber"
                             >
                                 <Form.Label>Unit/House Number:</Form.Label>
-                                <Form.Control type="text" />
+                                <Form.Control
+                                    type="text"
+                                    value={unit}
+                                    onChange={(e) => setUnit(e.target.value)}
+                                />
                             </Form.Group>
                             <Form.Group as={Col} xs="6" controlId="modalStreet">
                                 <Form.Label>Street:</Form.Label>
-                                <Form.Control type="text" />
+                                <Form.Control
+                                    type="text"
+                                    value={street}
+                                    onChange={(e) => setStreet(e.target.value)}
+                                />
                             </Form.Group>
                         </Row>
                         <Row className="mb-3">
@@ -148,7 +273,13 @@ function EditApplicationModal({ show, handleClose, application }) {
                                 controlId="modalBarangay"
                             >
                                 <Form.Label>Barangay:</Form.Label>
-                                <Form.Control type="text" />
+                                <Form.Control
+                                    type="text"
+                                    value={barangay}
+                                    onChange={(e) =>
+                                        setBarangay(e.target.value)
+                                    }
+                                />
                             </Form.Group>
                             <Form.Group
                                 as={Col}
@@ -156,7 +287,13 @@ function EditApplicationModal({ show, handleClose, application }) {
                                 controlId="modalMunicipality"
                             >
                                 <Form.Label>Municipality:</Form.Label>
-                                <Form.Control type="text" />
+                                <Form.Control
+                                    type="text"
+                                    value={municipality}
+                                    onChange={(e) =>
+                                        setMunicipality(e.target.value)
+                                    }
+                                />
                             </Form.Group>
                         </Row>
                         <Row className="mb-3">
@@ -166,10 +303,17 @@ function EditApplicationModal({ show, handleClose, application }) {
                                 controlId="modalHomeOwnership"
                             >
                                 <Form.Label>Home Ownership: </Form.Label>
-                                <Form.Select defaultValue="SELECT HOME OWNERSHIP">
-                                    <option>OWNED</option>
-                                    <option>LIVING WITH RELATIVES</option>
-                                    <option>RENTED</option>
+                                <Form.Select
+                                    value={homeOwnership}
+                                    onChange={(e) =>
+                                        setHomeOwnership(e.target.value)
+                                    }
+                                >
+                                    <option value="OWNED">OWNED</option>
+                                    <option value="LIVING WITH RELATIVES">
+                                        LIVING WITH RELATIVES
+                                    </option>
+                                    <option value="RENTED">RENTED</option>
                                 </Form.Select>
                             </Form.Group>
                             <Form.Group
@@ -178,7 +322,13 @@ function EditApplicationModal({ show, handleClose, application }) {
                                 controlId="modalYearsOfResidency"
                             >
                                 <Form.Label>Years Of Residency:</Form.Label>
-                                <Form.Control type="text" />
+                                <Form.Control
+                                    type="text"
+                                    value={residencyYear}
+                                    onChange={(e) =>
+                                        setResidencyYear(e.target.value)
+                                    }
+                                />
                             </Form.Group>
                         </Row>
                         <Row className="mb-3">
@@ -188,7 +338,13 @@ function EditApplicationModal({ show, handleClose, application }) {
                                 controlId="modalProvince"
                             >
                                 <Form.Label>Province:</Form.Label>
-                                <Form.Control type="text" />
+                                <Form.Control
+                                    type="text"
+                                    value={province}
+                                    onChange={(e) =>
+                                        setProvince(e.target.value)
+                                    }
+                                />
                             </Form.Group>
                             <Form.Group
                                 as={Col}
@@ -196,7 +352,11 @@ function EditApplicationModal({ show, handleClose, application }) {
                                 controlId="modalZipCode"
                             >
                                 <Form.Label>Zip Code:</Form.Label>
-                                <Form.Control type="text" />
+                                <Form.Control
+                                    type="text"
+                                    value={zipCode}
+                                    onChange={(e) => setZipCode(e.target.value)}
+                                />
                             </Form.Group>
                         </Row>
                         <Row className="mb-3">
@@ -206,11 +366,17 @@ function EditApplicationModal({ show, handleClose, application }) {
                                 controlId="modalNearestLandmark"
                             >
                                 <Form.Label>Nearest Landmark:</Form.Label>
-                                <Form.Control type="text" />
+                                <Form.Control
+                                    type="text"
+                                    value={nearestLandmark}
+                                    onChange={(e) =>
+                                        setNearestLandmark(e.target.value)
+                                    }
+                                />
                             </Form.Group>
                         </Row>
                         <hr />
-                        <Row className="mb-3 h5">
+                        <Row className="mb-3 fs-5 fw-bold">
                             <Col> CONTACT INFORMATION </Col>
                         </Row>
                         <Row className="mb-3">
@@ -220,7 +386,13 @@ function EditApplicationModal({ show, handleClose, application }) {
                                 controlId="modalCellphoneNumber"
                             >
                                 <Form.Label>Cellphone Number:</Form.Label>
-                                <Form.Control type="text" />
+                                <Form.Control
+                                    type="text"
+                                    value={cellphoneNumber}
+                                    onChange={(e) =>
+                                        setCellphoneNumber(e.target.value)
+                                    }
+                                />
                             </Form.Group>
                             <Form.Group
                                 as={Col}
@@ -228,7 +400,13 @@ function EditApplicationModal({ show, handleClose, application }) {
                                 controlId="modalTelephoneNumber"
                             >
                                 <Form.Label>Telephone Number:</Form.Label>
-                                <Form.Control type="text" />
+                                <Form.Control
+                                    type="text"
+                                    value={telephoneNumber}
+                                    onChange={(e) =>
+                                        setTelephoneNumber(e.target.value)
+                                    }
+                                />
                             </Form.Group>
                         </Row>
                         <Row className="mb-3">
@@ -238,11 +416,15 @@ function EditApplicationModal({ show, handleClose, application }) {
                                 controlId="modalEmailAddress"
                             >
                                 <Form.Label>Email Address:</Form.Label>
-                                <Form.Control type="text" />
+                                <Form.Control
+                                    type="text"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                />
                             </Form.Group>
                         </Row>
                         <hr />
-                        <Row className="mb-3 h5">
+                        <Row className="mb-3 fs-5 fw-bold">
                             <Col>MOTHER'S MAIDEN NAME</Col>
                         </Row>
                         <Row className="mb-3">
@@ -252,7 +434,13 @@ function EditApplicationModal({ show, handleClose, application }) {
                                 controlId="modalMomFirstName"
                             >
                                 <Form.Label>First Name:</Form.Label>
-                                <Form.Control type="text" />
+                                <Form.Control
+                                    type="text"
+                                    value={motherFirstName}
+                                    onChange={(e) =>
+                                        setMotherFirstName(e.target.value)
+                                    }
+                                />
                             </Form.Group>
                         </Row>
                         <Row className="mb-3">
@@ -262,7 +450,13 @@ function EditApplicationModal({ show, handleClose, application }) {
                                 controlId="modalMomMiddleName"
                             >
                                 <Form.Label>Middle Name:</Form.Label>
-                                <Form.Control type="text" />
+                                <Form.Control
+                                    type="text"
+                                    value={motherMiddleName}
+                                    onChange={(e) =>
+                                        setMotherMiddleName(e.target.value)
+                                    }
+                                />
                             </Form.Group>
                         </Row>
                         <Row className="mb-3">
@@ -272,45 +466,80 @@ function EditApplicationModal({ show, handleClose, application }) {
                                 controlId="modalMomFamilyName"
                             >
                                 <Form.Label>Family Name:</Form.Label>
-                                <Form.Control type="text" />
+                                <Form.Control
+                                    type="text"
+                                    value={motherLastName}
+                                    onChange={(e) =>
+                                        setMotherLastName(e.target.value)
+                                    }
+                                />
                             </Form.Group>
                         </Row>
+
+                        {civilStatus === "MARRIED" && (
+                            <>
+                                <hr />
+                                <Row className="mb-3 fs-5 fw-bold">
+                                    <Col>SPOUSE'S NAME</Col>
+                                </Row>
+                                <Row className="mb-3">
+                                    <Form.Group
+                                        as={Col}
+                                        xs="12"
+                                        controlId="modalSpouseFirstName"
+                                    >
+                                        <Form.Label>First Name:</Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            value={spouseFirstName}
+                                            onChange={(e) =>
+                                                setSpouseFirstName(
+                                                    e.target.value
+                                                )
+                                            }
+                                        />
+                                    </Form.Group>
+                                </Row>
+                                <Row className="mb-3">
+                                    <Form.Group
+                                        as={Col}
+                                        xs="12"
+                                        controlId="modalSpouseMiddleName"
+                                    >
+                                        <Form.Label>Middle Name:</Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            value={spouseMiddleName}
+                                            onChange={(e) =>
+                                                setSpouseMiddleName(
+                                                    e.target.value
+                                                )
+                                            }
+                                        />
+                                    </Form.Group>
+                                </Row>
+                                <Row className="mb-3">
+                                    <Form.Group
+                                        as={Col}
+                                        xs="12"
+                                        controlId="modalSpouseFamilyName"
+                                    >
+                                        <Form.Label>Family Name:</Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            value={spouseLastName}
+                                            onChange={(e) =>
+                                                setSpouseLastName(
+                                                    e.target.value
+                                                )
+                                            }
+                                        />
+                                    </Form.Group>
+                                </Row>
+                            </>
+                        )}
                         <hr />
-                        <Row className="mb-3 h5">
-                            <Col>SPOUSE'S NAME</Col>
-                        </Row>
-                        <Row className="mb-3">
-                            <Form.Group
-                                as={Col}
-                                xs="12"
-                                controlId="modalSpouseFirstName"
-                            >
-                                <Form.Label>First Name:</Form.Label>
-                                <Form.Control type="text" />
-                            </Form.Group>
-                        </Row>
-                        <Row className="mb-3">
-                            <Form.Group
-                                as={Col}
-                                xs="12"
-                                controlId="modalSpouseMiddleName"
-                            >
-                                <Form.Label>Middle Name:</Form.Label>
-                                <Form.Control type="text" />
-                            </Form.Group>
-                        </Row>
-                        <Row className="mb-3">
-                            <Form.Group
-                                as={Col}
-                                xs="12"
-                                controlId="modalSpouseFamilyName"
-                            >
-                                <Form.Label>Family Name:</Form.Label>
-                                <Form.Control type="text" />
-                            </Form.Group>
-                        </Row>
-                        <hr />
-                        <Row className="mb-3 h5">
+                        <Row className="mb-3 fs-5 fw-bold">
                             <Col>ID and PROOF OF BILLING</Col>
                         </Row>
                         <Row className="mb-3">
@@ -347,14 +576,20 @@ function EditApplicationModal({ show, handleClose, application }) {
                     <Button
                         type="submit"
                         className="d-flex mb-2 btn btn-danger btn-delete fw-bold align-items-center"
-                        onClick={() => console.log("DENY")}
+                        onClick={() => {
+                            alert("DENIED!");
+                            handleClose();
+                        }}
                     >
                         <XCircle className="me-2" /> DENY APPLICATION
                     </Button>
                     <Button
                         type="submit"
                         className="d-flex mb-2 btn btn-success btn-approve fw-bold align-items-center"
-                        onClick={handleSubmit}
+                        onClick={() => {
+                            alert("APPROVED!");
+                            handleClose();
+                        }}
                     >
                         <CheckCircle className="me-2" /> APPROVE APPLICATION
                     </Button>
