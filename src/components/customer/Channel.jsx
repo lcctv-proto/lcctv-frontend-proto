@@ -37,6 +37,8 @@ function Channel() {
                             className="border border-warning border-4 border-top-0 border-start-0 border-end-0 image-responsive"
                             src={channel.bannerImageURL}
                             alt="Cartoon Logo"
+                            width="1917"
+                            height="450"
                         />
                     </div>
                 </div>
@@ -58,6 +60,8 @@ function Channel() {
                                     className="image-responsive"
                                     src={value}
                                     alt="Adventure Time"
+                                    width="440"
+                                    height="341"
                                 />
                             </div>
                         );
