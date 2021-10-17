@@ -1,7 +1,14 @@
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import authService from "../auth/auth.service";
+
 import logo from "../assets/Images/logo.png";
 
 function NavbarPortal({ title, name, user }) {
+    const history = useHistory();
+    const logout = () => {
+        authService.logout();
+        history.push("/portal");
+    };
     return (
         <nav
             className={`navbar navbar-expand-lg navbar-dark bg-navy px-3 text-light border-${name}`}
@@ -32,12 +39,13 @@ function NavbarPortal({ title, name, user }) {
             </button>
             <div className="collapse navbar-collapse px-3" id="nav-items">
                 <span className="fs-5 ms-auto">{user}</span>
-                <Link
-                    className="ms-3 border-start ps-3 fs-5 text-secondary text-decoration-none"
-                    to="/portal"
+
+                <span
+                    className="btn btn-link ms-3 border-start ps-3 fs-5 text-secondary text-decoration-none"
+                    onClick={logout}
                 >
                     Logout
-                </Link>
+                </span>
             </div>
         </nav>
     );

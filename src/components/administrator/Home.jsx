@@ -10,11 +10,22 @@ import {
 } from "react-bootstrap-icons";
 import Button from "../Button";
 import NavbarPortal from "../NavbarPortal";
+import { useState, useEffect } from "react";
+import authService from "../../auth/auth.service";
 
 function Home() {
+    const [user, setUser] = useState("");
+
+    useEffect(() => {
+        const getUser = async () => {
+            setUser(await authService.getCurrentUserName());
+        };
+
+        getUser();
+    });
     return (
         <>
-            <NavbarPortal title="ADMIN" name="admin" user="Admin123" />
+            <NavbarPortal title="ADMIN" name="admin" user={user} />
             <div className="container-fluid">
                 <div className="row mt-3">
                     <div className="col">

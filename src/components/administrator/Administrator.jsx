@@ -9,8 +9,9 @@ import {
     Grid3x3Gap,
     Tv,
 } from "react-bootstrap-icons";
-import { Switch, Route, useLocation } from "react-router-dom";
+import { Switch, Route, useLocation, useHistory } from "react-router-dom";
 import { useState, useEffect } from "react";
+import authService from "../../auth/auth.service";
 
 // component imports
 import Home from "./Home";
@@ -29,7 +30,10 @@ import Notes from "./Notes";
 
 function Administrator() {
     const [header, setHeader] = useState("");
+    const [user, setUser] = useState("");
+    const [userRole, setUserRole] = useState("");
 
+    const history = useHistory();
     const location = useLocation().pathname;
 
     useEffect(() => {
@@ -42,6 +46,22 @@ function Administrator() {
         if (location.includes("plans")) setHeader("PLANS");
         if (location.includes("notes")) setHeader("MY NOTES");
     }, [location]);
+
+    useEffect(() => {
+        const getUserRole = async () => {
+            setUserRole(await authService.getCurrentUserRole());
+        };
+        const getUser = async () => {
+            setUser(await authService.getCurrentUserName());
+        };
+
+        getUser();
+        getUserRole();
+        if (userRole !== "ADMIN") {
+            // authService.logout();
+            // history.push("/portal");
+        }
+    }, [userRole, history]);
 
     const navItems = [
         {
@@ -100,7 +120,7 @@ function Administrator() {
                         navItems={navItems}
                     />
                     <div className="container-fluid px-3">
-                        <Header title={header} user="Admin123" name="admin" />
+                        <Header title={header} user={user} name="admin" />
                         <Switch>
                             <Route path="/portal/admin/teams">
                                 <Teams />

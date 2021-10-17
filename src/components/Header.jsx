@@ -1,6 +1,12 @@
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import authService from "../auth/auth.service";
 
 function Header({ title, user, name }) {
+    const history = useHistory();
+    const logout = () => {
+        authService.logout();
+        history.push("/portal");
+    };
     return (
         <div className={`row py-3 align-items-center mb-3 border-${name}`}>
             <div className="col">
@@ -8,12 +14,12 @@ function Header({ title, user, name }) {
             </div>
             <div className="col text-end">
                 <span className="border-end px-2 mx-2">{user}</span>
-                <Link
-                    className="text-decoration-none text-secondary"
-                    to="/portal"
+                <span
+                    className="btn btn-link text-secondary text-decoration-none"
+                    onClick={logout}
                 >
                     Logout
-                </Link>
+                </span>
             </div>
         </div>
     );
