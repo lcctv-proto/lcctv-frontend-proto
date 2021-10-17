@@ -48,15 +48,16 @@ function Administrator() {
     }, [location]);
 
     useEffect(() => {
-        const getUserRole = async () => {
-            setUserRole(await authService.getCurrentUserRole());
+        const getUserRole = () => {
+            setUserRole(authService.getCurrentUserRole());
         };
-        const getUser = async () => {
-            setUser(await authService.getCurrentUserName());
+        const getUser = () => {
+            setUser(authService.getCurrentUserName());
         };
 
         getUser();
         getUserRole();
+        console.log(userRole);
         if (userRole !== "ADMIN") {
             // authService.logout();
             // history.push("/portal");

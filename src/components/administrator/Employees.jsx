@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 
 import axios from "axios";
 
+import authHeader from "../../auth/auth-header";
+
 import EmployeeTable from "./EmployeeTable";
 import Pagination from "../Pagination";
 import Page from "../Page";
@@ -56,7 +58,8 @@ function Employees() {
             if (_isMounted.current) {
                 setIsLoading(true);
                 const res = await axios.get(
-                    "https://lcctv-backend.herokuapp.com/api/personnel"
+                    "https://lcctv-backend.herokuapp.com/api/personnel",
+                    { headers: authHeader() }
                 );
                 setEmployees([...res.data]);
                 setIsLoading(false);

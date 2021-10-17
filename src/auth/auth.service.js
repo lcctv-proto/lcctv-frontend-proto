@@ -1,4 +1,5 @@
 import axios from "axios";
+import authHeader from "./auth-header";
 
 const API_URL = "https://lcctv-backend.herokuapp.com/api/personnel/";
 
@@ -18,9 +19,23 @@ const login = (username, password) => {
         })
         .then((response) => {
             if (response.data.token) {
-                localStorage.setItem("user", JSON.stringify(response.data));
+                axios
+                    .get(
+                        `https://lcctv-backend.herokuapp.com/api/roles/${response.data.roleID}`,
+                        {
+                            headers: authHeader(),
+                        }
+                    )
+                    .then((res) => {
+                        localStorage.setItem(
+                            "user",
+                            JSON.stringify({
+                                ...response.data,
+                                description: res.data.description,
+                            })
+                        );
+                    });
             }
-
             return response.data;
         })
         .catch((err) => {
@@ -38,10 +53,7 @@ const getCurrentUser = () => {
 };
 
 const getCurrentUserRole = () => {
-    const roleID = JSON.parse(localStorage.getItem("user"))?.roleID;
-    return axios
-        .get(`https://lcctv-backend.herokuapp.com/api/roles/${roleID}`)
-        .then((res) => res.data.description);
+    return JSON.parse(localStorage.getItem("user"))?.description;
 };
 
 const getCurrentUserName = () => {

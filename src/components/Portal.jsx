@@ -16,39 +16,40 @@ import Technician from "./technician/Technician";
 function Portal() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [userRole, setUserRole] = useState("");
+    const [userRole, setUserRole] = useState("NONE");
     const history = useHistory();
+
+    const getUserRole = () => {
+        setUserRole(authService.getCurrentUserRole());
+    };
 
     const login = async () => {
         await authService.login(username, password);
         getUserRole();
     };
 
-    const getUserRole = async () => {
-        setUserRole(await authService.getCurrentUserRole());
-    };
-
     useEffect(() => {
         getUserRole();
 
-        switch (userRole) {
-            case "SUPERADMIN":
-                return history.push("/portal/admin");
-            case "ADMIN":
-                return history.push("/portal/admin");
-            case "CASHIER":
-                return history.push("/portal/cashier");
-            case "CEO":
-                return history.push("/portal/ceo");
-            case "FRONT DESK":
-                return history.push("/portal/frontdesk");
-            case "JO PERSONNEL":
-                return history.push("/portal/joborder");
-            case "TECHNICIAN":
-                return history.push("/portal/tech");
-            default:
-                console.log("def");
-        }
+        if (userRole)
+            switch (userRole) {
+                case "SUPERADMIN":
+                    return history.push("/portal/admin");
+                case "ADMIN":
+                    return history.push("/portal/admin");
+                case "CASHIER":
+                    return history.push("/portal/cashier");
+                case "CEO":
+                    return history.push("/portal/ceo");
+                case "FRONT DESK":
+                    return history.push("/portal/frontdesk");
+                case "JO PERSONNEL":
+                    return history.push("/portal/joborder");
+                case "TECHNICIAN":
+                    return history.push("/portal/tech");
+                default:
+                    console.log(userRole);
+            }
     }, [userRole, history]);
 
     // const cards = [
@@ -81,7 +82,7 @@ function Portal() {
                     <div className="row mt-5 pt-5 p-0 bg-login">
                         <div className="col pt-5 mb-5">
                             <div className="row pb-5 mb-5 justify-content-center">
-                                <div className="col-3">
+                                <div className="col-9 col-md-6 col-xl-3">
                                     <div className="card border-0 shadow">
                                         <div className="card-header bg-navy text-light border-gold-2">
                                             <span className="fs-4 fw-bold">
