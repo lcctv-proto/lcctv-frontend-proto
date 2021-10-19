@@ -1,12 +1,13 @@
 import { useHistory } from "react-router-dom";
-import authService from "../auth/auth.service";
-
+import { useContext } from "react";
+import { AuthContext } from "../auth/Auth";
 import logo from "../assets/Images/logo.png";
 
-function NavbarPortal({ title, name, user }) {
+function NavbarPortal({ title, name }) {
+    const { user, logout } = useContext(AuthContext);
     const history = useHistory();
-    const logout = () => {
-        authService.logout();
+    const handleLogout = () => {
+        logout();
         history.push("/portal");
     };
     return (
@@ -26,7 +27,7 @@ function NavbarPortal({ title, name, user }) {
             </div>
 
             <div className="px-3">
-                <span className="fs-3">{title}</span>
+                <span className="fs-3">{title} MODULE</span>
             </div>
 
             <button
@@ -41,8 +42,8 @@ function NavbarPortal({ title, name, user }) {
                 <span className="fs-5 ms-auto">{user}</span>
 
                 <span
-                    className="btn btn-link ms-3 border-start ps-3 fs-5 text-secondary text-decoration-none"
-                    onClick={logout}
+                    className="btn btn-outline-gold ms-3 px-3 fs-5 text-decoration-none"
+                    onClick={handleLogout}
                 >
                     Logout
                 </span>

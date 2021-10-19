@@ -1,10 +1,13 @@
 import { useHistory } from "react-router-dom";
-import authService from "../auth/auth.service";
+import { useContext } from "react";
+import { AuthContext } from "../auth/Auth";
 
-function Header({ title, user, name }) {
+function Header({ title, name }) {
+    const { user, logout } = useContext(AuthContext);
     const history = useHistory();
-    const logout = () => {
-        authService.logout();
+
+    const handleLogout = () => {
+        logout();
         history.push("/portal");
     };
     return (
@@ -15,8 +18,8 @@ function Header({ title, user, name }) {
             <div className="col text-end">
                 <span className="border-end px-2 mx-2">{user}</span>
                 <span
-                    className="btn btn-link text-secondary text-decoration-none"
-                    onClick={logout}
+                    className="logout text-secondary text-decoration-none"
+                    onClick={handleLogout}
                 >
                     Logout
                 </span>

@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
-import { Switch, Route, useHistory } from "react-router-dom";
+import { useState, useContext } from "react";
+import { Switch, Route } from "react-router-dom";
 
-import authService from "../auth/auth.service";
 import logo from "../assets/Images/logo.png";
 
 // import Card from "./Card";
@@ -12,45 +11,30 @@ import CEO from "./ceo/CEO";
 import FrontDesk from "./frontdesk/FrontDesk";
 import JobOrder from "./joborder/JobOrder";
 import Technician from "./technician/Technician";
+import PrivateRoute from "./PrivateRoute";
+import { AuthContext } from "../auth/Auth";
 
-function Portal() {
+function Portal({ history }) {
+    const { isLoading, login } = useContext(AuthContext);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [userRole, setUserRole] = useState("NONE");
-    const history = useHistory();
 
-    const getUserRole = () => {
-        setUserRole(authService.getCurrentUserRole());
+    const handleLogin = () => {
+        console.log("click");
+        login(username, password, (role) => redirect(role));
+
+        // await authService.login(username, password);
     };
 
-    const login = async () => {
-        await authService.login(username, password);
-        getUserRole();
-    };
-
-    useEffect(() => {
-        getUserRole();
-
-        if (userRole)
-            switch (userRole) {
-                case "SUPERADMIN":
-                    return history.push("/portal/admin");
-                case "ADMIN":
-                    return history.push("/portal/admin");
-                case "CASHIER":
-                    return history.push("/portal/cashier");
-                case "CEO":
-                    return history.push("/portal/ceo");
-                case "FRONT DESK":
-                    return history.push("/portal/frontdesk");
-                case "JO PERSONNEL":
-                    return history.push("/portal/joborder");
-                case "TECHNICIAN":
-                    return history.push("/portal/tech");
-                default:
-                    console.log(userRole);
-            }
-    }, [userRole, history]);
+    function redirect(role) {
+        if (role === "SUPERADMIN") return history.push("/portal/admin");
+        if (role === "ADMIN") return history.push("/portal/admin");
+        if (role === "CASHIER") return history.push("/portal/cashier");
+        if (role === "CEO") return history.push("/portal/ceo");
+        if (role === "FRONT DESK") return history.push("/portal/frontdesk");
+        if (role === "JO PERSONNEL") return history.push("/portal/joborder");
+        if (role === "TECHNICIAN") return history.push("/portal/tech");
+    }
 
     // const cards = [
     //     { title: "ADMIN", path: "admin", name: "admin" },
@@ -89,7 +73,7 @@ function Portal() {
                                                 LCCTV-OMS
                                             </span>
                                             <span className="fs-5 border-start ps-3 ms-3">
-                                                LOGIN
+                                                LOGIN MODULE
                                             </span>
                                         </div>
                                         <div className="card-body">
@@ -104,6 +88,10 @@ function Portal() {
                                                     <input
                                                         className="form-control"
                                                         type="text"
+                                                        style={{
+                                                            textTransform:
+                                                                "none",
+                                                        }}
                                                         id="username"
                                                         value={username}
                                                         onChange={(e) =>
@@ -125,6 +113,10 @@ function Portal() {
                                                     <input
                                                         className="form-control"
                                                         type="password"
+                                                        style={{
+                                                            textTransform:
+                                                                "none",
+                                                        }}
                                                         id="password"
                                                         value={password}
                                                         onChange={(e) =>
@@ -139,27 +131,29 @@ function Portal() {
                                         <div className="card-footer">
                                             <button
                                                 className="d-flex ms-auto btn btn-gold fw-bold"
-                                                onClick={login}
+                                                disabled={isLoading}
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    handleLogin();
+                                                }}
                                             >
-                                                LOGIN
+                                                {isLoading
+                                                    ? "LOADING"
+                                                    : "LOGIN"}
                                             </button>
                                         </div>
                                     </div>
                                 </div>
-                                {/* ) : (
-                                    cards.map(
-                                        ({ title, path, name }, index) => {
-                                            return (
-                                                <Card
-                                                    title={title}
-                                                    path={path}
-                                                    name={name}
-                                                    key={index}
-                                                />
-                                            );
-                                        }
-                                    )
-                                )} */}
+                                {/* {cards.map(({ title, path, name }, index) => {
+                                    return (
+                                        <Card
+                                            title={title}
+                                            path={path}
+                                            name={name}
+                                            key={index}
+                                        />
+                                    );
+                                })} */}
                             </div>
                         </div>
                     </div>
@@ -167,12 +161,12 @@ function Portal() {
             </Route>
             <Route path="/portal/*">
                 <Switch>
-                    <Route path="/portal/admin" component={Administrator} />
-                    <Route path="/portal/cashier" component={Cashier} />
-                    <Route path="/portal/ceo" component={CEO} />
-                    <Route path="/portal/frontdesk" component={FrontDesk} />
-                    <Route path="/portal/joborder" component={JobOrder} />
-                    <Route path="/portal/tech" component={Technician} />
+                    <PrivateRoute path="/portal/admin" comp={Administrator} />
+                    <Route path="/portal/cashier" comp={Cashier} />
+                    <Route path="/portal/ceo" comp={CEO} />
+                    <Route path="/portal/frontdesk" comp={FrontDesk} />
+                    <Route path="/portal/joborder" comp={JobOrder} />
+                    <PrivateRoute path="/portal/tech" comp={Technician} />
                 </Switch>
             </Route>
         </Switch>

@@ -11,6 +11,8 @@ import SearchError from "../SearchError";
 import Spinner from "../Spinner";
 import AddButton from "../AddButton";
 
+import authHeader from "../../auth/auth-header";
+
 function Plans() {
     const [equipments, setEquipments] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
@@ -45,7 +47,8 @@ function Plans() {
             if (_isMounted.current) {
                 setIsLoading(true);
                 const res = await axios.get(
-                    "https://lcctv-backend.herokuapp.com/api/equipments"
+                    "https://lcctv-backend.herokuapp.com/api/equipments",
+                    { headers: authHeader() }
                 );
                 setEquipments([...res.data]);
                 setIsLoading(false);

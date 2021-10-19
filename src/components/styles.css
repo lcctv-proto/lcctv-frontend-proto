@@ -166,6 +166,10 @@ body {
     width: 350px;
 }
 
+.logout {
+    cursor: pointer;
+}
+
 @media (max-width: 992px) {
     .sidebar {
         width: 100px;
@@ -292,6 +296,7 @@ body {
 .border-navy-1 {
     border-bottom: 1px #14274e solid !important;
 }
+
 .border-navy-all {
     border: 2px #14274e solid !important;
 }
@@ -651,6 +656,18 @@ body {
 
 .text-tech {
     color: #adb36e;
+}
+
+.btn-outline-gold {
+    color: #f0b917 !important;
+    background-color: transparent !important;
+    border-color: #f0b917 !important;
+}
+
+.btn-outline-gold:hover {
+    color: #14274e !important;
+    background-color: #f0b917 !important;
+    border-color: #f0b917 !important;
 }
 
 .btn-gold {

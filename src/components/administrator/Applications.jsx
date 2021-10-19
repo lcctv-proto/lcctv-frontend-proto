@@ -10,6 +10,8 @@ import SearchBar from "../SearchBar";
 import SearchError from "../SearchError";
 import Spinner from "../Spinner";
 
+import authHeader from "../../auth/auth-header";
+
 function Applications() {
     const [applications, setApplications] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
@@ -43,7 +45,8 @@ function Applications() {
             if (_isMounted.current) {
                 setIsLoading(true);
                 const res = await axios.get(
-                    "https://lcctv-backend.herokuapp.com/api/applications"
+                    "https://lcctv-backend.herokuapp.com/api/applications",
+                    { headers: authHeader() }
                 );
                 setApplications([...res.data]);
                 setIsLoading(false);
