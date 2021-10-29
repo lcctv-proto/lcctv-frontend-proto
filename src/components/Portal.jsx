@@ -161,11 +161,11 @@ function Portal({ history }) {
             </Route>
             <Route path="/portal/*">
                 <Switch>
-                    <PrivateRoute path="/portal/admin" comp={Administrator} />
                     <Route path="/portal/cashier" comp={Cashier} />
                     <Route path="/portal/ceo" comp={CEO} />
-                    <Route path="/portal/frontdesk" comp={FrontDesk} />
+                    <PrivateRoute path="/portal/frontdesk" comp={FrontDesk} />
                     <Route path="/portal/joborder" comp={JobOrder} />
+                    <PrivateRoute path="/portal/admin" comp={Administrator} />
                     <PrivateRoute path="/portal/tech" comp={Technician} />
                 </Switch>
             </Route>

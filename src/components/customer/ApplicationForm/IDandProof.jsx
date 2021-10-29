@@ -35,6 +35,7 @@ function IDandProof({
                     accept="image/*"
                     onChange={(e) => {
                         setIDPreview(URL.createObjectURL(e.target.files[0]));
+                        setGovernmentIdImageURL(e.target.files[0]);
                     }}
                 />
             </div>
@@ -59,6 +60,7 @@ function IDandProof({
                     accept="image/*"
                     onChange={(e) => {
                         setPOBPreview(URL.createObjectURL(e.target.files[0]));
+                        setBillingImageURL(e.target.files[0]);
                     }}
                 />
             </div>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Search, PlusCircle } from "react-bootstrap-icons";
 
-import axios from "axios";
+import api from "../../api/api";
 
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
@@ -31,9 +31,7 @@ function Accounts() {
 
         try {
             set_Show(false);
-            const res = await axios.get(
-                `https://lcctv-backend.herokuapp.com/api/accounts/${searchTerm}?type=custom`
-            );
+            const res = await api.accounts.get(searchTerm, { type: "custom" });
             setAccount(res.data);
         } catch (err) {
             setAccount([]);

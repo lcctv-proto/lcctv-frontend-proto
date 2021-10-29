@@ -44,10 +44,8 @@ function EditApplicationModal({ show, handleClose, application }) {
     const [spouseMiddleName, setSpouseMiddleName] = useState("");
     const [spouseLastName, setSpouseLastName] = useState("");
 
-    // const [governmentIdImageURL, setGovernmentIdImageURL] = useState("");
-    // const [billingImageURL, setBillingImageURL] = useState("");
-    // const [IDpreview, setIDPreview] = useState("");
-    // const [POBpreview, setPOBPreview] = useState("");
+    const [governmentIdImageURL, setGovernmentIdImageURL] = useState("");
+    const [billingImageURL, setBillingImageURL] = useState("");
 
     const [packageID, setPackageID] = useState("");
 
@@ -90,6 +88,9 @@ function EditApplicationModal({ show, handleClose, application }) {
             setSpouseFirstName(account?.contactInfo?.spouseName?.firstName);
             setSpouseMiddleName(account?.contactInfo?.spouseName?.middleName);
             setSpouseLastName(account?.contactInfo?.spouseName?.lastName);
+
+            setGovernmentIdImageURL(account?.governmentIdImageURL);
+            setBillingImageURL(account?.billingImageURL);
 
             setPackageID(account.packageID.description);
         };
@@ -549,7 +550,11 @@ function EditApplicationModal({ show, handleClose, application }) {
                                 controlId="modalGovernmentIssuedID"
                             >
                                 <Form.Label>Government Issued ID:</Form.Label>
-                                <Form.Control type="text" />
+                                <img
+                                    src={governmentIdImageURL}
+                                    className="img-fluid mb-2"
+                                    alt="govtID"
+                                />
                             </Form.Group>
                         </Row>
                         <Row className="mb-3">
@@ -559,7 +564,11 @@ function EditApplicationModal({ show, handleClose, application }) {
                                 controlId="modalProofOfBilling"
                             >
                                 <Form.Label>Proof of Billing:</Form.Label>
-                                <Form.Control type="text" />
+                                <img
+                                    src={billingImageURL}
+                                    className="img-fluid mb-2"
+                                    alt="pob"
+                                />
                             </Form.Group>
                         </Row>
                     </Form>

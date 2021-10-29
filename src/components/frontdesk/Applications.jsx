@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-import axios from "axios";
+import api from "../../api/api";
 
 import ApplicationTable from "./ApplicationTable";
 import Pagination from "../Pagination";
@@ -56,9 +56,7 @@ function Applications() {
         const fetchApplications = async () => {
             if (_isMounted.current) {
                 setIsLoading(true);
-                const res = await axios.get(
-                    "https://lcctv-backend.herokuapp.com/api/applications"
-                );
+                const res = await api.applications.get("");
                 setApplications([...res.data]);
                 setIsLoading(false);
             }

@@ -1,12 +1,12 @@
+import { useEffect, useRef, useState } from "react";
+import { LightbulbFill } from "react-bootstrap-icons";
+
+import api from "../../api/api";
+
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import { LightbulbFill } from "react-bootstrap-icons";
-
-import { useEffect, useRef, useState } from "react";
-
-import axios from "axios";
 
 import AccountTable from "./AccountTable";
 import SearchError from "../SearchError";
@@ -49,9 +49,7 @@ function AccountSearchModal({ show, handleClose, searchTerm, setSearchTerm }) {
         const fetchAccounts = async () => {
             setIsLoading(true);
             if (_isMounted.current) {
-                const res = await axios.get(
-                    "https://lcctv-backend.herokuapp.com/api/accounts"
-                );
+                const res = await api.accounts.get("");
                 setAccounts([...res.data]);
             }
             setIsLoading(false);

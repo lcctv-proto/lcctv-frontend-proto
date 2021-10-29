@@ -6,6 +6,7 @@ import ContactInformation from "./ApplicationForm/ContactInformation";
 import IDandProof from "./ApplicationForm/IDandProof";
 import Plan from "./ApplicationForm/Plan";
 import { useLocation } from "react-router";
+import axios from "axios";
 
 function Apply() {
     const [page, setPage] = useState(1);
@@ -60,20 +61,20 @@ function Apply() {
         },
     ];
 
-    function HandleSubmit(e) {
-        const accountName = {
-            accountFirstName,
-            accountMiddleName,
-            accountLastName,
-        };
+    async function HandleSubmit(e) {
+        e.preventDefault();
 
+        const accountName = {
+            firstName: accountFirstName,
+            middleName: accountMiddleName,
+            lastName: accountLastName,
+        };
         const additionalInfo = {
             birthdate,
             nationality,
             gender,
             civilStatus,
         };
-
         const serviceAddress = {
             unit,
             street,
@@ -85,35 +86,57 @@ function Apply() {
             residencyYear,
             nearestLandmark,
         };
-
         const contactInfo = {
             cellphoneNumber,
             telephoneNumber,
             email,
             motherMaidenName: {
-                motherFirstName,
-                motherMiddleName,
-                motherLastName,
+                firstName: motherFirstName,
+                middleName: motherMiddleName,
+                lastName: motherLastName,
             },
             spouseMaidenName: {
-                spouseFirstName,
-                spouseMiddleName,
-                spouseLastName,
+                firstName: spouseFirstName,
+                middleName: spouseMiddleName,
+                lastName: spouseLastName,
             },
         };
 
-        const account = {
-            accountName,
-            additionalInfo,
-            serviceAddress,
-            contactInfo,
-            packageID,
-            governmentIdImageURL,
-            billingImageURL,
-        };
+        const accountData = new FormData();
 
-        e.preventDefault();
-        console.log(account);
+        accountData.append(
+            "payload",
+            JSON.stringify({
+                accountName,
+                additionalInfo,
+                serviceAddress,
+                contactInfo,
+                packageID,
+            })
+        );
+        accountData.append("governmentIdImageURL", governmentIdImageURL);
+        accountData.append("billingImageURL", billingImageURL);
+        console.log(...accountData);
+
+        await axios
+            .post("http://localhost:5000/api/accounts/", accountData)
+            .then(async (res) => {
+                await axios
+                    .post("http://localhost:5000/api/applications/", {
+                        accountID: res.data._id,
+                        remarks: "",
+                    })
+                    .then((res) => console.log("Application Created!"))
+                    .catch((err) => console.error(err));
+                alert(
+                    `${res.data.accountName.firstName} ${res.data.accountName.lastName}, account creation success! Please check your email(${res.data.contactInfo.email}) in the next 48 hours to see if your application is approved!`
+                );
+            })
+            .catch((err) =>
+                alert(
+                    "There seems to be a problem with your application, please try again!"
+                )
+            );
     }
 
     function PrevPage() {
