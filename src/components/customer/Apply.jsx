@@ -119,13 +119,19 @@ function Apply() {
         console.log(...accountData);
 
         await axios
-            .post("http://localhost:5000/api/accounts/", accountData)
+            .post(
+                "https://lcctv-backend.herokuapp.com/api/accounts/",
+                accountData
+            )
             .then(async (res) => {
                 await axios
-                    .post("http://localhost:5000/api/applications/", {
-                        accountID: res.data._id,
-                        remarks: "",
-                    })
+                    .post(
+                        "https://lcctv-backend.herokuapp.com/api/applications/",
+                        {
+                            accountID: res.data._id,
+                            remarks: "",
+                        }
+                    )
                     .then((res) => console.log("Application Created!"))
                     .catch((err) => console.error(err));
                 alert(
