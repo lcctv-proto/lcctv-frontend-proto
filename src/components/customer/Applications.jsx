@@ -1,24 +1,110 @@
 import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import api from "../../api/api";
 
 function Applications() {
     const [referenceNumber, setReferenceNumber] = useState("");
-    const history = useHistory();
+    const [application, setApplication] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
 
-    function HandleSubmit(e) {
-        e.preventDefault();
+    const formatDate = (date) => {
+        const localDate = new Date(date);
+        const localDateString = localDate
+            .toLocaleDateString(undefined, {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+            })
+            .toUpperCase();
+
+        return localDateString;
+    };
+
+    const fetchApplication = async (referenceNumber) => {
+        setIsLoading(true);
+        await api.applications
+            .get(referenceNumber, {
+                type: "custom",
+            })
+            .then((res) => {
+                setApplication(res.data);
+                setIsLoading(false);
+            })
+            .catch((err) => {
+                alert(
+                    "Application not found! Please check the number you entered and try again!"
+                );
+            });
+        // try {
+        //     setIsLoading(true);
+        //     const res = await api.applications.get(referenceNumber, {
+        //         type: "custom",
+        //     });
+        //     setApplication(res.data);
+        //     setIsLoading(false);
+        // } catch (err) {
+        //     alert(
+        //         "Application not found! Please check the number you entered and try again!"
+        //     );
+        // }
+    };
+
+    const handleSubmit = (e) => {
         if (
             !referenceNumber.includes(" ") &&
-            (referenceNumber.includes("REF-") ||
-                referenceNumber.includes("ref-")) &&
-            referenceNumber.length === 15
+            referenceNumber.toLocaleUpperCase().includes("REF-") &&
+            referenceNumber.length === 13
         )
-            history.push(`/application/${referenceNumber}`);
-    }
+            fetchApplication(referenceNumber);
+    };
+
+    const steps = {
+        99: {
+            title: "DENIED",
+            style: { width: `${(8 / 8) * 100}%`, backgroundColor: "red" },
+            description:
+                "There is something wrong about your application form. Please check our email as to why your application got denied.",
+        },
+        3: {
+            title: "FOR VALIDATION",
+            style: { width: `${(3 / 8) * 100}%`, backgroundColor: "#f0b917" },
+            description:
+                "Our employees are currently validating your application details. Check again within the next 24 hours!",
+        },
+        4: {
+            title: "PENDING PAYMENT",
+            style: { width: `${(4 / 8) * 100}%`, backgroundColor: "#f0b917" },
+            description:
+                "Congratulations! Your application has been approved. You may now settle your installation fee and one-month advanced payment.",
+        },
+        5: {
+            title: "ACCOUNT INITIALIZATION",
+            style: { width: `${(5 / 8) * 100}%`, backgroundColor: "#f0b917" },
+            description:
+                "We have received your payment! Please wait as we your account is currently undergoing initialization.",
+        },
+        6: {
+            title: "ISSUANCE OF JOB ORDER",
+            style: { width: `${(6 / 8) * 100}%`, backgroundColor: "#f0b917" },
+            description:
+                "Almost there! We are now looking for teams in your area that are available for installations",
+        },
+        7: {
+            title: "FOR INSTALLATION",
+            style: { width: `${(7 / 8) * 100}%`, backgroundColor: "#f0b917" },
+            description:
+                "We are now ready to install Lake Community Cable TV in your home. Please prepare necessary documents such as your barangay certificate, IDs, Gate Passes(if applicable).",
+        },
+        8: {
+            title: "CURRENTLY ACTIVE",
+            style: { width: `${(8 / 8) * 100}%`, backgroundColor: "green" },
+            description: "Welcome to Lake Community Cable TV!",
+        },
+    };
 
     return (
         <div className="container-fluid bg-application">
@@ -37,32 +123,82 @@ function Applications() {
                             <span className="h5">CHECK APPLICATION STATUS</span>
                         </div>
                         <div className="card-body">
-                            <form>
-                                <label htmlFor="email" className="form-label">
-                                    REFERENCE NUMBER
-                                </label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="email"
-                                    value={referenceNumber}
-                                    onChange={(e) => {
-                                        setReferenceNumber(e.target.value);
-                                    }}
-                                    required
-                                />
-                                <div className="form-text ms-2">
-                                    Ex: REF-xxxxxxxxxxx
-                                </div>
-                            </form>
+                            {!application ? (
+                                <>
+                                    <label
+                                        htmlFor="email"
+                                        className="form-label"
+                                    >
+                                        REFERENCE NUMBER
+                                    </label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="email"
+                                        value={referenceNumber}
+                                        onChange={(e) => {
+                                            setReferenceNumber(e.target.value);
+                                        }}
+                                        onKeyPress={(e) => {
+                                            if (e.key === "Enter")
+                                                handleSubmit();
+                                        }}
+                                        required
+                                    />
+                                    <div className="form-text ms-2">
+                                        Ex: REF-xxxxxxxxxxx
+                                    </div>
 
-                            <button
-                                type="button"
-                                className="btn btn-warning mt-3 fw-bolder float-end btn-gold"
-                                onClick={HandleSubmit}
-                            >
-                                CHECK STATUS
-                            </button>
+                                    <button
+                                        type="button"
+                                        className="btn btn-primary mt-3 fw-bolder float-end btn-gold"
+                                        onClick={handleSubmit}
+                                        disabled={isLoading}
+                                    >
+                                        {isLoading ? "LOADING" : "CHECK STATUS"}
+                                    </button>
+                                </>
+                            ) : (
+                                <>
+                                    <p className="small text-end mb-4">
+                                        DATE OF APPLICATION:{" "}
+                                        {formatDate(application.date)}
+                                    </p>
+
+                                    <h2 className="fw-bold text-center mb-3">
+                                        {steps[application.step].title}
+                                    </h2>
+                                    <div class="progress mb-2">
+                                        <div
+                                            class="progress-bar progress-bar-striped progress-bar-animated"
+                                            role="progressbar"
+                                            style={
+                                                steps[application.step].style
+                                            }
+                                        ></div>
+                                    </div>
+
+                                    <p className="text-center">
+                                        {application.step < 8 && (
+                                            <>STEP {application.step}/8</>
+                                        )}
+                                    </p>
+
+                                    <p className="mb-5">
+                                        {steps[application.step].description}
+                                    </p>
+
+                                    <button
+                                        type="button"
+                                        className="btn btn-warning d-block mx-auto mt-3 fw-bolder btn-gold"
+                                        onClick={(e) => {
+                                            setApplication("");
+                                        }}
+                                    >
+                                        GO BACK
+                                    </button>
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>

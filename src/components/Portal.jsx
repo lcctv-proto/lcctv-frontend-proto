@@ -99,6 +99,13 @@ function Portal({ history }) {
                                                                 e.target.value
                                                             )
                                                         }
+                                                        onKeyPress={(e) => {
+                                                            if (
+                                                                e.key ===
+                                                                "Enter"
+                                                            )
+                                                                handleLogin();
+                                                        }}
                                                     />
                                                 </div>
                                             </div>
@@ -124,6 +131,13 @@ function Portal({ history }) {
                                                                 e.target.value
                                                             )
                                                         }
+                                                        onKeyPress={(e) => {
+                                                            if (
+                                                                e.key ===
+                                                                "Enter"
+                                                            )
+                                                                handleLogin();
+                                                        }}
                                                     />
                                                 </div>
                                             </div>
@@ -161,10 +175,10 @@ function Portal({ history }) {
             </Route>
             <Route path="/portal/*">
                 <Switch>
-                    <Route path="/portal/cashier" comp={Cashier} />
-                    <Route path="/portal/ceo" comp={CEO} />
+                    <PrivateRoute path="/portal/cashier" comp={Cashier} />
+                    <PrivateRoute path="/portal/ceo" comp={CEO} />
                     <PrivateRoute path="/portal/frontdesk" comp={FrontDesk} />
-                    <Route path="/portal/joborder" comp={JobOrder} />
+                    <PrivateRoute path="/portal/joborder" comp={JobOrder} />
                     <PrivateRoute path="/portal/admin" comp={Administrator} />
                     <PrivateRoute path="/portal/tech" comp={Technician} />
                 </Switch>

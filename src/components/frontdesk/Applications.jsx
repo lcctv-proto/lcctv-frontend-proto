@@ -34,7 +34,11 @@ function Applications() {
             const {
                 accountName: { firstName, middleName, lastName },
             } = application.accountID;
+
+            if (application.step !== 3) return null;
+
             const name = `${firstName} ${middleName} ${lastName}`;
+
             if (searchTerm === "") return application;
             else if (name.includes(searchTerm.toUpperCase()))
                 return application;

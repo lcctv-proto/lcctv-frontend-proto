@@ -9,14 +9,14 @@ const API = axios.create({
 const accounts = {
     get: async (id, params) =>
         await API.get(`/accounts/${id}`, { params, headers: authHeader() }),
-    post: (body) => API.post("/accounts", body, { headers: authHeader() }),
+    post: (body) => API.post("/accounts", body),
 };
 
 const applications = {
     get: async (id, params) =>
         await API.get(`/applications/${id}`, { params, headers: authHeader() }),
     post: async (accountID, remarks) =>
-        await API.post(`/applications`, remarks),
+        await API.post(`/applications`, { data: { accountID, remarks } }),
 };
 
 const areas = {
@@ -41,6 +41,7 @@ const fees = {
 const inquiries = {
     get: async (id, params) =>
         await API.get(`/inquiries/${id}`, { params, headers: authHeader() }),
+    post: async (body) => API.post("/inquiries", body),
 };
 
 const invoices = {

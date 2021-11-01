@@ -1,4 +1,5 @@
 import { useState } from "react";
+import api from "../../api/api";
 
 function Inquiry() {
     const [subscriberName, setSubscriberName] = useState("");
@@ -9,19 +10,20 @@ function Inquiry() {
     const [concern, setConcern] = useState("");
     const [addInfo, setAddInfo] = useState("");
 
-    function handleSubmit(e) {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        console.log({
-            subscriberName,
-            accountNumber,
-            email,
-            contactNumber,
-            plan,
-            concern,
-            addInfo,
-        });
-    }
+        await api.inquiries
+            .post({
+                accountID: accountNumber,
+                type: concern,
+                description: addInfo,
+                email,
+                contactNumber,
+            })
+            .then(() => console.log("a-ok!"))
+            .catch((err) => alert("Account not found!"));
+    };
 
     return (
         <div className="container-fluid bg-general">

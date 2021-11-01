@@ -39,10 +39,13 @@ function NavbarPortal({ title, name }) {
                 <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse px-3" id="nav-items">
-                <span className="fs-5 ms-auto">{user}</span>
+                <span className="fs-5 ms-auto">
+                    Hello,{" "}
+                    <span className={`fst-italic text-${name}`}>{user}</span> !
+                </span>
 
                 <span
-                    className="btn btn-outline-gold ms-3 px-3 fs-5 text-decoration-none"
+                    className="btn btn-outline-light ms-3 px-3 fs-5 text-decoration-none"
                     onClick={handleLogout}
                 >
                     Logout
