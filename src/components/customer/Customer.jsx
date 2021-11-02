@@ -13,6 +13,7 @@ import Inquiry from "./Inquiry";
 import Technical from "./Technical";
 import Payment from "./Payment";
 
+import NotFound from "./NotFound";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
@@ -35,6 +36,7 @@ function Customer() {
                         <Route path="/general" component={Inquiry} />
                         <Route path="/technical" component={Technical} />
                         <Route path="/payment" component={Payment} />
+                        <Route path="*" component={NotFound} />
                     </Switch>
                 </Route>
             </Switch>

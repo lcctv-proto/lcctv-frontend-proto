@@ -7,7 +7,7 @@ import {
     FileRuled,
 } from "react-bootstrap-icons";
 
-import axios from "axios";
+import api from "../../api/api";
 
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
@@ -20,6 +20,9 @@ import Spinner from "react-bootstrap/Spinner";
 import AccountSearchModal from "./AccountSearchModal";
 import AccountNotFoundDismissible from "./AccountNotFoundDismissible";
 import PaymentsButton from "./PaymentsButton";
+import WalkInModal from "./WalkInModal";
+import PortalModal from "./PortalModal";
+import BalanceModal from "./BalanceModal.jsx";
 
 function Accounts() {
     const [searchTerm, setSearchTerm] = useState("");
@@ -28,24 +31,37 @@ function Accounts() {
 
     const [show, setShow] = useState(false);
     const [_show, set_Show] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
 
-    const items = [
-        { icon: <FileRuled className="m-3" />, title: "VIEW BALANCE" },
-        { icon: <WindowSidebar className="m-3" />, title: "PAYMENT PORTAL" },
-        { icon: <DoorOpen className="m-3" />, title: "WALK-IN" },
-    ];
+    const [walkShow, setWalkShow] = useState(false);
+    const [portalShow, setPortalShow] = useState(false);
+    const [balanceShow, setBalanceShow] = useState(false);
+
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const handleWalkShow = () => {
+        if (account.length !== 0) setWalkShow(true);
+    };
+    const handleWalkClose = () => setWalkShow(false);
+
+    const handlePortalShow = () => {
+        if (account.length !== 0) setPortalShow(true);
+    };
+    const handlePortalClose = () => setPortalShow(false);
+
+    const handleBalanceShow = () => {
+        if (account.length !== 0) setBalanceShow(true);
+    };
+    const handleBalanceClose = () => setBalanceShow(false);
+
     const handleClick = async () => {
         setIsLoading(true);
 
         try {
             set_Show(false);
-            const res = await axios.get(
-                `https://lcctv-backend.herokuapp.com/api/accounts/${searchTerm}?type=custom`
-            );
+            const res = await api.accounts.get(searchTerm, { type: "custom" });
             setAccount(res.data);
         } catch (err) {
             setAccount([]);
@@ -54,6 +70,24 @@ function Accounts() {
 
         setIsLoading(false);
     };
+
+    const items = [
+        {
+            icon: <FileRuled className="m-3" />,
+            title: "VIEW BALANCE",
+            handleShow: handleBalanceShow,
+        },
+        {
+            icon: <WindowSidebar className="m-3" />,
+            title: "PAYMENT PORTAL",
+            handleShow: handlePortalShow,
+        },
+        {
+            icon: <DoorOpen className="m-3" />,
+            title: "WALK-IN",
+            handleShow: handleWalkShow,
+        },
+    ];
 
     return (
         <>
@@ -176,8 +210,13 @@ function Accounts() {
                 </Col>
             </Row>
             <Row className="pt-3 text-light">
-                {items.map(({ icon, title }, index) => (
-                    <PaymentsButton icon={icon} title={title} key={index} />
+                {items.map(({ icon, title, handleShow }, index) => (
+                    <PaymentsButton
+                        icon={icon}
+                        title={title}
+                        show={handleShow}
+                        key={index}
+                    />
                 ))}
             </Row>
             <AccountSearchModal
@@ -186,6 +225,9 @@ function Accounts() {
                 searchTerm={searchTerm}
                 setSearchTerm={setSearchTerm}
             />
+            <WalkInModal show={walkShow} handleClose={handleWalkClose} />
+            <PortalModal show={portalShow} handleClose={handlePortalClose} />
+            <BalanceModal show={balanceShow} handleClose={handleBalanceClose} />
         </>
     );
 }

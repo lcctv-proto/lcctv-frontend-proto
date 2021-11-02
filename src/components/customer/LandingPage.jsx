@@ -30,6 +30,46 @@ function LandingPage() {
         "bbc.png",
     ];
 
+    const items = [
+        {
+            inner: "blob3",
+            outer: "blob4",
+            header: "YOUR PURE END-TO-END CABLE TV PROVIDER",
+            description: [
+                {
+                    text: "Upgrade your online experience at home, in your business, or in the corporate world.",
+                },
+                {
+                    text: "Get the plan that you deserve with Lake Community Cable TV.",
+                },
+            ],
+            buttonText: "Our Story",
+        },
+        {
+            inner: "blob1",
+            outer: "blob2",
+            header: "JOIN LAKE COMMUNITY CABLE TV NOW!",
+            description: [
+                {
+                    text: "Binge-watch up to 176 channels (High Definition and Standard Definition) for as low as P640/month!",
+                },
+            ],
+            buttonText: "Apply Now!",
+        },
+        {
+            inner: "blob5",
+            outer: "blob6",
+            header: "WHY CHOOSE LAKE COMMUNITY CABLE TV?",
+            description: [
+                {
+                    text: "We deliver pure end-to-end cable connection to empower your home with seamless watching experience,",
+                    sub: "so you experience better.",
+                },
+            ],
+            buttonText: "Apply Now!",
+        },
+    ];
+
     return (
         <div className="container-fluid">
             <div className="row">
@@ -63,80 +103,53 @@ function LandingPage() {
             <div className="row bg-dark-navy text-white">
                 <div className="row wave1 m-0 p-0 bg-white"></div>
                 <div className="col-12 p-0">
-                    <div className="row m-0 px-0">
-                        <div className="col-xxl-7 p-0 mx-auto text-navy">
-                            <div className="outer-blob blob4">
-                                <div className="inner-blob blob3">
-                                    <h1 className="pb-3 border-gold-3 align-self-start align-self-lg-center">
-                                        YOUR PURE END-TO-END CABLE TV PROVIDER
-                                    </h1>
-                                    <p className="fs-5 align-self-start align-self-lg-center">
-                                        Upgrade your online experience at home,
-                                        in your business, or in the corporate
-                                        world.
-                                    </p>
-                                    <p className="fs-5 align-self-start align-self-lg-center">
-                                        Get the plan that you deserve with Lake
-                                        Community Cable TV.
-                                    </p>
-                                    <Link
-                                        to="/about"
-                                        className="btn btn-warning btn-lg btn-gold-2 align-self-start align-self-md-center"
+                    {items.map((value, index) => {
+                        return (
+                            <div className="row m-0 px-0" key={index}>
+                                <div className="col-xxl-6 p-0 align-self-start  mx-auto text-navy">
+                                    <div
+                                        className={`outer-blob ${value.outer}`}
                                     >
-                                        Our Story
-                                    </Link>
+                                        <div
+                                            className={`inner-blob ${value.inner} fs-5 align-items-start`}
+                                        >
+                                            <h1 className="mx-md-5 pb-3 border-gold-3 align-self-lg-center">
+                                                {value.header}
+                                            </h1>
+                                            {value.description.map(
+                                                (description, index) => {
+                                                    return (
+                                                        <p
+                                                            className="mx-md-5 align-self-lg-center"
+                                                            key={index}
+                                                        >
+                                                            {description.text}
+                                                            {description.sub ? (
+                                                                <span className="fst-italic align-self-lg-center">
+                                                                    {" "}
+                                                                    {
+                                                                        description.sub
+                                                                    }
+                                                                </span>
+                                                            ) : (
+                                                                <></>
+                                                            )}
+                                                        </p>
+                                                    );
+                                                }
+                                            )}
+                                            <Link
+                                                to="/about"
+                                                className="btn btn-warning btn-lg btn-gold-2 align-self-start align-self-md-center"
+                                            >
+                                                {value.buttonText}
+                                            </Link>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div className="row m-0 px-0">
-                        <div className="col-xxl-7 p-0 mx-auto text-navy">
-                            <div className="outer-blob blob2">
-                                <div className="inner-blob blob1">
-                                    <h1 className="pb-3 border-gold-3 align-self-start align-self-lg-center">
-                                        JOIN LAKE COMMUNITY CABLE TV NOW!
-                                    </h1>
-                                    <p className="fs-5 align-self-start align-self-lg-center">
-                                        Binge-watch up to 176 channels (High
-                                        Definition and Standard Definition) for
-                                        as low as P640/month!
-                                    </p>
-                                    <Link
-                                        to="/plans"
-                                        className="btn btn-warning btn-lg btn-gold-2 align-self-start align-self-md-center"
-                                    >
-                                        Apply Now!
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="row m-0 px-0">
-                        <div className="col-xxl-7 p-0 mx-auto text-navy">
-                            <div className="outer-blob blob6">
-                                <div className="inner-blob blob5">
-                                    <h1 className="pb-3 border-gold-3 align-self-start align-self-lg-center">
-                                        WHY CHOOSE LAKE COMMUNITY CABLE TV?
-                                    </h1>
-                                    <p className="fs-5 align-self-start align-self-lg-center">
-                                        We deliver pure end-to-end cable
-                                        connection to empower your home with
-                                        seamless watching experience,
-                                    </p>
-                                    <p className="fs-5 align-self-start align-self-lg-center">
-                                        so you experience better.
-                                    </p>
-
-                                    <Link
-                                        to="/services"
-                                        className="btn btn-warning btn-lg btn-gold-2 align-self-start align-self-md-center"
-                                    >
-                                        Our Services
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        );
+                    })}
                 </div>
                 <div className="wave2 m-0 p-0 bg-light"></div>
             </div>

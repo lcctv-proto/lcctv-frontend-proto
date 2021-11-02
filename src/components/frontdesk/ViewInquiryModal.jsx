@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ChatSquareText, Tools } from "react-bootstrap-icons";
 
-import axios from "axios";
+import api from "../../api/api";
 
 import Modal from "react-bootstrap/Modal";
 import Row from "react-bootstrap/Row";
@@ -25,9 +25,7 @@ function ViewInquiryModal({ show, handleClose, handleReplyShow, inquiry }) {
     useEffect(() => {
         const fetchInquiry = async () => {
             setIsLoading(true);
-            const res = await axios.get(
-                `https://lcctv-backend.herokuapp.com/api/inquiries/${inquiry}`
-            );
+            const res = await api.inquiries.get(inquiry);
             const {
                 type,
                 email,

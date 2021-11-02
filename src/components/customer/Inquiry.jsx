@@ -20,6 +20,7 @@ function Inquiry() {
                 description: addInfo,
                 email,
                 contactNumber,
+                isGenInq: true,
             })
             .then(() => console.log("a-ok!"))
             .catch((err) => alert("Account not found!"));

@@ -6,7 +6,7 @@ import {
     Backspace,
 } from "react-bootstrap-icons";
 
-import axios from "axios";
+import api from "../../api/api";
 
 import Modal from "react-bootstrap/Modal";
 import Row from "react-bootstrap/Row";
@@ -24,14 +24,13 @@ function SendReplyModal({ show, handleClose, inquiry }) {
     const [description, setDescription] = useState("");
     const [subject, setSubject] = useState("");
     const [body, setBody] = useState("");
+    const [isGenInq, setIsGenInq] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         const fetchInquiry = async () => {
             setIsLoading(true);
-            const res = await axios.get(
-                `https://lcctv-backend.herokuapp.com/api/inquiries/${inquiry}`
-            );
+            const res = await api.inquiries.get(inquiry);
             const {
                 type,
                 email,
@@ -41,6 +40,7 @@ function SendReplyModal({ show, handleClose, inquiry }) {
                     accountName: { firstName, middleName, lastName },
                     acc_ctr,
                 },
+                isGenInq,
             } = res.data;
 
             setAccountName(`${firstName} ${middleName[0]}. ${lastName}`);
@@ -48,6 +48,7 @@ function SendReplyModal({ show, handleClose, inquiry }) {
             setEmail(email);
             setType(type);
             setDescription(description);
+            setIsGenInq(isGenInq);
             setIsLoading(false);
         };
 
@@ -208,14 +209,25 @@ function SendReplyModal({ show, handleClose, inquiry }) {
                     >
                         <Backspace className="me-2" /> BACK
                     </Button>
-                    <Button
-                        type="submit"
-                        className="d-flex mb-2 btn-navy fw-bold align-items-center "
-                        onClick={handleSubmit}
-                    >
-                        <ArrowReturnRight className="me-2" />
-                        SEND REPLY
-                    </Button>
+                    {!isGenInq ? (
+                        <Button
+                            type="submit"
+                            className="d-flex mb-2 btn-navy fw-bold align-items-center "
+                            onClick={handleSubmit}
+                        >
+                            <Tools className="me-2" />
+                            CONVERT TO JO AND REPLY
+                        </Button>
+                    ) : (
+                        <Button
+                            type="submit"
+                            className="d-flex mb-2 btn-navy fw-bold align-items-center "
+                            onClick={handleSubmit}
+                        >
+                            <ArrowReturnRight className="me-2" />
+                            SEND REPLY
+                        </Button>
+                    )}
                 </Modal.Footer>
             </Modal>
         </>

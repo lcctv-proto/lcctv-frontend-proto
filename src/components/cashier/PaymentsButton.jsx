@@ -1,16 +1,10 @@
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 
-function PaymentsButton({ icon, title }) {
+function PaymentsButton({ icon, title, show }) {
     return (
         <Col xs={12} lg={4} className="p-1">
-            <Button
-                size="lg"
-                className="btn-jumbo w-100"
-                onClick={() => {
-                    console.log(title);
-                }}
-            >
+            <Button size="lg" className="btn-jumbo w-100" onClick={show}>
                 {icon}
                 <p className="fs-5 pt-2 ff-jumbo border-top-cashier">{title}</p>
             </Button>

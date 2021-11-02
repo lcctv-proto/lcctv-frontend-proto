@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-import axios from "axios";
+import api from "../../api/api";
 
 import PaymentTable from "./PaymentTable";
 import Pagination from "../Pagination";
@@ -47,9 +47,7 @@ function Payments() {
         const fetchPayments = async () => {
             if (_isMounted.current) {
                 setIsLoading(true);
-                const res = await axios.get(
-                    "https://lcctv-backend.herokuapp.com/api/payments"
-                );
+                const res = await api.payments.get("");
                 setPayments([...res.data]);
                 setIsLoading(false);
             }

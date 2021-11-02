@@ -4,6 +4,10 @@
 /* * {
     outline: 1px solid red;
 } */
+.error {
+    min-height: 500px;
+}
+
 .bg-login {
     background-image: url("../assets/Images/Backgrounds/bg-login.svg");
     background-repeat: no-repeat;
