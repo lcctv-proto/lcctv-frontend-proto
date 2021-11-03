@@ -66,7 +66,7 @@ function LandingPage() {
                     sub: "so you experience better.",
                 },
             ],
-            buttonText: "Apply Now!",
+            buttonText: "Our Services",
         },
     ];
 
