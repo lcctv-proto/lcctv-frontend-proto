@@ -10,12 +10,11 @@ import SearchBar from "../SearchBar";
 import SearchError from "../SearchError";
 import Spinner from "../Spinner";
 import AddButton from "../AddButton";
+import RefreshButton from "../RefreshButton";
 
 import AddChannelModal from "./AddChannelModal";
 import EditChannelModal from "./EditChannelModal";
 import DeleteChannelModal from "./DeleteChannelModal";
-
-import { ArrowRepeat } from "react-bootstrap-icons";
 
 function Channels() {
     const [channel, setChannel] = useState("");
@@ -99,14 +98,10 @@ function Channels() {
                                     name="CHANNEL"
                                     click={handleAddShow}
                                 />
-                                <div className="col-auto">
-                                    <button
-                                        className="btn btn-navy fw-bold d-flex align-items-center"
-                                        onClick={fetchChannels}
-                                    >
-                                        <ArrowRepeat className="me-2" /> REFRESH
-                                    </button>
-                                </div>
+                                <RefreshButton
+                                    name="CHANNELS"
+                                    click={fetchChannels}
+                                />
                                 <SearchBar
                                     searchTerm={searchTerm}
                                     setSearchTerm={setSearchTerm}

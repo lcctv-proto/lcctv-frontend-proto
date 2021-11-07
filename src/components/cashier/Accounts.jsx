@@ -43,16 +43,19 @@ function Accounts() {
 
     const handleWalkShow = () => {
         if (account.length !== 0) setWalkShow(true);
+        else alert("Please select an account!");
     };
     const handleWalkClose = () => setWalkShow(false);
 
     const handlePortalShow = () => {
         if (account.length !== 0) setPortalShow(true);
+        else alert("Please select an account!");
     };
     const handlePortalClose = () => setPortalShow(false);
 
     const handleBalanceShow = () => {
         if (account.length !== 0) setBalanceShow(true);
+        else alert("Please select an account!");
     };
     const handleBalanceClose = () => setBalanceShow(false);
 

@@ -9,6 +9,7 @@ import ItemCountSelector from "../ItemCountSelector";
 import SearchBar from "../SearchBar";
 import SearchError from "../SearchError";
 import Spinner from "../Spinner";
+import RefreshButton from "../RefreshButton";
 
 import EditApplicationModal from "./EditApplicationModal";
 
@@ -56,16 +57,16 @@ function Applications() {
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-    useEffect(() => {
-        const fetchApplications = async () => {
-            if (_isMounted.current) {
-                setIsLoading(true);
-                const res = await api.applications.get("");
-                setApplications([...res.data]);
-                setIsLoading(false);
-            }
-        };
+    const fetchApplications = async () => {
+        if (_isMounted.current) {
+            setIsLoading(true);
+            const res = await api.applications.get("");
+            setApplications([...res.data]);
+            setIsLoading(false);
+        }
+    };
 
+    useEffect(() => {
         fetchApplications();
 
         return () => {
@@ -87,6 +88,10 @@ function Applications() {
                                     setItemsPerPage={setApplicationsPerPage}
                                     name="applications"
                                     setCurrentPage={setCurrentPage}
+                                />
+                                <RefreshButton
+                                    name="APPLICATIONS"
+                                    click={fetchApplications}
                                 />
                                 <SearchBar
                                     searchTerm={searchTerm}
@@ -142,6 +147,8 @@ function Applications() {
                 show={editShow}
                 handleClose={handleEditClose}
                 application={application}
+                applications={applications}
+                setApplications={setApplications}
             />
         </>
     );

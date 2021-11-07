@@ -9,6 +9,7 @@ import ItemCountSelector from "../ItemCountSelector";
 import SearchBar from "../SearchBar";
 import SearchError from "../SearchError";
 import Spinner from "../Spinner";
+import RefreshButton from "../RefreshButton";
 
 import ViewInquiryModal from "./ViewInquiryModal";
 import SendReplyModal from "./SendReplyModal";
@@ -62,16 +63,16 @@ function Inquiries() {
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-    useEffect(() => {
-        const fetchInquiries = async () => {
-            if (_isMounted.current) {
-                setIsLoading(true);
-                const res = await api.inquiries.get("");
-                setInquiries([...res.data]);
-                setIsLoading(false);
-            }
-        };
+    const fetchInquiries = async () => {
+        if (_isMounted.current) {
+            setIsLoading(true);
+            const res = await api.inquiries.get("");
+            setInquiries([...res.data]);
+            setIsLoading(false);
+        }
+    };
 
+    useEffect(() => {
         fetchInquiries();
 
         return () => {
@@ -93,6 +94,10 @@ function Inquiries() {
                                     setItemsPerPage={setInquiriesPerPage}
                                     name="inquiries"
                                     setCurrentPage={setCurrentPage}
+                                />
+                                <RefreshButton
+                                    name="INQUIRIES"
+                                    click={fetchInquiries}
                                 />
                                 <SearchBar
                                     searchTerm={searchTerm}

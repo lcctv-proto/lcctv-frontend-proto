@@ -62,7 +62,9 @@ export default function Auth({ children }) {
                 }
             })
             .catch((err) => {
-                alert(err);
+                alert(
+                    "There are no accounts with these credentials. Please check and try again!"
+                );
                 setIsAuthenticated(false);
                 setIsLoading(false);
             });

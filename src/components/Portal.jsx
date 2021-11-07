@@ -28,8 +28,9 @@ function Portal({ history }) {
     const [password, setPassword] = useState("");
 
     const handleLogin = () => {
-        console.log("click");
-        login(username, password, (role) => redirect(role));
+        if (username && password)
+            login(username, password, (role) => redirect(role));
+        else alert("Please enter username and password");
     };
 
     function redirect(role) {

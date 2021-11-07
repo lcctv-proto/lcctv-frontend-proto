@@ -6,7 +6,7 @@ import {
     FileEarmarkPerson,
 } from "react-bootstrap-icons";
 
-import axios from "axios";
+import api from "../../api/api";
 
 import Modal from "react-bootstrap/Modal";
 import Row from "react-bootstrap/Row";
@@ -14,7 +14,13 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-function EditApplicationModal({ show, handleClose, application }) {
+function EditApplicationModal({
+    show,
+    handleClose,
+    application,
+    applications,
+    setApplications,
+}) {
     const [accountFirstName, setAccountFirstName] = useState("");
     const [accountMiddleName, setAccountMiddleName] = useState("");
     const [accountLastName, setAccountLastName] = useState("");
@@ -51,9 +57,7 @@ function EditApplicationModal({ show, handleClose, application }) {
 
     useEffect(() => {
         const fetchApplication = async () => {
-            const res = await axios.get(
-                `https://lcctv-backend.herokuapp.com/api/applications/${application}`
-            );
+            const res = await api.applications.get(application);
             const account = res.data?.accountID;
 
             setAccountLastName(account.accountName?.lastName);
@@ -586,7 +590,19 @@ function EditApplicationModal({ show, handleClose, application }) {
                         type="submit"
                         className="d-flex mb-2 btn btn-danger btn-delete fw-bold align-items-center"
                         onClick={() => {
-                            alert("DENIED!");
+                            api.applications
+                                .patch(application, "DENIED", 99)
+                                .then(() => {
+                                    setApplications(
+                                        applications.filter((applications) => {
+                                            return (
+                                                applications._id !== application
+                                            );
+                                        })
+                                    );
+                                    alert("APPLICATION   DENIED!");
+                                })
+                                .catch((err) => alert(err));
                             handleClose();
                         }}
                     >
@@ -596,7 +612,19 @@ function EditApplicationModal({ show, handleClose, application }) {
                         type="submit"
                         className="d-flex mb-2 btn btn-success btn-approve fw-bold align-items-center"
                         onClick={() => {
-                            alert("APPROVED!");
+                            api.applications
+                                .patch(application, "PENDING PAYMENT", 4)
+                                .then(() => {
+                                    setApplications(
+                                        applications.filter((applications) => {
+                                            return (
+                                                applications._id !== application
+                                            );
+                                        })
+                                    );
+                                    alert("APPLICATION SUCCESSFULLY APPROVED!");
+                                })
+                                .catch((err) => alert(err));
                             handleClose();
                         }}
                     >

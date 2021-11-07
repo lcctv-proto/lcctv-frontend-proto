@@ -1,3 +1,7 @@
+import { useState } from "react";
+
+import api from "../../api/api";
+
 import Modal from "react-bootstrap/Modal";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -5,8 +9,35 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 function WalkInModal({ show, handleClose }) {
-    const curr = new Date();
+    const [paymentMode, setPaymentMode] = useState("");
+    const [receiptNumber, setReceiptNumber] = useState("");
+    const [curr, setCurr] = useState(new Date());
+    const [id, setID] = useState("");
+    const [items, setItems] = useState([]);
+    const [amountPaid, setAmountPaid] = useState("");
+    const [remarks, setRemarks] = useState("");
+    const [ctr, setCtr] = useState(0);
+
     const localDateString = curr.toISOString().split("T")[0];
+
+    const fetchFees = async () => {
+        try {
+            if (id) {
+                const res = await api.fees.get(id, { type: "custom" });
+                setItems([...items, { data: res.data, key: ctr }]);
+                setCtr(ctr + 1);
+            }
+        } catch (err) {
+            alert("Fee ID not found");
+        }
+    };
+
+    function deleteRow(id) {
+        const removeItem = items.filter((item) => {
+            return item.key !== id;
+        });
+        setItems(removeItem);
+    }
 
     return (
         <>
@@ -20,15 +51,15 @@ function WalkInModal({ show, handleClose }) {
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
-                        <Row className="mb-2">
+                        <Row className="mb-3">
                             <Form.Group as={Col} xs="6" controlId="modalDate">
                                 <Form.Label>Date of Transaction: </Form.Label>
                                 <Form.Control
                                     type="date"
                                     placeholder="e.g. JUAN"
                                     value={localDateString}
-                                    onChange={() => {
-                                        console.log("asd");
+                                    onChange={(e) => {
+                                        setCurr(e.target.valueAsDate);
                                     }}
                                 />
                             </Form.Group>
@@ -38,9 +69,14 @@ function WalkInModal({ show, handleClose }) {
                                 controlId="modalModeOfPayments"
                             >
                                 <Form.Label>Mode of Payment: </Form.Label>
-                                <Form.Select>
-                                    <option value="cash">Cash</option>
-                                    <option value="check">Check</option>
+                                <Form.Select
+                                    value={paymentMode}
+                                    onChange={(e) => {
+                                        setPaymentMode(e.target.value);
+                                    }}
+                                >
+                                    <option value="cash">CASH</option>
+                                    <option value="check">CHECK</option>
                                 </Form.Select>
                             </Form.Group>
                         </Row>
@@ -51,19 +87,111 @@ function WalkInModal({ show, handleClose }) {
                                 controlId="modalReceiptNumber"
                             >
                                 <Form.Label>Receipt Number: </Form.Label>
-                                <Form.Control type="text" />
+                                <Form.Control
+                                    type="text"
+                                    value={receiptNumber}
+                                    onChange={(e) =>
+                                        setReceiptNumber(e.target.value)
+                                    }
+                                />
                             </Form.Group>
                         </Row>
                         <Row className="mb-3 align-items-end">
                             <Form.Group as={Col} xs="9" controlId="modalCode">
                                 <Form.Label>Code: </Form.Label>
-                                <Form.Control type="text" />
+                                <Form.Control
+                                    type="text"
+                                    value={id}
+                                    onChange={(e) => setID(e.target.value)}
+                                />
                             </Form.Group>
                             <Col xs="3" className="align-bottom">
-                                <Button variant="dark">Add</Button>
-                                <Button variant="success" className="ms-2">
+                                <Button variant="dark" onClick={fetchFees}>
+                                    Add
+                                </Button>
+                                <Button
+                                    variant="success"
+                                    className="ms-2"
+                                    onClick={(e) => console.log(paymentMode)}
+                                >
                                     Search
                                 </Button>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <table className="table table-responsive table-borderless table-striped shadow">
+                                    <thead className="bg-navy border-cashier text-light text-center">
+                                        <tr>
+                                            <th style={{ width: "20px" }}></th>
+                                            <th>FEE CODE</th>
+                                            <th>FEE DESCRIPTION</th>
+                                            <th>FEE</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="fee_table">
+                                        {items.map((value) => {
+                                            return (
+                                                <tr
+                                                    key={value?.key}
+                                                    className="text-center"
+                                                >
+                                                    <td
+                                                        style={{
+                                                            width: "20px",
+                                                        }}
+                                                    >
+                                                        <button
+                                                            className="btn btn-close "
+                                                            onClick={() => {
+                                                                deleteRow(
+                                                                    value?.key
+                                                                );
+                                                            }}
+                                                        ></button>
+                                                    </td>
+                                                    <td>
+                                                        {`${
+                                                            value?.data?.prefix
+                                                        }${value?.data?.fee_ctr
+                                                            .toString()
+                                                            .padStart(3, "0")}`}
+                                                    </td>
+                                                    <td>
+                                                        {
+                                                            value?.data
+                                                                ?.description
+                                                        }
+                                                    </td>
+                                                    <td className="text-end">
+                                                        {value?.data?.price}
+                                                    </td>
+                                                </tr>
+                                            );
+                                        })}
+                                    </tbody>
+                                    <tfoot className="bg-light">
+                                        <tr>
+                                            <td></td>
+                                            <td
+                                                colSpan="2"
+                                                className="fw-bold text-end"
+                                            >
+                                                TOTAL AMOUNT DUE:
+                                            </td>
+                                            <td
+                                                id="total"
+                                                className="fw-bold text-end"
+                                            >
+                                                {items.reduce(
+                                                    (acc, obj) =>
+                                                        acc + obj.data.price,
+                                                    0
+                                                )}
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
                             </Col>
                         </Row>
                         <Row className="mb-3">
@@ -73,10 +201,15 @@ function WalkInModal({ show, handleClose }) {
                                 controlId="modalReceiptNumber"
                             >
                                 <Form.Label>Amount Paid: </Form.Label>
-                                <Form.Control type="text" />
+                                <Form.Control
+                                    type="number"
+                                    value={amountPaid}
+                                    onChange={(e) =>
+                                        setAmountPaid(e.target.value)
+                                    }
+                                />
                             </Form.Group>
                         </Row>
-
                         <Row className="mb-3">
                             <Form.Group
                                 as={Col}
@@ -84,7 +217,12 @@ function WalkInModal({ show, handleClose }) {
                                 controlId="modalReceiptNumber"
                             >
                                 <Form.Label>Remarks: </Form.Label>
-                                <Form.Control as="textarea" rows={4} />
+                                <Form.Control
+                                    as="textarea"
+                                    value={remarks}
+                                    onChange={(e) => setRemarks(e.target.value)}
+                                    rows={4}
+                                />
                             </Form.Group>
                         </Row>
                     </Form>
@@ -97,7 +235,7 @@ function WalkInModal({ show, handleClose }) {
                             console.log();
                         }}
                     >
-                        BUTTON
+                        PROCEED
                     </Button>
                 </Modal.Footer>
             </Modal>

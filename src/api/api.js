@@ -17,6 +17,16 @@ const applications = {
         await API.get(`/applications/${id}`, { params, headers: authHeader() }),
     post: async (accountID, remarks) =>
         await API.post(`/applications`, { data: { accountID, remarks } }),
+    patch: async (id, status, step) => {
+        await API.patch(
+            `/applications/status/${id}`,
+            {
+                status,
+                step,
+            },
+            { headers: authHeader() }
+        );
+    },
 };
 
 const areas = {
