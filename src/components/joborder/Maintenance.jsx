@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { Search, Save2, Printer, ChevronDoubleUp } from "react-bootstrap-icons";
 
 import Button from "react-bootstrap/Button";
@@ -5,7 +7,19 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 
+import AccountSearchModal from "./AccountSearchModal";
+
 function Maintenance() {
+    const [accountsShow, setAccountsShow] = useState(false);
+    const [searchTerm, setSearchTerm] = useState("");
+
+    const handleAccountsShow = () => {
+        setAccountsShow(true);
+    };
+    const handleAccountsClose = () => {
+        setAccountsShow(false);
+    };
+
     return (
         <>
             <Row className="border-jo mb-3">
@@ -20,7 +34,13 @@ function Maintenance() {
                                 <Form.Label>ACCOUNT NUMBER:</Form.Label>
                                 <div className="d-flex">
                                     <Form.Control type="text" />
-                                    <button className="btn text-light align-top ms-2 btn-navy">
+                                    <button
+                                        className="btn text-light align-top ms-2 btn-navy"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            handleAccountsShow();
+                                        }}
+                                    >
                                         <Search className="" />
                                     </button>
                                 </div>
@@ -189,6 +209,13 @@ function Maintenance() {
                     </Button>
                 </Col>
             </Row>
+
+            <AccountSearchModal
+                show={accountsShow}
+                handleClose={handleAccountsClose}
+                searchTerm={searchTerm}
+                setSearchTerm={setSearchTerm}
+            />
         </>
     );
 }

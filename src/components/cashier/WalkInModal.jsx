@@ -7,6 +7,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import FeesModal from "./FeesModal";
 
 function WalkInModal({ show, handleClose }) {
     const [paymentMode, setPaymentMode] = useState("");
@@ -17,6 +18,15 @@ function WalkInModal({ show, handleClose }) {
     const [amountPaid, setAmountPaid] = useState("");
     const [remarks, setRemarks] = useState("");
     const [ctr, setCtr] = useState(0);
+
+    const [feesShow, setFeesShow] = useState("");
+
+    const handleFeesShow = () => {
+        setFeesShow(true);
+    };
+    const handleFeesClose = () => {
+        setFeesShow(false);
+    };
 
     const localDateString = curr.toISOString().split("T")[0];
 
@@ -98,7 +108,7 @@ function WalkInModal({ show, handleClose }) {
                         </Row>
                         <Row className="mb-3 align-items-end">
                             <Form.Group as={Col} xs="9" controlId="modalCode">
-                                <Form.Label>Code: </Form.Label>
+                                <Form.Label>Enter Fee Code: </Form.Label>
                                 <Form.Control
                                     type="text"
                                     value={id}
@@ -112,9 +122,9 @@ function WalkInModal({ show, handleClose }) {
                                 <Button
                                     variant="success"
                                     className="ms-2"
-                                    onClick={(e) => console.log(paymentMode)}
+                                    onClick={handleFeesShow}
                                 >
-                                    Search
+                                    Show Fees
                                 </Button>
                             </Col>
                         </Row>
@@ -239,6 +249,7 @@ function WalkInModal({ show, handleClose }) {
                     </Button>
                 </Modal.Footer>
             </Modal>
+            <FeesModal show={feesShow} handleClose={handleFeesClose} />
         </>
     );
 }

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-// import axios from "axios";
+import api from "../../api/api";
 
 import ViewTable from "./ViewTable";
 import Pagination from "../Pagination";
@@ -49,95 +49,8 @@ function View() {
         const fetchDispatches = async () => {
             if (_isMounted.current) {
                 setIsLoading(true);
-                // const res = await axios.get(
-                //     "https://lcctv-backend.herokuapp.com/api/dispatches/teamID"
-                // );
-                setDispatches([
-                    {
-                        prefix: "JO-201201",
-                        jo_ctr: 1,
-                        _id: "61026eaaad018f4b4000004f",
-                        type: "RELOCATION",
-                        accountID: {
-                            _id: "61026eaaad018f4b4000004d",
-                            accountName: {
-                                firstName: "GERARD DOMINIC",
-                                middleName: "AGUIRRE",
-                                lastName: "VIZCOCHO",
-                            },
-                            serviceAddress: {
-                                unit: "5A",
-                                street: "J. FAJARDO STREET",
-                                barangay: "449",
-                                municipality: "SAMPALOC",
-                                province: "NCR",
-                                zipCode: "1005",
-                                homeOwnership: "RENT",
-                                residencyYear: 3,
-                            },
-                            packageID: {
-                                description: "PREMIUM 790",
-                            },
-                        },
-                        jobDate: "2021-07-29T17:23:39.912Z",
-                    },
-                    {
-                        prefix: "JO-201201",
-                        jo_ctr: 2,
-                        _id: "61026eaaad018f4b4000004i",
-                        type: "RELOCATION",
-                        accountID: {
-                            _id: "61026eaaad018f4b4000004d",
-                            accountName: {
-                                firstName: "GERARD DOMINIC",
-                                middleName: "AGUIRRE",
-                                lastName: "VIZCOCHO",
-                            },
-                            serviceAddress: {
-                                unit: "5A",
-                                street: "J. FAJARDO STREET",
-                                barangay: "449",
-                                municipality: "SAMPALOC",
-                                province: "NCR",
-                                zipCode: "1008",
-                                homeOwnership: "RENT",
-                                residencyYear: 3,
-                            },
-                            packageID: {
-                                description: "PREMIUM 790",
-                            },
-                        },
-                        jobDate: "2021-07-29T17:23:39.912Z",
-                    },
-                    {
-                        prefix: "JO-201201",
-                        jo_ctr: 3,
-                        _id: "61026eaaad018f4b40000041",
-                        type: "RELOCATION",
-                        accountID: {
-                            _id: "61026eaaad018f4b4000004d",
-                            accountName: {
-                                firstName: "GERARD DOMINIC",
-                                middleName: "AGUIRRE",
-                                lastName: "VIZCOCHO",
-                            },
-                            serviceAddress: {
-                                unit: "5A",
-                                street: "J. FAJARDO STREET",
-                                barangay: "449",
-                                municipality: "SAMPALOC",
-                                province: "NCR",
-                                zipCode: "1005",
-                                homeOwnership: "RENT",
-                                residencyYear: 3,
-                            },
-                            packageID: {
-                                description: "PREMIUM 790",
-                            },
-                        },
-                        jobDate: "2021-07-29T17:23:39.912Z",
-                    },
-                ]);
+                const res = await api.jo.get("");
+                setDispatches([...res.data]);
                 setIsLoading(false);
             }
         };
@@ -153,7 +66,7 @@ function View() {
         <div className="row">
             <div className="col">
                 {isLoading ? (
-                    <Spinner name="tech" />
+                    <Spinner name="jo" />
                 ) : (
                     <>
                         <div className="row">

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-import axios from "axios";
+import api from "../../api/api";
 
 import EmployeeTable from "./EmployeeTable";
 import Pagination from "../Pagination";
@@ -46,9 +46,7 @@ function Employees() {
         const fetchEmployees = async () => {
             if (_isMounted.current) {
                 setIsLoading(true);
-                const res = await axios.get(
-                    "https://lcctv-backend.herokuapp.com/api/personnel"
-                );
+                const res = await api.personnel.get("");
                 setEmployees([...res.data]);
                 setIsLoading(false);
             }
