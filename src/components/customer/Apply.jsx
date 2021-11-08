@@ -5,7 +5,7 @@ import ServiceAddress from "./ApplicationForm/ServiceAddress";
 import ContactInformation from "./ApplicationForm/ContactInformation";
 import IDandProof from "./ApplicationForm/IDandProof";
 import Plan from "./ApplicationForm/Plan";
-import { useLocation } from "react-router";
+import { useLocation, useHistory } from "react-router";
 import axios from "axios";
 
 function Apply() {
@@ -46,6 +46,8 @@ function Apply() {
     const [billingImageURL, setBillingImageURL] = useState("");
     const [IDpreview, setIDPreview] = useState("");
     const [POBpreview, setPOBPreview] = useState("");
+
+    const history = useHistory();
 
     const packages = [
         { id: "61026eaaad018f4b4000004d", desc: "BASIC 640", name: "BASIC" },
@@ -132,7 +134,10 @@ function Apply() {
                             remarks: "",
                         }
                     )
-                    .then((res) => console.log("Application Created!"))
+                    .then((res) => {
+                        console.log("Application Created!");
+                        history.push("/");
+                    })
                     .catch((err) => console.error(err));
                 alert(
                     `${res.data.accountName.firstName} ${res.data.accountName.lastName}, account creation success! Please check your email(${res.data.contactInfo.email}) in the next 48 hours to see if your application is approved!`

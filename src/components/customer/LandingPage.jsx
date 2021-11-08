@@ -44,6 +44,7 @@ function LandingPage() {
                 },
             ],
             buttonText: "Our Story",
+            link: "/about",
         },
         {
             inner: "blob1",
@@ -55,6 +56,7 @@ function LandingPage() {
                 },
             ],
             buttonText: "Apply Now!",
+            link: "/apply",
         },
         {
             inner: "blob5",
@@ -67,6 +69,7 @@ function LandingPage() {
                 },
             ],
             buttonText: "Our Services",
+            link: "/services",
         },
     ];
 
@@ -139,7 +142,7 @@ function LandingPage() {
                                                 }
                                             )}
                                             <Link
-                                                to="/about"
+                                                to={value.link}
                                                 className="btn btn-warning btn-lg btn-gold-2 align-self-start align-self-md-center"
                                             >
                                                 {value.buttonText}
