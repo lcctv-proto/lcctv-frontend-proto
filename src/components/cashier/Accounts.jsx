@@ -39,7 +39,13 @@ function Accounts() {
     const [isLoading, setIsLoading] = useState(false);
 
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleShow = () => {
+        if (account) {
+            setSearchTerm("");
+            setAccount([]);
+        }
+        setShow(true);
+    };
 
     const handleWalkShow = () => {
         if (account.length !== 0) setWalkShow(true);
@@ -57,6 +63,7 @@ function Accounts() {
         if (account.length !== 0) setBalanceShow(true);
         else alert("Please select an account!");
     };
+
     const handleBalanceClose = () => setBalanceShow(false);
 
     const handleClick = async () => {
@@ -227,10 +234,15 @@ function Accounts() {
                 handleClose={handleClose}
                 searchTerm={searchTerm}
                 setSearchTerm={setSearchTerm}
+                handleClick={handleClick}
             />
             <WalkInModal show={walkShow} handleClose={handleWalkClose} />
             <PortalModal show={portalShow} handleClose={handlePortalClose} />
-            <BalanceModal show={balanceShow} handleClose={handleBalanceClose} />
+            <BalanceModal
+                show={balanceShow}
+                handleClose={handleBalanceClose}
+                account={account._id}
+            />
         </>
     );
 }

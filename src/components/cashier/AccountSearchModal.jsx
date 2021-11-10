@@ -12,7 +12,13 @@ import AccountTable from "./AccountTable";
 import SearchError from "../SearchError";
 import Spinner from "../Spinner";
 
-function AccountSearchModal({ show, handleClose, searchTerm, setSearchTerm }) {
+function AccountSearchModal({
+    show,
+    handleClose,
+    searchTerm,
+    setSearchTerm,
+    handleClick,
+}) {
     const [accounts, setAccounts] = useState([]);
     const [currentPage] = useState(1);
     const [accountsPerPage] = useState(10);
@@ -32,6 +38,8 @@ function AccountSearchModal({ show, handleClose, searchTerm, setSearchTerm }) {
             const name = `${firstName} ${middleName} ${lastName}`;
             const accSuffix = acc_ctr.toString().padStart(3, "0");
             const accNumber = `${prefix}${accSuffix}`;
+
+            if (account.accountStatus === "DENIED") return null;
 
             if (searchTerm === "") return account;
             else if (
@@ -98,6 +106,8 @@ function AccountSearchModal({ show, handleClose, searchTerm, setSearchTerm }) {
                                 <AccountTable
                                     currentAccounts={currentAccounts}
                                     cols={cols}
+                                    setSearchTerm={setSearchTerm}
+                                    handleClose={handleClose}
                                 />
                             )}
                         </Col>

@@ -9,7 +9,18 @@ const API = axios.create({
 const accounts = {
     get: async (id, params) =>
         await API.get(`/accounts/${id}`, { params, headers: authHeader() }),
-    post: (body) => API.post("/accounts", body),
+    getBalance: async (id) =>
+        await API.get(`/accounts/billing/${id}`, { headers: authHeader() }),
+    post: async (body) => await API.post("/accounts", body),
+    patchStatus: async (id, status) => {
+        await API.patch(
+            `/accounts/status/${id}`,
+            { accountStatus: status },
+            {
+                headers: authHeader(),
+            }
+        );
+    },
 };
 
 const applications = {

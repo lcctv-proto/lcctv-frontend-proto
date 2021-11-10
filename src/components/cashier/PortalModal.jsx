@@ -7,6 +7,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import InputGroup from "react-bootstrap/InputGroup";
+
 import FeesModal from "./FeesModal";
 
 function WalkInModal({ show, handleClose }) {
@@ -55,7 +57,7 @@ function WalkInModal({ show, handleClose }) {
                 <Modal.Header
                     closeButton
                     closeVariant="white"
-                    className="bg-navy text-light border-tech"
+                    className="bg-navy text-light border-cashier"
                 >
                     <Modal.Title>PAYMENT PORTALS</Modal.Title>
                 </Modal.Header>
@@ -98,7 +100,7 @@ function WalkInModal({ show, handleClose }) {
                         <Row className="mb-3">
                             <Form.Group
                                 as={Col}
-                                xs="12"
+                                xs="8"
                                 controlId="modalReceiptNumber"
                             >
                                 <Form.Label>Reference Number: </Form.Label>
@@ -110,9 +112,42 @@ function WalkInModal({ show, handleClose }) {
                                     }
                                 />
                             </Form.Group>
+                            <Form.Group
+                                as={Col}
+                                xs="4"
+                                controlId="modalReceiptNumber"
+                            >
+                                <Form.Label>Amount Paid: </Form.Label>
+                                <InputGroup>
+                                    <InputGroup.Text>₱</InputGroup.Text>
+                                    <Form.Control
+                                        type="number"
+                                        value={amountPaid}
+                                        onChange={(e) =>
+                                            setAmountPaid(e.target.value)
+                                        }
+                                    />
+                                </InputGroup>
+                            </Form.Group>
                         </Row>
+                        <Row className="mb-3">
+                            <Form.Group
+                                as={Col}
+                                xs="12"
+                                controlId="modalReceiptNumber"
+                            >
+                                <Form.Label>Remarks: </Form.Label>
+                                <Form.Control
+                                    as="textarea"
+                                    value={remarks}
+                                    onChange={(e) => setRemarks(e.target.value)}
+                                    rows={4}
+                                />
+                            </Form.Group>
+                        </Row>
+                        <hr />
                         <Row className="mb-3 align-items-end">
-                            <Form.Group as={Col} xs="9" controlId="modalCode">
+                            <Form.Group as={Col} xs="8" controlId="modalCode">
                                 <Form.Label>Enter Fee Code: </Form.Label>
                                 <Form.Control
                                     type="text"
@@ -120,16 +155,16 @@ function WalkInModal({ show, handleClose }) {
                                     onChange={(e) => setID(e.target.value)}
                                 />
                             </Form.Group>
-                            <Col xs="3" className="align-bottom">
+                            <Col xs="4" className="align-bottom">
                                 <Button variant="dark" onClick={fetchFees}>
-                                    Add
+                                    ADD
                                 </Button>
                                 <Button
                                     variant="success"
                                     className="ms-2"
                                     onClick={handleFeesShow}
                                 >
-                                    Show Fees
+                                    SHOW FEES
                                 </Button>
                             </Col>
                         </Row>
@@ -208,37 +243,6 @@ function WalkInModal({ show, handleClose }) {
                                     </tfoot>
                                 </table>
                             </Col>
-                        </Row>
-                        <Row className="mb-3">
-                            <Form.Group
-                                as={Col}
-                                xs="12"
-                                controlId="modalReceiptNumber"
-                            >
-                                <Form.Label>Amount Paid: </Form.Label>
-                                <Form.Control
-                                    type="number"
-                                    value={amountPaid}
-                                    onChange={(e) =>
-                                        setAmountPaid(e.target.value)
-                                    }
-                                />
-                            </Form.Group>
-                        </Row>
-                        <Row className="mb-3">
-                            <Form.Group
-                                as={Col}
-                                xs="12"
-                                controlId="modalReceiptNumber"
-                            >
-                                <Form.Label>Remarks: </Form.Label>
-                                <Form.Control
-                                    as="textarea"
-                                    value={remarks}
-                                    onChange={(e) => setRemarks(e.target.value)}
-                                    rows={4}
-                                />
-                            </Form.Group>
                         </Row>
                     </Form>
                 </Modal.Body>

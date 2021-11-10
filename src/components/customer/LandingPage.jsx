@@ -56,7 +56,7 @@ function LandingPage() {
                 },
             ],
             buttonText: "Apply Now!",
-            link: "/apply",
+            link: "/plans",
         },
         {
             inner: "blob5",
