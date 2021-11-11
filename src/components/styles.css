@@ -1,9 +1,42 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Mate+SC&display=swap");
 
-/* * {
-    outline: 1px solid red;
-} */
+.btn-dispatch {
+    background-color: #8ab6d6 !important;
+}
+
+.btn-dispatch:hover {
+    border-color: #8ab6d6 !important;
+    background-color: transparent !important;
+}
+
+.btn-area {
+    background-color: #fce38a !important;
+}
+
+.btn-area:hover {
+    border-color: #fce38a !important;
+    background-color: transparent !important;
+}
+
+.btn-edit {
+    background-color: #b4a5a5 !important;
+}
+
+.btn-edit:hover {
+    border-color: #b4a5a5 !important;
+    background-color: transparent !important;
+}
+
+.btn-delete-team {
+    background-color: #f05454 !important;
+}
+
+.btn-delete-team:hover {
+    border-color: #f05454 !important;
+    background-color: transparent !important;
+}
+
 .error {
     min-height: 500px;
 }

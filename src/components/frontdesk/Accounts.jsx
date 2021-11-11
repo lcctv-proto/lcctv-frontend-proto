@@ -24,7 +24,13 @@ function Accounts() {
     const [isLoading, setIsLoading] = useState(false);
 
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleShow = () => {
+        if (account) {
+            setSearchTerm("");
+            setAccount([]);
+        }
+        setShow(true);
+    };
 
     const handleClick = async () => {
         setIsLoading(true);

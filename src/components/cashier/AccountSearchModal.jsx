@@ -1,24 +1,18 @@
+import { useEffect, useRef, useState } from "react";
+import { LightbulbFill } from "react-bootstrap-icons";
+
+import api from "../../api/api";
+
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import { LightbulbFill } from "react-bootstrap-icons";
-
-import { useEffect, useRef, useState } from "react";
-
-import api from "../../api/api";
 
 import AccountTable from "./AccountTable";
 import SearchError from "../SearchError";
 import Spinner from "../Spinner";
 
-function AccountSearchModal({
-    show,
-    handleClose,
-    searchTerm,
-    setSearchTerm,
-    handleClick,
-}) {
+function AccountSearchModal({ show, handleClose, searchTerm, setSearchTerm }) {
     const [accounts, setAccounts] = useState([]);
     const [currentPage] = useState(1);
     const [accountsPerPage] = useState(10);

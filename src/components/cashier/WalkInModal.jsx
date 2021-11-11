@@ -11,7 +11,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 
 import FeesModal from "./FeesModal";
 
-function WalkInModal({ show, handleClose }) {
+function WalkInModal({ show, handleClose, accountID }) {
     const [paymentMode, setPaymentMode] = useState("");
     const [receiptNumber, setReceiptNumber] = useState("");
     const [curr, setCurr] = useState(new Date());
@@ -245,11 +245,20 @@ function WalkInModal({ show, handleClose }) {
                     <Button
                         type="submit"
                         className="d-flex mb-2 btn-navy fw-bold align-items-center"
-                        onClick={() => {
-                            console.log();
+                        onClick={async () => {
+                            const feeIDs = items.map((a) => a.data._id);
+                            const res = await api.payments.post({
+                                accountID,
+                                modeOfPayment: paymentMode,
+                                receiptNumber,
+                                feeIDs,
+                                amountPaid,
+                                remarks,
+                            });
+                            console.log(res);
                         }}
                     >
-                        PROCEED
+                        CLOSE PAYMENT
                     </Button>
                 </Modal.Footer>
             </Modal>

@@ -98,6 +98,8 @@ function AccountSearchModal({ show, handleClose, searchTerm, setSearchTerm }) {
                                 <AccountTable
                                     currentAccounts={currentAccounts}
                                     cols={cols}
+                                    setSearchTerm={setSearchTerm}
+                                    handleClose={handleClose}
                                 />
                             )}
                         </Col>

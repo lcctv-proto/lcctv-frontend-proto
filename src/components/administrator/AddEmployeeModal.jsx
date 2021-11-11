@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { PlusCircle } from "react-bootstrap-icons";
 
 import axios from "axios";
+import api from "../../api/api";
 
 import Modal from "react-bootstrap/Modal";
 import Row from "react-bootstrap/Row";
@@ -13,10 +14,22 @@ function AddEmployeeModal({ show, handleClose }) {
     const [firstName, setFirstName] = useState("");
     const [middleName, setMiddleName] = useState("");
     const [lastName, setLastName] = useState("");
-
+    const [username, setUsername] = useState("");
     const [contactNumber, setContactNumber] = useState("");
 
     const [roleID, setRoleID] = useState("");
+
+    const [roles, setRoles] = useState([]);
+
+    useEffect(() => {
+        const fetchRoles = async () => {
+            const res = await api.roles.get("");
+            console.log(res);
+            setRoles(res.data);
+        };
+
+        fetchRoles();
+    }, []);
 
     const handleSubmit = () => {
         const personnel = {
@@ -25,12 +38,16 @@ function AddEmployeeModal({ show, handleClose }) {
                 middleName,
                 lastName,
             },
+            username,
             contactNumber,
             roleID,
         };
 
         axios
-            .post("https://lcctv-backend.herokuapp.com/api/channels", personnel)
+            .post(
+                "https://lcctv-backend.herokuapp.com/api/personnel",
+                personnel
+            )
             .then((res) => {
                 handleClose();
                 alert("User creation success");
@@ -50,7 +67,7 @@ function AddEmployeeModal({ show, handleClose }) {
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
-                        <Row>
+                        <Row className="mb-2">
                             <Form.Group
                                 as={Col}
                                 xs="4"
@@ -61,7 +78,7 @@ function AddEmployeeModal({ show, handleClose }) {
                                 }}
                             >
                                 <Form.Label>First Name</Form.Label>
-                                <Form.Control type="text" placeholder="JUAN" />
+                                <Form.Control type="text" />
                             </Form.Group>
                             <Form.Group
                                 as={Col}
@@ -73,7 +90,7 @@ function AddEmployeeModal({ show, handleClose }) {
                                 }}
                             >
                                 <Form.Label>Middle Name</Form.Label>
-                                <Form.Control type="text" placeholder="TAMAD" />
+                                <Form.Control type="text" />
                             </Form.Group>
                             <Form.Group
                                 as={Col}
@@ -85,16 +102,29 @@ function AddEmployeeModal({ show, handleClose }) {
                                 }}
                             >
                                 <Form.Label>Last Name</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="DELA CRUZ"
-                                />
+                                <Form.Control type="text" />
                             </Form.Group>
                         </Row>
-                        <Row>
+                        <Row className="mb-2">
                             <Form.Group
                                 as={Col}
-                                xs="12"
+                                xs="6"
+                                controlId="modalFirstName"
+                                value={username}
+                                onChange={(e) => {
+                                    setUsername(e.target.value);
+                                }}
+                            >
+                                <Form.Label>Username </Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    style={{ textTransform: "none" }}
+                                />
+                            </Form.Group>
+
+                            <Form.Group
+                                as={Col}
+                                xs="6"
                                 controlId="modalFirstName"
                                 value={contactNumber}
                                 onChange={(e) => {
@@ -102,27 +132,32 @@ function AddEmployeeModal({ show, handleClose }) {
                                 }}
                             >
                                 <Form.Label>Contact Number</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="DELA CRUZ"
-                                />
+                                <Form.Control type="text" />
                             </Form.Group>
                         </Row>
                         <Row>
                             <Form.Group
                                 as={Col}
                                 xs="12"
-                                controlId="modalFirstName"
+                                controlId="modalRoles"
                                 value={roleID}
                                 onChange={(e) => {
                                     setRoleID(e.target.value);
                                 }}
                             >
-                                <Form.Label>Role ID</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="DELA CRUZ"
-                                />
+                                <Form.Label>Role</Form.Label>
+                                <Form.Select>
+                                    {roles.map((value, index) => {
+                                        return (
+                                            <option
+                                                value={value._id}
+                                                key={index}
+                                            >
+                                                {value.description}
+                                            </option>
+                                        );
+                                    })}
+                                </Form.Select>
                             </Form.Group>
                         </Row>
                     </Form>

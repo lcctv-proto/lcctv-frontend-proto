@@ -236,7 +236,11 @@ function Accounts() {
                 setSearchTerm={setSearchTerm}
                 handleClick={handleClick}
             />
-            <WalkInModal show={walkShow} handleClose={handleWalkClose} />
+            <WalkInModal
+                show={walkShow}
+                handleClose={handleWalkClose}
+                accountID={account}
+            />
             <PortalModal show={portalShow} handleClose={handlePortalClose} />
             <BalanceModal
                 show={balanceShow}

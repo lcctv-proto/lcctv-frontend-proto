@@ -82,6 +82,8 @@ const packages = {
 const payments = {
     get: async (id, params) =>
         await API.get(`/payments/${id}`, { params, headers: authHeader() }),
+    post: async (body) =>
+        await API.post(`/payments`, body, { headers: authHeader() }),
 };
 
 const personnel = {
