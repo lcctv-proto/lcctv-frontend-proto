@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { PlusCircle, Search } from "react-bootstrap-icons";
 
 import api from "../../api/api";
 
@@ -142,7 +143,7 @@ function WalkInModal({ show, handleClose, accountID }) {
                         </Row>
                         <hr />
                         <Row className="mb-3 align-items-end">
-                            <Form.Group as={Col} xs="8" controlId="modalCode">
+                            <Form.Group as={Col} xs={8} controlId="modalCode">
                                 <Form.Label>Enter Fee Code: </Form.Label>
                                 <Form.Control
                                     type="text"
@@ -150,15 +151,21 @@ function WalkInModal({ show, handleClose, accountID }) {
                                     onChange={(e) => setID(e.target.value)}
                                 />
                             </Form.Group>
-                            <Col xs="4" className="align-bottom">
-                                <Button variant="dark" onClick={fetchFees}>
+                            <Col className="align-bottom d-flex">
+                                <Button
+                                    variant="dark"
+                                    className="d-flex align-items-center"
+                                    onClick={fetchFees}
+                                >
+                                    <PlusCircle className="me-2" />
                                     ADD
                                 </Button>
                                 <Button
                                     variant="success"
-                                    className="ms-2"
+                                    className="ms-2 d-flex align-items-center"
                                     onClick={handleFeesShow}
                                 >
+                                    <Search className="me-2" />
                                     SHOW FEES
                                 </Button>
                             </Col>

@@ -21,7 +21,14 @@ function Technical() {
                 email,
                 contactNumber,
             })
-            .then(() => console.log("a-ok!"))
+            .then(async (res) => {
+                await api.accounts.patchStatus(accountNumber, {
+                    status: "FOR MAINTENANCE",
+                });
+                alert(
+                    "Technical inquiry submitted! Please check your provided email for our representative's reply, thank you!"
+                );
+            })
             .catch((err) => alert("Account not found!"));
     };
 

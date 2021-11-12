@@ -8,69 +8,53 @@ import { useEffect, useRef, useState } from "react";
 
 import api from "../../api/api";
 
-import AccountTable from "./AccountTable";
+import TeamTable from "./TeamTable";
 import SearchError from "../SearchError";
 import Spinner from "../Spinner";
 
-function AccountSearchModal({
-    show,
-    handleClose,
-    searchTerm,
-    setSearchTerm,
-    filter,
-}) {
-    const [accounts, setAccounts] = useState([]);
+function TeamSearchModal({ show, handleClose, searchTerm, setSearchTerm }) {
+    const [teams, setTeams] = useState([]);
     const [currentPage] = useState(1);
-    const [accountsPerPage] = useState(10);
+    const [teamsPerPage] = useState(10);
     const [isLoading, setIsLoading] = useState(true);
     const _isMounted = useRef(true);
 
-    const indexOfLastAccount = currentPage * accountsPerPage;
-    const indexOfFirstAccount = indexOfLastAccount - accountsPerPage;
-    const currentAccounts = accounts
-        .filter((account) => {
+    const indexOfLastTeam = currentPage * teamsPerPage;
+    const indexOfFirstTeam = indexOfLastTeam - teamsPerPage;
+    const currentTeams = teams
+        .filter((team) => {
             const {
-                accountName: { firstName, middleName, lastName },
                 prefix,
-                acc_ctr,
-                accountStatus,
-                isNewAccount,
-            } = account;
+                team_ctr,
+                areaID: { description },
+            } = team;
 
-            const name = `${firstName} ${middleName} ${lastName}`;
-            const accSuffix = acc_ctr.toString().padStart(3, "0");
-            const accNumber = `${prefix}${accSuffix}`;
+            const teamSuffix = team_ctr.toString().padStart(3, "0");
+            const teamNumber = `${prefix}${teamSuffix}`;
 
-            if (
-                accountStatus === filter.status &&
-                isNewAccount === filter.isNew
-            ) {
-                return null;
-            }
-
-            if (searchTerm === "") return account;
+            if (searchTerm === "") return team;
             else if (
-                name.includes(searchTerm.toUpperCase()) ||
-                accNumber.includes(searchTerm.toUpperCase())
+                teamNumber.includes(searchTerm.toUpperCase()) ||
+                description.includes(searchTerm.toUpperCase())
             )
-                return account;
+                return team;
             return null;
         })
-        .slice(indexOfFirstAccount, indexOfLastAccount);
+        .slice(indexOfFirstTeam, indexOfLastTeam);
 
-    const cols = ["ACCOUNT NUMBER", "ACCOUNT NAME", "STATUS"];
+    const cols = ["TEAM ID", "AREA ASSIGNED"];
 
     useEffect(() => {
-        const fetchAccounts = async () => {
+        const fetchTeams = async () => {
             setIsLoading(true);
             if (_isMounted.current) {
-                const res = await api.accounts.get("");
-                setAccounts([...res.data]);
+                const res = await api.teams.get("");
+                setTeams([...res.data]);
             }
             setIsLoading(false);
         };
 
-        fetchAccounts();
+        fetchTeams();
 
         return () => {
             _isMounted.current = false;
@@ -84,7 +68,7 @@ function AccountSearchModal({
                     closeVariant="white"
                     className="bg-navy text-light border-jo"
                 >
-                    <Modal.Title>SEARCH ACCOUNTS</Modal.Title>
+                    <Modal.Title>SEARCH TEAMS</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Row>
@@ -92,7 +76,7 @@ function AccountSearchModal({
                             <Form.Control
                                 className="me-2"
                                 type="text"
-                                placeholder="Account Number or Account Name"
+                                placeholder="Team Number or Team Name"
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
                                 maxLength="30"
@@ -104,17 +88,15 @@ function AccountSearchModal({
                         <Col>
                             {isLoading ? (
                                 <Spinner name="cashier" small={true} />
-                            ) : currentAccounts.length === 0 ? (
+                            ) : currentTeams.length === 0 ? (
                                 <SearchError
                                     searchTerm={searchTerm}
                                     small={true}
                                 />
                             ) : (
-                                <AccountTable
-                                    currentAccounts={currentAccounts}
+                                <TeamTable
+                                    currentTeams={currentTeams}
                                     cols={cols}
-                                    setSearchTerm={setSearchTerm}
-                                    handleClose={handleClose}
                                 />
                             )}
                         </Col>
@@ -122,11 +104,11 @@ function AccountSearchModal({
                 </Modal.Body>
                 <Modal.Footer className="justify-content-start">
                     <LightbulbFill className="text-warning h3" />
-                    You can search using account's number or name.
+                    You can search using team number.
                 </Modal.Footer>
             </Modal>
         </>
     );
 }
 
-export default AccountSearchModal;
+export default TeamSearchModal;

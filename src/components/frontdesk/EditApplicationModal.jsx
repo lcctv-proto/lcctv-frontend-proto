@@ -128,7 +128,7 @@ function EditApplicationModal({
                 </Modal.Header>
                 <Modal.Body>
                     {isLoading ? (
-                        <Spinner name="front" small={true}/>
+                        <Spinner name="front" small={true} />
                     ) : (
                         <Form>
                             <Row className="mb-3 fs-5 fw-bold">

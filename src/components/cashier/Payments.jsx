@@ -9,6 +9,7 @@ import ItemCountSelector from "../ItemCountSelector";
 import SearchBar from "../SearchBar";
 import SearchError from "../SearchError";
 import Spinner from "../Spinner";
+import RefreshButton from "../RefreshButton";
 
 function Payments() {
     const [payments, setPayments] = useState([]);
@@ -37,22 +38,22 @@ function Payments() {
         "ACCOUNT NUMBER",
         "ACCOUNT NAME",
         "AMOUNT PAID",
-        "TRANSACTION DATE",
         "MODE OF PAYMENT",
+        "TRANSACTION DATE",
     ];
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-    useEffect(() => {
-        const fetchPayments = async () => {
-            if (_isMounted.current) {
-                setIsLoading(true);
-                const res = await api.payments.get("");
-                setPayments([...res.data]);
-                setIsLoading(false);
-            }
-        };
+    const fetchPayments = async () => {
+        if (_isMounted.current) {
+            setIsLoading(true);
+            const res = await api.payments.get("");
+            setPayments([...res.data]);
+            setIsLoading(false);
+        }
+    };
 
+    useEffect(() => {
         fetchPayments();
 
         return () => {
@@ -73,6 +74,10 @@ function Payments() {
                                 setItemsPerPage={setPaymentsPerPage}
                                 name="payments"
                                 setCurrentPage={setCurrentPage}
+                            />
+                            <RefreshButton
+                                name="PAYMENTS"
+                                click={fetchPayments}
                             />
                             <SearchBar
                                 searchTerm={searchTerm}

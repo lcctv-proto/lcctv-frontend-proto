@@ -60,7 +60,7 @@ function AddEmployeeModal({ show, handleClose }) {
                 <Modal.Header
                     closeButton
                     closeVariant="white"
-                    className="bg-navy text-light border-admin"
+                    className="bg-navy text-light border-ceo"
                 >
                     <Modal.Title>ADD PERSONNELS</Modal.Title>
                 </Modal.Header>

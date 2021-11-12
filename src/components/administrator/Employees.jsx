@@ -12,6 +12,7 @@ import SearchBar from "../SearchBar";
 import SearchError from "../SearchError";
 import Spinner from "../Spinner";
 import AddButton from "../AddButton";
+import RefreshButton from "../RefreshButton";
 
 import AddEmployeeModal from "./AddEmployeeModal";
 
@@ -53,19 +54,19 @@ function Employees() {
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-    useEffect(() => {
-        const fetchEmployees = async () => {
-            if (_isMounted.current) {
-                setIsLoading(true);
-                const res = await axios.get(
-                    "https://lcctv-backend.herokuapp.com/api/personnel",
-                    { headers: authHeader() }
-                );
-                setEmployees([...res.data]);
-                setIsLoading(false);
-            }
-        };
+    const fetchEmployees = async () => {
+        if (_isMounted.current) {
+            setIsLoading(true);
+            const res = await axios.get(
+                "https://lcctv-backend.herokuapp.com/api/personnel",
+                { headers: authHeader() }
+            );
+            setEmployees([...res.data]);
+            setIsLoading(false);
+        }
+    };
 
+    useEffect(() => {
         fetchEmployees();
 
         return () => {
@@ -91,6 +92,10 @@ function Employees() {
                                 <AddButton
                                     name="EMPLOYEE"
                                     click={handleAddShow}
+                                />
+                                <RefreshButton
+                                    name="EMPLOYEES"
+                                    click={fetchEmployees}
                                 />
                                 <SearchBar
                                     searchTerm={searchTerm}

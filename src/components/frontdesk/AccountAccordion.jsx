@@ -56,7 +56,9 @@ function AccountAccordion({ account }) {
         <Col>
             <Accordion defaultActiveKey="0">
                 <Accordion.Item eventKey="0">
-                    <Accordion.Header>Personal Information</Accordion.Header>
+                    <Accordion.Header className="bg-navy border-front text-light">
+                        Personal Information
+                    </Accordion.Header>
                     <Accordion.Body>
                         <Row className="mb-3">
                             <Form.Group

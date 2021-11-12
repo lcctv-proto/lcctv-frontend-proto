@@ -1,6 +1,13 @@
 import { useState } from "react";
+import {
+    Search,
+    Save2,
+    Printer,
+    ChevronDoubleUp,
+    PlusCircle,
+} from "react-bootstrap-icons";
 
-import { Search, Save2, Printer, ChevronDoubleUp } from "react-bootstrap-icons";
+import api from "../../api/api";
 
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
@@ -8,16 +15,29 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Accordion from "react-bootstrap/Accordion";
 import AccountSearchModal from "./AccountSearchModal";
+import TeamSearchModal from "./TeamSearchModal";
 
 function Accounts() {
+    const [account, setAccount] = useState({});
     const [accountsShow, setAccountsShow] = useState(false);
-    const [searchTerm, setSearchTerm] = useState("");
+    const [teamsShow, setTeamsShow] = useState(false);
+    const [accountSearchTerm, setAccountSearchTerm] = useState("");
+    const [teamSearchTerm, setTeamSearchTerm] = useState("");
 
     const handleAccountsShow = () => {
         setAccountsShow(true);
     };
+
     const handleAccountsClose = () => {
         setAccountsShow(false);
+    };
+
+    const handleTeamsShow = () => {
+        setTeamsShow(true);
+    };
+
+    const handleTeamsClose = () => {
+        setTeamsShow(false);
     };
 
     return (
@@ -33,7 +53,34 @@ function Accounts() {
                             >
                                 <Form.Label>ACCOUNT NUMBER:</Form.Label>
                                 <div className="d-flex">
-                                    <Form.Control type="text" />
+                                    <Form.Control
+                                        type="text"
+                                        value={accountSearchTerm}
+                                        onChange={(e) => {
+                                            setAccountSearchTerm(
+                                                e.target.value
+                                            );
+                                        }}
+                                    />
+                                    <button
+                                        className="btn text-light align-top ms-2 btn-navy"
+                                        onClick={async (e) => {
+                                            e.preventDefault();
+                                            try {
+                                                const res =
+                                                    await api.accounts.get(
+                                                        accountSearchTerm,
+                                                        { type: "custom" }
+                                                    );
+                                                setAccount(res.data);
+                                                console.log(account);
+                                            } catch (err) {
+                                                setAccount([]);
+                                            }
+                                        }}
+                                    >
+                                        <PlusCircle className="" />
+                                    </button>
                                     <button
                                         className="btn text-light align-top ms-2 btn-navy"
                                         onClick={(e) => {
@@ -60,8 +107,20 @@ function Accounts() {
                             >
                                 <Form.Label>ASSIGNED TEAM:</Form.Label>
                                 <div className="d-flex">
-                                    <Form.Control type="text" />
-                                    <button className="btn text-light align-top ms-2 btn-navy">
+                                    <Form.Control
+                                        type="text"
+                                        value={teamSearchTerm}
+                                        onChange={(e) => {
+                                            setTeamSearchTerm(e.target.value);
+                                        }}
+                                    />
+                                    <button
+                                        className="btn text-light align-top ms-2 btn-navy"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            handleTeamsShow();
+                                        }}
+                                    >
                                         <Search className="" />
                                     </button>
                                 </div>
@@ -122,7 +181,7 @@ function Accounts() {
                 <Col>
                     <Accordion defaultActiveKey="0">
                         <Accordion.Item eventKey="0">
-                            <Accordion.Header>
+                            <Accordion.Header className="border-jo">
                                 Personal Information
                             </Accordion.Header>
                             <Accordion.Body>
@@ -199,7 +258,9 @@ function Accounts() {
                             </Accordion.Body>
                         </Accordion.Item>
                         <Accordion.Item eventKey="1">
-                            <Accordion.Header>Service Address</Accordion.Header>
+                            <Accordion.Header className="border-jo">
+                                Service Address
+                            </Accordion.Header>
                             <Accordion.Body>
                                 <Row className="mb-3">
                                     <Form.Group
@@ -292,19 +353,19 @@ function Accounts() {
                             </Accordion.Body>
                         </Accordion.Item>
                         <Accordion.Item eventKey="2">
-                            <Accordion.Header className="">
+                            <Accordion.Header className="border-jo">
                                 Government Issued ID
                             </Accordion.Header>
                             <Accordion.Body></Accordion.Body>
                         </Accordion.Item>
                         <Accordion.Item eventKey="3">
-                            <Accordion.Header className="">
+                            <Accordion.Header className="border-jo">
                                 Proof of Billing
                             </Accordion.Header>
                             <Accordion.Body></Accordion.Body>
                         </Accordion.Item>
                         <Accordion.Item eventKey="4">
-                            <Accordion.Header className="">
+                            <Accordion.Header className="border-jo">
                                 Contact Information
                             </Accordion.Header>
                             <Accordion.Body>
@@ -413,8 +474,15 @@ function Accounts() {
             <AccountSearchModal
                 show={accountsShow}
                 handleClose={handleAccountsClose}
-                searchTerm={searchTerm}
-                setSearchTerm={setSearchTerm}
+                searchTerm={accountSearchTerm}
+                setSearchTerm={setAccountSearchTerm}
+                filter={{ status: "FOR INSTALLATION", isNew: true }}
+            />
+            <TeamSearchModal
+                show={teamsShow}
+                handleClose={handleTeamsClose}
+                searchTerm={teamSearchTerm}
+                setSearchTerm={setTeamSearchTerm}
             />
         </>
     );

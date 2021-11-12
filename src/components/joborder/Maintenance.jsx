@@ -215,6 +215,7 @@ function Maintenance() {
                 handleClose={handleAccountsClose}
                 searchTerm={searchTerm}
                 setSearchTerm={setSearchTerm}
+                filter={{ status: "FOR MAINTENANCE", isNew: false }}
             />
         </>
     );

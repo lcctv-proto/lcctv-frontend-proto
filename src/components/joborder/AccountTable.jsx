@@ -1,8 +1,11 @@
-function AccountTable({ currentAccounts, cols }) {
+import Form from "react-bootstrap/Form";
+
+function AccountTable({ currentAccounts, cols, handleClose, setSearchTerm }) {
     return (
         <table className="table table-borderless table-striped shadow fs-6">
             <thead className="text-light bg-navy border-jo">
                 <tr>
+                    <th></th>
                     {cols.map((col, index) => {
                         return <th key={index}>{col}</th>;
                     })}
@@ -23,6 +26,17 @@ function AccountTable({ currentAccounts, cols }) {
 
                         return (
                             <tr key={_id}>
+                                <td>
+                                    <Form.Check
+                                        type="radio"
+                                        id={_id}
+                                        name="acc"
+                                        onChange={() => {
+                                            handleClose();
+                                            setSearchTerm(accNumber);
+                                        }}
+                                    />
+                                </td>
                                 <td>{accNumber}</td>
                                 <td>{name}</td>
                                 <td>{accountStatus}</td>

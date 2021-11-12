@@ -186,8 +186,8 @@ function Closing() {
             </Row>
             <Row className="mb-3 border-jo">
                 <Col>
-                    <Table className="shadow" hover size="sm">
-                        <thead className="h5 bg-navy text-light border-jo">
+                    <Table className="shadow" striped borderless>
+                        <thead className="bg-navy text-light border-jo">
                             <tr>
                                 <th>ITEM NAME</th>
                                 <th>QTY</th>
@@ -253,6 +253,7 @@ function Closing() {
                 handleClose={handleAccountsClose}
                 searchTerm={searchTerm}
                 setSearchTerm={setSearchTerm}
+                filter={{ status: "FOR CLOSING", isNew: false }}
             />
         </>
     );

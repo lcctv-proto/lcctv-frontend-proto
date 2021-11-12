@@ -241,7 +241,11 @@ function Accounts() {
                 handleClose={handleWalkClose}
                 accountID={account}
             />
-            <PortalModal show={portalShow} handleClose={handlePortalClose} />
+            <PortalModal
+                show={portalShow}
+                handleClose={handlePortalClose}
+                accountID={account}
+            />
             <BalanceModal
                 show={balanceShow}
                 handleClose={handleBalanceClose}

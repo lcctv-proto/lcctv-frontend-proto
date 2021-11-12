@@ -117,8 +117,8 @@ function Activation() {
             </Row>
             <Row className="mb-3">
                 <Col>
-                    <Table className="shadow" hover size="sm">
-                        <thead className="h5 bg-navy text-light border-jo">
+                    <Table className="shadow" striped borderless>
+                        <thead className="bg-navy text-light border-jo">
                             <tr>
                                 <th>ITEM NAME</th>
                                 <th>QTY</th>
@@ -153,7 +153,7 @@ function Activation() {
                 <Col>
                     <Accordion defaultActiveKey="0">
                         <Accordion.Item eventKey="0">
-                            <Accordion.Header>
+                            <Accordion.Header className="border-jo">
                                 Personal Information
                             </Accordion.Header>
                             <Accordion.Body>
@@ -230,7 +230,9 @@ function Activation() {
                             </Accordion.Body>
                         </Accordion.Item>
                         <Accordion.Item eventKey="1">
-                            <Accordion.Header>Service Address</Accordion.Header>
+                            <Accordion.Header className="border-jo">
+                                Service Address
+                            </Accordion.Header>
                             <Accordion.Body>
                                 <Row className="mb-3">
                                     <Form.Group
@@ -323,19 +325,19 @@ function Activation() {
                             </Accordion.Body>
                         </Accordion.Item>
                         <Accordion.Item eventKey="2">
-                            <Accordion.Header className="">
+                            <Accordion.Header className="border-jo">
                                 Government Issued ID
                             </Accordion.Header>
                             <Accordion.Body></Accordion.Body>
                         </Accordion.Item>
                         <Accordion.Item eventKey="3">
-                            <Accordion.Header className="">
+                            <Accordion.Header className="border-jo">
                                 Proof of Billing
                             </Accordion.Header>
                             <Accordion.Body></Accordion.Body>
                         </Accordion.Item>
                         <Accordion.Item eventKey="4">
-                            <Accordion.Header className="">
+                            <Accordion.Header className="border-jo">
                                 Contact Information
                             </Accordion.Header>
                             <Accordion.Body>
@@ -446,6 +448,7 @@ function Activation() {
                 handleClose={handleAccountsClose}
                 searchTerm={searchTerm}
                 setSearchTerm={setSearchTerm}
+                filter={{ status: "FOR ACTIVATION", isNew: true }}
             />
         </>
     );
