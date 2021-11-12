@@ -22,7 +22,11 @@ function Inquiry() {
                 contactNumber,
                 isGenInq: true,
             })
-            .then(() => console.log("a-ok!"))
+            .then(() =>
+                alert(
+                    "General inquiry submitted! Please check your provided email for our representative's reply, thank you!"
+                )
+            )
             .catch((err) => alert("Account not found!"));
     };
 
