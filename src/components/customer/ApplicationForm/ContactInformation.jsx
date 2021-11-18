@@ -53,6 +53,7 @@ function ContactInformation({
                 type="email"
                 className="form-control"
                 id="email"
+                style={{ textTransform: "none" }}
                 value={email}
                 onChange={(e) => {
                     setEmail(e.target.value);

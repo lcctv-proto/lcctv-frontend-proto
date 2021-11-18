@@ -11,7 +11,7 @@ function DispatchTable({ currentDispatches, cols }) {
                 </tr>
             </thead>
             <tbody>
-                {currentDispatches.map(
+                {currentDispatches?.map(
                     ({
                         prefix,
                         jo_ctr,

@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import PersonalInfo from "./ApplicationForm/PersonalInfo";
 import ServiceAddress from "./ApplicationForm/ServiceAddress";
 import ContactInformation from "./ApplicationForm/ContactInformation";
 import IDandProof from "./ApplicationForm/IDandProof";
-import Plan from "./ApplicationForm/Plan";
+import Form from "react-bootstrap/Form";
 import { useLocation, useHistory } from "react-router";
 import axios from "axios";
+
+import api from "../../api/api";
 
 function Apply() {
     const [page, setPage] = useState(1);
@@ -41,6 +43,7 @@ function Apply() {
     const [spouseLastName, setSpouseLastName] = useState("");
 
     const [packageID, setPackageID] = useState("");
+    const [packages, setPackages] = useState([]);
 
     const [governmentIdImageURL, setGovernmentIdImageURL] = useState("");
     const [billingImageURL, setBillingImageURL] = useState("");
@@ -48,20 +51,28 @@ function Apply() {
     const [POBpreview, setPOBPreview] = useState("");
 
     const history = useHistory();
+    const location = useLocation();
 
-    const packages = [
-        { id: "61026eaaad018f4b4000004d", desc: "BASIC 640", name: "BASIC" },
-        {
-            id: "61026ebfad018f4b40000051",
-            desc: "PREMIUM 790",
-            name: "PREMIUM",
-        },
-        {
-            id: "61026ee2ad018f4b40000056",
-            desc: "INTERNATIONAL 1099",
-            name: "INTERNATIONAL",
-        },
-    ];
+    useEffect(() => {
+        const query = new URLSearchParams(location.search);
+
+        setPackageID(
+            packages?.filter(
+                (value) =>
+                    value.description.toString().split(" ")[0] ===
+                    query.get("name")?.toString()
+            )[0]?._id
+        );
+    }, [location.search, packages]);
+
+    useEffect(() => {
+        const fetchPackages = async () => {
+            const res = await api.packages.get("");
+            setPackages(res.data);
+        };
+
+        fetchPackages();
+    }, []);
 
     async function HandleSubmit(e) {
         e.preventDefault();
@@ -160,8 +171,6 @@ function Apply() {
         setPage((page) => page + 1);
     }
 
-    const query = new URLSearchParams(useLocation().search);
-
     return (
         <div className="container p-5">
             <div className="row justify-content-center">
@@ -178,7 +187,26 @@ function Apply() {
                         </div>
                         <div className="card-body">
                             <p className="mb-2">Select Plan: </p>
-                            <fieldset
+                            <Form.Group>
+                                <Form.Select
+                                    value={packageID}
+                                    onChange={(e) => {
+                                        setPackageID(e.target.value);
+                                    }}
+                                >
+                                    {packages.map((value, index) => {
+                                        return (
+                                            <option
+                                                key={index}
+                                                value={value._id}
+                                            >
+                                                {value.description}
+                                            </option>
+                                        );
+                                    })}
+                                </Form.Select>
+                            </Form.Group>
+                            {/* <fieldset
                                 className="d-flex flex-column flex-md-row justify-content-between"
                                 name="set-package"
                                 value={packageID}
@@ -201,7 +229,7 @@ function Apply() {
                                         />
                                     );
                                 })}
-                            </fieldset>
+                            </fieldset> */}
                             <hr />
                             {page === 1 && (
                                 <PersonalInfo
