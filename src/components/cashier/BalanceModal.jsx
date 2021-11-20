@@ -4,7 +4,6 @@ import Modal from "react-bootstrap/Modal";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import Spinner from "../Spinner";
 
 import api from "../../api/api";
@@ -57,8 +56,9 @@ function BalanceModal({ show, handleClose, account }) {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {[...payments, ...invoices].map(
-                                                    (value) => {
+                                                {[...payments, ...invoices]
+
+                                                    .map((value) => {
                                                         return (
                                                             <tr key={value._id}>
                                                                 <td>
@@ -106,8 +106,11 @@ function BalanceModal({ show, handleClose, account }) {
                                                                 <td></td>
                                                             </tr>
                                                         );
-                                                    }
-                                                )}
+                                                    })
+                                                    .sort(
+                                                        (a, b) =>
+                                                            a.date - b.date
+                                                    )}
                                             </tbody>
                                         </table>
                                     ) : (
@@ -121,7 +124,7 @@ function BalanceModal({ show, handleClose, account }) {
                     )}
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button
+                    {/* <Button
                         type="submit"
                         className="d-flex mb-2 btn-navy fw-bold align-items-center"
                         onClick={() => {
@@ -129,7 +132,7 @@ function BalanceModal({ show, handleClose, account }) {
                         }}
                     >
                         BUTTON
-                    </Button>
+                    </Button> */}
                 </Modal.Footer>
             </Modal>
         </>
