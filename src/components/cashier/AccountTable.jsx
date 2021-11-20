@@ -32,8 +32,8 @@ function AccountTable({ currentAccounts, cols, setSearchTerm, handleClose }) {
                                         id={_id}
                                         name="acc"
                                         onChange={() => {
-                                            handleClose();
                                             setSearchTerm(accNumber);
+                                            handleClose();
                                         }}
                                     />
                                 </td>

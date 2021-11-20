@@ -37,7 +37,12 @@ function EquipmentTable({ currentEquipments, cols }) {
                                 <td className="align-middle">{EqpmntNumber}</td>
                                 <td className="align-middle">{label}</td>
                                 <td className="align-middle">{description}</td>
-                                <td className="align-end">{price}</td>
+                                <td className="align-middle text-end pe-4">
+                                    {price.toLocaleString(undefined, {
+                                        minimumFractionDigits: 2,
+                                        maximumFractionDigits: 2,
+                                    })}
+                                </td>
                                 <td>
                                     <button
                                         type="button"

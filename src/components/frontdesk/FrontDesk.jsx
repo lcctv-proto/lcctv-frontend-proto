@@ -29,19 +29,16 @@ function FrontDesk() {
             icon: <Receipt />,
             title: "APPLICATIONS",
             path: "/frontdesk/applications",
-            count: 3,
         },
         {
             icon: <Tools />,
             title: "INQUIRIES",
             path: "/frontdesk/inquiries",
-            count: 3,
         },
         {
             icon: <Pen />,
             title: "ACCOUNTS",
             path: "/frontdesk/accounts",
-            count: 1,
         },
     ];
 

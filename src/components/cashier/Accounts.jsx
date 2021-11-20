@@ -38,7 +38,9 @@ function Accounts() {
 
     const [isLoading, setIsLoading] = useState(false);
 
-    const handleClose = () => setShow(false);
+    const handleClose = () => {
+        setShow(false);
+    };
     const handleShow = () => {
         if (account) {
             setSearchTerm("");

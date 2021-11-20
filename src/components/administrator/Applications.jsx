@@ -29,6 +29,9 @@ function Applications() {
                 accountName: { firstName, middleName, lastName },
             } = application.accountID;
             const name = `${firstName} ${middleName} ${lastName}`;
+
+            if (!application.status === "ACTIVE") return null;
+
             if (searchTerm === "") return application;
             else if (name.includes(searchTerm.toUpperCase()))
                 return application;
@@ -36,7 +39,7 @@ function Applications() {
         })
         .slice(indexOfFirstApplication, indexOfLastApplication);
 
-    const cols = ["REFERENCE NUMBER", "DATE", "ACCOUNT NAME", "PLAN", "AREA"];
+    const cols = ["REFERENCE NUMBER", "DATE", "ACCOUNT NAME", "AREA", "PLAN"];
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -48,7 +51,12 @@ function Applications() {
                     "https://lcctv-backend.herokuapp.com/api/applications",
                     { headers: authHeader() }
                 );
-                setApplications([...res.data]);
+                setApplications(
+                    res.data.filter((application) => {
+                        if (application.step === 8) return application;
+                        return null;
+                    })
+                );
                 setIsLoading(false);
             }
         };

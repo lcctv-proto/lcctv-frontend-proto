@@ -42,25 +42,21 @@ function JobOrder() {
             icon: <Pen />,
             title: "NEW ACCOUNTS",
             path: "/joborder/accounts",
-            count: 9,
         },
         {
             icon: <LightningCharge />,
             title: "ACTIVATION",
             path: "/joborder/activation",
-            count: 15,
         },
         {
             icon: <Tools />,
             title: "MAINTENANCE",
             path: "/joborder/maintenance",
-            count: 23,
         },
         {
             icon: <Check2Circle />,
             title: "CLOSING",
             path: "/joborder/closing",
-            count: 5,
         },
         {
             icon: <CalendarWeek />,

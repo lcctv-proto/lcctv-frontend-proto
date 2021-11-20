@@ -52,12 +52,16 @@ function BalanceModal({ show, handleClose, account }) {
                                                     <th>A/R TYPE</th>
                                                     <th>AMOUNT</th>
                                                     <th>PAID AMOUNT</th>
-                                                    <th>REMARKS</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 {[...payments, ...invoices]
-
+                                                    .sort((a, b) => {
+                                                        return (
+                                                            new Date(a.date) -
+                                                            new Date(b.date)
+                                                        );
+                                                    })
                                                     .map((value) => {
                                                         return (
                                                             <tr key={value._id}>
@@ -80,7 +84,18 @@ function BalanceModal({ show, handleClose, account }) {
                                                                     }`}
                                                                 </td>
                                                                 <td>
-                                                                    {value.date}
+                                                                    {new Date(
+                                                                        value.date
+                                                                    )
+                                                                        .toLocaleString(
+                                                                            undefined,
+                                                                            {
+                                                                                year: "numeric",
+                                                                                month: "long",
+                                                                                day: "numeric",
+                                                                            }
+                                                                        )
+                                                                        .toUpperCase()}
                                                                 </td>
                                                                 <td className="text-center">
                                                                     {value.modeOfPayment ??
@@ -95,22 +110,34 @@ function BalanceModal({ show, handleClose, account }) {
                                                                         : ""}
                                                                 </td>
                                                                 <td className="text-end">
-                                                                    {value.amountDue ??
-                                                                        "0"}
+                                                                    {value.amountDue?.toLocaleString(
+                                                                        undefined,
+                                                                        {
+                                                                            minimumFractionDigits: 2,
+                                                                            maximumFractionDigits: 2,
+                                                                        }
+                                                                    ) ?? "0.00"}
                                                                 </td>
                                                                 <td className="text-end">
-                                                                    {value.amountPaid ??
-                                                                        value.checkAmount ??
-                                                                        "0"}
+                                                                    {value.amountPaid?.toLocaleString(
+                                                                        undefined,
+                                                                        {
+                                                                            minimumFractionDigits: 2,
+                                                                            maximumFractionDigits: 2,
+                                                                        }
+                                                                    ) ??
+                                                                        value.checkAmount?.toLocaleString(
+                                                                            undefined,
+                                                                            {
+                                                                                minimumFractionDigits: 2,
+                                                                                maximumFractionDigits: 2,
+                                                                            }
+                                                                        ) ??
+                                                                        "0.00"}
                                                                 </td>
-                                                                <td></td>
                                                             </tr>
                                                         );
-                                                    })
-                                                    .sort(
-                                                        (a, b) =>
-                                                            a.date - b.date
-                                                    )}
+                                                    })}
                                             </tbody>
                                         </table>
                                     ) : (
