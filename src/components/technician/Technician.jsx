@@ -2,7 +2,7 @@
 import {
     People,
     CalendarWeek,
-    BrightnessAltHigh,
+    // BrightnessAltHigh,
     Geo,
 } from "react-bootstrap-icons";
 import { Switch, Route, useLocation } from "react-router-dom";
@@ -16,7 +16,7 @@ import Header from "../Header";
 // technician specific imports
 import Dispatch from "./Dispatch";
 import Calendar from "./Calendar";
-import Daily from "./Daily";
+// import Daily from "./Daily";
 import Area from "./Area";
 
 function Technician() {
@@ -43,11 +43,11 @@ function Technician() {
             title: "CALENDAR",
             path: "/tech/calendar",
         },
-        {
-            icon: <BrightnessAltHigh />,
-            title: "DAILY VIEW",
-            path: "/tech/daily",
-        },
+        // {
+        //     icon: <BrightnessAltHigh />,
+        //     title: "DAILY VIEW",
+        //     path: "/tech/daily",
+        // },
         {
             icon: <Geo />,
             title: "AREA ASSIGNED",
@@ -81,9 +81,9 @@ function Technician() {
                             <Route path="/portal/tech/calendar">
                                 <Calendar />
                             </Route>
-                            <Route path="/portal/tech/daily">
+                            {/* <Route path="/portal/tech/daily">
                                 <Daily />
-                            </Route>
+                            </Route> */}
                             <Route path="/portal/tech/area">
                                 <Area />
                             </Route>

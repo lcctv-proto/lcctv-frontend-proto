@@ -18,7 +18,6 @@ function DispatchTable({ currentDispatches, cols }) {
                         type,
                         accountID: {
                             accountName: { firstName, middleName, lastName },
-                            serviceAddress: { municipality, province },
                             packageID: { description },
                         },
                         jobDate,
@@ -36,7 +35,6 @@ function DispatchTable({ currentDispatches, cols }) {
                                 day: "numeric",
                             })
                             .toUpperCase();
-                        const area = `${municipality}, ${province}`;
 
                         return (
                             <tr key={_id}>
@@ -44,7 +42,6 @@ function DispatchTable({ currentDispatches, cols }) {
                                 <td>{type}</td>
                                 <td>{name}</td>
                                 <td>{description}</td>
-                                <td>{area}</td>
                                 <td>{localDateString}</td>
                                 <td>
                                     <button

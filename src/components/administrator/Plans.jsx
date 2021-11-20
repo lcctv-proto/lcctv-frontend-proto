@@ -10,6 +10,8 @@ import SearchBar from "../SearchBar";
 import SearchError from "../SearchError";
 import Spinner from "../Spinner";
 import AddButton from "../AddButton";
+
+import AddPlanModal from "./AddPlanModal";
 import DeletePlanModal from "./DeletePlanModal";
 import EditPlanModal from "./EditPlanModal";
 
@@ -22,8 +24,12 @@ function Plans() {
     const [isLoading, setIsLoading] = useState(true);
     const _isMounted = useRef(true);
 
+    const [addShow, setAddShow] = useState(false);
     const [deleteShow, setDeleteShow] = useState(false);
     const [editShow, setEditShow] = useState(false);
+
+    const handleAddShow = () => setAddShow(true);
+    const handleAddClose = () => setAddShow(false);
 
     const handleEditShow = () => setEditShow(true);
     const handleEditClose = () => setEditShow(false);
@@ -47,29 +53,24 @@ function Plans() {
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-    useEffect(() => {
-        const fetchPlans = async () => {
-            if (_isMounted.current) {
-                setIsLoading(true);
-                const res = await axios.get(
-                    "https://lcctv-backend.herokuapp.com/api/packages"
-                );
-                setPlans([...res.data]);
-                setIsLoading(false);
-            }
-        };
+    const fetchPlans = async () => {
+        if (_isMounted.current) {
+            setIsLoading(true);
+            const res = await axios.get(
+                "https://lcctv-backend.herokuapp.com/api/packages"
+            );
+            setPlans([...res.data]);
+            setIsLoading(false);
+        }
+    };
 
+    useEffect(() => {
         fetchPlans();
 
         return () => {
             _isMounted.current = false;
         };
     }, []);
-
-    function addPlan(e) {
-        e.preventDefault();
-        console.log("ADD PLAN");
-    }
 
     return (
         <>
@@ -86,7 +87,7 @@ function Plans() {
                                     name="plans"
                                     setCurrentPage={setCurrentPage}
                                 />
-                                <AddButton name="PLANS" click={addPlan} />
+                                <AddButton name="PLANS" click={handleAddShow} />
                                 <SearchBar
                                     searchTerm={searchTerm}
                                     setSearchTerm={setSearchTerm}
@@ -144,7 +145,13 @@ function Plans() {
                 handleClose={handleEditClose}
                 packages={plans}
                 packageID={packageID}
-                setPackages={setPlans}
+                setPackages={fetchPlans}
+            />
+            <AddPlanModal
+                show={addShow}
+                handleClose={handleAddClose}
+                plans={plans}
+                setPlans={setPlans}
             />
         </>
     );

@@ -4,8 +4,8 @@ function PlanTable({
     currentPlans,
     cols,
     setPackage,
-    handleDeleteShow,
     handleEditShow,
+    handleDeleteShow,
 }) {
     return (
         <table className="table table-borderless table-striped shadow fs-5">
@@ -36,7 +36,10 @@ function PlanTable({
                                 <td className="align-middle">{pkgNumber}</td>
                                 <td className="align-middle">{description}</td>
                                 <td className="align-middle text-center">
-                                    {price}
+                                    {price?.toLocaleString(undefined, {
+                                        minimumFractionDigits: 2,
+                                        maximumFractionDigits: 2,
+                                    })}
                                 </td>
                                 <td>
                                     <button

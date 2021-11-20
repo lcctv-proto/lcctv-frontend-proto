@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { PlusCircle } from "react-bootstrap-icons";
 
 import axios from "axios";
-import api from "../../api/api";
 
 import Modal from "react-bootstrap/Modal";
 import Row from "react-bootstrap/Row";
@@ -11,25 +10,14 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import authHeader from "../../auth/auth-header";
 
-function EditPlanModal({ show, handleClose, packageID, setPackages }) {
+function AddPlanModal({ show, handleClose, plans, setPlans }) {
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
 
-    useEffect(() => {
-        const fetchPackage = async () => {
-            const res = await api.packages.get(packageID);
-
-            setDescription(res.data.description);
-            setPrice(res.data.price);
-        };
-
-        fetchPackage();
-    }, [packageID]);
-
     const handleSubmit = () => {
         axios
-            .put(
-                `https://lcctv-backend.herokuapp.com/api/packages/${packageID}`,
+            .post(
+                "https://lcctv-backend.herokuapp.com/api/packages",
                 {
                     description,
                     price,
@@ -37,11 +25,11 @@ function EditPlanModal({ show, handleClose, packageID, setPackages }) {
                 { headers: authHeader() }
             )
             .then((res) => {
+                setPlans([...plans, res.data]);
                 handleClose();
-                setPackages();
-                alert("Plan update success");
+                alert("Plan creation success");
             })
-            .catch((err) => alert("Plan update error"));
+            .catch((err) => alert("Plan creation error"));
     };
 
     return (
@@ -52,7 +40,7 @@ function EditPlanModal({ show, handleClose, packageID, setPackages }) {
                     closeVariant="white"
                     className="bg-navy text-light border-admin"
                 >
-                    <Modal.Title>EDIT PLAN</Modal.Title>
+                    <Modal.Title>ADD PLAN</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
@@ -61,29 +49,25 @@ function EditPlanModal({ show, handleClose, packageID, setPackages }) {
                                 as={Col}
                                 xs="8"
                                 controlId="modalFirstName"
+                                value={description}
+                                onChange={(e) => {
+                                    setDescription(e.target.value);
+                                }}
                             >
                                 <Form.Label>Description</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    value={description}
-                                    onChange={(e) => {
-                                        setDescription(e.target.value);
-                                    }}
-                                />
+                                <Form.Control type="text" />
                             </Form.Group>
                             <Form.Group
                                 as={Col}
                                 xs="4"
                                 controlId="modalMiddleName"
+                                value={price}
+                                onChange={(e) => {
+                                    setPrice(e.target.value);
+                                }}
                             >
                                 <Form.Label>Price</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    value={price}
-                                    onChange={(e) => {
-                                        setPrice(e.target.value);
-                                    }}
-                                />
+                                <Form.Control type="text" />
                             </Form.Group>
                         </Row>
                     </Form>
@@ -94,7 +78,7 @@ function EditPlanModal({ show, handleClose, packageID, setPackages }) {
                         className="d-flex mb-2 btn-navy fw-bold align-items-center"
                         onClick={handleSubmit}
                     >
-                        <PlusCircle className="me-2" /> EDIT PLAN
+                        <PlusCircle className="me-2" /> ADD PLAN
                     </Button>
                 </Modal.Footer>
             </Modal>
@@ -102,4 +86,4 @@ function EditPlanModal({ show, handleClose, packageID, setPackages }) {
     );
 }
 
-export default EditPlanModal;
+export default AddPlanModal;

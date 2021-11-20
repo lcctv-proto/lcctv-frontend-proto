@@ -8,6 +8,7 @@ export default function Auth({ children }) {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [user, setUser] = useState("");
     const [role, setRole] = useState("");
+    const [id, setID] = useState("");
     const [isLoading, setIsLoading] = useState();
 
     useEffect(() => {
@@ -54,6 +55,7 @@ export default function Auth({ children }) {
                             );
 
                             setIsAuthenticated(true);
+                            setID(response.data._id);
                             setUser(response.data.username);
                             setRole(res.data.description);
                             setIsLoading(false);
@@ -92,6 +94,7 @@ export default function Auth({ children }) {
                 isLoading,
                 role,
                 user,
+                id,
                 login,
                 logout,
                 checkAuth,

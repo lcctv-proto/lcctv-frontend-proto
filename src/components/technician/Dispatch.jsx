@@ -37,7 +37,6 @@ function Dispatch() {
         "JO NUMBER",
         "JO TYPE",
         "ACCOUNT NAME",
-        "ADDRESS",
         "PACKAGE",
         "DATE ASSIGNED",
         "ACTIONS",
@@ -49,11 +48,11 @@ function Dispatch() {
         const fetchDispatches = async () => {
             if (_isMounted.current) {
                 setIsLoading(true);
-                const res = await api.jo.get("");
+
+                const res = await api.jo.get(``);
                 // const res = await axios.get(
                 //     "https://lcctv-backend.herokuapp.com/api/dispatches/teamID"
                 // );
-                console.log(res.data);
                 setDispatches([...res.data]);
                 setIsLoading(false);
             }

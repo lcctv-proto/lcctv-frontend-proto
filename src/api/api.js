@@ -73,6 +73,9 @@ const invoices = {
 const jo = {
     get: async (id, params) =>
         await API.get(`/jo/${id}`, { params, headers: authHeader() }),
+    getByTeam: async (id) => {
+        await API.get(`/jo/${id}`, { headers: authHeader() });
+    },
 };
 
 const packages = {
