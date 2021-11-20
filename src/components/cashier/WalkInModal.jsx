@@ -88,6 +88,9 @@ function WalkInModal({ show, handleClose, accountID }) {
                                         setPaymentMode(e.target.value);
                                     }}
                                 >
+                                    <option selected hidden>
+                                        --select--
+                                    </option>
                                     <option value="cash">CASH</option>
                                     <option value="check">CHECK</option>
                                 </Form.Select>
@@ -254,15 +257,23 @@ function WalkInModal({ show, handleClose, accountID }) {
                         className="d-flex mb-2 btn-navy fw-bold align-items-center"
                         onClick={async () => {
                             const feeIDs = items.map((a) => a.data._id);
-                            const res = await api.payments.post({
-                                accountID,
-                                modeOfPayment: paymentMode,
-                                receiptNumber,
-                                feeIDs,
-                                amountPaid,
-                                remarks,
-                            });
-                            console.log(res);
+                            await api.payments
+                                .post({
+                                    accountID,
+                                    modeOfPayment: paymentMode,
+                                    receiptNumber,
+                                    feeIDs,
+                                    amountPaid,
+                                    remarks,
+                                })
+                                .then((res) => {
+                                    alert("Payment Successful! ");
+                                    handleClose();
+                                })
+                                .catch((err) => {
+                                    alert("Payment Failed! ");
+                                    handleClose();
+                                });
                         }}
                     >
                         CLOSE PAYMENT

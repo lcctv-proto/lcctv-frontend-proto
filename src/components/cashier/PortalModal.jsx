@@ -88,6 +88,9 @@ function WalkInModal({ show, handleClose, accountID }) {
                                         setPaymentMode(e.target.value);
                                     }}
                                 >
+                                    <option selected hidden>
+                                        --select--
+                                    </option>
                                     <option value="gcash">GCash</option>
                                     <option value="paymaya">PayMaya</option>
                                     <option value="shopeepay">ShopeePay</option>
@@ -259,15 +262,23 @@ function WalkInModal({ show, handleClose, accountID }) {
                         className="d-flex mb-2 btn-navy fw-bold align-items-center"
                         onClick={async () => {
                             const feeIDs = items.map((a) => a.data._id);
-                            const res = await api.payments.post({
-                                accountID,
-                                modeOfPayment: paymentMode,
-                                referenceNumber,
-                                feeIDs,
-                                amountPaid,
-                                remarks,
-                            });
-                            console.log(res);
+                            await api.payments
+                                .post({
+                                    accountID,
+                                    modeOfPayment: paymentMode,
+                                    referenceNumber,
+                                    feeIDs,
+                                    amountPaid,
+                                    remarks,
+                                })
+                                .then((res) => {
+                                    alert("Payment Successful! ");
+                                    handleClose();
+                                })
+                                .catch((err) => {
+                                    alert("Payment Failed! ");
+                                    handleClose();
+                                });
                         }}
                     >
                         CLOSE PAYMENT
