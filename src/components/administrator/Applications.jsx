@@ -36,7 +36,7 @@ function Applications() {
         })
         .slice(indexOfFirstApplication, indexOfLastApplication);
 
-    const cols = ["REFERENCE NUMBER", "ACCOUNT NAME", "PLAN", "AREA", "DATE"];
+    const cols = ["REFERENCE NUMBER", "DATE", "ACCOUNT NAME", "PLAN", "AREA"];
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 

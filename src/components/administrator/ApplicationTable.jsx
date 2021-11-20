@@ -38,10 +38,10 @@ function ApplicationTable({ currentApplications, cols }) {
                         return (
                             <tr key={_id}>
                                 <td>{refNumber}</td>
-                                <td>{name}</td>
-                                <td>{description}</td>
-                                <td>{area}</td>
                                 <td>{localDateString}</td>
+                                <td>{name}</td>
+                                <td>{area}</td>
+                                <td>{description}</td>
                             </tr>
                         );
                     }

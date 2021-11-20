@@ -1,6 +1,6 @@
 function PaymentTable({ currentPayments, cols }) {
     return (
-        <table className="table table-borderless table-striped shadow fs-5">
+        <table className="table table-borderless table-striped shadow fs-5 text-center">
             <thead className="text-light bg-navy border-cashier">
                 <tr>
                     {cols.map((col, index) => {
@@ -32,7 +32,6 @@ function PaymentTable({ currentPayments, cols }) {
                         const localDate = new Date(date);
                         const localDateString = localDate
                             .toLocaleDateString(undefined, {
-                                weekday: "long",
                                 year: "numeric",
                                 month: "long",
                                 day: "numeric",
@@ -41,12 +40,14 @@ function PaymentTable({ currentPayments, cols }) {
 
                         return (
                             <tr key={_id}>
-                                <td>{payNumber}</td>
+                                <td className="text-start ps-4">{payNumber}</td>
+                                <td>{localDateString}</td>
                                 <td>{accNumber}</td>
                                 <td>{name}</td>
-                                <td>{amountPaid || checkAmount}</td>
-                                <td>{modeOfPayment}</td>
-                                <td>{localDateString}</td>
+                                <td className="text-center">{modeOfPayment}</td>
+                                <td className="text-end pe-4">
+                                    {amountPaid || checkAmount}
+                                </td>
                             </tr>
                         );
                     }

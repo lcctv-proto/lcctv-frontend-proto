@@ -1,7 +1,6 @@
 //module imports
 import {
     PieChart,
-    Journals,
     Nut,
     People,
     Person,
@@ -25,7 +24,6 @@ import Channels from "./Channels";
 import Reports from "./Reports";
 import Plans from "./Plans";
 import Equipments from "./Equipments";
-import Notes from "./Notes";
 
 function Administrator() {
     const [header, setHeader] = useState("");
@@ -40,7 +38,7 @@ function Administrator() {
         if (location.includes("reports")) setHeader("REPORTS");
         if (location.includes("equipments")) setHeader("EQUIPMENTS");
         if (location.includes("plans")) setHeader("PLANS");
-        if (location.includes("notes")) setHeader("MY NOTES");
+        // if (location.includes("notes")) setHeader("MY NOTES");
     }, [location]);
 
     const navItems = [
@@ -79,11 +77,11 @@ function Administrator() {
             title: "PLANS",
             path: "/admin/plans",
         },
-        {
-            icon: <Journals />,
-            title: "MY NOTES",
-            path: "/admin/notes",
-        },
+        // {
+        //     icon: <Journals />,
+        //     title: "MY NOTES",
+        //     path: "/admin/notes",
+        // },
     ];
 
     return (
@@ -123,9 +121,9 @@ function Administrator() {
                             <Route path="/portal/admin/plans">
                                 <Plans />
                             </Route>
-                            <Route path="/portal/admin/notes">
+                            {/* <Route path="/portal/admin/notes">
                                 <Notes />
-                            </Route>
+                            </Route> */}
                         </Switch>
                     </div>
                 </div>

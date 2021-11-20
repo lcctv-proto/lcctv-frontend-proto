@@ -1,6 +1,5 @@
 import {
     PieChart,
-    Journals,
     Nut,
     People,
     Person,
@@ -103,7 +102,7 @@ function Home() {
                                 name="admin"
                                 path="/admin/plans"
                             />
-                            <Button
+                            {/* <Button
                                 icon={
                                     <Journals
                                         color="white"
@@ -114,7 +113,7 @@ function Home() {
                                 title="MY NOTES"
                                 name="admin"
                                 path="/admin/notes"
-                            />
+                            /> */}
                         </div>
                     </div>
                 </div>

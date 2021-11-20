@@ -26,22 +26,12 @@ function EmployeeTable({ currentEmployees, cols }) {
                         emp_ctr,
                         personnelName: { firstName, middleName, lastName },
                         contactNumber,
-                        dateEmployed,
                         roleID: { description },
                         _id,
                     }) => {
                         const suffix = emp_ctr.toString().padStart(3, "0");
                         const empNumber = `${prefix}${suffix}`;
                         const name = `${firstName} ${middleName[0]}. ${lastName}`;
-                        const localDate = new Date(dateEmployed);
-                        const localDateString = localDate
-                            .toLocaleDateString(undefined, {
-                                weekday: "long",
-                                year: "numeric",
-                                month: "long",
-                                day: "numeric",
-                            })
-                            .toUpperCase();
 
                         return (
                             <tr key={_id}>
@@ -51,9 +41,7 @@ function EmployeeTable({ currentEmployees, cols }) {
                                 <td className="align-middle">
                                     {contactNumber}
                                 </td>
-                                <td className="align-middle">
-                                    {localDateString}
-                                </td>
+
                                 <td>
                                     <button
                                         type="button"

@@ -30,13 +30,16 @@ function Applications() {
     const indexOfLastApplication = currentPage * applicationsPerPage;
     const indexOfFirstApplication =
         indexOfLastApplication - applicationsPerPage;
+
     const currentApplications = applications
         .filter((application) => {
             const {
                 accountName: { firstName, middleName, lastName },
             } = application.accountID;
 
-            if (application.step !== 3) return null;
+            if (application.step !== 3) {
+                return null;
+            }
 
             const name = `${firstName} ${middleName} ${lastName}`;
 
@@ -61,7 +64,14 @@ function Applications() {
         if (_isMounted.current) {
             setIsLoading(true);
             const res = await api.applications.get("");
-            setApplications([...res.data]);
+            setApplications(
+                res.data.filter((application) => {
+                    if (application.step !== 3) {
+                        return null;
+                    }
+                    return application;
+                })
+            );
             setIsLoading(false);
         }
     };

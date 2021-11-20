@@ -36,7 +36,9 @@ function Employees() {
             const {
                 personnelName: { firstName, middleName, lastName },
             } = employee;
+
             const name = `${firstName} ${middleName} ${lastName}`;
+
             if (searchTerm === "") return employee;
             else if (name.includes(searchTerm.toUpperCase())) return employee;
             return null;
@@ -48,7 +50,6 @@ function Employees() {
         "EMPLOYEE NAME",
         "ROLE",
         "CONTACT NUMBER",
-        "DATE REGISTERED",
         "ACTIONS",
     ];
 

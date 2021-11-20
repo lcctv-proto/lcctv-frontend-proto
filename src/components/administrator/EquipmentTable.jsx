@@ -37,7 +37,7 @@ function EquipmentTable({ currentEquipments, cols }) {
                                 <td className="align-middle">{EqpmntNumber}</td>
                                 <td className="align-middle">{label}</td>
                                 <td className="align-middle">{description}</td>
-                                <td className="align-middle">₱ {price}.00</td>
+                                <td className="align-end">{price}</td>
                                 <td>
                                     <button
                                         type="button"

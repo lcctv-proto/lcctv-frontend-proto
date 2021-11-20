@@ -11,12 +11,12 @@ import Button from "react-bootstrap/Button";
 import Spinner from "../Spinner";
 import authHeader from "../../auth/auth-header";
 
-function DeleteChannelModal({
+function DeletePlanModal({
     show,
     handleClose,
-    channelID,
-    channels,
-    setChannels,
+    packageID,
+    packages,
+    setPackages,
 }) {
     const [description, setDescription] = useState("");
     const [isLoading, setIsLoading] = useState(false);
@@ -25,30 +25,32 @@ function DeleteChannelModal({
         const fetchChannel = async () => {
             setIsLoading(true);
             const res = await axios.get(
-                `https://lcctv-backend.herokuapp.com/api/channels/${channelID}`
+                `https://lcctv-backend.herokuapp.com/api/packages/${packageID}`,
+                { headers: authHeader() }
             );
             setDescription(res.data.description);
             setIsLoading(false);
         };
-        fetchChannel();
-    }, [channelID]);
+
+        if (show) fetchChannel();
+    }, [packageID, show]);
 
     const handleSubmit = () => {
         axios
             .delete(
-                `https://lcctv-backend.herokuapp.com/api/channels/${channelID}`,
+                `https://lcctv-backend.herokuapp.com/api/packages/${packageID}`,
                 { headers: authHeader() }
             )
             .then((res) => {
-                setChannels(
-                    channels.filter((channels) => {
-                        return channels._id !== res.data._id;
+                setPackages(
+                    packages.filter((packages) => {
+                        return packages._id !== res.data._id;
                     })
                 );
                 handleClose();
-                alert("File Delete success");
+                alert("Delete success");
             })
-            .catch((err) => alert("File Delete Error"));
+            .catch((err) => alert("Delete Error"));
     };
 
     return (
@@ -60,7 +62,7 @@ function DeleteChannelModal({
                     className="bg-navy text-light border-admin"
                 >
                     <Modal.Title>
-                        DELETE CHANNEL {!isLoading && `- ${description}`}
+                        DELETE PLAN {!isLoading && `- ${description}`}
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -68,7 +70,7 @@ function DeleteChannelModal({
                         <Row>
                             <Col>
                                 <span className="">
-                                    Are you sure you want to delete channel:
+                                    Are you sure you want to delete plan:
                                     <span className="ms-2 fw-bold">
                                         {description}
                                     </span>
@@ -87,7 +89,7 @@ function DeleteChannelModal({
                         onClick={handleSubmit}
                     >
                         <Trash className="me-2" />
-                        DELETE CHANNEL
+                        DELETE PLAN
                     </Button>
                 </Modal.Footer>
             </Modal>
@@ -95,4 +97,4 @@ function DeleteChannelModal({
     );
 }
 
-export default DeleteChannelModal;
+export default DeletePlanModal;

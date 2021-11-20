@@ -1,6 +1,12 @@
 import { Pencil, Trash } from "react-bootstrap-icons";
 
-function PlanTable({ currentPlans, cols }) {
+function PlanTable({
+    currentPlans,
+    cols,
+    setPackage,
+    handleDeleteShow,
+    handleEditShow,
+}) {
     return (
         <table className="table table-borderless table-striped shadow fs-5">
             <thead className="text-light bg-navy border-admin">
@@ -29,17 +35,27 @@ function PlanTable({ currentPlans, cols }) {
                             <tr key={_id}>
                                 <td className="align-middle">{pkgNumber}</td>
                                 <td className="align-middle">{description}</td>
-                                <td className="align-middle">₱ {price}.00</td>
+                                <td className="align-middle text-center">
+                                    {price}
+                                </td>
                                 <td>
                                     <button
                                         type="button"
                                         className="btn btn-navy me-2"
+                                        onClick={() => {
+                                            setPackage(_id);
+                                            handleEditShow();
+                                        }}
                                     >
                                         <Pencil className="me-2" /> EDIT
                                     </button>
                                     <button
                                         type="button"
                                         className="btn btn-danger btn-delete"
+                                        onClick={() => {
+                                            setPackage(_id);
+                                            handleDeleteShow();
+                                        }}
                                     >
                                         <Trash className="me-2" /> DELETE
                                     </button>

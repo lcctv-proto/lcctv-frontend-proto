@@ -35,11 +35,11 @@ function Payments() {
 
     const cols = [
         "PAYMENT NUMBER",
+        "TRANSACTION DATE",
         "ACCOUNT NUMBER",
         "ACCOUNT NAME",
-        "AMOUNT PAID",
         "MODE OF PAYMENT",
-        "TRANSACTION DATE",
+        "AMOUNT PAID",
     ];
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);

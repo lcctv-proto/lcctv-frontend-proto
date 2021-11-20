@@ -10,14 +10,26 @@ import SearchBar from "../SearchBar";
 import SearchError from "../SearchError";
 import Spinner from "../Spinner";
 import AddButton from "../AddButton";
+import DeletePlanModal from "./DeletePlanModal";
+import EditPlanModal from "./EditPlanModal";
 
 function Plans() {
+    const [packageID, setPackageID] = useState("");
     const [plans, setPlans] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [plansPerPage, setPlansPerPage] = useState(10);
     const [searchTerm, setSearchTerm] = useState("");
     const [isLoading, setIsLoading] = useState(true);
     const _isMounted = useRef(true);
+
+    const [deleteShow, setDeleteShow] = useState(false);
+    const [editShow, setEditShow] = useState(false);
+
+    const handleEditShow = () => setEditShow(true);
+    const handleEditClose = () => setEditShow(false);
+
+    const handleDeleteShow = () => setDeleteShow(true);
+    const handleDeleteClose = () => setDeleteShow(false);
 
     const indexOfLastPlan = currentPage * plansPerPage;
     const indexOfFirstPlan = indexOfLastPlan - plansPerPage;
@@ -31,7 +43,7 @@ function Plans() {
         })
         .slice(indexOfFirstPlan, indexOfLastPlan);
 
-    const cols = ["PLAN NUMBER", "PLAN NAME", "PLAN PRICE", "ACTIONS"];
+    const cols = ["PLAN NUMBER", "PLAN NAME", "PLAN PRICE (₱)", "ACTIONS"];
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -60,62 +72,81 @@ function Plans() {
     }
 
     return (
-        <div className="row">
-            <div className="col">
-                {isLoading ? (
-                    <Spinner name="admin" />
-                ) : (
-                    <>
-                        <div className="row">
-                            <ItemCountSelector
-                                itemsPerPage={plansPerPage}
-                                setItemsPerPage={setPlansPerPage}
-                                name="plans"
-                                setCurrentPage={setCurrentPage}
-                            />
-                            <AddButton name="PLANS" click={addPlan} />
-                            <SearchBar
-                                searchTerm={searchTerm}
-                                setSearchTerm={setSearchTerm}
-                                placeholder="Search name ..."
-                            />
-                        </div>
+        <>
+            <div className="row">
+                <div className="col">
+                    {isLoading ? (
+                        <Spinner name="admin" />
+                    ) : (
+                        <>
+                            <div className="row">
+                                <ItemCountSelector
+                                    itemsPerPage={plansPerPage}
+                                    setItemsPerPage={setPlansPerPage}
+                                    name="plans"
+                                    setCurrentPage={setCurrentPage}
+                                />
+                                <AddButton name="PLANS" click={addPlan} />
+                                <SearchBar
+                                    searchTerm={searchTerm}
+                                    setSearchTerm={setSearchTerm}
+                                    placeholder="Search name ..."
+                                />
+                            </div>
 
-                        <div className="row mt-3">
-                            <div className="col">
-                                {currentPlans.length === 0 ? (
-                                    <SearchError searchTerm={searchTerm} />
-                                ) : (
-                                    <PlanTable
-                                        currentPlans={currentPlans}
-                                        cols={cols}
-                                    />
-                                )}
-                            </div>
-                        </div>
-                        {!searchTerm && (
                             <div className="row mt-3">
-                                <div className="col-auto">
-                                    <Page
-                                        indexOfFirstItem={indexOfFirstPlan}
-                                        indexOfLastItem={indexOfLastPlan}
-                                        totalItems={plans.length}
-                                    />
-                                </div>
-                                <div className="col-auto ms-auto">
-                                    <Pagination
-                                        itemsPerPage={plansPerPage}
-                                        totalItems={plans.length}
-                                        paginate={paginate}
-                                        currentPage={currentPage}
-                                    />
+                                <div className="col">
+                                    {currentPlans.length === 0 ? (
+                                        <SearchError searchTerm={searchTerm} />
+                                    ) : (
+                                        <PlanTable
+                                            currentPlans={currentPlans}
+                                            cols={cols}
+                                            setPackage={setPackageID}
+                                            handleEditShow={handleEditShow}
+                                            handleDeleteShow={handleDeleteShow}
+                                        />
+                                    )}
                                 </div>
                             </div>
-                        )}
-                    </>
-                )}
+                            {!searchTerm && (
+                                <div className="row mt-3">
+                                    <div className="col-auto">
+                                        <Page
+                                            indexOfFirstItem={indexOfFirstPlan}
+                                            indexOfLastItem={indexOfLastPlan}
+                                            totalItems={plans.length}
+                                        />
+                                    </div>
+                                    <div className="col-auto ms-auto">
+                                        <Pagination
+                                            itemsPerPage={plansPerPage}
+                                            totalItems={plans.length}
+                                            paginate={paginate}
+                                            currentPage={currentPage}
+                                        />
+                                    </div>
+                                </div>
+                            )}
+                        </>
+                    )}
+                </div>
             </div>
-        </div>
+            <DeletePlanModal
+                show={deleteShow}
+                handleClose={handleDeleteClose}
+                packages={plans}
+                packageID={packageID}
+                setPackages={setPlans}
+            />
+            <EditPlanModal
+                show={editShow}
+                handleClose={handleEditClose}
+                packages={plans}
+                packageID={packageID}
+                setPackages={setPlans}
+            />
+        </>
     );
 }
 

@@ -36,7 +36,7 @@ function Plans() {
         "EQUIPMENT NUMBER",
         "EQUIPMENT NAME",
         "EQUIPMENT DESCRIPTION",
-        "EQUIPMENT PRICE",
+        "EQUIPMENT PRICE (₱)",
         "ACTIONS",
     ];
 

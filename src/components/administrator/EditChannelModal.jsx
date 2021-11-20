@@ -10,6 +10,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 import Spinner from "../Spinner";
+import authHeader from "../../auth/auth-header";
 
 function EditChannelModal({ show, handleClose, channelID }) {
     const [description, setDescription] = useState("");
@@ -76,7 +77,8 @@ function EditChannelModal({ show, handleClose, channelID }) {
         axios
             .post(
                 "https://lcctv-backend.herokuapp.com/api/channels",
-                channelData
+                channelData,
+                { headers: authHeader() }
             )
             .then((res) => {
                 alert("File Upload success");
