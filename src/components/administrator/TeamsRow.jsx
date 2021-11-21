@@ -1,4 +1,4 @@
-import { Geo, LayerForward, Pencil, Trash } from "react-bootstrap-icons";
+import { Geo, Pencil, Trash } from "react-bootstrap-icons";
 
 function TeamsRow({ team }) {
     return (
@@ -58,7 +58,7 @@ function TeamsRow({ team }) {
                                 </tbody>
                             </table>
                         </td>
-                        <td className="border-start border-dark text-center align-middle">
+                        {/* <td className="border-start border-dark text-center align-middle">
                             <button
                                 className="btn btn-white w-100 p-3 shadow shadow-sm overflow-hidden btn-dispatch"
                                 onClick={() => {
@@ -74,7 +74,7 @@ function TeamsRow({ team }) {
                                     {team.installations}
                                 </p>
                             </button>
-                        </td>
+                        </td> */}
                         <td className="text-center align-middle">
                             <button
                                 className="btn btn-white w-100 p-3 shadow shadow-sm overflow-hidden btn-area"

@@ -1,7 +1,7 @@
 //module imports
 import {
     People,
-    CalendarWeek,
+    // CalendarWeek,
     // BrightnessAltHigh,
     Geo,
 } from "react-bootstrap-icons";
@@ -38,11 +38,11 @@ function Technician() {
             title: "DISPATCH LIST",
             path: "/tech/dispatch",
         },
-        {
-            icon: <CalendarWeek />,
-            title: "CALENDAR",
-            path: "/tech/calendar",
-        },
+        // {
+        //     icon: <CalendarWeek />,
+        //     title: "CALENDAR",
+        //     path: "/tech/calendar",
+        // },
         // {
         //     icon: <BrightnessAltHigh />,
         //     title: "DAILY VIEW",

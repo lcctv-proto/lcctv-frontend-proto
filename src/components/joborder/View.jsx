@@ -2,21 +2,28 @@ import { useEffect, useRef, useState } from "react";
 
 import api from "../../api/api";
 
-import ViewTable from "./ViewTable";
 import Pagination from "../Pagination";
 import Page from "../Page";
 import ItemCountSelector from "../ItemCountSelector";
 import SearchBar from "../SearchBar";
 import SearchError from "../SearchError";
 import Spinner from "../Spinner";
+import ViewJO from "./ViewJO";
+import ViewTable from "./ViewTable";
 
 function View() {
+    const [dispatch, setDispatch] = useState("");
     const [dispatches, setDispatches] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [dispatchesPerPage, setDispatchesPerPage] = useState(10);
     const [searchTerm, setSearchTerm] = useState("");
     const [isLoading, setIsLoading] = useState(true);
     const _isMounted = useRef(true);
+
+    const [show, setShow] = useState(false);
+
+    const handleShow = () => setShow(true);
+    const handleClose = () => setShow(false);
 
     const indexOfLastDispatch = currentPage * dispatchesPerPage;
     const indexOfFirstDispatch = indexOfLastDispatch - dispatchesPerPage;
@@ -37,7 +44,7 @@ function View() {
         "JO NUMBER",
         "JO TYPE",
         "ACCOUNT NAME",
-        "ADDRESS",
+        "PACKAGE",
         "DATE ASSIGNED",
         "ACTIONS",
     ];
@@ -48,7 +55,11 @@ function View() {
         const fetchDispatches = async () => {
             if (_isMounted.current) {
                 setIsLoading(true);
-                const res = await api.jo.get("");
+
+                const res = await api.jo.get(``);
+                // const res = await axios.get(
+                //     "https://lcctv-backend.herokuapp.com/api/dispatches/teamID"
+                // );
                 setDispatches([...res.data]);
                 setIsLoading(false);
             }
@@ -62,61 +73,77 @@ function View() {
     }, []);
 
     return (
-        <div className="row">
-            <div className="col">
-                {isLoading ? (
-                    <Spinner name="jo" />
-                ) : (
-                    <>
-                        <div className="row">
-                            <ItemCountSelector
-                                itemsPerPage={dispatchesPerPage}
-                                setItemsPerPage={setDispatchesPerPage}
-                                name="dispatches"
-                                setCurrentPage={setCurrentPage}
-                            />
-                            <SearchBar
-                                searchTerm={searchTerm}
-                                setSearchTerm={setSearchTerm}
-                                placeholder="Search name ..."
-                            />
-                        </div>
+        <>
+            <div className="row">
+                <div className="col">
+                    {isLoading ? (
+                        <Spinner name="jo" />
+                    ) : (
+                        <>
+                            <div className="row">
+                                <ItemCountSelector
+                                    itemsPerPage={dispatchesPerPage}
+                                    setItemsPerPage={setDispatchesPerPage}
+                                    name="dispatches"
+                                    setCurrentPage={setCurrentPage}
+                                />
+                                <SearchBar
+                                    searchTerm={searchTerm}
+                                    setSearchTerm={setSearchTerm}
+                                    placeholder="Search name ..."
+                                />
+                            </div>
 
-                        <div className="row mt-3">
-                            <div className="col">
-                                {currentDispatches.length === 0 ? (
-                                    <SearchError searchTerm={searchTerm} />
-                                ) : (
-                                    <ViewTable
-                                        currentDispatches={currentDispatches}
-                                        cols={cols}
-                                    />
-                                )}
-                            </div>
-                        </div>
-                        {!searchTerm && (
                             <div className="row mt-3">
-                                <div className="col-auto">
-                                    <Page
-                                        indexOfFirstItem={indexOfFirstDispatch}
-                                        indexOfLastItem={indexOfLastDispatch}
-                                        totalItems={dispatches.length}
-                                    />
-                                </div>
-                                <div className="col-auto ms-auto">
-                                    <Pagination
-                                        itemsPerPage={dispatchesPerPage}
-                                        totalItems={dispatches.length}
-                                        paginate={paginate}
-                                        currentPage={currentPage}
-                                    />
+                                <div className="col">
+                                    {currentDispatches.length === 0 ? (
+                                        <SearchError searchTerm={searchTerm} />
+                                    ) : (
+                                        <ViewTable
+                                            currentDispatches={
+                                                currentDispatches
+                                            }
+                                            cols={cols}
+                                            handleShow={handleShow}
+                                            setDispatch={setDispatch}
+                                        />
+                                    )}
                                 </div>
                             </div>
-                        )}
-                    </>
-                )}
+                            {!searchTerm && (
+                                <div className="row mt-3">
+                                    <div className="col-auto">
+                                        <Page
+                                            indexOfFirstItem={
+                                                indexOfFirstDispatch
+                                            }
+                                            indexOfLastItem={
+                                                indexOfLastDispatch
+                                            }
+                                            totalItems={dispatches.length}
+                                        />
+                                    </div>
+                                    <div className="col-auto ms-auto">
+                                        <Pagination
+                                            itemsPerPage={dispatchesPerPage}
+                                            totalItems={dispatches.length}
+                                            paginate={paginate}
+                                            currentPage={currentPage}
+                                        />
+                                    </div>
+                                </div>
+                            )}
+                        </>
+                    )}
+                </div>
             </div>
-        </div>
+            <ViewJO
+                show={show}
+                handleClose={handleClose}
+                dispatch={dispatch}
+                setDispatch={setDispatch}
+            />
+        </>
     );
 }
 

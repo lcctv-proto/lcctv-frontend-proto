@@ -1,6 +1,6 @@
 import { ArrowsAngleExpand } from "react-bootstrap-icons";
 
-function ViewTable({ currentDispatches, cols }) {
+function ViewTable({ currentDispatches, cols, setDispatch, handleShow }) {
     return (
         <table className="table table-borderless table-striped shadow fs-5">
             <thead className="text-light bg-navy border-jo">
@@ -11,12 +11,13 @@ function ViewTable({ currentDispatches, cols }) {
                 </tr>
             </thead>
             <tbody>
-                {currentDispatches.map(
+                {currentDispatches?.map(
                     ({
                         prefix,
                         jo_ctr,
                         type,
                         accountID: {
+                            _id: id,
                             accountName: { firstName, middleName, lastName },
                             packageID: { description },
                         },
@@ -47,6 +48,10 @@ function ViewTable({ currentDispatches, cols }) {
                                     <button
                                         type="button"
                                         className="btn btn-navy"
+                                        onClick={(e) => {
+                                            setDispatch(id);
+                                            handleShow();
+                                        }}
                                     >
                                         <ArrowsAngleExpand className="me-2" />
                                         VIEW

@@ -1,6 +1,6 @@
 import {
     People,
-    CalendarWeek,
+    // CalendarWeek,
     // BrightnessAltHigh,
     Geo,
 } from "react-bootstrap-icons";
@@ -27,7 +27,7 @@ function Home() {
                                 name="tech"
                                 path="/tech/dispatch"
                             />
-                            <Button
+                            {/* <Button
                                 icon={
                                     <CalendarWeek
                                         color="white"
@@ -38,7 +38,7 @@ function Home() {
                                 title="CALENDAR"
                                 name="tech"
                                 path="/tech/calendar"
-                            />
+                            /> */}
                             {/* <Button
                                 icon={
                                     <BrightnessAltHigh
