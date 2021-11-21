@@ -1,11 +1,4 @@
-import {
-    Pen,
-    LightningCharge,
-    Tools,
-    Check2Circle,
-    CalendarWeek,
-    JournalAlbum,
-} from "react-bootstrap-icons";
+import { Pen, LightningCharge, JournalAlbum } from "react-bootstrap-icons";
 import Button from "../Button";
 import NavbarPortal from "../NavbarPortal";
 
@@ -28,7 +21,6 @@ function Home() {
                                 title="NEW ACCOUNTS"
                                 name="jo"
                                 path="/joborder/accounts"
-                                count={9}
                             />
                             <Button
                                 icon={
@@ -41,9 +33,8 @@ function Home() {
                                 title="ACTIVATION"
                                 name="jo"
                                 path="/joborder/activation"
-                                count={15}
                             />
-                            <Button
+                            {/* <Button
                                 icon={
                                     <Tools
                                         color="white"
@@ -54,11 +45,10 @@ function Home() {
                                 title="MAINTENANCE"
                                 name="jo"
                                 path="/joborder/maintenance"
-                                count={23}
-                            />
+                            /> */}
                         </div>
                         <div className="row my-4 px-4 justify-content-center">
-                            <Button
+                            {/* <Button
                                 icon={
                                     <Check2Circle
                                         color="white"
@@ -69,7 +59,6 @@ function Home() {
                                 title="CLOSING"
                                 name="jo"
                                 path="/joborder/closing"
-                                count={5}
                             />
                             <Button
                                 icon={
@@ -82,7 +71,7 @@ function Home() {
                                 title="CALENDAR"
                                 name="jo"
                                 path="/joborder/calendar"
-                            />
+                            /> */}
                             <Button
                                 icon={
                                     <JournalAlbum

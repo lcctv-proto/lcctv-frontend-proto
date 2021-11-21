@@ -41,7 +41,6 @@ function EmployeeTable({ currentEmployees, cols }) {
                                 <td className="align-middle">
                                     {contactNumber}
                                 </td>
-
                                 <td>
                                     <button
                                         type="button"

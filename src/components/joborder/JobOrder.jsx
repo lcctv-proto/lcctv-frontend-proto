@@ -1,12 +1,5 @@
 //module imports
-import {
-    Pen,
-    LightningCharge,
-    Tools,
-    Check2Circle,
-    CalendarWeek,
-    JournalAlbum,
-} from "react-bootstrap-icons";
+import { Pen, LightningCharge, JournalAlbum } from "react-bootstrap-icons";
 import { Switch, Route, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
@@ -48,21 +41,21 @@ function JobOrder() {
             title: "ACTIVATION",
             path: "/joborder/activation",
         },
-        {
-            icon: <Tools />,
-            title: "MAINTENANCE",
-            path: "/joborder/maintenance",
-        },
-        {
-            icon: <Check2Circle />,
-            title: "CLOSING",
-            path: "/joborder/closing",
-        },
-        {
-            icon: <CalendarWeek />,
-            title: "CALENDAR",
-            path: "/joborder/calendar",
-        },
+        // {
+        //     icon: <Tools />,
+        //     title: "MAINTENANCE",
+        //     path: "/joborder/maintenance",
+        // },
+        // {
+        //     icon: <Check2Circle />,
+        //     title: "CLOSING",
+        //     path: "/joborder/closing",
+        // },
+        // {
+        //     icon: <CalendarWeek />,
+        //     title: "CALENDAR",
+        //     path: "/joborder/calendar",
+        // },
         {
             icon: <JournalAlbum />,
             title: "VIEW JOB ORDERS",

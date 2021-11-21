@@ -38,7 +38,6 @@ function View() {
         "JO TYPE",
         "ACCOUNT NAME",
         "ADDRESS",
-        "PACKAGE",
         "DATE ASSIGNED",
         "ACTIONS",
     ];

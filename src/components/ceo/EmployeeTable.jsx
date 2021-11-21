@@ -1,3 +1,5 @@
+import { Pencil, Trash } from "react-bootstrap-icons";
+
 function EmployeeTable({ currentEmployees, cols }) {
     return (
         <table className="table table-borderless table-striped shadow fs-5">
@@ -15,22 +17,12 @@ function EmployeeTable({ currentEmployees, cols }) {
                         emp_ctr,
                         personnelName: { firstName, middleName, lastName },
                         contactNumber,
-                        dateEmployed,
                         roleID: { description },
                         _id,
                     }) => {
                         const suffix = emp_ctr.toString().padStart(3, "0");
                         const empNumber = `${prefix}${suffix}`;
                         const name = `${firstName} ${middleName[0]}. ${lastName}`;
-                        const localDate = new Date(dateEmployed);
-                        const localDateString = localDate
-                            .toLocaleDateString(undefined, {
-                                weekday: "long",
-                                year: "numeric",
-                                month: "long",
-                                day: "numeric",
-                            })
-                            .toUpperCase();
 
                         return (
                             <tr key={_id}>
@@ -38,7 +30,20 @@ function EmployeeTable({ currentEmployees, cols }) {
                                 <td>{name}</td>
                                 <td>{description}</td>
                                 <td>{contactNumber}</td>
-                                <td>{localDateString}</td>
+                                <td>
+                                    <button
+                                        type="button"
+                                        className="btn btn-navy me-2"
+                                    >
+                                        <Pencil className="me-2" /> EDIT
+                                    </button>
+                                    <button
+                                        type="button"
+                                        className="btn btn-danger btn-delete"
+                                    >
+                                        <Trash className="me-2" /> DELETE
+                                    </button>
+                                </td>
                             </tr>
                         );
                     }

@@ -46,7 +46,7 @@ function Employees() {
         "EMPLOYEE NAME",
         "ROLE",
         "CONTACT NUMBER",
-        "DATE REGISTERED",
+        "ACTIONS",
     ];
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);

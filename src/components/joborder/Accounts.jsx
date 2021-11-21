@@ -2,7 +2,6 @@ import { useState } from "react";
 import {
     Search,
     Save2,
-    Printer,
     ChevronDoubleUp,
     PlusCircle,
 } from "react-bootstrap-icons";
@@ -73,7 +72,6 @@ function Accounts() {
                                                         { type: "custom" }
                                                     );
                                                 setAccount(res.data);
-                                                console.log(account);
                                             } catch (err) {
                                                 setAccount([]);
                                             }
@@ -158,14 +156,17 @@ function Accounts() {
             </Row>
             <Row className="border-jo mb-3 justify-content-end">
                 <Col className="mb-3 " xs="auto">
-                    <Button size="lg" className="btn-navy ">
+                    {/* <Button size="lg" className="btn-navy ">
                         <div className="d-flex align-items-center">
                             <Printer className="me-2" /> PRINT
                         </div>
-                    </Button>
+                    </Button> */}
                     <Button
                         size="lg"
                         className=" ms-2 btn-approve btn-success "
+                        onClick={() => {
+                            alert("Changes saved!");
+                        }}
                     >
                         <div className="d-flex align-items-center">
                             <Save2 className="me-2" />
@@ -192,7 +193,13 @@ function Accounts() {
                                         controlId="modalFamilyName"
                                     >
                                         <Form.Label>Family Name:</Form.Label>
-                                        <Form.Control type="text" />
+                                        <Form.Control
+                                            type="text"
+                                            value={
+                                                account?.accountName?.lastName
+                                            }
+                                            disabled
+                                        />
                                     </Form.Group>
                                     <Form.Group
                                         as={Col}
@@ -200,7 +207,13 @@ function Accounts() {
                                         controlId="modalFirstName"
                                     >
                                         <Form.Label>First Name:</Form.Label>
-                                        <Form.Control type="text" />
+                                        <Form.Control
+                                            type="text"
+                                            value={
+                                                account?.accountName?.firstName
+                                            }
+                                            disabled
+                                        />
                                     </Form.Group>
                                     <Form.Group
                                         as={Col}
@@ -208,7 +221,13 @@ function Accounts() {
                                         controlId="modalMiddleName"
                                     >
                                         <Form.Label>Middle Name:</Form.Label>
-                                        <Form.Control type="text" />
+                                        <Form.Control
+                                            type="text"
+                                            value={
+                                                account?.accountName?.middleName
+                                            }
+                                            disabled
+                                        />
                                     </Form.Group>
                                 </Row>
                                 <Row className="mb-3">
@@ -218,7 +237,14 @@ function Accounts() {
                                         controlId="modalNationality"
                                     >
                                         <Form.Label>Nationality:</Form.Label>
-                                        <Form.Control type="text" />
+                                        <Form.Control
+                                            type="text"
+                                            value={
+                                                account?.additionalInfo
+                                                    ?.nationality
+                                            }
+                                            disabled
+                                        />
                                     </Form.Group>
                                     <Form.Group
                                         as={Col}
@@ -226,7 +252,13 @@ function Accounts() {
                                         controlId="modalBirthDate"
                                     >
                                         <Form.Label>Birth Date:</Form.Label>
-                                        <Form.Control type="date" />
+                                        <Form.Control
+                                            type="date"
+                                            value={new Date(
+                                                account?.additionalInfo?.birthdate
+                                            ).toLocaleDateString()}
+                                            disabled
+                                        />
                                     </Form.Group>
                                     <Form.Group
                                         as={Col}
@@ -234,11 +266,13 @@ function Accounts() {
                                         controlId="modalSex"
                                     >
                                         <Form.Label>Sex: </Form.Label>
-                                        <Form.Select defaultValue="SELECT SEX">
-                                            <option>SELECT SEX</option>
-                                            <option>MALE</option>
-                                            <option>FEMALE</option>
-                                        </Form.Select>
+                                        <Form.Control
+                                            type="text"
+                                            value={
+                                                account?.additionalInfo?.gender
+                                            }
+                                            disabled
+                                        />
                                     </Form.Group>
                                     <Form.Group
                                         as={Col}
@@ -246,13 +280,14 @@ function Accounts() {
                                         controlId="modalCivilStatus"
                                     >
                                         <Form.Label>Civil Status: </Form.Label>
-                                        <Form.Select defaultValue="SELECT CIVIL STATUS">
-                                            <option>SELECT CIVIL STATUS</option>
-                                            <option>SINGLE</option>
-                                            <option>MARRIED</option>
-                                            <option>WIDOWED</option>
-                                            <option>SEPARATED</option>
-                                        </Form.Select>
+                                        <Form.Control
+                                            type="text"
+                                            value={
+                                                account?.additionalInfo
+                                                    ?.civilStatus
+                                            }
+                                            disabled
+                                        />
                                     </Form.Group>
                                 </Row>
                             </Accordion.Body>
@@ -271,7 +306,13 @@ function Accounts() {
                                         <Form.Label>
                                             Unit/House Number:
                                         </Form.Label>
-                                        <Form.Control type="text" />
+                                        <Form.Control
+                                            type="text"
+                                            value={
+                                                account?.serviceAddress?.unit
+                                            }
+                                            disabled
+                                        />
                                     </Form.Group>
                                     <Form.Group
                                         as={Col}
@@ -279,7 +320,13 @@ function Accounts() {
                                         controlId="modalStreet"
                                     >
                                         <Form.Label>Street:</Form.Label>
-                                        <Form.Control type="text" />
+                                        <Form.Control
+                                            type="text"
+                                            value={
+                                                account?.serviceAddress?.street
+                                            }
+                                            disabled
+                                        />
                                     </Form.Group>
                                     <Form.Group
                                         as={Col}
@@ -287,7 +334,13 @@ function Accounts() {
                                         controlId="modalBarangay"
                                     >
                                         <Form.Label>Barangay:</Form.Label>
-                                        <Form.Control type="text" />
+                                        <Form.Control
+                                            type="text"
+                                            value={
+                                                account?.serviceAddress?.street
+                                            }
+                                            disabled
+                                        />
                                     </Form.Group>
                                 </Row>
                                 <Row className="mb-3">
@@ -297,7 +350,14 @@ function Accounts() {
                                         controlId="modalMunicipality"
                                     >
                                         <Form.Label>Municipality:</Form.Label>
-                                        <Form.Control type="text" />
+                                        <Form.Control
+                                            type="text"
+                                            value={
+                                                account?.serviceAddress
+                                                    ?.municipality
+                                            }
+                                            disabled
+                                        />
                                     </Form.Group>
                                     <Form.Group
                                         as={Col}
@@ -305,7 +365,14 @@ function Accounts() {
                                         controlId="modalHomeOwn"
                                     >
                                         <Form.Label>Home Ownership:</Form.Label>
-                                        <Form.Control type="text" />
+                                        <Form.Control
+                                            type="text"
+                                            value={
+                                                account?.serviceAddress
+                                                    ?.homeOwnership
+                                            }
+                                            disabled
+                                        />
                                     </Form.Group>
                                     <Form.Group
                                         as={Col}
@@ -313,13 +380,16 @@ function Accounts() {
                                         controlId="modalResidency"
                                     >
                                         <Form.Label>
-                                            Years of Residency:{" "}
+                                            Years of Residency:
                                         </Form.Label>
-                                        <Form.Select defaultValue="SELECT SEX">
-                                            <option>SELECT SEX</option>
-                                            <option>MALE</option>
-                                            <option>FEMALE</option>
-                                        </Form.Select>
+                                        <Form.Control
+                                            type="text"
+                                            value={
+                                                account?.serviceAddress
+                                                    ?.residencyYear
+                                            }
+                                            disabled
+                                        />
                                     </Form.Group>
                                 </Row>
                                 <Row className="mb-3">
@@ -329,7 +399,14 @@ function Accounts() {
                                         controlId="modalProvince"
                                     >
                                         <Form.Label>Province:</Form.Label>
-                                        <Form.Control type="text" />
+                                        <Form.Control
+                                            type="text"
+                                            value={
+                                                account?.serviceAddress
+                                                    ?.province
+                                            }
+                                            disabled
+                                        />
                                     </Form.Group>
                                     <Form.Group
                                         as={Col}
@@ -337,7 +414,13 @@ function Accounts() {
                                         controlId="modalZipCode"
                                     >
                                         <Form.Label>Zip Code:</Form.Label>
-                                        <Form.Control type="text" />
+                                        <Form.Control
+                                            type="text"
+                                            value={
+                                                account?.serviceAddress?.zipCode
+                                            }
+                                            disabled
+                                        />
                                     </Form.Group>
                                     <Form.Group
                                         as={Col}
@@ -347,7 +430,14 @@ function Accounts() {
                                         <Form.Label>
                                             NearestLandmark:
                                         </Form.Label>
-                                        <Form.Control type="text" />
+                                        <Form.Control
+                                            type="text"
+                                            value={
+                                                account?.serviceAddress
+                                                    ?.nearestLandmark
+                                            }
+                                            disabled
+                                        />
                                     </Form.Group>
                                 </Row>
                             </Accordion.Body>
@@ -356,13 +446,20 @@ function Accounts() {
                             <Accordion.Header className="border-jo">
                                 Government Issued ID
                             </Accordion.Header>
-                            <Accordion.Body></Accordion.Body>
+                            <Accordion.Body>
+                                <img
+                                    src={account?.governmentIdImageURL}
+                                    alt=""
+                                />
+                            </Accordion.Body>
                         </Accordion.Item>
                         <Accordion.Item eventKey="3">
                             <Accordion.Header className="border-jo">
                                 Proof of Billing
                             </Accordion.Header>
-                            <Accordion.Body></Accordion.Body>
+                            <Accordion.Body>
+                                <img src={account?.billingImageURL} alt="" />
+                            </Accordion.Body>
                         </Accordion.Item>
                         <Accordion.Item eventKey="4">
                             <Accordion.Header className="border-jo">
@@ -378,7 +475,14 @@ function Accounts() {
                                         <Form.Label>
                                             Cellphone Number:
                                         </Form.Label>
-                                        <Form.Control type="text" />
+                                        <Form.Control
+                                            type="text"
+                                            value={
+                                                account?.contactInfo
+                                                    ?.cellphoneNumber
+                                            }
+                                            disabled
+                                        />
                                     </Form.Group>
                                     <Form.Group
                                         as={Col}
@@ -388,7 +492,14 @@ function Accounts() {
                                         <Form.Label>
                                             Telephone Number:
                                         </Form.Label>
-                                        <Form.Control type="text" />
+                                        <Form.Control
+                                            type="text"
+                                            value={
+                                                account?.contactInfo
+                                                    ?.telephoneNumber
+                                            }
+                                            disabled
+                                        />
                                     </Form.Group>
                                     <Form.Group
                                         as={Col}
@@ -396,7 +507,11 @@ function Accounts() {
                                         controlId="modalEmailAddress"
                                     >
                                         <Form.Label>Email Address:</Form.Label>
-                                        <Form.Control type="text" />
+                                        <Form.Control
+                                            type="text"
+                                            value={account?.contactInfo?.email}
+                                            disabled
+                                        />
                                     </Form.Group>
                                 </Row>
                                 <Row className="mb-3 h5">
@@ -409,7 +524,14 @@ function Accounts() {
                                         controlId="modalMomFamilyName"
                                     >
                                         <Form.Label>Family Name:</Form.Label>
-                                        <Form.Control type="text" />
+                                        <Form.Control
+                                            type="text"
+                                            value={
+                                                account?.contactInfo
+                                                    ?.motherMaidenName?.lastName
+                                            }
+                                            disabled
+                                        />
                                     </Form.Group>
                                     <Form.Group
                                         as={Col}
@@ -417,7 +539,15 @@ function Accounts() {
                                         controlId="modalMomFirstName"
                                     >
                                         <Form.Label>First Name:</Form.Label>
-                                        <Form.Control type="text" />
+                                        <Form.Control
+                                            type="text"
+                                            value={
+                                                account?.contactInfo
+                                                    ?.motherMaidenName
+                                                    ?.firstName
+                                            }
+                                            disabled
+                                        />
                                     </Form.Group>
                                     <Form.Group
                                         as={Col}
@@ -425,36 +555,15 @@ function Accounts() {
                                         controlId="modalMomMiddleName"
                                     >
                                         <Form.Label>Middle Name:</Form.Label>
-                                        <Form.Control type="text" />
-                                    </Form.Group>
-                                </Row>
-                                <Row className="mb-3 h5">
-                                    <Col>Spouse's Name</Col>
-                                </Row>
-                                <Row className="mb-3">
-                                    <Form.Group
-                                        as={Col}
-                                        xs="4"
-                                        controlId="modalSpouseFamilyName"
-                                    >
-                                        <Form.Label>Family Name:</Form.Label>
-                                        <Form.Control type="text" />
-                                    </Form.Group>
-                                    <Form.Group
-                                        as={Col}
-                                        xs="4"
-                                        controlId="modalSpouseFirstName"
-                                    >
-                                        <Form.Label>First Name:</Form.Label>
-                                        <Form.Control type="text" />
-                                    </Form.Group>
-                                    <Form.Group
-                                        as={Col}
-                                        xs="4"
-                                        controlId="modalSpouseMiddleName"
-                                    >
-                                        <Form.Label>Middle Name:</Form.Label>
-                                        <Form.Control type="text" />
+                                        <Form.Control
+                                            type="text"
+                                            value={
+                                                account?.contactInfo
+                                                    ?.motherMaidenName
+                                                    ?.middleName
+                                            }
+                                            disabled
+                                        />
                                     </Form.Group>
                                 </Row>
                             </Accordion.Body>

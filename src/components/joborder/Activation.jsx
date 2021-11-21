@@ -1,11 +1,6 @@
 import { useState } from "react";
 
-import {
-    Search,
-    Broadcast,
-    Printer,
-    ChevronDoubleUp,
-} from "react-bootstrap-icons";
+import { Search, Broadcast, ChevronDoubleUp } from "react-bootstrap-icons";
 
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
@@ -96,14 +91,17 @@ function Activation() {
             </Row>
             <Row className="border-jo mb-3 justify-content-end">
                 <Col className="mb-3 " xs="auto">
-                    <Button size="lg" className="btn-navy ">
+                    {/* <Button size="lg" className="btn-navy ">
                         <div className="d-flex align-items-center">
                             <Printer className="me-2" /> PRINT
                         </div>
-                    </Button>
+                    </Button> */}
                     <Button
                         size="lg"
                         className=" ms-2 btn-approve btn-success "
+                        onClick={() => {
+                            alert("Account activated!");
+                        }}
                     >
                         <div className="d-flex align-items-center">
                             <Broadcast className="me-2" />
@@ -125,23 +123,7 @@ function Activation() {
                                 <th>PRICE</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Larry the Bird</td>
-                                <td></td>
-                            </tr>
-                        </tbody>
+                        <tbody></tbody>
                     </Table>
                 </Col>
             </Row>
