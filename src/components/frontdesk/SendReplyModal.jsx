@@ -58,6 +58,7 @@ function SendReplyModal({ show, handleClose, inquiry }) {
     const handleSubmit = () => {
         const toSend = { email, subject, body };
         console.log(toSend);
+        handleClose();
     };
 
     return (
