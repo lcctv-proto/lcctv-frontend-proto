@@ -12,21 +12,18 @@ function Home() {
             title: "APPLICATIONS",
             name: "front",
             path: "/frontdesk/applications",
-            count: 3,
         },
         {
             icon: <Tools color="white" size="8rem" className="mb-2" />,
             title: "INQUIRIES",
             name: "front",
             path: "/frontdesk/inquiries",
-            count: 3,
         },
         {
             icon: <Pen color="white" size="8rem" className="mb-2" />,
             title: "ACCOUNTS",
             name: "front",
             path: "/frontdesk/accounts",
-            count: 1,
         },
     ];
     return (

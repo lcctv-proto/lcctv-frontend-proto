@@ -46,7 +46,14 @@ function PaymentTable({ currentPayments, cols }) {
                                 <td>{name}</td>
                                 <td className="text-center">{modeOfPayment}</td>
                                 <td className="text-end pe-4">
-                                    {amountPaid || checkAmount}
+                                    {amountPaid?.toLocaleString(undefined, {
+                                        minimumFractionDigits: 2,
+                                        maximumFractionDigits: 2,
+                                    }) ??
+                                        checkAmount?.toLocaleString(undefined, {
+                                            minimumFractionDigits: 2,
+                                            maximumFractionDigits: 2,
+                                        })}
                                 </td>
                             </tr>
                         );
