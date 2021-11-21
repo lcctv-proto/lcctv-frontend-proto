@@ -8,6 +8,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import authHeader from "../../auth/auth-header";
 
 function AddChannelModal({ show, handleClose, channels, setChannels }) {
     const [description, setDescription] = useState("");
@@ -59,7 +60,8 @@ function AddChannelModal({ show, handleClose, channels, setChannels }) {
         axios
             .post(
                 "https://lcctv-backend.herokuapp.com/api/channels",
-                channelData
+                channelData,
+                { headers: authHeader() }
             )
             .then((res) => {
                 setChannels([...channels, res.data]);

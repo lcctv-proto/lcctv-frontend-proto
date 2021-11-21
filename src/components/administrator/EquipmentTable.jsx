@@ -1,6 +1,12 @@
 import { Pencil, Trash } from "react-bootstrap-icons";
 
-function EquipmentTable({ currentEquipments, cols }) {
+function EquipmentTable({
+    currentEquipments,
+    cols,
+    setEquipment,
+    handleEditShow,
+    handleDeleteShow,
+}) {
     return (
         <table className="table table-borderless table-striped shadow fs-5">
             <thead className="text-light bg-navy border-admin">
@@ -47,12 +53,20 @@ function EquipmentTable({ currentEquipments, cols }) {
                                     <button
                                         type="button"
                                         className="btn btn-navy me-2"
+                                        onClick={() => {
+                                            setEquipment(_id);
+                                            handleEditShow();
+                                        }}
                                     >
                                         <Pencil className="me-2" /> EDIT
                                     </button>
                                     <button
                                         type="button"
                                         className="btn btn-danger btn-delete"
+                                        onClick={() => {
+                                            setEquipment(_id);
+                                            handleDeleteShow();
+                                        }}
                                     >
                                         <Trash className="me-2" /> DELETE
                                     </button>
