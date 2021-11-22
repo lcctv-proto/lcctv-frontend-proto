@@ -37,10 +37,6 @@ function Applications() {
                 accountName: { firstName, middleName, lastName },
             } = application.accountID;
 
-            if (application.step !== 3) {
-                return null;
-            }
-
             const name = `${firstName} ${middleName} ${lastName}`;
 
             if (searchTerm === "") return application;

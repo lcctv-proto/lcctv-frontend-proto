@@ -20,9 +20,12 @@ function AccountTable({ currentAccounts, cols, setSearchTerm, handleClose }) {
                         acc_ctr,
                         _id,
                     }) => {
+                        console.log(middleName);
                         const accSuffix = acc_ctr.toString().padStart(3, "0");
                         const accNumber = `${prefix}${accSuffix}`;
-                        const name = `${firstName} ${middleName[0]}. ${lastName}`;
+                        const name = `${firstName} ${
+                            !middleName[0] ? "" : `${middleName[0]}.`
+                        } ${lastName}`;
 
                         return (
                             <tr key={_id}>

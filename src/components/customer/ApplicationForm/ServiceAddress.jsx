@@ -68,14 +68,17 @@ function ServiceAddress({
             <label htmlFor="home_owner" className="form-label mt-2">
                 Home Ownership:
             </label>
-            <input
-                type="text"
-                className="form-control"
-                id="home_owner"
+            <select
                 value={homeOwnership}
                 onChange={(e) => setHomeOwnership(e.target.value)}
                 required
-            />
+            >
+                <option value="OWNED">OWNED</option>
+                <option value="LIVING WITH RELATIVES">
+                    LIVING WITH RELATIVES
+                </option>
+                <option value="RENTED">RENTED</option>
+            </select>
             <label htmlFor="yrs_resid" className="form-label mt-2">
                 Years of Residency:
             </label>
