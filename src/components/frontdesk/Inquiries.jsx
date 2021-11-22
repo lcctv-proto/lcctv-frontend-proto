@@ -54,10 +54,10 @@ function Inquiries() {
 
     const cols = [
         "INQUIRY NUMBER",
-        "ACCOUNT NAME",
-        "PLAN",
-        "CONCERN TYPE",
         "DATE",
+        "ACCOUNT NAME",
+        "CONCERN TYPE",
+        "PLAN",
         "ACTIONS",
     ];
 

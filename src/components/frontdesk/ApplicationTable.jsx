@@ -177,21 +177,21 @@ function ApplicationTable({
                                         value.prefix
                                     }${value.ref_ctr
                                         .toString()
-                                        .padStart(3, "0")}`,
-                                    firstName:
+                                        .padStart(3, "0")}`, 
+                                    "FIRST NAME":
                                         value.accountID.accountName.firstName,
-                                    middleName:
+                                    "MIDDLE NAME":
                                         value.accountID.accountName.middleName,
-                                    lastName:
+                                    "LAST NAME":
                                         value.accountID.accountName.lastName,
-                                    package:
+                                    "PACKAGE":
                                         value.accountID.packageID.description,
-                                    date: value.date,
-                                    _id: value._id,
-                                    pob_link: value.accountID.billingImageURL,
-                                    birthday:
-                                        value.accountID.additionalInfo
-                                            .birthdate,
+                                    "DATE": value.date,
+                                    "ACCOUNT ID": value._id,
+                                    "LINK TO PROOF OF VALIDATION": 
+                                        value.accountID.billingImageURL,
+                                    "BIRTHDAY":
+                                        value.accountID.additionalInfo.birthdate,
                                 });
                             });
                             let worksheet =
@@ -218,20 +218,19 @@ function ApplicationTable({
                                     }${value.ref_ctr
                                         .toString()
                                         .padStart(3, "0")}`,
-                                    firstName:
+                                    "FIRST NAME":
                                         value.accountID.accountName.firstName,
-                                    middleName:
+                                    "MIDDLE NAME":
                                         value.accountID.accountName.middleName,
-                                    lastName:
+                                    "LAST NAME":
                                         value.accountID.accountName.lastName,
-                                    package:
+                                    "PACKAGE":
                                         value.accountID.packageID.description,
-                                    date: value.date,
-                                    _id: value._id,
-                                    pob_link: value.accountID.billingImageURL,
-                                    birthday:
-                                        value.accountID.additionalInfo
-                                            .birthdate,
+                                    "DATE": value.date,
+                                    "ACCOUNT ID": value._id,
+                                    "LINK TO PROOF OF BILLING": value.accountID.billingImageURL,
+                                    "BIRTDAY":
+                                        value.accountID.additionalInfo.birthdate,
                                 });
                             });
                             let worksheet =
