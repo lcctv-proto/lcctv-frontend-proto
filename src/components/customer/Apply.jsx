@@ -187,128 +187,117 @@ function Apply() {
                         </div>
                         <div className="card-body">
                             <p className="mb-2">Select Plan: </p>
-                            <Form.Group>
-                                <Form.Select
-                                    value={packageID}
-                                    onChange={(e) => {
-                                        setPackageID(e.target.value);
-                                    }}
-                                >
-                                    {packages.map((value, index) => {
-                                        return (
-                                            <option
-                                                key={index}
-                                                value={value._id}
-                                            >
-                                                {value.description}
-                                            </option>
-                                        );
-                                    })}
-                                </Form.Select>
-                            </Form.Group>
-                            {/* <fieldset
-                                className="d-flex flex-column flex-md-row justify-content-between"
-                                name="set-package"
-                                value={packageID}
-                                onChange={(e) => {
-                                    setPackageID(e.target.id);
-                                }}
-                            >
-                                {packages.map(({ id, desc, name }, index) => {
-                                    return (
-                                        <Plan
-                                            _id={id}
-                                            placeholder={desc}
-                                            key={index}
-                                            packageID={
-                                                !packageID
-                                                    ? query.get("name")
-                                                    : packageID
-                                            }
-                                            name={name}
-                                        />
-                                    );
-                                })}
-                            </fieldset> */}
-                            <hr />
-                            {page === 1 && (
-                                <PersonalInfo
-                                    accountFirstName={accountFirstName}
-                                    setAccountFirstName={setAccountFirstName}
-                                    accountMiddleName={accountMiddleName}
-                                    setAccountMiddleName={setAccountMiddleName}
-                                    accountLastName={accountLastName}
-                                    setAccountLastName={setAccountLastName}
-                                    birthdate={birthdate}
-                                    setBirthdate={setBirthdate}
-                                    nationality={nationality}
-                                    setNationality={setNationality}
-                                    gender={gender}
-                                    setGender={setGender}
-                                    civilStatus={civilStatus}
-                                    setCivilStatus={setCivilStatus}
-                                />
-                            )}
-                            {page === 2 && (
-                                <ServiceAddress
-                                    unit={unit}
-                                    setUnit={setUnit}
-                                    street={street}
-                                    setStreet={setStreet}
-                                    barangay={barangay}
-                                    setBarangay={setBarangay}
-                                    municipality={municipality}
-                                    setMunicipality={setMunicipality}
-                                    province={province}
-                                    setProvince={setProvince}
-                                    zipCode={zipCode}
-                                    setZipCode={setZipCode}
-                                    homeOwnership={homeOwnership}
-                                    setHomeOwnership={setHomeOwnership}
-                                    residencyYear={residencyYear}
-                                    setResidencyYear={setResidencyYear}
-                                    nearestLandmark={nearestLandmark}
-                                    setNearestLandmark={setNearestLandmark}
-                                />
-                            )}
-                            {page === 3 && (
-                                <ContactInformation
-                                    cellphoneNumber={cellphoneNumber}
-                                    setCellphoneNumber={setCellphoneNumber}
-                                    telephoneNumber={telephoneNumber}
-                                    setTelephoneNumber={setTelephoneNumber}
-                                    email={email}
-                                    setEmail={setEmail}
-                                    motherFirstName={motherFirstName}
-                                    setMotherFirstName={setMotherFirstName}
-                                    motherMiddleName={motherMiddleName}
-                                    setMotherMiddleName={setMotherMiddleName}
-                                    motherLastName={motherLastName}
-                                    setMotherLastName={setMotherLastName}
-                                    spouseFirstName={spouseFirstName}
-                                    setSpouseFirstName={setSpouseFirstName}
-                                    spouseMiddleName={spouseMiddleName}
-                                    setSpouseMiddleName={setSpouseMiddleName}
-                                    spouseLastName={spouseLastName}
-                                    setSpouseLastName={setSpouseLastName}
-                                    civilStatus={civilStatus}
-                                />
-                            )}
 
-                            {page === 4 && (
-                                <IDandProof
-                                    billingImageURL={billingImageURL}
-                                    setBillingImageURL={setBillingImageURL}
-                                    governmentIdImageURL={governmentIdImageURL}
-                                    setGovernmentIdImageURL={
-                                        setGovernmentIdImageURL
-                                    }
-                                    IDpreview={IDpreview}
-                                    setIDPreview={setIDPreview}
-                                    POBpreview={POBpreview}
-                                    setPOBPreview={setPOBPreview}
-                                />
-                            )}
+                            <form action="">
+                                <Form.Group>
+                                    <Form.Select
+                                        value={packageID}
+                                        onChange={(e) => {
+                                            setPackageID(e.target.value);
+                                        }}
+                                    >
+                                        {packages.map((value, index) => {
+                                            return (
+                                                <option
+                                                    key={index}
+                                                    value={value._id}
+                                                >
+                                                    {value.description}
+                                                </option>
+                                            );
+                                        })}
+                                    </Form.Select>
+                                </Form.Group>
+                                <hr />
+                                {page === 1 && (
+                                    <PersonalInfo
+                                        accountFirstName={accountFirstName}
+                                        setAccountFirstName={
+                                            setAccountFirstName
+                                        }
+                                        accountMiddleName={accountMiddleName}
+                                        setAccountMiddleName={
+                                            setAccountMiddleName
+                                        }
+                                        accountLastName={accountLastName}
+                                        setAccountLastName={setAccountLastName}
+                                        birthdate={birthdate}
+                                        setBirthdate={setBirthdate}
+                                        nationality={nationality}
+                                        setNationality={setNationality}
+                                        gender={gender}
+                                        setGender={setGender}
+                                        civilStatus={civilStatus}
+                                        setCivilStatus={setCivilStatus}
+                                    />
+                                )}
+                                {page === 2 && (
+                                    <ServiceAddress
+                                        unit={unit}
+                                        setUnit={setUnit}
+                                        street={street}
+                                        setStreet={setStreet}
+                                        barangay={barangay}
+                                        setBarangay={setBarangay}
+                                        municipality={municipality}
+                                        setMunicipality={setMunicipality}
+                                        province={province}
+                                        setProvince={setProvince}
+                                        zipCode={zipCode}
+                                        setZipCode={setZipCode}
+                                        homeOwnership={homeOwnership}
+                                        setHomeOwnership={setHomeOwnership}
+                                        residencyYear={residencyYear}
+                                        setResidencyYear={setResidencyYear}
+                                        nearestLandmark={nearestLandmark}
+                                        setNearestLandmark={setNearestLandmark}
+                                    />
+                                )}
+                                {page === 3 && (
+                                    <ContactInformation
+                                        cellphoneNumber={cellphoneNumber}
+                                        setCellphoneNumber={setCellphoneNumber}
+                                        telephoneNumber={telephoneNumber}
+                                        setTelephoneNumber={setTelephoneNumber}
+                                        email={email}
+                                        setEmail={setEmail}
+                                        motherFirstName={motherFirstName}
+                                        setMotherFirstName={setMotherFirstName}
+                                        motherMiddleName={motherMiddleName}
+                                        setMotherMiddleName={
+                                            setMotherMiddleName
+                                        }
+                                        motherLastName={motherLastName}
+                                        setMotherLastName={setMotherLastName}
+                                        spouseFirstName={spouseFirstName}
+                                        setSpouseFirstName={setSpouseFirstName}
+                                        spouseMiddleName={spouseMiddleName}
+                                        setSpouseMiddleName={
+                                            setSpouseMiddleName
+                                        }
+                                        spouseLastName={spouseLastName}
+                                        setSpouseLastName={setSpouseLastName}
+                                        civilStatus={civilStatus}
+                                    />
+                                )}
+
+                                {page === 4 && (
+                                    <IDandProof
+                                        billingImageURL={billingImageURL}
+                                        setBillingImageURL={setBillingImageURL}
+                                        governmentIdImageURL={
+                                            governmentIdImageURL
+                                        }
+                                        setGovernmentIdImageURL={
+                                            setGovernmentIdImageURL
+                                        }
+                                        IDpreview={IDpreview}
+                                        setIDPreview={setIDPreview}
+                                        POBpreview={POBpreview}
+                                        setPOBPreview={setPOBPreview}
+                                    />
+                                )}
+                            </form>
                         </div>
                         <div className="card-footer mt-3 d-flex">
                             {page !== 1 && (

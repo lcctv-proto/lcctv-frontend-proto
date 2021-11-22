@@ -41,6 +41,7 @@ function ServiceAddress({
                 id="street"
                 value={street}
                 onChange={(e) => setStreet(e.target.value)}
+                required
             />
             <label htmlFor="barangay" className="form-label mt-2">
                 Barangay:
@@ -51,6 +52,7 @@ function ServiceAddress({
                 id="barangay"
                 value={barangay}
                 onChange={(e) => setBarangay(e.target.value)}
+                required
             />
             <label htmlFor="municipality" className="form-label mt-2">
                 Municipality:
@@ -61,6 +63,7 @@ function ServiceAddress({
                 id="municipality"
                 value={municipality}
                 onChange={(e) => setMunicipality(e.target.value)}
+                required
             />
             <label htmlFor="home_owner" className="form-label mt-2">
                 Home Ownership:
@@ -71,6 +74,7 @@ function ServiceAddress({
                 id="home_owner"
                 value={homeOwnership}
                 onChange={(e) => setHomeOwnership(e.target.value)}
+                required
             />
             <label htmlFor="yrs_resid" className="form-label mt-2">
                 Years of Residency:
@@ -81,6 +85,7 @@ function ServiceAddress({
                 id="yrs_resid"
                 value={residencyYear}
                 onChange={(e) => setResidencyYear(e.target.value)}
+                required
             />
             <label htmlFor="province" className="form-label mt-2">
                 Province:
@@ -91,6 +96,7 @@ function ServiceAddress({
                 id="province"
                 value={province}
                 onChange={(e) => setProvince(e.target.value)}
+                required
             />
             <label htmlFor="zip" className="form-label mt-2">
                 Zip Code:
@@ -101,6 +107,7 @@ function ServiceAddress({
                 id="zip"
                 value={zipCode}
                 onChange={(e) => setZipCode(e.target.value)}
+                required
             />
             <label htmlFor="landmark" className="form-label mt-2">
                 Nearest Landmark:
@@ -111,6 +118,7 @@ function ServiceAddress({
                 id="landmark"
                 value={nearestLandmark}
                 onChange={(e) => setNearestLandmark(e.target.value)}
+                required
             />
         </div>
     );

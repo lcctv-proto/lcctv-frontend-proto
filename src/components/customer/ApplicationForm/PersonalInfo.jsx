@@ -27,6 +27,7 @@ function PersonalInfo({
                 onChange={(e) => {
                     setAccountFirstName(e.target.value);
                 }}
+                required
             />
 
             <label htmlFor="middlename" className="form-label mt-2">
@@ -53,6 +54,7 @@ function PersonalInfo({
                 onChange={(e) => {
                     setAccountLastName(e.target.value);
                 }}
+                required
             />
 
             <label htmlFor="nationality" className="form-label mt-2">
@@ -66,6 +68,7 @@ function PersonalInfo({
                 onChange={(e) => {
                     setNationality(e.target.value);
                 }}
+                required
             />
             <label htmlFor="birthdate" className="form-label mt-2">
                 Birth Date:
@@ -78,6 +81,7 @@ function PersonalInfo({
                 onChange={(e) => {
                     setBirthdate(e.target.value);
                 }}
+                required
             />
 
             <label htmlFor="gender" className="form-label mt-2">
@@ -91,6 +95,7 @@ function PersonalInfo({
                 onChange={(e) => {
                     setGender(e.target.value);
                 }}
+                required
             >
                 <option defaultValue hidden>
                     SELECT SEX
@@ -110,6 +115,7 @@ function PersonalInfo({
                 onChange={(e) => {
                     setCivilStatus(e.target.value);
                 }}
+                required
             >
                 <option defaultValue hidden>
                     SELECT CIVIL STATUS

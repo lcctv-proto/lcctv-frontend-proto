@@ -78,6 +78,17 @@ function Navbar() {
                             />
                         ))}
                     </ul>
+                    <div className="me-4 ms-auto text-center">
+                        <Link
+                            to="/apply"
+                            className="btn btn-link d-block mb-3 mb-lg-0 mx-auto w-25 d-lg-inline text-light"
+                        >
+                            Apply Now!
+                        </Link>
+                        <Link to="/login" className="ms-2 btn btn-outline-gold">
+                            Login
+                        </Link>
+                    </div>
                 </div>
             </nav>
         );

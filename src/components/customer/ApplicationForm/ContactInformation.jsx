@@ -32,6 +32,7 @@ function ContactInformation({
                 onChange={(e) => {
                     setCellphoneNumber(e.target.value);
                 }}
+                required
             />
             <label htmlFor="tele" className="form-label mt-2">
                 Telephone Number:
@@ -58,6 +59,7 @@ function ContactInformation({
                 onChange={(e) => {
                     setEmail(e.target.value);
                 }}
+                required
             />
             <p className="fw-bold fs-5 mt-4">Mother's Maiden Name</p>
             <label htmlFor="firstname" className="form-label mt-2">
@@ -71,6 +73,7 @@ function ContactInformation({
                 onChange={(e) => {
                     setMotherFirstName(e.target.value);
                 }}
+                required
             />
             <label htmlFor="middlename" className="form-label mt-2">
                 Middle Name:
@@ -95,6 +98,7 @@ function ContactInformation({
                 onChange={(e) => {
                     setMotherLastName(e.target.value);
                 }}
+                required
             />
 
             {(civilStatus === "MARRIED" || civilStatus === "WIDOWED") && (

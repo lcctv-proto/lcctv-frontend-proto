@@ -12,6 +12,7 @@ import Services from "./Services";
 import Inquiry from "./Inquiry";
 import Technical from "./Technical";
 import Payment from "./Payment";
+import Login from "./Login";
 
 import NotFound from "./NotFound";
 import Navbar from "./Navbar";
@@ -36,6 +37,7 @@ function Customer() {
                         <Route path="/general" component={Inquiry} />
                         <Route path="/technical" component={Technical} />
                         <Route path="/payment" component={Payment} />
+                        <Route path="/login" component={Login} />
                         <Route path="*" component={NotFound} />
                     </Switch>
                 </Route>

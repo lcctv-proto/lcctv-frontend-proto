@@ -37,6 +37,7 @@ function IDandProof({
                         setIDPreview(URL.createObjectURL(e.target.files[0]));
                         setGovernmentIdImageURL(e.target.files[0]);
                     }}
+                    required
                 />
             </div>
             <hr />
@@ -62,6 +63,7 @@ function IDandProof({
                         setPOBPreview(URL.createObjectURL(e.target.files[0]));
                         setBillingImageURL(e.target.files[0]);
                     }}
+                    required
                 />
             </div>
         </div>
