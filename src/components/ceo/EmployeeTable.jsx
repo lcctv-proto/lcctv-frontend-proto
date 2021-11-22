@@ -10,7 +10,7 @@ function EmployeeTable({ currentEmployees, cols }) {
 
     const onSortChange = (col) => {
         switch (col) {
-            case "PERSONNEL NAME":
+            case "EMPLOYEE NAME":
                 if (currentSort === "nameDown") setCurrentSort("nameUp");
                 else if (currentSort === "nameUp") setCurrentSort("default");
                 else if (currentSort === "default") setCurrentSort("nameDown");
