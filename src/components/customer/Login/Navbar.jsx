@@ -1,12 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
-import logo from "../../assets/Images/logo.png";
+import logo from "../../../assets/Images/logo.png";
 import { useEffect } from "react";
-import NavItem from "./NavItem";
 
 function Navbar() {
     const location = useLocation().pathname;
     const isCustomer = !location.includes("portal");
-    const isLogin = location.includes("login");
 
     const navItems = [
         {
@@ -43,22 +41,22 @@ function Navbar() {
                 collapse.classList.remove("show");
     });
 
-    if (isCustomer && !isLogin) {
+    if (isCustomer) {
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-navy border-gold-2">
                 <Link
-                    className="navbar-brand px-2 mx-2 text-light text-decoration-none"
+                    className="navbar-brand px-2 mx-2 text-light text-decoration-none align-items-center"
                     to="/"
                 >
                     <img
                         src={logo}
-                        className="d-md-block mx-auto mb-md-2"
+                        className="mx-auto mb-md-2 me-3"
                         alt=""
                         height="75"
                     />
-                    <p className="m-0 d-inline ms-2 ms-lg-0 d-md-block h6 text-center ff-logo">
+                    <span className="m-0 d-inline ms-lg-0 h6 text-center ff-logo pe-3 border-end">
                         Lake Community Cable TV
-                    </p>
+                    </span>
                 </Link>
                 <button
                     className="navbar-toggler me-3"
@@ -68,32 +66,26 @@ function Navbar() {
                 >
                     <span className="navbar-toggler-icon"></span>
                 </button>
-                <div className="collapse navbar-collapse" id="nav-items">
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0 text-center">
-                        {navItems.map((navItem, i) => (
-                            <NavItem
-                                name={navItem.name}
-                                location={location}
-                                paths={navItem.paths}
-                                key={i}
-                            />
-                        ))}
-                    </ul>
-                    <div className="me-4 ms-auto text-center">
+
+                <div
+                    className="collapse navbar-collapse text-center"
+                    id="nav-items"
+                >
+                    <span className="h3 text-light">SUBSCRIBER MODULE</span>
+
+                    <div className="me-4 ms-auto text-light text-center my-4 my-lg-0">
+                        Still not registered?
                         <Link
                             to="/apply"
-                            className="btn btn-link d-block mb-3 mb-lg-0 mx-auto w-25 d-lg-inline text-light"
+                            className="ms-1 mx-auto w-25 d-lg-inline text-light text-center "
                         >
                             Apply Now!
-                        </Link>
-                        <Link to="/login" className="ms-2 btn btn-outline-gold">
-                            Login
                         </Link>
                     </div>
                 </div>
             </nav>
         );
-    } else return <></>;
+    }
 }
 
 export default Navbar;

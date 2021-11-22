@@ -97,8 +97,16 @@ function Contact() {
                                 <td>+63 (49) 562 5600</td>
                             </tr>
                             <tr>
-                                <th className="border-end">Email</th>
-                                <td>LakeCoop@gmail.com</td>
+                                <th className="border-end">
+                                    Email - Finance (for payments purposes)
+                                </th>
+                                <td>lakecoop.finance@gmail.com</td>
+                            </tr>
+                            <tr>
+                                <th className="border-end">
+                                    Email - Other inquiries
+                                </th>
+                                <td>lakecommunitycabletv@gmail.com</td>
                             </tr>
                         </tbody>
                     </table>

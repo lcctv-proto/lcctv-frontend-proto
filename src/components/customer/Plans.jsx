@@ -42,6 +42,7 @@ function Plans() {
                     />
                 </div>
             </div>
+            <h5>† Additional ₱ 1,000 for installation fee.</h5>
             <p>* Channels are subject to change without prior notice</p>
         </div>
     );

@@ -92,10 +92,10 @@ function PaymentTable({ currentPayments, cols }) {
     };
     return (
         <table
-            className="table table-borderless table-striped shadow fs-5 text-center"
+            className="table table-borderless table-striped shadow fs-5"
             id="paymentTable"
         >
-            <thead className="text-light bg-navy border-cashier">
+            <thead className="text-light bg-navy text-center border-cashier">
                 <tr>
                     {cols.map((col, index) => {
                         return (
@@ -111,7 +111,7 @@ function PaymentTable({ currentPayments, cols }) {
                     })}
                 </tr>
             </thead>
-            <tbody>
+            <tbody className="text-center">
                 {[...currentPayments]
                     .sort((a, b) => sortTypes[currentSort].fn(a, b))
                     .map(
