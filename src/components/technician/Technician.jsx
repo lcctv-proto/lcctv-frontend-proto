@@ -16,7 +16,7 @@ import Header from "../Header";
 // technician specific imports
 import Dispatch from "./Dispatch";
 import Calendar from "./Calendar";
-// import Daily from "./Daily";
+import Daily from "./Daily";
 import Area from "./Area";
 
 function Technician() {
@@ -81,9 +81,9 @@ function Technician() {
                             <Route path="/portal/tech/calendar">
                                 <Calendar />
                             </Route>
-                            {/* <Route path="/portal/tech/daily">
+                            <Route path="/portal/tech/daily">
                                 <Daily />
-                            </Route> */}
+                            </Route>
                             <Route path="/portal/tech/area">
                                 <Area />
                             </Route>

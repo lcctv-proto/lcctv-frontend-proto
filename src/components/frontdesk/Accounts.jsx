@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search, PlusCircle } from "react-bootstrap-icons";
+import { Search, PlusCircle, Save2 } from "react-bootstrap-icons";
 
 import api from "../../api/api";
 
@@ -110,6 +110,7 @@ function Accounts() {
                     />
                 </Col>
             </Row>
+
             <hr className="my-0" />
             <Row className="border-front">
                 <Col>
@@ -165,6 +166,22 @@ function Accounts() {
                             </p>
                         </Col>
                     </Row>
+                </Col>
+            </Row>
+            <Row className="border-front">
+                <Col className="p-2">
+                    <Button
+                        size="lg"
+                        className="float-end btn-approve btn-success "
+                        onClick={() => {
+                            alert("Changes saved!");
+                        }}
+                    >
+                        <div className="d-flex align-items-center">
+                            <Save2 className="me-2" />
+                            <span>SAVE</span>
+                        </div>
+                    </Button>
                 </Col>
             </Row>
             <Row className="pt-3">

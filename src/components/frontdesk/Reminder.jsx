@@ -19,8 +19,8 @@ function TemplateModal({ show, handleClose }) {
                     <Form>
                         <Row className="text-justify">
                             <p>
-                                Are you sure you want to change the information
-                                details of the subscriber?
+                                Are you sure you double-check the application
+                                form?
                             </p>
                         </Row>
                     </Form>

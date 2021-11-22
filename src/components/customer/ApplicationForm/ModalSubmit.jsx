@@ -13,14 +13,19 @@ function TemplateModal({ show, handleClose }) {
                     closeVariant="white"
                     className=" bg-danger text-light border-navy"
                 >
-                    <Modal.Title>REMINDER</Modal.Title>
+                    <Modal.Title>TERMS OF SERVICE</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
                         <Row className="text-justify">
                             <p>
-                                Are you sure you want to change the information
-                                details of the subscriber?
+                                "In submitting this form I agree to my details
+                                being used for the purposes of subscription for
+                                data collection of LCCTV. The information will
+                                only be accessed by the company staff. I
+                                understand my data will be held securely and
+                                will not be distributed to third parties. I have
+                                a right to change or access my information."
                             </p>
                         </Row>
                     </Form>
@@ -33,16 +38,7 @@ function TemplateModal({ show, handleClose }) {
                             console.log("ASDasd");
                         }}
                     >
-                        YES
-                    </Button>
-                    <Button
-                        type="submit"
-                        className="d-flex mb-2 btn-navy fw-bold align-items-center"
-                        onClick={() => {
-                            console.log("ASDasd");
-                        }}
-                    >
-                        NO
+                        SUBMIT
                     </Button>
                 </Modal.Footer>
             </Modal>
