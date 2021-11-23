@@ -1,3 +1,9 @@
+import {
+    FieldFeedback,
+    FieldFeedbacks,
+    Input,
+} from "react-form-with-constraints-bootstrap";
+
 function IDandProof({
     governmentIdImageURL,
     setGovernmentIdImageURL,
@@ -7,6 +13,7 @@ function IDandProof({
     setIDPreview,
     POBpreview,
     setPOBPreview,
+    form
 }) {
     return (
         <div>
@@ -28,17 +35,23 @@ function IDandProof({
                 <label htmlFor="formID" className="form-label">
                     Please select your government issued ID:
                 </label>
-                <input
+                <Input
                     className="form-control"
                     type="file"
                     id="formID"
+                    name="formID"
                     accept="image/*"
-                    onChange={(e) => {
+                    onChange={async (e) => {
                         setIDPreview(URL.createObjectURL(e.target.files[0]));
                         setGovernmentIdImageURL(e.target.files[0]);
+                        await form.current.validateFields(e.target);
                     }}
                     required
                 />
+                <FieldFeedbacks for="formID">
+                <FieldFeedback when="*" />
+                <FieldFeedback when="valid">Looks good!</FieldFeedback>
+                </FieldFeedbacks>
             </div>
             <hr />
             <p className="fw-bold fs-5 mt-2">Proof of Billing:</p>
@@ -54,17 +67,23 @@ function IDandProof({
                 <label htmlFor="formBilling" className="form-label">
                     Please select your proof of billing:
                 </label>
-                <input
+                <Input
                     className="form-control"
                     type="file"
                     id="formBilling"
+                    name="formBilling"
                     accept="image/*"
-                    onChange={(e) => {
+                    onChange={async (e) => {
                         setPOBPreview(URL.createObjectURL(e.target.files[0]));
                         setBillingImageURL(e.target.files[0]);
+                        await form.current.validateFields(e.target);
                     }}
                     required
                 />
+                <FieldFeedbacks for="formBilling">
+                <FieldFeedback when="*" />
+                <FieldFeedback when="valid">Looks good!</FieldFeedback>
+                </FieldFeedbacks>
             </div>
         </div>
     );

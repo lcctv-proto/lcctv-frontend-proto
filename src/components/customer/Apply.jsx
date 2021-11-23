@@ -258,6 +258,7 @@ function Apply() {
                                         setResidencyYear={setResidencyYear}
                                         nearestLandmark={nearestLandmark}
                                         setNearestLandmark={setNearestLandmark}
+                                        form={form}
                                     />
                                 )}
                                 {page === 3 && (
@@ -285,6 +286,7 @@ function Apply() {
                                         spouseLastName={spouseLastName}
                                         setSpouseLastName={setSpouseLastName}
                                         civilStatus={civilStatus}
+                                        form={form}
                                     />
                                 )}
 
@@ -302,6 +304,7 @@ function Apply() {
                                         setIDPreview={setIDPreview}
                                         POBpreview={POBpreview}
                                         setPOBPreview={setPOBPreview}
+                                        form={form}
                                     />
                                 )}
                             </FormWithConstraints>

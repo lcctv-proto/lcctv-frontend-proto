@@ -112,7 +112,7 @@ function PersonalInfo({
             />
 
             <label htmlFor="gender" className="form-label mt-2">
-                SEX:
+                Gender:
             </label>
 
             <select
@@ -125,7 +125,7 @@ function PersonalInfo({
                 required
             >
                 <option defaultValue hidden>
-                    SELECT SEX
+                    SELECT GENDER
                 </option>
                 <option value="MALE"> MALE </option>
                 <option value="FEMALE"> FEMALE </option>
