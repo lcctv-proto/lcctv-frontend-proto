@@ -45,6 +45,11 @@ function Login() {
                 setInvoices(response2.data.invoices);
                 setIsFetching(false);
             })
+            .catch((err) => {
+                alert(
+                    "No account with that credentials. Please check and try again!"
+                );
+            })
             .finally(() => {
                 setIsLoading(false);
             });
