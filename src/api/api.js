@@ -2,8 +2,8 @@ import authHeader from "../auth/auth-header";
 import axios from "axios";
 
 const API = axios.create({
-    // baseURL: "https://lcctv-backend.herokuapp.com/api/",
-    baseURL: "http://13.67.48.52/api/",
+    baseURL: "https://lcctv-backend.herokuapp.com/api/",
+    // baseURL: "http://13.67.48.52/api/",
 });
 
 const accounts = {
