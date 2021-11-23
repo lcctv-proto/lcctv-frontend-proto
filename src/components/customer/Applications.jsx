@@ -65,43 +65,25 @@ function Applications() {
     const steps = {
         99: {
             title: "DENIED",
-            style: { width: `${(8 / 8) * 100}%`, backgroundColor: "red" },
+            style: { width: `${(3 / 3) * 100}%`, backgroundColor: "red" },
             description:
-                "There is something wrong about your application form. Please check our email as to why your application got denied.",
+                "There is something wrong about your application form. Please check our email.",
         },
-        3: {
+        1: {
             title: "FOR VALIDATION",
-            style: { width: `${(3 / 8) * 100}%`, backgroundColor: "#f0b917" },
+            style: { width: `${(1 / 3) * 100}%`, backgroundColor: "#f0b917" },
             description:
                 "Our employees are currently validating your application details. Check again within the next 24 hours!",
         },
-        4: {
-            title: "PENDING PAYMENT",
-            style: { width: `${(4 / 8) * 100}%`, backgroundColor: "#f0b917" },
+        2: {
+            title: "FOR PAYMENT",
+            style: { width: `${(2 / 3) * 100}%`, backgroundColor: "#f0b917" },
             description:
-                "Congratulations! Your application has been approved. You may now settle your installation fee and one-month advanced payment.",
+                "Kindly settle your application payment. We have sent an email with the instructions.",
         },
-        5: {
-            title: "ACCOUNT INITIALIZATION",
-            style: { width: `${(5 / 8) * 100}%`, backgroundColor: "#f0b917" },
-            description:
-                "We have received your payment! Please wait as we your account is currently undergoing initialization.",
-        },
-        6: {
-            title: "ISSUANCE OF JOB ORDER",
-            style: { width: `${(6 / 8) * 100}%`, backgroundColor: "#f0b917" },
-            description:
-                "Almost there! We are now looking for teams in your area that are available for installations",
-        },
-        7: {
-            title: "FOR INSTALLATION",
-            style: { width: `${(7 / 8) * 100}%`, backgroundColor: "#f0b917" },
-            description:
-                "We are now ready to install Lake Community Cable TV in your home. Please prepare necessary documents such as your barangay certificate, IDs, Gate Passes(if applicable).",
-        },
-        8: {
+        3: {
             title: "CURRENTLY ACTIVE",
-            style: { width: `${(8 / 8) * 100}%`, backgroundColor: "green" },
+            style: { width: `${(3 / 3) * 100}%`, backgroundColor: "green" },
             description: "Welcome to Lake Community Cable TV!",
         },
     };

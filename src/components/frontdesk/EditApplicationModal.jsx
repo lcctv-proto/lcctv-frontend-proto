@@ -15,6 +15,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 import Spinner from "../Spinner";
+import ReminderModal from "./ReminderModal";
 
 function EditApplicationModal({
     show,
@@ -24,16 +25,13 @@ function EditApplicationModal({
     setApplications,
 }) {
     const [accountID, setAccountID] = useState("");
-
     const [accountFirstName, setAccountFirstName] = useState("");
     const [accountMiddleName, setAccountMiddleName] = useState("");
     const [accountLastName, setAccountLastName] = useState("");
-
     const [birthdate, setBirthdate] = useState("");
     const [nationality, setNationality] = useState("");
     const [gender, setGender] = useState("");
     const [civilStatus, setCivilStatus] = useState("");
-
     const [unit, setUnit] = useState("");
     const [street, setStreet] = useState("");
     const [barangay, setBarangay] = useState("");
@@ -43,7 +41,6 @@ function EditApplicationModal({
     const [homeOwnership, setHomeOwnership] = useState("");
     const [residencyYear, setResidencyYear] = useState("");
     const [nearestLandmark, setNearestLandmark] = useState("");
-
     const [cellphoneNumber, setCellphoneNumber] = useState("");
     const [telephoneNumber, setTelephoneNumber] = useState("");
     const [email, setEmail] = useState("");
@@ -53,13 +50,31 @@ function EditApplicationModal({
     const [spouseFirstName, setSpouseFirstName] = useState("");
     const [spouseMiddleName, setSpouseMiddleName] = useState("");
     const [spouseLastName, setSpouseLastName] = useState("");
-
     const [governmentIdImageURL, setGovernmentIdImageURL] = useState("");
     const [billingImageURL, setBillingImageURL] = useState("");
-
     const [packageID, setPackageID] = useState("");
-
     const [isLoading, setIsLoading] = useState("");
+
+    const [reminderShow, setReminderShow] = useState(false);
+
+    const handleSubmit = () => {
+        api.applications
+            .patch(application, "PENDING PAYMENT", 4)
+            .then(() => {
+                setApplications(
+                    applications.filter((applications) => {
+                        return applications._id !== application;
+                    })
+                );
+                api.accounts.patchStatus(accountID, "INITIAL PAYMENT");
+                alert("APPLICATION SUCCESSFULLY APPROVED!");
+                handleClose();
+            })
+            .catch((err) => alert(err));
+    };
+
+    const handleReminderClose = () => setReminderShow(false);
+    const handleReminderShow = () => setReminderShow(true);
 
     useEffect(() => {
         const fetchApplication = async () => {
@@ -669,30 +684,19 @@ function EditApplicationModal({
                         type="submit"
                         className="d-flex mb-2 btn btn-success btn-approve fw-bold align-items-center"
                         onClick={() => {
-                            api.applications
-                                .patch(application, "PENDING PAYMENT", 4)
-                                .then(() => {
-                                    setApplications(
-                                        applications.filter((applications) => {
-                                            return (
-                                                applications._id !== application
-                                            );
-                                        })
-                                    );
-                                    api.accounts.patchStatus(
-                                        accountID,
-                                        "INITIAL PAYMENT"
-                                    );
-                                    alert("APPLICATION SUCCESSFULLY APPROVED!");
-                                })
-                                .catch((err) => alert(err));
                             handleClose();
+                            handleReminderShow();
                         }}
                     >
                         <CheckCircle className="me-2" /> APPROVE APPLICATION
                     </Button>
                 </Modal.Footer>
             </Modal>
+            <ReminderModal
+                show={reminderShow}
+                handleClose={handleReminderClose}
+                handleSubmit={handleSubmit}
+            />
         </>
     );
 }

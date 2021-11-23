@@ -11,6 +11,7 @@ import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
 
 import FeesModal from "./FeesModal";
+import ConfirmModal from "./ConfirmModal";
 
 function WalkInModal({ show, handleClose, accountID }) {
     const [paymentMode, setPaymentMode] = useState("");
@@ -23,12 +24,19 @@ function WalkInModal({ show, handleClose, accountID }) {
     const [ctr, setCtr] = useState(0);
 
     const [feesShow, setFeesShow] = useState("");
+    const [confirmShow, setConfirmShow] = useState("");
 
     const handleFeesShow = () => {
         setFeesShow(true);
     };
     const handleFeesClose = () => {
         setFeesShow(false);
+    };
+    const handleConfirmShow = () => {
+        setConfirmShow(true);
+    };
+    const handleConfirmClose = () => {
+        setConfirmShow(false);
     };
 
     const localDateString = curr.toISOString().split("T")[0];
@@ -43,6 +51,28 @@ function WalkInModal({ show, handleClose, accountID }) {
         } catch (err) {
             alert("Fee ID not found");
         }
+    };
+
+    const handleSubmit = async () => {
+        const feeIDs = items.map((a) => a.data._id);
+
+        await api.payments
+            .post({
+                accountID,
+                modeOfPayment: paymentMode,
+                referenceNumber,
+                feeIDs,
+                amountPaid,
+                remarks,
+            })
+            .then((res) => {
+                alert("Payment Successful! ");
+                handleClose();
+            })
+            .catch((err) => {
+                alert("Payment Failed! ");
+                handleClose();
+            });
     };
 
     function deleteRow(id) {
@@ -260,32 +290,19 @@ function WalkInModal({ show, handleClose, accountID }) {
                     <Button
                         type="submit"
                         className="d-flex mb-2 btn-navy fw-bold align-items-center"
-                        onClick={async () => {
-                            const feeIDs = items.map((a) => a.data._id);
-                            await api.payments
-                                .post({
-                                    accountID,
-                                    modeOfPayment: paymentMode,
-                                    referenceNumber,
-                                    feeIDs,
-                                    amountPaid,
-                                    remarks,
-                                })
-                                .then((res) => {
-                                    alert("Payment Successful! ");
-                                    handleClose();
-                                })
-                                .catch((err) => {
-                                    alert("Payment Failed! ");
-                                    handleClose();
-                                });
-                        }}
+                        onClick={handleConfirmShow}
                     >
                         CLOSE PAYMENT
                     </Button>
                 </Modal.Footer>
             </Modal>
             <FeesModal show={feesShow} handleClose={handleFeesClose} />
+            <ConfirmModal
+                show={confirmShow}
+                handleClose={handleConfirmClose}
+                amountPaid={amountPaid}
+                handleSubmit={handleSubmit}
+            />
         </>
     );
 }

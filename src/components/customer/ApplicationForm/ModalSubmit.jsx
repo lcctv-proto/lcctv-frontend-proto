@@ -4,7 +4,7 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-function TemplateModal({ show, handleClose }) {
+function ModalSubmit({ show, handleClose, handleSubmit }) {
     return (
         <>
             <Modal show={show} onHide={handleClose} size="lg">
@@ -18,15 +18,18 @@ function TemplateModal({ show, handleClose }) {
                 <Modal.Body>
                     <Form>
                         <Row className="text-justify">
-                            <p>
-                                "In submitting this form I agree to my details
-                                being used for the purposes of subscription for
-                                data collection of LCCTV. The information will
-                                only be accessed by the company staff. I
-                                understand my data will be held securely and
-                                will not be distributed to third parties. I have
-                                a right to change or access my information."
-                            </p>
+                            <Col>
+                                <p>
+                                    "In submitting this form I agree to my
+                                    details being used for the purposes of
+                                    subscription for data collection of LCCTV.
+                                    The information will only be accessed by the
+                                    company staff. I understand my data will be
+                                    held securely and will not be distributed to
+                                    third parties. I have a right to change or
+                                    access my information."
+                                </p>
+                            </Col>
                         </Row>
                     </Form>
                 </Modal.Body>
@@ -34,9 +37,7 @@ function TemplateModal({ show, handleClose }) {
                     <Button
                         type="submit"
                         className="d-flex mb-2 btn-navy fw-bold align-items-center"
-                        onClick={() => {
-                            console.log("ASDasd");
-                        }}
+                        onClick={handleSubmit}
                     >
                         SUBMIT
                     </Button>
@@ -46,4 +47,4 @@ function TemplateModal({ show, handleClose }) {
     );
 }
 
-export default TemplateModal;
+export default ModalSubmit;

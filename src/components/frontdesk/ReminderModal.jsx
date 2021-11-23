@@ -1,10 +1,9 @@
 import Modal from "react-bootstrap/Modal";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-function TemplateModal({ show, handleClose }) {
+function Reminder({ show, handleClose, handleSubmit }) {
     return (
         <>
             <Modal show={show} onHide={handleClose} size="lg">
@@ -30,19 +29,20 @@ function TemplateModal({ show, handleClose }) {
                         type="submit"
                         className="d-flex mb-2 btn-navy fw-bold align-items-center"
                         onClick={() => {
-                            console.log("ASDasd");
+                            handleClose();
                         }}
                     >
-                        YES
+                        NO
                     </Button>
                     <Button
                         type="submit"
                         className="d-flex mb-2 btn-navy fw-bold align-items-center"
                         onClick={() => {
-                            console.log("ASDasd");
+                            handleSubmit();
+                            handleClose();
                         }}
                     >
-                        NO
+                        YES
                     </Button>
                 </Modal.Footer>
             </Modal>
@@ -50,4 +50,4 @@ function TemplateModal({ show, handleClose }) {
     );
 }
 
-export default TemplateModal;
+export default Reminder;

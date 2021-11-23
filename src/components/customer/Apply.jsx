@@ -8,6 +8,7 @@ import Form from "react-bootstrap/Form";
 import { useLocation, useHistory } from "react-router";
 import axios from "axios";
 
+import ModalSubmit from "./ApplicationForm/ModalSubmit";
 import api from "../../api/api";
 import { FormWithConstraints } from "react-form-with-constraints-bootstrap";
 
@@ -53,6 +54,11 @@ function Apply() {
     const [IDpreview, setIDPreview] = useState("");
     const [POBpreview, setPOBPreview] = useState("");
 
+    const [showDPA, setShowDPA] = useState(false);
+
+    const handleDPAShow = () => setShowDPA(true);
+    const handleDPAClose = () => setShowDPA(false);
+
     const history = useHistory();
     const location = useLocation();
 
@@ -79,6 +85,9 @@ function Apply() {
 
     async function HandleSubmit(e) {
         e.preventDefault();
+
+        await form.current.validateForm();
+        const formIsValid = form.current.isValid();
 
         const accountName = {
             firstName: accountFirstName,
@@ -132,36 +141,36 @@ function Apply() {
         );
         accountData.append("governmentIdImageURL", governmentIdImageURL);
         accountData.append("billingImageURL", billingImageURL);
-        console.log(...accountData);
 
-        await axios
-            .post(
-                "https://lcctv-backend.herokuapp.com/api/accounts/",
-                accountData
-            )
-            .then(async (res) => {
-                await axios
-                    .post(
-                        "https://lcctv-backend.herokuapp.com/api/applications/",
-                        {
-                            accountID: res.data._id,
-                            remarks: "",
-                        }
-                    )
-                    .then((res) => {
-                        console.log("Application Created!");
-                        history.push("/");
-                    })
-                    .catch((err) => console.error(err));
-                alert(
-                    `${res.data.accountName.firstName} ${res.data.accountName.lastName}, account creation success! Please check your email(${res.data.contactInfo.email}) in the next 48 hours to see if your application is approved!`
-                );
-            })
-            .catch((err) =>
-                alert(
-                    "There seems to be a problem with your application, please try again!"
+        if (formIsValid)
+            await axios
+                .post(
+                    "https://lcctv-backend.herokuapp.com/api/accounts/",
+                    accountData
                 )
-            );
+                .then(async (res) => {
+                    await axios
+                        .post(
+                            "https://lcctv-backend.herokuapp.com/api/applications/",
+                            {
+                                accountID: res.data._id,
+                                remarks: "",
+                            }
+                        )
+                        .then((res) => {
+                            console.log("Application Created!");
+                            history.push("/");
+                        })
+                        .catch((err) => console.error(err));
+                    alert(
+                        `${res.data.accountName.firstName} ${res.data.accountName.lastName}, account creation success! Please check your email(${res.data.contactInfo.email}) in the next 48 hours to see if your application is approved!`
+                    );
+                })
+                .catch((err) =>
+                    alert(
+                        "There seems to be a problem with your application, please try again!"
+                    )
+                );
     }
 
     function PrevPage() {
@@ -175,171 +184,195 @@ function Apply() {
     }
 
     return (
-        <div className="container p-5">
-            <div className="row justify-content-center">
-                <div className="col-xl-6 col-lg-12 col-md-12">
-                    <div className="card mb-5 border-0 shadow-lg">
-                        <div className="card-header text-light py-3 bg-navy border-gold-3">
-                            <span className="fs-5">
-                                APPLICATION FORM -
-                                {page === 1 && " PERSONAL INFORMATION"}
-                                {page === 2 && " SERVICE ADDRESS"}
-                                {page === 3 && " CONTACT INFORMATION"}
-                                {page === 4 && " ID & PROOF OF BILLING"}
-                            </span>
-                        </div>
-                        <div className="card-body">
-                            <p className="mb-2">Select Plan: </p>
+        <>
+            <div className="container p-5">
+                <div className="row justify-content-center">
+                    <div className="col-xl-6 col-lg-12 col-md-12">
+                        <div className="card mb-5 border-0 shadow-lg">
+                            <div className="card-header text-light py-3 bg-navy border-gold-3">
+                                <span className="fs-5">
+                                    APPLICATION FORM -
+                                    {page === 1 && " PERSONAL INFORMATION"}
+                                    {page === 2 && " SERVICE ADDRESS"}
+                                    {page === 3 && " CONTACT INFORMATION"}
+                                    {page === 4 && " ID & PROOF OF BILLING"}
+                                </span>
+                            </div>
+                            <div className="card-body">
+                                <p className="mb-2">Select Plan: </p>
 
-                            <FormWithConstraints
-                                ref={form}
-                                onSubmit={HandleSubmit}
-                            >
-                                <Form.Group>
-                                    <Form.Select
-                                        value={packageID}
-                                        onChange={(e) => {
-                                            setPackageID(e.target.value);
-                                        }}
+                                <FormWithConstraints
+                                    ref={form}
+                                    onSubmit={HandleSubmit}
+                                >
+                                    <Form.Group>
+                                        <Form.Select
+                                            value={packageID}
+                                            onChange={(e) => {
+                                                setPackageID(e.target.value);
+                                            }}
+                                        >
+                                            {packages.map((value, index) => {
+                                                return (
+                                                    <option
+                                                        key={index}
+                                                        value={value._id}
+                                                    >
+                                                        {value.description}
+                                                    </option>
+                                                );
+                                            })}
+                                        </Form.Select>
+                                    </Form.Group>
+                                    <hr />
+                                    {page === 1 && (
+                                        <PersonalInfo
+                                            accountFirstName={accountFirstName}
+                                            setAccountFirstName={
+                                                setAccountFirstName
+                                            }
+                                            accountMiddleName={
+                                                accountMiddleName
+                                            }
+                                            setAccountMiddleName={
+                                                setAccountMiddleName
+                                            }
+                                            accountLastName={accountLastName}
+                                            setAccountLastName={
+                                                setAccountLastName
+                                            }
+                                            birthdate={birthdate}
+                                            setBirthdate={setBirthdate}
+                                            nationality={nationality}
+                                            setNationality={setNationality}
+                                            gender={gender}
+                                            setGender={setGender}
+                                            civilStatus={civilStatus}
+                                            setCivilStatus={setCivilStatus}
+                                            form={form}
+                                        />
+                                    )}
+                                    {page === 2 && (
+                                        <ServiceAddress
+                                            unit={unit}
+                                            setUnit={setUnit}
+                                            street={street}
+                                            setStreet={setStreet}
+                                            barangay={barangay}
+                                            setBarangay={setBarangay}
+                                            municipality={municipality}
+                                            setMunicipality={setMunicipality}
+                                            province={province}
+                                            setProvince={setProvince}
+                                            zipCode={zipCode}
+                                            setZipCode={setZipCode}
+                                            homeOwnership={homeOwnership}
+                                            setHomeOwnership={setHomeOwnership}
+                                            residencyYear={residencyYear}
+                                            setResidencyYear={setResidencyYear}
+                                            nearestLandmark={nearestLandmark}
+                                            setNearestLandmark={
+                                                setNearestLandmark
+                                            }
+                                        />
+                                    )}
+                                    {page === 3 && (
+                                        <ContactInformation
+                                            cellphoneNumber={cellphoneNumber}
+                                            setCellphoneNumber={
+                                                setCellphoneNumber
+                                            }
+                                            telephoneNumber={telephoneNumber}
+                                            setTelephoneNumber={
+                                                setTelephoneNumber
+                                            }
+                                            email={email}
+                                            setEmail={setEmail}
+                                            motherFirstName={motherFirstName}
+                                            setMotherFirstName={
+                                                setMotherFirstName
+                                            }
+                                            motherMiddleName={motherMiddleName}
+                                            setMotherMiddleName={
+                                                setMotherMiddleName
+                                            }
+                                            motherLastName={motherLastName}
+                                            setMotherLastName={
+                                                setMotherLastName
+                                            }
+                                            spouseFirstName={spouseFirstName}
+                                            setSpouseFirstName={
+                                                setSpouseFirstName
+                                            }
+                                            spouseMiddleName={spouseMiddleName}
+                                            setSpouseMiddleName={
+                                                setSpouseMiddleName
+                                            }
+                                            spouseLastName={spouseLastName}
+                                            setSpouseLastName={
+                                                setSpouseLastName
+                                            }
+                                            civilStatus={civilStatus}
+                                        />
+                                    )}
+
+                                    {page === 4 && (
+                                        <IDandProof
+                                            billingImageURL={billingImageURL}
+                                            setBillingImageURL={
+                                                setBillingImageURL
+                                            }
+                                            governmentIdImageURL={
+                                                governmentIdImageURL
+                                            }
+                                            setGovernmentIdImageURL={
+                                                setGovernmentIdImageURL
+                                            }
+                                            IDpreview={IDpreview}
+                                            setIDPreview={setIDPreview}
+                                            POBpreview={POBpreview}
+                                            setPOBPreview={setPOBPreview}
+                                        />
+                                    )}
+                                </FormWithConstraints>
+                            </div>
+                            <div className="card-footer mt-3 d-flex">
+                                {page !== 1 && (
+                                    <button
+                                        className="btn btn-warning btn-lg btn-gold"
+                                        onClick={PrevPage}
                                     >
-                                        {packages.map((value, index) => {
-                                            return (
-                                                <option
-                                                    key={index}
-                                                    value={value._id}
-                                                >
-                                                    {value.description}
-                                                </option>
-                                            );
-                                        })}
-                                    </Form.Select>
-                                </Form.Group>
-                                <hr />
-                                {page === 1 && (
-                                    <PersonalInfo
-                                        accountFirstName={accountFirstName}
-                                        setAccountFirstName={
-                                            setAccountFirstName
-                                        }
-                                        accountMiddleName={accountMiddleName}
-                                        setAccountMiddleName={
-                                            setAccountMiddleName
-                                        }
-                                        accountLastName={accountLastName}
-                                        setAccountLastName={setAccountLastName}
-                                        birthdate={birthdate}
-                                        setBirthdate={setBirthdate}
-                                        nationality={nationality}
-                                        setNationality={setNationality}
-                                        gender={gender}
-                                        setGender={setGender}
-                                        civilStatus={civilStatus}
-                                        setCivilStatus={setCivilStatus}
-                                        form={form}
-                                    />
-                                )}
-                                {page === 2 && (
-                                    <ServiceAddress
-                                        unit={unit}
-                                        setUnit={setUnit}
-                                        street={street}
-                                        setStreet={setStreet}
-                                        barangay={barangay}
-                                        setBarangay={setBarangay}
-                                        municipality={municipality}
-                                        setMunicipality={setMunicipality}
-                                        province={province}
-                                        setProvince={setProvince}
-                                        zipCode={zipCode}
-                                        setZipCode={setZipCode}
-                                        homeOwnership={homeOwnership}
-                                        setHomeOwnership={setHomeOwnership}
-                                        residencyYear={residencyYear}
-                                        setResidencyYear={setResidencyYear}
-                                        nearestLandmark={nearestLandmark}
-                                        setNearestLandmark={setNearestLandmark}
-                                        form={form}
-                                    />
-                                )}
-                                {page === 3 && (
-                                    <ContactInformation
-                                        cellphoneNumber={cellphoneNumber}
-                                        setCellphoneNumber={setCellphoneNumber}
-                                        telephoneNumber={telephoneNumber}
-                                        setTelephoneNumber={setTelephoneNumber}
-                                        email={email}
-                                        setEmail={setEmail}
-                                        motherFirstName={motherFirstName}
-                                        setMotherFirstName={setMotherFirstName}
-                                        motherMiddleName={motherMiddleName}
-                                        setMotherMiddleName={
-                                            setMotherMiddleName
-                                        }
-                                        motherLastName={motherLastName}
-                                        setMotherLastName={setMotherLastName}
-                                        spouseFirstName={spouseFirstName}
-                                        setSpouseFirstName={setSpouseFirstName}
-                                        spouseMiddleName={spouseMiddleName}
-                                        setSpouseMiddleName={
-                                            setSpouseMiddleName
-                                        }
-                                        spouseLastName={spouseLastName}
-                                        setSpouseLastName={setSpouseLastName}
-                                        civilStatus={civilStatus}
-                                        form={form}
-                                    />
+                                        Back
+                                    </button>
                                 )}
 
+                                {page !== 4 && (
+                                    <button
+                                        className="btn btn-warning btn-lg btn-gold ms-auto"
+                                        onClick={NextPage}
+                                    >
+                                        Next
+                                    </button>
+                                )}
                                 {page === 4 && (
-                                    <IDandProof
-                                        billingImageURL={billingImageURL}
-                                        setBillingImageURL={setBillingImageURL}
-                                        governmentIdImageURL={
-                                            governmentIdImageURL
-                                        }
-                                        setGovernmentIdImageURL={
-                                            setGovernmentIdImageURL
-                                        }
-                                        IDpreview={IDpreview}
-                                        setIDPreview={setIDPreview}
-                                        POBpreview={POBpreview}
-                                        setPOBPreview={setPOBPreview}
-                                        form={form}
-                                    />
+                                    <button
+                                        className="btn btn-warning btn-lg btn-gold ms-auto"
+                                        onClick={HandleSubmit}
+                                    >
+                                        Submit
+                                    </button>
                                 )}
-                            </FormWithConstraints>
-                        </div>
-                        <div className="card-footer mt-3 d-flex">
-                            {page !== 1 && (
-                                <button
-                                    className="btn btn-warning btn-lg btn-gold"
-                                    onClick={PrevPage}
-                                >
-                                    Back
-                                </button>
-                            )}
-
-                            {page !== 4 && (
-                                <button
-                                    className="btn btn-warning btn-lg btn-gold ms-auto"
-                                    onClick={NextPage}
-                                >
-                                    Next
-                                </button>
-                            )}
-                            {page === 4 && (
-                                <button
-                                    className="btn btn-warning btn-lg btn-gold ms-auto"
-                                    onClick={HandleSubmit}
-                                >
-                                    Submit
-                                </button>
-                            )}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+            <ModalSubmit
+                show={showDPA}
+                handleClose={handleDPAClose}
+                handleSubmit={HandleSubmit}
+            />
+        </>
     );
 }
 
