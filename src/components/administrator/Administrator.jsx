@@ -31,7 +31,7 @@ function Administrator() {
     const location = useLocation().pathname;
 
     useEffect(() => {
-        if (location.includes("teams")) setHeader("TEAMS");
+        // if (location.includes("teams")) setHeader("TEAMS");
         if (location.includes("employees")) setHeader("EMPLOYEES");
         if (location.includes("applications")) setHeader("ACCOUNTS");
         if (location.includes("channels")) setHeader("CHANNELS");
@@ -42,11 +42,11 @@ function Administrator() {
     }, [location]);
 
     const navItems = [
-        {
-            icon: <People />,
-            title: "TEAMS",
-            path: "/admin/teams",
-        },
+        // {
+        //     icon: <People />,
+        //     title: "TEAMS",
+        //     path: "/admin/teams",
+        // },
         {
             icon: <Person />,
             title: "EMPLOYEES",

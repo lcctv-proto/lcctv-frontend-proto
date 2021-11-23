@@ -18,7 +18,7 @@ function Home() {
                 <div className="row mt-3">
                     <div className="col">
                         <div className="row my-4 pt-4 px-4 justify-content-center">
-                            <Button
+                            {/* <Button
                                 icon={
                                     <People
                                         color="white"
@@ -29,7 +29,7 @@ function Home() {
                                 title="TEAMS"
                                 name="admin"
                                 path="/admin/teams"
-                            />
+                            /> */}
                             <Button
                                 icon={
                                     <Person
