@@ -179,32 +179,42 @@ function ApplicationTable({
                                                 value.prefix
                                             }${value.ref_ctr
                                                 .toString()
-                                                .padStart(3, "0")}`, 
+                                                .padStart(3, "0")}`,
                                             "FIRST NAME":
-                                                value.accountID.accountName.firstName,
+                                                value.accountID.accountName
+                                                    .firstName,
                                             "MIDDLE NAME":
-                                                value.accountID.accountName.middleName,
+                                                value.accountID.accountName
+                                                    .middleName,
                                             "LAST NAME":
-                                                value.accountID.accountName.lastName,
-                                            "PACKAGE":
-                                                value.accountID.packageID.description,
-                                            "DATE": value.date,
+                                                value.accountID.accountName
+                                                    .lastName,
+                                            PACKAGE:
+                                                value.accountID.packageID
+                                                    .description,
+                                            DATE: value.date,
                                             "ACCOUNT ID": value._id,
-                                            "LINK TO PROOF OF VALIDATION": 
+                                            "LINK TO PROOF OF VALIDATION":
                                                 value.accountID.billingImageURL,
-                                            "BIRTHDAY":
-                                                value.accountID.additionalInfo.birthdate,
+                                            BIRTHDAY:
+                                                value.accountID.additionalInfo
+                                                    .birthdate,
                                         });
                                     });
                                     let worksheet =
-                                        XLSX.utils.json_to_sheet(newApplications);
+                                        XLSX.utils.json_to_sheet(
+                                            newApplications
+                                        );
                                     var new_workbook = XLSX.utils.book_new();
                                     XLSX.utils.book_append_sheet(
                                         new_workbook,
                                         worksheet,
                                         "Applications"
                                     );
-                                    XLSX.writeFile(new_workbook, "Applications.xlsx");
+                                    XLSX.writeFile(
+                                        new_workbook,
+                                        "Applications.xlsx"
+                                    );
                                 }}
                             >
                                 XLSX
@@ -221,29 +231,40 @@ function ApplicationTable({
                                                 .toString()
                                                 .padStart(3, "0")}`,
                                             "FIRST NAME":
-                                                value.accountID.accountName.firstName,
+                                                value.accountID.accountName
+                                                    .firstName,
                                             "MIDDLE NAME":
-                                                value.accountID.accountName.middleName,
+                                                value.accountID.accountName
+                                                    .middleName,
                                             "LAST NAME":
-                                                value.accountID.accountName.lastName,
-                                            "PACKAGE":
-                                                value.accountID.packageID.description,
-                                            "DATE": value.date,
+                                                value.accountID.accountName
+                                                    .lastName,
+                                            PACKAGE:
+                                                value.accountID.packageID
+                                                    .description,
+                                            DATE: value.date,
                                             "ACCOUNT ID": value._id,
-                                            "LINK TO PROOF OF BILLING": value.accountID.billingImageURL,
-                                            "BIRTDAY":
-                                                value.accountID.additionalInfo.birthdate,
+                                            "LINK TO PROOF OF BILLING":
+                                                value.accountID.billingImageURL,
+                                            BIRTDAY:
+                                                value.accountID.additionalInfo
+                                                    .birthdate,
                                         });
                                     });
                                     let worksheet =
-                                        XLSX.utils.json_to_sheet(newApplications);
+                                        XLSX.utils.json_to_sheet(
+                                            newApplications
+                                        );
                                     const new_workbook = XLSX.utils.book_new();
                                     XLSX.utils.book_append_sheet(
                                         new_workbook,
                                         worksheet,
                                         "Applications"
                                     );
-                                    XLSX.writeFile(new_workbook, "Applications.csv");
+                                    XLSX.writeFile(
+                                        new_workbook,
+                                        "Applications.csv"
+                                    );
                                 }}
                             >
                                 CSV
@@ -252,7 +273,9 @@ function ApplicationTable({
                                 className="btn btn-navy"
                                 onClick={() => {
                                     const doc = new jsPDF();
-                                    doc.autoTable({ html: "#applicationsTable" });
+                                    doc.autoTable({
+                                        html: "#applicationsTable",
+                                    });
                                     doc.save("Applications.pdf");
                                 }}
                             >
