@@ -65,7 +65,6 @@ function ContactInformation({
                     setTelephoneNumber(e.target.value);
                     await form.current.validateFields(e.target);
                 }}
-                required
             />
             <FieldFeedbacks for="tele">
                 <FieldFeedback when="*" />
