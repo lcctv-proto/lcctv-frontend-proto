@@ -2,36 +2,9 @@ import { Link, useLocation } from "react-router-dom";
 import logo from "../../../assets/Images/logo.png";
 import { useEffect } from "react";
 
-function Navbar() {
+function Navbar({ isAuth, setIsAuth }) {
     const location = useLocation().pathname;
     const isCustomer = !location.includes("portal");
-
-    const navItems = [
-        {
-            name: "PLANS",
-            paths: ["/plans", "/apply"],
-        },
-        {
-            name: "CHANNELS",
-            paths: ["/channels", "/channel"],
-        },
-        {
-            name: "APPLICATIONS",
-            paths: ["/applications", "/application"],
-        },
-        {
-            name: "ABOUT US",
-            paths: ["/about"],
-        },
-        {
-            name: "CONTACT US",
-            paths: ["/contact", "/general", "/technical", "/payment"],
-        },
-        {
-            name: "SERVICE CATALOG",
-            paths: ["/services"],
-        },
-    ];
 
     useEffect(() => {
         let collapse = document.getElementById("nav-items");
@@ -73,15 +46,26 @@ function Navbar() {
                 >
                     <span className="h3 text-light">SUBSCRIBER MODULE</span>
 
-                    <div className="me-4 ms-auto text-light text-center my-4 my-lg-0">
-                        Still not registered?
-                        <Link
-                            to="/apply"
-                            className="ms-1 mx-auto w-25 d-lg-inline text-light text-center "
+                    {!isAuth ? (
+                        <div className="me-4 ms-auto text-light text-center my-4 my-lg-0">
+                            Still not registered?
+                            <Link
+                                to="/apply"
+                                className="ms-1 mx-auto w-25 d-lg-inline text-light text-center "
+                            >
+                                Apply Now!
+                            </Link>
+                        </div>
+                    ) : (
+                        <button
+                            className="btn btn-outline-light ms-auto me-4"
+                            onClick={() => {
+                                setIsAuth(false);
+                            }}
                         >
-                            Apply Now!
-                        </Link>
-                    </div>
+                            Logout
+                        </button>
+                    )}
                 </div>
             </nav>
         );
