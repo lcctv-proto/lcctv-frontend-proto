@@ -15,7 +15,7 @@ function Login() {
 
     const fetchBilling = async () => {
         const res = await axios.get(
-            `http://13.67.48.52/api/accounts/billing/${id}`,
+            `https://lcctv-backend.herokuapp.com/api/accounts/billing/${id}`,
             { headers: { "x-auth-token": token } }
         );
         setPayments(res.data.payments);
@@ -24,7 +24,7 @@ function Login() {
     const handleSubmit = (e) => {
         setIsLoading(true);
         axios
-            .post("http://13.67.48.52/api/accounts/login", {
+            .post("https://lcctv-backend.herokuapp.com/api/accounts/login", {
                 accountNumber: username,
                 password,
             })
@@ -34,7 +34,7 @@ function Login() {
                 setToken(res.data.token);
                 setIsAuth(true);
                 const response = await axios.get(
-                    `http://13.67.48.52/api/accounts/${res.data._id}`,
+                    `https://lcctv-backend.herokuapp.com/api/accounts/${res.data._id}`,
                     { headers: { "x-auth-token": res.data.token } }
                 );
                 setAccount(response.data);
