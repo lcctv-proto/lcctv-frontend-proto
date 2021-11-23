@@ -130,86 +130,90 @@ function EmployeeTable({ currentEmployees, cols }) {
                 )}
             </tbody>
             <tfoot>
-                <th colspan={cols.length - 1} className="p-3">
-                    <button
-                        className="btn btn-navy me-2"
-                        onClick={() => {
-                            const newApplications = [];
-                            currentEmployees.map((value) => {
-                                return newApplications.push({
-                                    "EMPLOYEE NUMBER": `${
-                                        value.prefix
-                                    }${value.emp_ctr
-                                        .toString()
-                                        .padStart(3, "0")}`, 
-                                    "FIRST NAME":
-                                        value.personnelName.firstName,
-                                    "MIDDLE NAME":
-                                        value.personnelName.middleName,
-                                    "LAST NAME":
-                                        value.personnelName.lastName,
-                                    "ROLE":
-                                        value.roleID.description,
+                <td>
+                    <tr>
+                        <th colspan={cols.length - 1} className="p-3">
+                        <button
+                            className="btn btn-navy me-2"
+                            onClick={() => {
+                                const newApplications = [];
+                                currentEmployees.map((value) => {
+                                    return newApplications.push({
+                                        "EMPLOYEE NUMBER": `${
+                                            value.prefix
+                                        }${value.emp_ctr
+                                            .toString()
+                                            .padStart(3, "0")}`, 
+                                        "FIRST NAME":
+                                            value.personnelName.firstName,
+                                        "MIDDLE NAME":
+                                            value.personnelName.middleName,
+                                        "LAST NAME":
+                                            value.personnelName.lastName,
+                                        "ROLE":
+                                            value.roleID.description,
+                                    });
                                 });
-                            });
-                            let worksheet =
-                                XLSX.utils.json_to_sheet(newApplications);
-                            var new_workbook = XLSX.utils.book_new();
-                            XLSX.utils.book_append_sheet(
-                                new_workbook,
-                                worksheet,
-                                "Employees"
-                            );
-                            XLSX.writeFile(new_workbook, "Employees.xlsx");
-                        }}
-                    >
-                        XLSX
-                    </button>
-                    <button
-                        className="btn btn-navy me-2"
-                        onClick={() => {
-                            const newApplications = [];
-                            currentEmployees.map((value) => {
-                                return newApplications.push({
-                                    "EMPLOYEE NUMBER": `${
-                                        value.prefix
-                                    }${value.emp_ctr
-                                        .toString()
-                                        .padStart(3, "0")}`, 
-                                    "FIRST NAME":
-                                        value.personnelName.firstName,
-                                    "MIDDLE NAME":
-                                        value.personnelName.middleName,
-                                    "LAST NAME":
-                                        value.personnelName.lastName,
-                                    "ROLE":
-                                        value.roleID.description,
+                                let worksheet =
+                                    XLSX.utils.json_to_sheet(newApplications);
+                                var new_workbook = XLSX.utils.book_new();
+                                XLSX.utils.book_append_sheet(
+                                    new_workbook,
+                                    worksheet,
+                                    "Employees"
+                                );
+                                XLSX.writeFile(new_workbook, "Employees.xlsx");
+                            }}
+                        >
+                            XLSX
+                        </button>
+                        <button
+                            className="btn btn-navy me-2"
+                            onClick={() => {
+                                const newApplications = [];
+                                currentEmployees.map((value) => {
+                                    return newApplications.push({
+                                        "EMPLOYEE NUMBER": `${
+                                            value.prefix
+                                        }${value.emp_ctr
+                                            .toString()
+                                            .padStart(3, "0")}`, 
+                                        "FIRST NAME":
+                                            value.personnelName.firstName,
+                                        "MIDDLE NAME":
+                                            value.personnelName.middleName,
+                                        "LAST NAME":
+                                            value.personnelName.lastName,
+                                        "ROLE":
+                                            value.roleID.description,
+                                    });
                                 });
-                            });
-                            let worksheet =
-                                XLSX.utils.json_to_sheet(newApplications);
-                            const new_workbook = XLSX.utils.book_new();
-                            XLSX.utils.book_append_sheet(
-                                new_workbook,
-                                worksheet,
-                                "Employees"
-                            );
-                            XLSX.writeFile(new_workbook, "Employees.csv");
-                        }}
-                    >
-                        CSV
-                    </button>
-                    <button
-                        className="btn btn-navy"
-                        onClick={() => {
-                            const doc = new jsPDF();
-                            doc.autoTable({ html: "#employeesTable" });
-                            doc.save("Employees.pdf");
-                        }}
-                    >
-                        PDF
-                    </button>
-                </th>
+                                let worksheet =
+                                    XLSX.utils.json_to_sheet(newApplications);
+                                const new_workbook = XLSX.utils.book_new();
+                                XLSX.utils.book_append_sheet(
+                                    new_workbook,
+                                    worksheet,
+                                    "Employees"
+                                );
+                                XLSX.writeFile(new_workbook, "Employees.csv");
+                            }}
+                        >
+                            CSV
+                        </button>
+                        <button
+                            className="btn btn-navy"
+                            onClick={() => {
+                                const doc = new jsPDF();
+                                doc.autoTable({ html: "#employeesTable" });
+                                doc.save("Employees.pdf");
+                            }}
+                        >
+                            PDF
+                        </button>
+                        </th>
+                    </tr>
+                </td>
             </tfoot>
         </table>
     );

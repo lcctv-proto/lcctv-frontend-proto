@@ -86,7 +86,7 @@ function ApplicationTable({ currentApplications, cols }) {
     return (
         <table
             className="table table-borderless table-striped shadow fs-5"
-            id="applicationsTable"
+            id="accountsTable"
         >
             <thead className="text-light bg-navy border-admin">
                 <tr>
@@ -133,108 +133,108 @@ function ApplicationTable({ currentApplications, cols }) {
                     )}
             </tbody>
             <tfoot>
-                <tr>
-                    <td colSpan={cols.length - 1} className="p-3">
-                        <button
-                            className="btn btn-navy me-2"
-                            onClick={() => {
-                                const newApplications = [];
-                                currentApplications.map((value) => {
-                                    return newApplications.push({
-                                        "REFERENCE NUMBER": `${
-                                            value.prefix
-                                        }${value.ref_ctr
-                                            .toString()
-                                            .padStart(3, "0")}`,
-                                        "FIRST NAME":
-                                            value.accountID.accountName
-                                                .firstName,
-                                        "MIDDLE NAME":
-                                            value.accountID.accountName
-                                                .middleName,
-                                        "LAST NAME":
-                                            value.accountID.accountName
-                                                .lastName,
-                                        PACKAGE:
-                                            value.accountID.packageID
-                                                .description,
-                                        DATE: value.date,
-                                        AREA: value.accountID.serviceAddress
-                                            .municipality,
+                <td>
+                    <tr>
+                        <th colSpan={cols.length - 1} className="p-3">
+                            <button
+                                className="btn btn-navy me-2"
+                                onClick={() => {
+                                    const newApplications = [];
+                                    currentApplications.map((value) => {
+                                        return newApplications.push({
+                                            "ACCOUNT NUMBER": `${
+                                                value.prefix
+                                            }${value.acc_ctr
+                                                .toString()
+                                                .padStart(3, "0")}`,
+                                            "FIRST NAME":
+                                                value.accountName
+                                                    .firstName,
+                                            "MIDDLE NAME":
+                                                value.accountName
+                                                    .middleName,
+                                            "LAST NAME":
+                                                value.accountName
+                                                    .lastName,
+                                            PACKAGE:
+                                                value.packageID
+                                                    .description,
+                                            AREA: value.serviceAddress
+                                                .municipality,
+                                        });
                                     });
-                                });
-                                let worksheet =
-                                    XLSX.utils.json_to_sheet(newApplications);
-                                var new_workbook = XLSX.utils.book_new();
-                                XLSX.utils.book_append_sheet(
-                                    new_workbook,
-                                    worksheet,
-                                    "Applications"
-                                );
-                                XLSX.writeFile(
-                                    new_workbook,
-                                    "Applications.xlsx"
-                                );
-                            }}
-                        >
-                            XLSX
-                        </button>
-                        <button
-                            className="btn btn-navy me-2"
-                            onClick={() => {
-                                const newApplications = [];
-                                currentApplications.map((value) => {
-                                    return newApplications.push({
-                                        "APPLICATION NUMBER": `${
-                                            value.prefix
-                                        }${value.ref_ctr
-                                            .toString()
-                                            .padStart(3, "0")}`,
-                                        "FIRST NAME":
-                                            value.accountID.accountName
-                                                .firstName,
-                                        "MIDDLE NAME":
-                                            value.accountID.accountName
-                                                .middleName,
-                                        "LAST NAME":
-                                            value.accountID.accountName
-                                                .lastName,
-                                        PACKAGE:
-                                            value.accountID.packageID
-                                                .description,
-                                        DATE: value.date,
-                                        AREA: value.accountID.serviceAddress
-                                            .municipality,
+                                    let worksheet =
+                                        XLSX.utils.json_to_sheet(newApplications);
+                                    var new_workbook = XLSX.utils.book_new();
+                                    XLSX.utils.book_append_sheet(
+                                        new_workbook,
+                                        worksheet,
+                                        "Accounts"
+                                    );
+                                    XLSX.writeFile(
+                                        new_workbook,
+                                        "Accounts.xlsx"
+                                    );
+                                }}
+                            >
+                                XLSX
+                            </button>
+                            <button
+                                className="btn btn-navy me-2"
+                                onClick={() => {
+                                    const newApplications = [];
+                                    currentApplications.map((value) => {
+                                        return newApplications.push({
+                                            "ACCOUNT NUMBER": `${
+                                                value.prefix
+                                            }${value.acc_ctr
+                                                .toString()
+                                                .padStart(3, "0")}`,
+                                            "FIRST NAME":
+                                                value.accountName
+                                                    .firstName,
+                                            "MIDDLE NAME":
+                                                value.accountName
+                                                    .middleName,
+                                            "LAST NAME":
+                                                value.accountName
+                                                    .lastName,
+                                            PACKAGE:
+                                                value.packageID
+                                                    .description,
+                                            AREA: value.serviceAddress
+                                                .municipality,
+                                        });
                                     });
-                                });
-                                let worksheet =
-                                    XLSX.utils.json_to_sheet(newApplications);
-                                const new_workbook = XLSX.utils.book_new();
-                                XLSX.utils.book_append_sheet(
-                                    new_workbook,
-                                    worksheet,
-                                    "Applications"
-                                );
-                                XLSX.writeFile(
-                                    new_workbook,
-                                    "Applications.csv"
-                                );
-                            }}
-                        >
-                            CSV
-                        </button>
-                        <button
-                            className="btn btn-navy"
-                            onClick={() => {
-                                const doc = new jsPDF();
-                                doc.autoTable({ html: "#applicationsTable" });
-                                doc.save("Applications.pdf");
-                            }}
-                        >
-                            PDF
-                        </button>
-                    </td>
-                </tr>
+                                    let worksheet =
+                                        XLSX.utils.json_to_sheet(newApplications);
+                                    const new_workbook = XLSX.utils.book_new();
+                                    XLSX.utils.book_append_sheet(
+                                        new_workbook,
+                                        worksheet,
+                                        "Accounts"
+                                    );
+                                    XLSX.writeFile(
+                                        new_workbook,
+                                        "Accounts.csv"
+                                    );
+                                }}
+                            >
+                                CSV
+                            </button>
+                            <button
+                                className="btn btn-navy"
+                                onClick={() => {
+                                    const doc = new jsPDF();
+                                    doc.autoTable({ html: "#accountsTable" });
+                                    doc.save("Accounts.pdf");
+                                }}
+                            >
+                                PDF
+                            </button>
+                        </th>
+                    </tr>
+                </td>
             </tfoot>
         </table>
     );

@@ -154,92 +154,96 @@ function InquiryTable({ currentInquiries, cols, setInquiry, handleViewShow }) {
                 )}
             </tbody>
             <tfoot>
-                <th colspan={cols.length - 1} className="p-3">
-                    <button
-                        className="btn btn-navy me-2"
-                        onClick={() => {
-                            const newApplications = [];
-                            currentInquiries.map((value) => {
-                                return newApplications.push({
-                                    "INQUIRY NUMBER": `${
-                                        value.prefix
-                                    }${value.inq_ctr
-                                        .toString()
-                                        .padStart(3, "0")}`, 
-                                    "FIRST NAME":
-                                        value.accountID.accountName.firstName,
-                                    "MIDDLE NAME":
-                                        value.accountID.accountName.middleName,
-                                    "LAST NAME":
-                                        value.accountID.accountName.lastName,
-                                    "PACKAGE":
-                                        value.accountID.packageID.description,
-                                    "DATE": value.date,
-                                    "CONCERN TYPE": 
-                                        value.type,
+                <td>
+                    <tr>
+                        <th colspan={cols.length - 1} className="p-3">
+                        <button
+                            className="btn btn-navy me-2"
+                            onClick={() => {
+                                const newApplications = [];
+                                currentInquiries.map((value) => {
+                                    return newApplications.push({
+                                        "INQUIRY NUMBER": `${
+                                            value.prefix
+                                        }${value.inq_ctr
+                                            .toString()
+                                            .padStart(3, "0")}`, 
+                                        "FIRST NAME":
+                                            value.accountID.accountName.firstName,
+                                        "MIDDLE NAME":
+                                            value.accountID.accountName.middleName,
+                                        "LAST NAME":
+                                            value.accountID.accountName.lastName,
+                                        "PACKAGE":
+                                            value.accountID.packageID.description,
+                                        "DATE": value.date,
+                                        "CONCERN TYPE": 
+                                            value.type,
+                                    });
                                 });
-                            });
-                            let worksheet =
-                                XLSX.utils.json_to_sheet(newApplications);
-                            var new_workbook = XLSX.utils.book_new();
-                            XLSX.utils.book_append_sheet(
-                                new_workbook,
-                                worksheet,
-                                "Inquiries"
-                            );
-                            XLSX.writeFile(new_workbook, "Inquiries.xlsx");
-                        }}
-                    >
-                        XLSX
-                    </button>
-                    <button
-                        className="btn btn-navy me-2"
-                        onClick={() => {
-                            const newApplications = [];
-                            currentInquiries.map((value) => {
-                                return newApplications.push({
-                                    "INQUIRY NUMBER": `${
-                                        value.prefix
-                                    }${value.inq_ctr
-                                        .toString()
-                                        .padStart(3, "0")}`,
-                                    "FIRST NAME":
-                                        value.accountID.accountName.firstName,
-                                    "MIDDLE NAME":
-                                        value.accountID.accountName.middleName,
-                                    "LAST NAME":
-                                        value.accountID.accountName.lastName,
-                                    "PACKAGE":
-                                        value.accountID.packageID.description,
-                                    "DATE": value.date,
-                                    "CONCERN TYPE":
-                                        value.type,
+                                let worksheet =
+                                    XLSX.utils.json_to_sheet(newApplications);
+                                var new_workbook = XLSX.utils.book_new();
+                                XLSX.utils.book_append_sheet(
+                                    new_workbook,
+                                    worksheet,
+                                    "Inquiries"
+                                );
+                                XLSX.writeFile(new_workbook, "Inquiries.xlsx");
+                            }}
+                        >
+                            XLSX
+                        </button>
+                        <button
+                            className="btn btn-navy me-2"
+                            onClick={() => {
+                                const newApplications = [];
+                                currentInquiries.map((value) => {
+                                    return newApplications.push({
+                                        "INQUIRY NUMBER": `${
+                                            value.prefix
+                                        }${value.inq_ctr
+                                            .toString()
+                                            .padStart(3, "0")}`,
+                                        "FIRST NAME":
+                                            value.accountID.accountName.firstName,
+                                        "MIDDLE NAME":
+                                            value.accountID.accountName.middleName,
+                                        "LAST NAME":
+                                            value.accountID.accountName.lastName,
+                                        "PACKAGE":
+                                            value.accountID.packageID.description,
+                                        "DATE": value.date,
+                                        "CONCERN TYPE":
+                                            value.type,
+                                    });
                                 });
-                            });
-                            let worksheet =
-                                XLSX.utils.json_to_sheet(newApplications);
-                            const new_workbook = XLSX.utils.book_new();
-                            XLSX.utils.book_append_sheet(
-                                new_workbook,
-                                worksheet,
-                                "Inquiries"
-                            );
-                            XLSX.writeFile(new_workbook, "Inquiries.csv");
-                        }}
-                    >
-                        CSV
-                    </button>
-                    <button
-                        className="btn btn-navy"
-                        onClick={() => {
-                            const doc = new jsPDF();
-                            doc.autoTable({ html: "#inquiriesTable" });
-                            doc.save("Inquiries.pdf");
-                        }}
-                    >
-                        PDF
-                    </button>
-                </th>
+                                let worksheet =
+                                    XLSX.utils.json_to_sheet(newApplications);
+                                const new_workbook = XLSX.utils.book_new();
+                                XLSX.utils.book_append_sheet(
+                                    new_workbook,
+                                    worksheet,
+                                    "Inquiries"
+                                );
+                                XLSX.writeFile(new_workbook, "Inquiries.csv");
+                            }}
+                        >
+                            CSV
+                        </button>
+                        <button
+                            className="btn btn-navy"
+                            onClick={() => {
+                                const doc = new jsPDF();
+                                doc.autoTable({ html: "#inquiriesTable" });
+                                doc.save("Inquiries.pdf");
+                            }}
+                        >
+                            PDF
+                        </button>
+                        </th>
+                    </tr>
+                </td>
             </tfoot>
         </table>
     );

@@ -179,88 +179,92 @@ function PaymentTable({ currentPayments, cols }) {
                     )}
             </tbody>
             <tfoot>
-                <th colspan={cols.length - 1} className="p-3">
-                    <button
-                        className="btn btn-navy me-2"
-                        onClick={() => {
-                            const newApplications = [];
-                            currentPayments.map((value) => {
-                                return newApplications.push({
-                                    "PAYMENT NUMBER": `${
-                                        value.prefix
-                                    }${value.pay_ctr
-                                        .toString()
-                                        .padStart(3, "0")}`,
-                                    "FIRST NAME":
-                                        value.accountID.accountName.firstName,
-                                    "MIDDLE NAME":
-                                        value.accountID.accountName.middleName,
-                                    "LAST NAME":
-                                        value.accountID.accountName.lastName,
-                                    DATE: value.date,
-                                    "MODE OF PAYMENT": value.modeOfPayment,
-                                    "AMOUNT PAID": value.amountPaid,
+                <td>
+                    <tr>
+                        <th colspan={cols.length - 1} className="p-3">
+                        <button
+                            className="btn btn-navy me-2"
+                            onClick={() => {
+                                const newApplications = [];
+                                currentPayments.map((value) => {
+                                    return newApplications.push({
+                                        "PAYMENT NUMBER": `${
+                                            value.prefix
+                                        }${value.pay_ctr
+                                            .toString()
+                                            .padStart(3, "0")}`,
+                                        "FIRST NAME":
+                                            value.accountID.accountName.firstName,
+                                        "MIDDLE NAME":
+                                            value.accountID.accountName.middleName,
+                                        "LAST NAME":
+                                            value.accountID.accountName.lastName,
+                                        DATE: value.date,
+                                        "MODE OF PAYMENT": value.modeOfPayment,
+                                        "AMOUNT PAID": value.amountPaid,
+                                    });
                                 });
-                            });
-                            let worksheet =
-                                XLSX.utils.json_to_sheet(newApplications);
-                            var new_workbook = XLSX.utils.book_new();
-                            XLSX.utils.book_append_sheet(
-                                new_workbook,
-                                worksheet,
-                                "Payments"
-                            );
-                            XLSX.writeFile(new_workbook, "Payments.xlsx");
-                        }}
-                    >
-                        XLSX
-                    </button>
-                    <button
-                        className="btn btn-navy me-2"
-                        onClick={() => {
-                            const newApplications = [];
-                            currentPayments.map((value) => {
-                                return newApplications.push({
-                                    "PAYMENT NUMBER": `${
-                                        value.prefix
-                                    }${value.pay_ctr
-                                        .toString()
-                                        .padStart(3, "0")}`,
-                                    "FIRST NAME":
-                                        value.accountID.accountName.firstName,
-                                    "MIDDLE NAME":
-                                        value.accountID.accountName.middleName,
-                                    "LAST NAME":
-                                        value.accountID.accountName.lastName,
-                                    DATE: value.date,
-                                    "MODE OF PAYMENT": value.modeOfPayment,
-                                    "AMOUNT PAID": value.amountPaid,
+                                let worksheet =
+                                    XLSX.utils.json_to_sheet(newApplications);
+                                var new_workbook = XLSX.utils.book_new();
+                                XLSX.utils.book_append_sheet(
+                                    new_workbook,
+                                    worksheet,
+                                    "Payments"
+                                );
+                                XLSX.writeFile(new_workbook, "Payments.xlsx");
+                            }}
+                        >
+                            XLSX
+                        </button>
+                        <button
+                            className="btn btn-navy me-2"
+                            onClick={() => {
+                                const newApplications = [];
+                                currentPayments.map((value) => {
+                                    return newApplications.push({
+                                        "PAYMENT NUMBER": `${
+                                            value.prefix
+                                        }${value.pay_ctr
+                                            .toString()
+                                            .padStart(3, "0")}`,
+                                        "FIRST NAME":
+                                            value.accountID.accountName.firstName,
+                                        "MIDDLE NAME":
+                                            value.accountID.accountName.middleName,
+                                        "LAST NAME":
+                                            value.accountID.accountName.lastName,
+                                        DATE: value.date,
+                                        "MODE OF PAYMENT": value.modeOfPayment,
+                                        "AMOUNT PAID": value.amountPaid,
+                                    });
                                 });
-                            });
-                            let worksheet =
-                                XLSX.utils.json_to_sheet(newApplications);
-                            const new_workbook = XLSX.utils.book_new();
-                            XLSX.utils.book_append_sheet(
-                                new_workbook,
-                                worksheet,
-                                "Payments"
-                            );
-                            XLSX.writeFile(new_workbook, "Payments.csv");
-                        }}
-                    >
-                        CSV
-                    </button>
-                    <button
-                        className="btn btn-navy"
-                        onClick={() => {
-                            const doc = new jsPDF();
-                            doc.autoTable({ html: "#paymentTable" });
-                            doc.save("Payments.pdf");
-                        }}
-                    >
-                        PDF
-                    </button>
-                </th>
+                                let worksheet =
+                                    XLSX.utils.json_to_sheet(newApplications);
+                                const new_workbook = XLSX.utils.book_new();
+                                XLSX.utils.book_append_sheet(
+                                    new_workbook,
+                                    worksheet,
+                                    "Payments"
+                                );
+                                XLSX.writeFile(new_workbook, "Payments.csv");
+                            }}
+                        >
+                            CSV
+                        </button>
+                        <button
+                            className="btn btn-navy"
+                            onClick={() => {
+                                const doc = new jsPDF();
+                                doc.autoTable({ html: "#paymentTable" });
+                                doc.save("Payments.pdf");
+                            }}
+                        >
+                            PDF
+                        </button>
+                        </th>
+                    </tr>
+                </td>
             </tfoot>
         </table>
     );

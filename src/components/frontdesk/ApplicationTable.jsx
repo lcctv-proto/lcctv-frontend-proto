@@ -166,97 +166,101 @@ function ApplicationTable({
                     )}
             </tbody>
             <tfoot>
-                <th colspan={cols.length - 1} className="p-3">
-                    <button
-                        className="btn btn-navy me-2"
-                        onClick={() => {
-                            const newApplications = [];
-                            currentApplications.map((value) => {
-                                return newApplications.push({
-                                    "APPLICATION NUMBER": `${
-                                        value.prefix
-                                    }${value.ref_ctr
-                                        .toString()
-                                        .padStart(3, "0")}`, 
-                                    "FIRST NAME":
-                                        value.accountID.accountName.firstName,
-                                    "MIDDLE NAME":
-                                        value.accountID.accountName.middleName,
-                                    "LAST NAME":
-                                        value.accountID.accountName.lastName,
-                                    "PACKAGE":
-                                        value.accountID.packageID.description,
-                                    "DATE": value.date,
-                                    "ACCOUNT ID": value._id,
-                                    "LINK TO PROOF OF VALIDATION": 
-                                        value.accountID.billingImageURL,
-                                    "BIRTHDAY":
-                                        value.accountID.additionalInfo.birthdate,
-                                });
-                            });
-                            let worksheet =
-                                XLSX.utils.json_to_sheet(newApplications);
-                            var new_workbook = XLSX.utils.book_new();
-                            XLSX.utils.book_append_sheet(
-                                new_workbook,
-                                worksheet,
-                                "Applications"
-                            );
-                            XLSX.writeFile(new_workbook, "Applications.xlsx");
-                        }}
-                    >
-                        XLSX
-                    </button>
-                    <button
-                        className="btn btn-navy me-2"
-                        onClick={() => {
-                            const newApplications = [];
-                            currentApplications.map((value) => {
-                                return newApplications.push({
-                                    "APPLICATION NUMBER": `${
-                                        value.prefix
-                                    }${value.ref_ctr
-                                        .toString()
-                                        .padStart(3, "0")}`,
-                                    "FIRST NAME":
-                                        value.accountID.accountName.firstName,
-                                    "MIDDLE NAME":
-                                        value.accountID.accountName.middleName,
-                                    "LAST NAME":
-                                        value.accountID.accountName.lastName,
-                                    "PACKAGE":
-                                        value.accountID.packageID.description,
-                                    "DATE": value.date,
-                                    "ACCOUNT ID": value._id,
-                                    "LINK TO PROOF OF BILLING": value.accountID.billingImageURL,
-                                    "BIRTDAY":
-                                        value.accountID.additionalInfo.birthdate,
-                                });
-                            });
-                            let worksheet =
-                                XLSX.utils.json_to_sheet(newApplications);
-                            const new_workbook = XLSX.utils.book_new();
-                            XLSX.utils.book_append_sheet(
-                                new_workbook,
-                                worksheet,
-                                "Applications"
-                            );
-                            XLSX.writeFile(new_workbook, "Applications.csv");
-                        }}
-                    >
-                        CSV
-                    </button>
-                    <button
-                        className="btn btn-navy"
-                        onClick={() => {
-                            const doc = new jsPDF();
-                            doc.autoTable({ html: "#applicationsTable" });
-                            doc.save("Applications.pdf");
-                        }}
-                    >
-                        PDF
-                    </button>
-                </th>
+                <td>
+                    <tr>
+                        <th colspan={cols.length - 1} className="p-3">
+                            <button
+                                className="btn btn-navy me-2"
+                                onClick={() => {
+                                    const newApplications = [];
+                                    currentApplications.map((value) => {
+                                        return newApplications.push({
+                                            "APPLICATION NUMBER": `${
+                                                value.prefix
+                                            }${value.ref_ctr
+                                                .toString()
+                                                .padStart(3, "0")}`, 
+                                            "FIRST NAME":
+                                                value.accountID.accountName.firstName,
+                                            "MIDDLE NAME":
+                                                value.accountID.accountName.middleName,
+                                            "LAST NAME":
+                                                value.accountID.accountName.lastName,
+                                            "PACKAGE":
+                                                value.accountID.packageID.description,
+                                            "DATE": value.date,
+                                            "ACCOUNT ID": value._id,
+                                            "LINK TO PROOF OF VALIDATION": 
+                                                value.accountID.billingImageURL,
+                                            "BIRTHDAY":
+                                                value.accountID.additionalInfo.birthdate,
+                                        });
+                                    });
+                                    let worksheet =
+                                        XLSX.utils.json_to_sheet(newApplications);
+                                    var new_workbook = XLSX.utils.book_new();
+                                    XLSX.utils.book_append_sheet(
+                                        new_workbook,
+                                        worksheet,
+                                        "Applications"
+                                    );
+                                    XLSX.writeFile(new_workbook, "Applications.xlsx");
+                                }}
+                            >
+                                XLSX
+                            </button>
+                            <button
+                                className="btn btn-navy me-2"
+                                onClick={() => {
+                                    const newApplications = [];
+                                    currentApplications.map((value) => {
+                                        return newApplications.push({
+                                            "APPLICATION NUMBER": `${
+                                                value.prefix
+                                            }${value.ref_ctr
+                                                .toString()
+                                                .padStart(3, "0")}`,
+                                            "FIRST NAME":
+                                                value.accountID.accountName.firstName,
+                                            "MIDDLE NAME":
+                                                value.accountID.accountName.middleName,
+                                            "LAST NAME":
+                                                value.accountID.accountName.lastName,
+                                            "PACKAGE":
+                                                value.accountID.packageID.description,
+                                            "DATE": value.date,
+                                            "ACCOUNT ID": value._id,
+                                            "LINK TO PROOF OF BILLING": value.accountID.billingImageURL,
+                                            "BIRTDAY":
+                                                value.accountID.additionalInfo.birthdate,
+                                        });
+                                    });
+                                    let worksheet =
+                                        XLSX.utils.json_to_sheet(newApplications);
+                                    const new_workbook = XLSX.utils.book_new();
+                                    XLSX.utils.book_append_sheet(
+                                        new_workbook,
+                                        worksheet,
+                                        "Applications"
+                                    );
+                                    XLSX.writeFile(new_workbook, "Applications.csv");
+                                }}
+                            >
+                                CSV
+                            </button>
+                            <button
+                                className="btn btn-navy"
+                                onClick={() => {
+                                    const doc = new jsPDF();
+                                    doc.autoTable({ html: "#applicationsTable" });
+                                    doc.save("Applications.pdf");
+                                }}
+                            >
+                                PDF
+                            </button>
+                        </th>
+                    </tr>
+                </td>
             </tfoot>
         </table>
     );
