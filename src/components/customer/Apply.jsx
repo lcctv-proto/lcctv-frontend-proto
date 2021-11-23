@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 import PersonalInfo from "./ApplicationForm/PersonalInfo";
 import ServiceAddress from "./ApplicationForm/ServiceAddress";
@@ -9,8 +9,11 @@ import { useLocation, useHistory } from "react-router";
 import axios from "axios";
 
 import api from "../../api/api";
+import { FormWithConstraints } from "react-form-with-constraints-bootstrap";
 
 function Apply() {
+    const form = useRef(null);
+
     const [page, setPage] = useState(1);
 
     const [accountFirstName, setAccountFirstName] = useState("");
@@ -188,7 +191,10 @@ function Apply() {
                         <div className="card-body">
                             <p className="mb-2">Select Plan: </p>
 
-                            <form action="">
+                            <FormWithConstraints
+                                ref={form}
+                                onSubmit={HandleSubmit}
+                            >
                                 <Form.Group>
                                     <Form.Select
                                         value={packageID}
@@ -229,6 +235,7 @@ function Apply() {
                                         setGender={setGender}
                                         civilStatus={civilStatus}
                                         setCivilStatus={setCivilStatus}
+                                        form={form}
                                     />
                                 )}
                                 {page === 2 && (
@@ -297,7 +304,7 @@ function Apply() {
                                         setPOBPreview={setPOBPreview}
                                     />
                                 )}
-                            </form>
+                            </FormWithConstraints>
                         </div>
                         <div className="card-footer mt-3 d-flex">
                             {page !== 1 && (
