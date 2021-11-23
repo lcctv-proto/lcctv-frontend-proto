@@ -2,7 +2,7 @@
 import {
     PieChart,
     Nut,
-    People,
+    // People,
     Person,
     Receipt,
     Grid3x3Gap,

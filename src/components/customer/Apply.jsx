@@ -357,7 +357,7 @@ function Apply() {
                                 {page === 4 && (
                                     <button
                                         className="btn btn-warning btn-lg btn-gold ms-auto"
-                                        onClick={HandleSubmit}
+                                        onClick={handleDPAShow}
                                     >
                                         Submit
                                     </button>

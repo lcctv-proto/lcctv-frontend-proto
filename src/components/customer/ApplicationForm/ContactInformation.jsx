@@ -38,15 +38,17 @@ function ContactInformation({
                 name="number"
                 value={cellphoneNumber}
                 onChange={async (e) => {
-                    setCellphoneNumber(e.target.value); 
+                    setCellphoneNumber(e.target.value);
                     await form.current.validateFields(e.target);
                 }}
                 required
-                pattern='((^(\+)(\d){12}$)|(^\d{11}$))'
+                pattern="((^(\+)(\d){12}$)|(^\d{11}$))"
             />
             <FieldFeedbacks for="number">
-                <FieldFeedback when="valueMissing"  />
-                <FieldFeedback when="patternMismatch">Enter valid phone number.</FieldFeedback>
+                <FieldFeedback when="valueMissing" />
+                <FieldFeedback when="patternMismatch">
+                    Enter valid phone number.
+                </FieldFeedback>
                 <FieldFeedback when="valid">Looks good!</FieldFeedback>
             </FieldFeedbacks>
 
@@ -60,7 +62,7 @@ function ContactInformation({
                 name="tele"
                 value={telephoneNumber}
                 onChange={async (e) => {
-                    setTelephoneNumber(e.target.value); 
+                    setTelephoneNumber(e.target.value);
                     await form.current.validateFields(e.target);
                 }}
                 required
@@ -81,14 +83,22 @@ function ContactInformation({
                 style={{ textTransform: "none" }}
                 value={email}
                 onChange={async (e) => {
-                    setEmail(e.target.value); 
+                    setEmail(e.target.value);
                     await form.current.validateFields(e.target);
                 }}
                 required
             />
             <FieldFeedbacks for="email">
-                <FieldFeedback when={value => !/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value)} warning>
-                Enter valid email.
+                <FieldFeedback
+                    when={(value) =>
+                        // eslint-disable-next-line
+                        !/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+                            value
+                        )
+                    }
+                    warning
+                >
+                    Enter valid email.
                 </FieldFeedback>
                 <FieldFeedback when="valid">Looks good!</FieldFeedback>
             </FieldFeedbacks>
@@ -104,7 +114,7 @@ function ContactInformation({
                 name="firstname"
                 value={motherFirstName}
                 onChange={async (e) => {
-                    setMotherFirstName(e.target.value); 
+                    setMotherFirstName(e.target.value);
                     await form.current.validateFields(e.target);
                 }}
                 required
@@ -124,10 +134,9 @@ function ContactInformation({
                 name="middlename"
                 value={motherMiddleName}
                 onChange={async (e) => {
-                    setMotherMiddleName(e.target.value); 
+                    setMotherMiddleName(e.target.value);
                     await form.current.validateFields(e.target);
                 }}
-                
             />
             <FieldFeedbacks for="middlename">
                 <FieldFeedback when="*" />
@@ -144,7 +153,7 @@ function ContactInformation({
                 name="surname"
                 value={motherLastName}
                 onChange={async (e) => {
-                    setMotherLastName(e.target.value); 
+                    setMotherLastName(e.target.value);
                     await form.current.validateFields(e.target);
                 }}
                 required
@@ -170,14 +179,14 @@ function ContactInformation({
                         name="spouse_firstname"
                         value={spouseFirstName}
                         onChange={async (e) => {
-                            setSpouseFirstName(e.target.value); 
+                            setSpouseFirstName(e.target.value);
                             await form.current.validateFields(e.target);
                         }}
                         required={civilStatus === "MARRIED"}
                     />
                     <FieldFeedbacks for="spouse_firstname">
-                    <FieldFeedback when="*" />
-                    <FieldFeedback when="valid">Looks good!</FieldFeedback>
+                        <FieldFeedback when="*" />
+                        <FieldFeedback when="valid">Looks good!</FieldFeedback>
                     </FieldFeedbacks>
 
                     <label
@@ -193,13 +202,13 @@ function ContactInformation({
                         name="spouse_middlename"
                         value={spouseMiddleName}
                         onChange={async (e) => {
-                            setSpouseMiddleName(e.target.value); 
+                            setSpouseMiddleName(e.target.value);
                             await form.current.validateFields(e.target);
                         }}
                     />
                     <FieldFeedbacks for="spouse_middlename">
-                    <FieldFeedback when="*" />
-                    <FieldFeedback when="valid">Looks good!</FieldFeedback>
+                        <FieldFeedback when="*" />
+                        <FieldFeedback when="valid">Looks good!</FieldFeedback>
                     </FieldFeedbacks>
 
                     <label htmlFor="spouse_surname" className="form-label mt-2">
@@ -212,14 +221,14 @@ function ContactInformation({
                         name="spouse_surname"
                         value={spouseLastName}
                         onChange={async (e) => {
-                            setSpouseLastName(e.target.value); 
+                            setSpouseLastName(e.target.value);
                             await form.current.validateFields(e.target);
                         }}
                         required={civilStatus === "MARRIED"}
                     />
                     <FieldFeedbacks for="spouse_surname">
-                    <FieldFeedback when="*" />
-                    <FieldFeedback when="valid">Looks good!</FieldFeedback>
+                        <FieldFeedback when="*" />
+                        <FieldFeedback when="valid">Looks good!</FieldFeedback>
                     </FieldFeedbacks>
                 </>
             )}

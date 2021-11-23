@@ -10,7 +10,6 @@ function Login() {
     const [password, setPassword] = useState("");
     const [payments, setPayments] = useState([]);
     const [invoices, setInvoices] = useState([]);
-    const [id, setID] = useState("");
     const [account, setAccount] = useState([]);
     const [token, setToken] = useState("");
     const [isAuth, setIsAuth] = useState(false);
@@ -21,7 +20,6 @@ function Login() {
         setPayments([]);
         setInvoices([]);
         setAccount([]);
-        setID("");
         setToken("");
 
         setIsLoading(true);
@@ -32,7 +30,6 @@ function Login() {
             })
             .then(async (res) => {
                 setIsFetching(true);
-                setID(res.data._id);
                 setToken(res.data.token);
                 setIsAuth(true);
                 const response = await axios.get(
