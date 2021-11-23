@@ -34,13 +34,38 @@ function Applications() {
     const currentApplications = applications
         .filter((application) => {
             const {
-                accountName: { firstName, middleName, lastName },
-            } = application.accountID;
+                prefix,
+                date,
+                accountID : {
+                    accountName: { firstName, middleName, lastName },
+                    packageID : { description }
+                },
+                ref_ctr,
+                _id,
+            } = application;
 
             const name = `${firstName} ${middleName} ${lastName}`;
 
+            const plan = `${description}`;
+
+            const refNumber = `${prefix} ${ref_ctr.toString().padStart(3, "0")}`;
+
+            const localDate = new Date(date)
+                .toLocaleDateString(undefined, {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                })
+                .toUpperCase();
+
             if (searchTerm === "") return application;
-            else if (name.includes(searchTerm.toUpperCase()))
+            else if (
+                name.includes(searchTerm.toUpperCase()) ||
+                plan.includes(searchTerm.toUpperCase()) ||
+                refNumber.includes(searchTerm.toUpperCase()) ||
+                localDate.includes(searchTerm.toUpperCase()) ||
+                _id.includes(searchTerm.toUpperCase())
+                )
                 return application;
             return null;
         })
