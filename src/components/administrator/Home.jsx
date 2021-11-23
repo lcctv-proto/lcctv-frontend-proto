@@ -50,7 +50,7 @@ function Home() {
                                         className="mb-2"
                                     />
                                 }
-                                title="APPLICATION"
+                                title="ACCOUNTS"
                                 name="admin"
                                 path="/admin/applications"
                             />

@@ -33,7 +33,7 @@ function Administrator() {
     useEffect(() => {
         if (location.includes("teams")) setHeader("TEAMS");
         if (location.includes("employees")) setHeader("EMPLOYEES");
-        if (location.includes("applications")) setHeader("APPLICATIONS");
+        if (location.includes("applications")) setHeader("ACCOUNTS");
         if (location.includes("channels")) setHeader("CHANNELS");
         if (location.includes("reports")) setHeader("REPORTS");
         if (location.includes("equipments")) setHeader("EQUIPMENTS");
@@ -54,7 +54,7 @@ function Administrator() {
         },
         {
             icon: <Receipt />,
-            title: "APPLICATIONS",
+            title: "ACCOUNTS",
             path: "/admin/applications",
         },
         {

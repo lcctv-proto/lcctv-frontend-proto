@@ -78,7 +78,11 @@ function Payments() {
         if (_isMounted.current) {
             setIsLoading(true);
             const res = await api.payments.get("");
-            setPayments([...res.data]);
+            setPayments(
+                [...res.data].sort(
+                    (a, b) => new Date(b.date) - new Date(a.date)
+                )
+            );
             setIsLoading(false);
         }
     };

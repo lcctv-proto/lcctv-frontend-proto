@@ -27,13 +27,10 @@ function Applications() {
         .filter((application) => {
             const {
                 prefix,
-                date,
-                accountID : {
-                    accountName: { firstName, middleName, lastName },
-                    packageID : { description },
-                    serviceAddress: { municipality, province },
-                },
-                ref_ctr,
+                accountName: { firstName, middleName, lastName },
+                packageID: { description },
+                serviceAddress: { municipality, province },
+                acc_ctr,
                 _id,
             } = application;
 
@@ -43,16 +40,7 @@ function Applications() {
 
             const address = `${municipality} ${province}`;
 
-            const refNumber = `${prefix} ${ref_ctr.toString().padStart(3, "0")}`;
-
-            const localDate = new Date(date)
-                .toLocaleDateString(undefined, {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                })
-                .toUpperCase();
-
+            const refNumber = `${prefix}${acc_ctr.toString().padStart(3, "0")}`;
 
             if (!application.status === "ACTIVE") return null;
 
@@ -62,15 +50,14 @@ function Applications() {
                 plan.includes(searchTerm.toUpperCase()) ||
                 address.includes(searchTerm.toUpperCase()) ||
                 refNumber.includes(searchTerm.toUpperCase()) ||
-                localDate.includes(searchTerm.toUpperCase()) ||
                 _id.includes(searchTerm.toUpperCase())
-                )
+            )
                 return application;
             return null;
         })
         .slice(indexOfFirstApplication, indexOfLastApplication);
 
-    const cols = ["REFERENCE NUMBER", "DATE", "ACCOUNT NAME", "AREA", "PLAN"];
+    const cols = ["REFERENCE NUMBER", "ACCOUNT NAME", "AREA", "PLAN"];
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -79,12 +66,13 @@ function Applications() {
             if (_isMounted.current) {
                 setIsLoading(true);
                 const res = await axios.get(
-                    "https://lcctv-backend.herokuapp.com/api/applications",
+                    "https://lcctv-backend.herokuapp.com/api/accounts",
                     { headers: authHeader() }
                 );
                 setApplications(
                     res.data.filter((application) => {
-                        if (application.step === 8) return application;
+                        if (application.accountStatus === "ACTIVE")
+                            return application;
                         return null;
                     })
                 );
