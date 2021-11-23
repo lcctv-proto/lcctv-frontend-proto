@@ -32,11 +32,30 @@ function Employees() {
     const currentEmployees = employees
         .filter((employee) => {
             const {
+                prefix,
+                emp_ctr,
                 personnelName: { firstName, middleName, lastName },
+                contactNumber,
+                roleID: { description },
+                _id,
             } = employee;
+
             const name = `${firstName} ${middleName} ${lastName}`;
+
+            const plan = `${description}`;
+
+            const payNumber = `${prefix} ${emp_ctr.toString().padStart(3, "0")}`;
+
+
             if (searchTerm === "") return employee;
-            else if (name.includes(searchTerm.toUpperCase())) return employee;
+            else if (
+                name.includes(searchTerm.toUpperCase()) ||
+                plan.includes(searchTerm.toUpperCase()) ||
+                payNumber.includes(searchTerm.toUpperCase()) ||
+                contactNumber.includes(searchTerm.toUpperCase()) ||
+                _id.includes(searchTerm.toUpperCase())
+                ) 
+            return employee;
             return null;
         })
         .slice(indexOfFirstEmployee, indexOfLastEmployee);

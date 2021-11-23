@@ -43,11 +43,41 @@ function Inquiries() {
     const currentInquiries = inquiries
         .filter((inquiry) => {
             const {
-                accountName: { firstName, middleName, lastName },
-            } = inquiry.accountID;
+                prefix,
+                date,
+                accountID : {
+                    accountName: { firstName, middleName, lastName },
+                    packageID : { description }
+                },
+                type,
+                _id,
+                inq_ctr,
+            } = inquiry;
+
             const name = `${firstName} ${middleName} ${lastName}`;
+
+            const plan = `${description}`;
+
+            const inqNumber = `${prefix} ${inq_ctr.toString().padStart(3, "0")}`;
+
+            const localDate = new Date(date)
+                .toLocaleDateString(undefined, {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                })
+                .toUpperCase();
+
             if (searchTerm === "") return inquiry;
-            else if (name.includes(searchTerm.toUpperCase())) return inquiry;
+            else if (
+                name.includes(searchTerm.toUpperCase()) ||
+                plan.includes(searchTerm.toUpperCase()) ||
+                inqNumber.includes(searchTerm.toUpperCase()) ||
+                localDate.includes(searchTerm.toUpperCase()) ||
+                type.includes(searchTerm.toUpperCase()) ||
+                _id.includes(searchTerm.toUpperCase())
+                ) 
+                return inquiry;
             return null;
         })
         .slice(indexOfFirstInquiry, indexOfLastInquiry);
