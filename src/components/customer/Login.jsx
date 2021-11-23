@@ -1,6 +1,9 @@
 import Navbar from "./Login/Navbar";
 import { useState } from "react";
 import axios from "axios";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+import { Download } from "react-bootstrap-icons";
 
 function Login() {
     const [username, setUsername] = useState("");
@@ -12,11 +15,15 @@ function Login() {
     const [token, setToken] = useState("");
     const [isAuth, setIsAuth] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [isFetching, setIsFetching] = useState(false);
 
     const handleSubmit = (e) => {
         setPayments([]);
         setInvoices([]);
         setAccount([]);
+        setID("");
+        setToken("");
+
         setIsLoading(true);
         axios
             .post("https://lcctv-backend.herokuapp.com/api/accounts/login", {
@@ -24,6 +31,7 @@ function Login() {
                 password,
             })
             .then(async (res) => {
+                setIsFetching(true);
                 setID(res.data._id);
                 setToken(res.data.token);
                 setIsAuth(true);
@@ -32,12 +40,13 @@ function Login() {
                     { headers: { "x-auth-token": res.data.token } }
                 );
                 const response2 = await axios.get(
-                    `https://lcctv-backend.herokuapp.com/api/accounts/billing/${id}`,
+                    `https://lcctv-backend.herokuapp.com/api/accounts/billing/${res.data._id}`,
                     { headers: { "x-auth-token": token } }
                 );
                 setAccount(response.data);
                 setPayments(response2.data.payments);
                 setInvoices(response2.data.invoices);
+                setIsFetching(false);
             })
             .finally(() => {
                 setIsLoading(false);
@@ -134,58 +143,87 @@ function Login() {
                                     ACCOUNT DETAILS
                                 </div>
                                 <div className="card-body">
-                                    <div className="row">
-                                        <div className="col">Account Name:</div>
-                                    </div>
-                                    <div className="row">
-                                        <div className="col h5">
-                                            {`${
-                                                account?.accountName?.firstName
-                                            } ${
-                                                !account?.accountName
-                                                    ?.middleName[0]
-                                                    ? ""
-                                                    : `${account?.accountName?.middleName[0]}.`
-                                            } ${
-                                                account?.accountName?.lastName
-                                            }`}
-                                        </div>
-                                        <div className="row">
-                                            <div className="col">
-                                                Account Number:
+                                    {isFetching ? (
+                                        "Loading..."
+                                    ) : (
+                                        <>
+                                            <div className="row">
+                                                <div className="col">
+                                                    Account Name:
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className="row">
-                                            <div className="col h5">
-                                                {`${
-                                                    account?.prefix
-                                                }${account?.acc_ctr
-                                                    ?.toString()
-                                                    .padStart(3, "0")}`}
+                                            <div className="row">
+                                                <div className="col h5">
+                                                    {`${
+                                                        account?.accountName
+                                                            ?.firstName
+                                                    } ${
+                                                        !account?.accountName
+                                                            ?.middleName[0]
+                                                            ? ""
+                                                            : `${account?.accountName?.middleName[0]}.`
+                                                    } ${
+                                                        account?.accountName
+                                                            ?.lastName
+                                                    }`}
+                                                </div>
+                                                <div className="row">
+                                                    <div className="col">
+                                                        Account Number:
+                                                    </div>
+                                                </div>
+                                                <div className="row">
+                                                    <div className="col h5">
+                                                        {`${
+                                                            account?.prefix
+                                                        }${account?.acc_ctr
+                                                            ?.toString()
+                                                            .padStart(3, "0")}`}
+                                                    </div>
+                                                </div>
+                                                <div className="row">
+                                                    <div className="col">
+                                                        Current Plan:
+                                                    </div>
+                                                </div>
+                                                <div className="row">
+                                                    <div className="col h5">
+                                                        {`${account?.packageID?.description}`}
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className="row">
-                                            <div className="col">
-                                                Current Plan:
-                                            </div>
-                                        </div>
-                                        <div className="row">
-                                            <div className="col h5">
-                                                {`${account?.packageID?.description}`}
-                                            </div>
-                                        </div>
-                                    </div>
+                                        </>
+                                    )}
                                 </div>
                             </div>
                         </div>
                         <div className="col-9">
                             <div className="card border-0 shadow">
-                                <div className="card-header bg-navy border-gold-2 text-light fs-3">
+                                <div className="card-header bg-navy border-gold-2 text-light fs-3 d-flex">
                                     TRANSACTION HISTORY
+                                    <button
+                                        className="ms-auto btn btn-outline-light"
+                                        onClick={() => {
+                                            const doc = new jsPDF();
+                                            doc.autoTable({
+                                                html: "#summary",
+                                            });
+                                            doc.save("billingSummary.pdf");
+                                        }}
+                                    >
+                                        <Download className="me-2" />
+                                        Download Billing Summary
+                                    </button>
                                 </div>
                                 <div className="card-body">
-                                    {[...payments, ...invoices].length !== 0 ? (
-                                        <table className="table table-borderless table-striped shadow fs-6">
+                                    {isFetching ? (
+                                        "Loading..."
+                                    ) : [...payments, ...invoices].length !==
+                                      0 ? (
+                                        <table
+                                            className="table table-borderless table-striped shadow fs-6"
+                                            id="summary"
+                                        >
                                             <thead className="text-light bg-navy border-gold-2 text-center">
                                                 <tr>
                                                     <th>TRANSACTION NUMBER</th>

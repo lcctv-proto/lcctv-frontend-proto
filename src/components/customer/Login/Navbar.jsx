@@ -58,7 +58,7 @@ function Navbar({ isAuth, setIsAuth }) {
                         </div>
                     ) : (
                         <button
-                            className="btn btn-outline-light ms-auto me-4"
+                            className="btn btn-outline-gold ms-auto me-4"
                             onClick={() => {
                                 setIsAuth(false);
                             }}
