@@ -69,19 +69,19 @@ function Applications() {
             description:
                 "There is something wrong about your application form. Please check our email.",
         },
-        1: {
+        3: {
             title: "FOR VALIDATION",
             style: { width: `${(1 / 3) * 100}%`, backgroundColor: "#f0b917" },
             description:
                 "Our employees are currently validating your application details. Check again within the next 24 hours!",
         },
-        2: {
+        4: {
             title: "FOR PAYMENT",
             style: { width: `${(2 / 3) * 100}%`, backgroundColor: "#f0b917" },
             description:
                 "Kindly settle your application payment. We have sent an email with the instructions.",
         },
-        3: {
+        5: {
             title: "CURRENTLY ACTIVE",
             style: { width: `${(3 / 3) * 100}%`, backgroundColor: "green" },
             description: "Welcome to Lake Community Cable TV!",
@@ -162,7 +162,7 @@ function Applications() {
 
                                     <p className="text-center">
                                         {application.step < 8 && (
-                                            <>STEP {application.step}/8</>
+                                            <>STEP {application.step - 2}/3</>
                                         )}
                                     </p>
 
