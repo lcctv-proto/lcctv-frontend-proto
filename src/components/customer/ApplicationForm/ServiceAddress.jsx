@@ -70,6 +70,7 @@ function ServiceAddress({
             </label>
             <select
                 value={homeOwnership}
+                className="form-select"
                 onChange={(e) => setHomeOwnership(e.target.value)}
                 required
             >

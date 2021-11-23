@@ -34,13 +34,23 @@ function Employees() {
     const currentEmployees = employees
         .filter((employee) => {
             const {
+                prefix,
                 personnelName: { firstName, middleName, lastName },
+                roleID: { description },
+                emp_ctr,
             } = employee;
 
             const name = `${firstName} ${middleName} ${lastName}`;
 
+            const empNumber = `${prefix}${emp_ctr.toString().padStart(3, "0")}`;
+
             if (searchTerm === "") return employee;
-            else if (name.includes(searchTerm.toUpperCase())) return employee;
+            else if (
+                name.includes(searchTerm.toUpperCase()) ||
+                empNumber.includes(searchTerm.toUpperCase()) ||
+                description.includes(searchTerm.toUpperCase())
+            )
+                return employee;
             return null;
         })
         .slice(indexOfFirstEmployee, indexOfLastEmployee);

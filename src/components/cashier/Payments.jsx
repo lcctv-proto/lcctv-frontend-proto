@@ -24,11 +24,41 @@ function Payments() {
     const currentPayments = payments
         .filter((payment) => {
             const {
-                accountName: { firstName, middleName, lastName },
-            } = payment.accountID;
+                prefix,
+                date,
+                accountID: {
+                    prefix: acc_prefix,
+                    accountName: { firstName, middleName, lastName },
+                    acc_ctr,
+                },
+                modeOfPayment,
+                pay_ctr,
+            } = payment;
+
             const name = `${firstName} ${middleName} ${lastName}`;
+
+            const accNumber = `${acc_prefix}${acc_ctr
+                .toString()
+                .padStart(3, "0")}`;
+
+            const payNumber = `${prefix}${pay_ctr.toString().padStart(3, "0")}`;
+            const localDate = new Date(date)
+                .toLocaleDateString(undefined, {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                })
+                .toUpperCase();
+
             if (searchTerm === "") return payment;
-            else if (name.includes(searchTerm.toUpperCase())) return payment;
+            else if (
+                name.includes(searchTerm.toUpperCase()) ||
+                modeOfPayment.includes(searchTerm.toUpperCase()) ||
+                accNumber.includes(searchTerm) ||
+                payNumber.includes(searchTerm.toUpperCase()) ||
+                localDate.includes(searchTerm.toLocaleUpperCase())
+            )
+                return payment;
             return null;
         })
         .slice(indexOfFirstPayment, indexOfLastPayment);
