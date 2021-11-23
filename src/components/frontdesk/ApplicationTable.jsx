@@ -19,7 +19,7 @@ function ApplicationTable({
                 else if (currentSort === "nameUp") setCurrentSort("default");
                 else if (currentSort === "default") setCurrentSort("nameDown");
                 break;
-            case "DATE":
+            case "APPLICATION DATE":
                 if (currentSort === "dateDown") setCurrentSort("dateUp");
                 else if (currentSort === "dateUp") setCurrentSort("default");
                 else if (currentSort === "default") setCurrentSort("dateDown");
