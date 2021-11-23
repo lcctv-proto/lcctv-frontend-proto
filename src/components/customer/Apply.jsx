@@ -274,6 +274,7 @@ function Apply() {
                                             setNearestLandmark={
                                                 setNearestLandmark
                                             }
+                                            form={form}
                                         />
                                     )}
                                     {page === 3 && (
@@ -313,6 +314,7 @@ function Apply() {
                                                 setSpouseLastName
                                             }
                                             civilStatus={civilStatus}
+                                            form={form}
                                         />
                                     )}
 
@@ -332,6 +334,7 @@ function Apply() {
                                             setIDPreview={setIDPreview}
                                             POBpreview={POBpreview}
                                             setPOBPreview={setPOBPreview}
+                                            form={form}
                                         />
                                     )}
                                 </FormWithConstraints>
