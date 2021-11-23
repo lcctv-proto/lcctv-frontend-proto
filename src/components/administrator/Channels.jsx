@@ -43,9 +43,16 @@ function Channels() {
     const indexOfFirstChannel = indexOfLastChannel - channelsPerPage;
     const currentChannels = channels
         .filter((channel) => {
-            const { description } = channel;
+            const { 
+                description,
+                assignedNumber, 
+            } = channel;
+
             if (searchTerm === "") return channel;
-            else if (description.includes(searchTerm.toUpperCase()))
+            else if (
+                description.includes(searchTerm.toUpperCase()) ||
+                assignedNumber.includes(searchTerm.toUpperCase())
+                )
                 return channel;
             return null;
         })
