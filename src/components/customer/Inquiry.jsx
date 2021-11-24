@@ -73,7 +73,7 @@ function Inquiry() {
                                             }}
                                         />
                                     </div>
-                                    {/* <div className="col-xxl-6 mt-3">
+                                    <div className="col-xxl-6 mt-3">
                                         <label
                                             htmlFor="account_number"
                                             className="form-label"
@@ -91,7 +91,7 @@ function Inquiry() {
                                                 );
                                             }}
                                         />
-                                    </div> */}
+                                    </div>
                                 </div>
 
                                 <div className="row mt-3">
