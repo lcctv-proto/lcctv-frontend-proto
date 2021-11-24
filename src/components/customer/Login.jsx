@@ -42,7 +42,16 @@ function Login() {
                 );
                 setAccount(response.data);
                 setPayments(response2.data.payments);
-                setInvoices(response2.data.invoices);
+                setInvoices([
+                    ...response2.data.invoices,
+                    {
+                        amountDue: account.packageID.price + 1000,
+                        date: "2021-11-22T17:10:20.497Z",
+                        inv_ctr: 98,
+                        prefix: "INV-211124",
+                        _id: "619bcf00e050203e56d9f75e",
+                    },
+                ]);
                 setIsFetching(false);
             })
             .catch((err) => {
