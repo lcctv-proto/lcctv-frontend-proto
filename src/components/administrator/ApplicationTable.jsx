@@ -118,7 +118,9 @@ function ApplicationTable({ currentApplications, cols }) {
                         }) => {
                             const suffix = acc_ctr.toString().padStart(3, "0");
                             const refNumber = `${prefix}${suffix}`;
-                            const name = `${firstName} ${middleName[0]}. ${lastName}`;
+                            const name = `${firstName} ${
+                                !middleName[0] ? "" : `${middleName[0]}.`
+                            } ${lastName}`;
                             const area = `${municipality}, ${province}`;
 
                             return (
@@ -148,23 +150,21 @@ function ApplicationTable({ currentApplications, cols }) {
                                                 .toString()
                                                 .padStart(3, "0")}`,
                                             "FIRST NAME":
-                                                value.accountName
-                                                    .firstName,
+                                                value.accountName.firstName,
                                             "MIDDLE NAME":
-                                                value.accountName
-                                                    .middleName,
+                                                value.accountName.middleName,
                                             "LAST NAME":
-                                                value.accountName
-                                                    .lastName,
+                                                value.accountName.lastName,
                                             PACKAGE:
-                                                value.packageID
-                                                    .description,
+                                                value.packageID.description,
                                             AREA: value.serviceAddress
                                                 .municipality,
                                         });
                                     });
                                     let worksheet =
-                                        XLSX.utils.json_to_sheet(newApplications);
+                                        XLSX.utils.json_to_sheet(
+                                            newApplications
+                                        );
                                     var new_workbook = XLSX.utils.book_new();
                                     XLSX.utils.book_append_sheet(
                                         new_workbook,
@@ -191,23 +191,21 @@ function ApplicationTable({ currentApplications, cols }) {
                                                 .toString()
                                                 .padStart(3, "0")}`,
                                             "FIRST NAME":
-                                                value.accountName
-                                                    .firstName,
+                                                value.accountName.firstName,
                                             "MIDDLE NAME":
-                                                value.accountName
-                                                    .middleName,
+                                                value.accountName.middleName,
                                             "LAST NAME":
-                                                value.accountName
-                                                    .lastName,
+                                                value.accountName.lastName,
                                             PACKAGE:
-                                                value.packageID
-                                                    .description,
+                                                value.packageID.description,
                                             AREA: value.serviceAddress
                                                 .municipality,
                                         });
                                     });
                                     let worksheet =
-                                        XLSX.utils.json_to_sheet(newApplications);
+                                        XLSX.utils.json_to_sheet(
+                                            newApplications
+                                        );
                                     const new_workbook = XLSX.utils.book_new();
                                     XLSX.utils.book_append_sheet(
                                         new_workbook,

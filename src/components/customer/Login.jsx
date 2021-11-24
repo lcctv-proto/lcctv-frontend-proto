@@ -112,7 +112,7 @@ function Login() {
                                             style={{ textTransform: "none" }}
                                             required
                                         />
-                                        <button
+                                        {/* <button
                                             className="btn btn-link mt-2 fst-italic"
                                             onClick={() => {
                                                 console.log(
@@ -121,7 +121,7 @@ function Login() {
                                             }}
                                         >
                                             Forgot your password?
-                                        </button>
+                                        </button> */}
                                         <button
                                             type="button"
                                             className="btn btn-primary mt-3 fw-bolder float-end btn-gold"
