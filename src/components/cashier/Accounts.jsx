@@ -182,7 +182,11 @@ function Accounts() {
                             <p className="fs-4">ACCOUNT NAME:</p>
                             <p className="ms-2 fs-3 fw-bold m-0">
                                 {account._id &&
-                                    `${account.accountName.firstName} ${account.accountName.middleName[0]}. ${account.accountName.lastName}`}
+                                    `${account.accountName.firstName} ${
+                                        !account.accountName.middleName[0]
+                                            ? ""
+                                            : `${account.accountName.middleName[0]}.`
+                                    } ${account.accountName.lastName}`}
                             </p>
                         </Col>
                     </Row>
