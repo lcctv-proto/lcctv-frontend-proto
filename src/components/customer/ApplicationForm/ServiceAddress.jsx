@@ -148,7 +148,7 @@ function ServiceAddress({
             <label htmlFor="province" className="form-label mt-2">
                 Province:
             </label>
-            <input
+            <Input
                 type="text"
                 className="form-control"
                 id="province"
@@ -168,7 +168,7 @@ function ServiceAddress({
             <label htmlFor="zip" className="form-label mt-2">
                 Zip Code:
             </label>
-            <input
+            <Input
                 type="number"
                 className="form-control"
                 id="zip"
@@ -188,7 +188,7 @@ function ServiceAddress({
             <label htmlFor="landmark" className="form-label mt-2">
                 Nearest Landmark:
             </label>
-            <input
+            <Input
                 type="text"
                 className="form-control"
                 id="landmark"
